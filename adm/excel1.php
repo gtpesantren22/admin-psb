@@ -2,21 +2,28 @@
 require "Excel.class.php";
 
 #koneksi ke mysql
-//$mysqli = new mysqli("localhost", "root", "", "psb21");
-$mysqli = new mysqli("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_psb22");
-if ($mysqli->connect_error) {
-	die('Connect Error (' . $mysqli->connect_error . ') ');
+include '../koneksi.php';
+
+if ($conn->connect_error) {
+	die('Connect Error (' . $conn->connect_error . ') ');
 }
 #akhir koneksi
 
 #ambil data
 $query = "SELECT nis, nik, nama, tempat, tanggal, jkl, anak_ke, jml_sdr, jln, rt, rw, 
-desa, kec, kab, lembaga, bapak, ibu, a_pkj, i_pkj, hp, asal, a_asal, 
+desa, kec, kab, 
+CASE lembaga
+WHEN 1 THEN 'MTs'
+WHEN 2 THEN 'SMP'
+WHEN 3 THEN 'MA'
+WHEN 4 THEN 'SMK'
+END AS
+lm, bapak, ibu, a_pkj, i_pkj, hp, asal, a_asal, 
 stts, gel, jalur, waktu_daftar, no_kk
 FROM tb_santri WHERE ket = 'baru'
 ORDER BY waktu_daftar ASC";
 
-$sql = $mysqli->query($query);
+$sql = $conn->query($query);
 $arrmhs = array();
 while ($row = $sql->fetch_assoc()) {
 	array_push($arrmhs, $row);

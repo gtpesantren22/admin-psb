@@ -108,44 +108,46 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                                     <div class="row">
                                         <div class="col-md-10">
                                             <button class="btn btn-primary" type="button" data-toggle="modal" data-target=".bs-example-modal-lg"><i class=" fa fa-plus"></i> Tambah Data Baru</button>
-                                            <table id="datatable" class="table table-striped table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No.</th>
-                                                        <th>Nama</th>
-                                                        <th>Alamat</th>
-                                                        <th>Bayar</th>
-                                                        <th>Tanggal</th>
-                                                        <th>Tempat</th>
-                                                        <?php if ($level == 'super') { ?>
-                                                            <th>#</th>
-                                                        <?php } ?>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php $i = 1; ?>
-                                                    <?php foreach ($data as $r) :
-                                                        $tmp = array("", "Kantin", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny. Sa'adah", "Ny. Mamjudah", "Ny. Naily Z.", "Ny. Lathifah");
-                                                        $lm = array("", "MTs", "SMP", "MA", "SMK");
-                                                    ?>
+                                            <div class="table-responsive">
+                                                <table id="datatable" class="table table-striped table-bordered">
+                                                    <thead>
                                                         <tr>
-                                                            <td style="text-align: center"><?= $i; ?></td>
-                                                            <td><?= $r['nama']; ?> </td>
-                                                            <td><?= $r['kl'] . ' - ' . $r['kc']; ?> </td>
-                                                            <td><?= rupiah($r['nominal']); ?> </td>
-                                                            <td><?= $r['tgl']; ?></td>
-                                                            <td><?= $tmp[$r['t_kos']]; ?> </td>
+                                                            <th>No.</th>
+                                                            <th>Nama</th>
+                                                            <th>Alamat</th>
+                                                            <th>Bayar</th>
+                                                            <th>Tanggal</th>
+                                                            <th>Tempat</th>
                                                             <?php if ($level == 'super') { ?>
-                                                                <td>
-                                                                    <a href="<?= 'hapus.php?kd=kos&id=' . $r["id_kos"]; ?>" onclick="return confirm('Yakin akan dihapus ?');"><button class="btn btn-danger btn-icon btn-xs"><span class="fa fa-times"></span></button></a>
-                                                                    <!-- <a href="<?= $urlcrud . 'qwerty&nis=' . $r["nis"]; ?>"><button class="btn btn-warning btn-icon btn-xs"><span class="fa fa-edit"></span></button></a> -->
-                                                                </td>
+                                                                <th>#</th>
                                                             <?php } ?>
                                                         </tr>
-                                                        <?php $i++; ?>
-                                                    <?php endforeach; ?>
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        <?php foreach ($data as $r) :
+                                                            $tmp = array("", "Kantin", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny. Sa'adah", "Ny. Mamjudah", "Ny. Naily Z.", "Ny. Lathifah");
+                                                            $lm = array("", "MTs", "SMP", "MA", "SMK");
+                                                        ?>
+                                                            <tr>
+                                                                <td style="text-align: center"><?= $i; ?></td>
+                                                                <td><?= $r['nama']; ?> </td>
+                                                                <td><?= $r['kl'] . ' - ' . $r['kc']; ?> </td>
+                                                                <td><?= rupiah($r['nominal']); ?> </td>
+                                                                <td><?= $r['tgl']; ?></td>
+                                                                <td><?= $tmp[$r['t_kos']]; ?> </td>
+                                                                <?php if ($level == 'super') { ?>
+                                                                    <td>
+                                                                        <a href="<?= 'hapus.php?kd=kos&id=' . $r["id_kos"]; ?>" onclick="return confirm('Yakin akan dihapus ?');"><button class="btn btn-danger btn-icon btn-xs"><span class="fa fa-times"></span></button></a>
+                                                                        <!-- <a href="<?= $urlcrud . 'qwerty&nis=' . $r["nis"]; ?>"><button class="btn btn-warning btn-icon btn-xs"><span class="fa fa-edit"></span></button></a> -->
+                                                                    </td>
+                                                                <?php } ?>
+                                                            </tr>
+                                                            <?php $i++; ?>
+                                                        <?php endforeach; ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                         <div class="col-md-2">
                                             <ul class="nav nav-pills flex-column mail-nav">

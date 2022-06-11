@@ -1,18 +1,13 @@
 <?php
-require '../function.php';
+require 'function.php';
 
 $nis = $_GET['nis'];
 
 $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT *  FROM tb_santri WHERE nis = '$nis' "));
 $data2 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT *  FROM berkas WHERE nis = '$nis' "));
 
-$almt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT tb_santri.nis,
-provinsi.nama AS pr, kabupaten.nama AS kb, kecamatan.nama AS kc, kelurahan.nama AS kl FROM `tb_santri` 
-JOIN kelurahan ON kelurahan.id_kel=tb_santri.desa
-JOIN kecamatan ON kecamatan.id_kec=tb_santri.kec
-JOIN kabupaten ON kabupaten.id_kab=tb_santri.kab
-JOIN provinsi ON provinsi.id_prov=tb_santri.prov
-WHERE nis  = '$nis' ORDER BY tb_santri.id ASC"));
+$almt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tb_santri 
+WHERE nis  = '$nis' "));
 
 $l = array("", "MTs", "SMP", "MA", "SMK");
 $jl = array("", "Reguler", "Prestasi");
@@ -32,16 +27,16 @@ $jl = array("", "Reguler", "Prestasi");
     <title>DataTables | Gentelella</title>
 
     <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
-    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="build/css/custom.min.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -90,10 +85,11 @@ $jl = array("", "Reguler", "Prestasi");
                                             </div>
                                             <div class="message_wrapper">
                                                 <h4 class="heading"><?= $data['nama'] ?></h4>
-                                                <blockquote class="message"><?= $almt['kl'] . ' - ' . $almt['kc'] . ' - ' . $almt['kb'] . ' - ' . $almt['pr'] ?></blockquote>
+                                                <blockquote class="message"><?= $almt['desa'] . ' - ' . $almt['kec'] . ' - ' . $almt['kab'] . ' - ' . $almt['prov'] ?></blockquote>
                                                 <blockquote class="message">Lembaga : <?= $l[$data['lembaga']] ?> DWK</blockquote>
                                                 <blockquote class="message"> <span class="badge bg-green">Gelombang <?= $data['gel'] ?></span> -
-                                                    <span class="badge bg-blue"><?= $jl[$data['jalur']] ?></span> </blockquote>
+                                                    <span class="badge bg-blue"><?= $jl[$data['jalur']] ?></span>
+                                                </blockquote>
                                                 <br />
                                             </div>
                                         </li>
@@ -187,18 +183,18 @@ $jl = array("", "Reguler", "Prestasi");
     </div>
 
     <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <script src="vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
+    <script src="vendors/nprogress/nprogress.js"></script>
     <!-- iCheck -->
-    <script src="../vendors/iCheck/icheck.min.js"></script>
+    <script src="vendors/iCheck/icheck.min.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <script src="build/js/custom.min.js"></script>
 
 </body>
 

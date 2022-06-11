@@ -3,6 +3,7 @@ require 'function.php';
 
 $data = query("SELECT tb_santri.*, berkas.*  FROM tb_santri 
 JOIN berkas ON tb_santri.nis=berkas.nis ORDER BY tb_santri.id_santri ASC");
+$lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
 
 ?>
 
@@ -75,6 +76,7 @@ JOIN berkas ON tb_santri.nis=berkas.nis ORDER BY tb_santri.id_santri ASC");
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target=".bs-example-modal-lg"><i class=" fa fa-plus"></i> Tambah Data Baru</button>
                                     <table id="datatable" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
@@ -166,6 +168,55 @@ JOIN berkas ON tb_santri.nis=berkas.nis ORDER BY tb_santri.id_santri ASC");
                 <div class="clearfix"></div>
             </footer>
             <!-- /footer content -->
+        </div>
+    </div>
+
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title" id="">Tambah Penempatan Kamar Baru</h4>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table id="datatable-responsive" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Lembaga</th>
+                                <th>Ket</th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $no = 1;
+                            // $lm = array("", "MTs", "SMP", "MA", "SMK");
+                            $sql1 = mysqli_query($conn, "SELECT * FROM tb_santri WHERE NOT EXISTS (SELECT * FROM berkas WHERE berkas.nis=tb_santri.nis ) AND tb_santri.ket = 'baru' ");
+                            while ($row1 = mysqli_fetch_assoc($sql1)) {
+                            ?>
+                                <tr>
+                                    <td><?= $no++; ?></td>
+                                    <td><?= $row1['nama']; ?></td>
+                                    <td><?= $lm[$row1['lembaga']]; ?></td>
+                                    <td><?= $row1['ket']; ?></td>
+                                    <td>
+                                        <a href="<?= 'berkasAdd.php?nis=' . $row1['nis'] ?>"><button class="btn btn-xs btn-success"> Pilih santri ini</button></a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+
+            </div>
         </div>
     </div>
 

@@ -1,18 +1,10 @@
 <?php
 
-require '../function.php';
+require 'function.php';
 
 
 $nis = $_GET['nis'];
 $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tb_santri WHERE nis = '$nis' "));
-$data2 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT tb_santri.id, tb_santri.nis, tb_santri.nama, tb_santri.lembaga, tb_santri.stts, tb_santri.jkl, 
-provinsi.nama AS pr, kabupaten.nama AS kb, kecamatan.nama AS kc, kelurahan.nama AS kl FROM `tb_santri` 
-JOIN kelurahan ON kelurahan.id_kel=tb_santri.desa
-JOIN kecamatan ON kecamatan.id_kec=tb_santri.kec
-JOIN kabupaten ON kabupaten.id_kab=tb_santri.kab
-JOIN provinsi ON provinsi.id_prov=tb_santri.prov
-ORDER BY tb_santri.id ASC"));
-
 $bl = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
 ?>
 <!DOCTYPE html>
@@ -28,16 +20,16 @@ $bl = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", 
     <title>Gentelella Alela! | </title>
 
     <!-- Bootstrap -->
-    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
-    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="build/css/custom.min.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -160,7 +152,7 @@ $bl = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", 
                                                 </tr>
                                                 <tr>
                                                     <td>Alamat</td>
-                                                    <td><?= $data2['kl'] . ' - ' . $data2['kc'] . ' - ' . $data2['kb']; ?>
+                                                    <td><?= $data['desa'] . ' - ' . $data['kec'] . ' - ' . $data['kab']; ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -194,24 +186,24 @@ $bl = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" /> -->
     <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <script src="vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
+    <script src="vendors/nprogress/nprogress.js"></script>
     <!-- morris.js -->
-    <script src="../vendors/raphael/raphael.min.js"></script>
-    <script src="../vendors/morris.js/morris.min.js"></script>
+    <script src="vendors/raphael/raphael.min.js"></script>
+    <script src="vendors/morris.js/morris.min.js"></script>
     <!-- bootstrap-progressbar -->
-    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- bootstrap-daterangepicker -->
-    <script src="../vendors/moment/min/moment.min.js"></script>
-    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="vendors/moment/min/moment.min.js"></script>
+    <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    <script src="build/js/custom.min.js"></script>
 
     <script language="JavaScript">
         Webcam.set({

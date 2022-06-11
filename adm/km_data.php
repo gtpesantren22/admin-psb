@@ -6,6 +6,7 @@ $data = query("SELECT tb_santri.*,
 lemari.komplek, lemari.kamar, lemari.no FROM `tb_santri` 
 
 JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
+$lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
 
 ?>
 <!DOCTYPE html>
@@ -57,7 +58,9 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>Data Semua Santri <small>Santri baru</small></h2>
+                  <h2>
+                    Data Semua Santri <small>Santri baru</small>
+                  </h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -76,6 +79,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                  <button class="btn btn-primary" type="button" data-toggle="modal" data-target=".bs-example-modal-lg"><i class=" fa fa-plus"></i> Tambah Data Baru</button>
                   <table id="datatable" class="table table-striped table-bordered">
                     <thead>
                       <tr>
@@ -108,7 +112,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                                                                                               } ?>>
                                 Pilih Kamar</button></a>
 
-                            <?php if ($_SESSION['level'] == 'ss') { ?>
+                            <?php if ($level == 'super') { ?>
                               <a href="<?= 'hps_kamar.php?nis=' . $r['nis'] ?>" onclick="return confirm('Yakin akan dikosongi ?')"><button type="button" class="btn btn-danger btn-xs" <?php if ($r['no'] == '') {
                                                                                                                                                                                           echo "disabled";
                                                                                                                                                                                         } ?>>Kosongi</button></a>
@@ -131,7 +135,54 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
     </div>
   </div>
   <!-- /page content -->
+  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
 
+        <div class="modal-header">
+          <h4 class="modal-title" id="">Tambah Penempatan Kamar Baru</h4>
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table id="datatable-responsive" class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Lembaga</th>
+                <th>Ket</th>
+                <th>#</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $no = 1;
+              // $lm = array("", "MTs", "SMP", "MA", "SMK");
+              $sql1 = mysqli_query($conn, "SELECT * FROM tb_santri WHERE NOT EXISTS (SELECT * FROM lemari WHERE lemari.nis=tb_santri.nis ) AND tb_santri.ket = 'baru' ");
+              while ($row1 = mysqli_fetch_assoc($sql1)) {
+              ?>
+                <tr>
+                  <td><?= $no++; ?></td>
+                  <td><?= $row1['nama']; ?></td>
+                  <td><?= $lm[$row1['lembaga']]; ?></td>
+                  <td><?= $row1['ket']; ?></td>
+                  <td>
+                    <a href="<?= 'ekam.php?nis=' . $row1['nis'] ?>"><button class="btn btn-xs btn-success"> Pilih santri ini</button></a>
+                  </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
   <!-- footer content -->
   <footer>
     <div class="pull-right">

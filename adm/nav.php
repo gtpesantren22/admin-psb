@@ -14,6 +14,7 @@ if (!isset($_SESSION['lvl_adm_qwertyuiop'])) {
 
 $id = $_SESSION['id'];
 $user = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id' "));
+$level = $user['level'];
 
 ?>
 <div class="top_nav">

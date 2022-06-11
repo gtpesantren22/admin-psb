@@ -1,6 +1,6 @@
 <?php
 
-require '../function.php';
+require '../koneksi.php';
 $nis = $_GET['nis'];
 
 $sq = mysqli_query($conn, "UPDATE lemari_data SET nis = '' WHERE nis = '$nis' ");

@@ -164,7 +164,7 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                             <?php
                             $no = 1;
                             // $lm = array("", "MTs", "SMP", "MA", "SMK");
-                            $sql1 = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'baru' AND NOT EXISTS (SELECT * FROM regist WHERE regist.nis=tb_santri.nis) ");
+                            $sql1 = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'baru' AND NOT EXISTS (SELECT * FROM tanggungan WHERE tanggungan.nis=tb_santri.nis) ");
                             while ($row1 = mysqli_fetch_assoc($sql1)) {
                             ?>
                                 <tr>
@@ -173,7 +173,7 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                                     <td><?= $lm[$row1['lembaga']]; ?></td>
                                     <td><?= $row1['ket']; ?></td>
                                     <td>
-                                        <a href="<?= 'bayar_pd.php?id=' . $row1['id_santri'] ?>"><button class="btn btn-xs btn-success"> Bayar</button></a>
+                                        <a href="<?= 'add_regist.php?nis=' . $row1['nis'] ?>"><button class="btn btn-xs btn-success"> Bayar</button></a>
                                     </td>
                                 </tr>
                             <?php } ?>

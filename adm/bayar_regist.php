@@ -289,7 +289,7 @@ $pr = array("", "Reguler", "Prestasi");
                                                                     <td><?= rupiah($a['nominal']); ?></td>
                                                                     <td>
                                                                         <div class="btn-group">
-                                                                            <button class="btn btn-primary btn-xs" type="button"><i class="fa fa-print"></i></button>
+                                                                            <a href="nota.php?id=<?= $a['id_regist']; ?>" target="_blank" class="btn btn-primary btn-xs" type="button"><i class="fa fa-print"></i></a>
                                                                             <a href="kirim.php?kd=rgs&id=<?= $a['id_regist']; ?>" onclick="return confirm('Yakin akan dikirm ?')" class="btn btn-success btn-xs" type="button"><i class="fa fa-send"></i></a>
                                                                             <button class="btn btn-warning btn-xs" data-toggle="modal" data-target="#eddit<?= $a['id_regist']; ?>" id="#myBtn"><i class="fa fa-edit"></i></button>
                                                                             <a href="hapus.php?kd=rgs&id=<?= $a['id_regist']; ?>" onclick="return confirm('Yakin akan dihapus ?')">

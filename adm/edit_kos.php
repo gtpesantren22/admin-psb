@@ -1,8 +1,8 @@
 <?php
 require 'koneksi.php';
 
-$id = $_GET['id'];
-$dt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM dekos WHERE id_kos = '$id' "));
+$id_kos = $_GET['id'];
+$dt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM dekos WHERE id_kos = '$id_kos' "));
 $ns = $dt['nis'];
 $rw = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tb_santri WHERE nis = '$ns' "));
 $lembaga = $rw['lembaga'];
@@ -92,69 +92,67 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                                     <div class="col-lg-12">
                                         <div class="row">
                                             <div class="col-lg-8">
-                                                <form>
-                                                    <table border="0" style="color: green;">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>NIS Santri </th>
-                                                                <th>&nbsp;</th>
-                                                                <th>:</th>
-                                                                <th>&nbsp;</th>
-                                                                <th><?= $rw['nis']; ?></th>
-                                                            </tr>
-                                                            <tr height="5px">
-                                                                <th colspan="3"></th>
-                                                            </tr>
-                                                            <tr height="5px">
-                                                                <th colspan="3"></th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Nama </th>
-                                                                <th>&nbsp;</th>
-                                                                <th>:</th>
-                                                                <th>&nbsp;</th>
-                                                                <th><?= $rw['nama']; ?></th>
-                                                            </tr>
-                                                            <tr height="5px">
-                                                                <th colspan="3"></th>
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
-                                                    <div class="form-group">
-                                                        <?php
-                                                        if ($jkl == "1") {
-                                                            echo "<span class='label label-warning'>Laki-laki</span>";
-                                                        } else {
-                                                            echo "<span class='label label-warning'>Perempuan</span>";
-                                                        }
+                                                <table border="0" style="color: green;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>NIS Santri </th>
+                                                            <th>&nbsp;</th>
+                                                            <th>:</th>
+                                                            <th>&nbsp;</th>
+                                                            <th><?= $rw['nis']; ?></th>
+                                                        </tr>
+                                                        <tr height="5px">
+                                                            <th colspan="3"></th>
+                                                        </tr>
+                                                        <tr height="5px">
+                                                            <th colspan="3"></th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Nama </th>
+                                                            <th>&nbsp;</th>
+                                                            <th>:</th>
+                                                            <th>&nbsp;</th>
+                                                            <th><?= $rw['nama']; ?></th>
+                                                        </tr>
+                                                        <tr height="5px">
+                                                            <th colspan="3"></th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                                <div class="form-group">
+                                                    <?php
+                                                    if ($jkl == "1") {
+                                                        echo "<span class='label label-warning'>Laki-laki</span>";
+                                                    } else {
+                                                        echo "<span class='label label-warning'>Perempuan</span>";
+                                                    }
 
 
-                                                        if ($lembaga == 1) {
-                                                            echo " - <span class='label label-default'>MTs</span>";
-                                                        } elseif ($lembaga == 2) {
-                                                            echo " - <span class='label label-success'>SMP</span>";
-                                                        } elseif ($lembaga == 3) {
-                                                            echo " - <span class='label label-primary'>MA</span>";
-                                                        } else {
-                                                            echo " - <span class='label label-warning'>SMK</span>";
-                                                        }
+                                                    if ($lembaga == 1) {
+                                                        echo " - <span class='label label-default'>MTs</span>";
+                                                    } elseif ($lembaga == 2) {
+                                                        echo " - <span class='label label-success'>SMP</span>";
+                                                    } elseif ($lembaga == 3) {
+                                                        echo " - <span class='label label-primary'>MA</span>";
+                                                    } else {
+                                                        echo " - <span class='label label-warning'>SMK</span>";
+                                                    }
 
-                                                        if ($gel == 1) {
-                                                            echo " - <span class='label label-info'>Gel 1</span>";
-                                                        } else if ($gel == 2) {
-                                                            echo " - <span class='label label-info'>Gel 2</span>";
-                                                        } else if ($gel == 3) {
-                                                            echo " - <span class='label label-info'>Gel 3</span>";
-                                                        }
+                                                    if ($gel == 1) {
+                                                        echo " - <span class='label label-info'>Gel 1</span>";
+                                                    } else if ($gel == 2) {
+                                                        echo " - <span class='label label-info'>Gel 2</span>";
+                                                    } else if ($gel == 3) {
+                                                        echo " - <span class='label label-info'>Gel 3</span>";
+                                                    }
 
-                                                        if ($jal == 1) {
-                                                            echo " - <span class='label label-danger'>Reguler</span>";
-                                                        } else {
-                                                            echo " - <span class='label label-danger'>Prestasi</span>";
-                                                        }
-                                                        ?>
-                                                    </div>
-                                                </form>
+                                                    if ($jal == 1) {
+                                                        echo " - <span class='label label-danger'>Reguler</span>";
+                                                    } else {
+                                                        echo " - <span class='label label-danger'>Prestasi</span>";
+                                                    }
+                                                    ?>
+                                                </div>
                                             </div>
                                         </div>
                                         <hr>
@@ -164,7 +162,7 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                                         <form name="" method="post" action="">
                                             <div class="row">
                                                 <div class="col-lg-6">
-                                                    <input type="hidden" name="id_kos" value="<?= $id; ?>">
+                                                    <input type="hidden" name="id_kos" value="<?= $id_kos; ?>">
                                                     <div class="form-group">
                                                         <fieldset>
                                                             <label class="control-label" for="">Jumlah Pembayaran</label>
@@ -199,7 +197,7 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                                                 </div>
                                                 <div class="col-lg-7">
                                                     <br>
-                                                    <button class="btn btn-success " name="ok" type="submit"><i class="fa fa-check"></i> Simpan</button>
+                                                    <button type="submit" class="btn btn-success " name="ok"><i class="fa fa-check"></i> Simpan</button>
                                                     <a href="dekos.php" class="btn btn-warning "><i class="fa fa-arrow-left"></i> Kembali</a>
                                                 </div>
                                             </div>
@@ -294,11 +292,15 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
 
 if (isset($_POST['ok'])) {
 
-    // $id_kos = $_POST['id_kos'];
+    // $id_kos_kos = $_POST['id_kos'];
     $t_kos = $_POST['tempat'];
     $nominal = preg_replace("/[^0-9]/", "", $_POST['nominal']);
 
-    $sqq = mysqli_query($conn, "UPDATE dekos SET nominal = $nominal, t_kos = $t_kos WHERE id_kos = '$id' ");
+    // echo  $t_kos;
+    // echo $nominal;
+    // echo $id_kos;
+
+    $sqq = mysqli_query($conn, "UPDATE dekos SET nominal = '$nominal', t_kos = '$t_kos' WHERE id_kos = '$id_kos' ");
 
     if ($sqq) {
         echo "

@@ -139,7 +139,7 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                                                                 <?php if ($level == 'super') { ?>
                                                                     <td>
                                                                         <a href="<?= 'hapus.php?kd=kos&id=' . $r["id_kos"]; ?>" onclick="return confirm('Yakin akan dihapus ?');"><button class="btn btn-danger btn-icon btn-xs"><span class="fa fa-times"></span></button></a>
-                                                                        <!-- <a href="<?= $urlcrud . 'qwerty&nis=' . $r["nis"]; ?>"><button class="btn btn-warning btn-icon btn-xs"><span class="fa fa-edit"></span></button></a> -->
+                                                                        <a href="<?= 'edit_kos.php?id=' . $r["id_kos"]; ?>"><button class="btn btn-warning btn-icon btn-xs"><span class="fa fa-edit"></span></button></a>
                                                                     </td>
                                                                 <?php } ?>
                                                             </tr>

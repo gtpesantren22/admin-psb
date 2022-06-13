@@ -132,7 +132,7 @@ if (isset($_POST['daftar'])) {
     </script>
     ";
     } else {
-      $sql = mysqli_query($conn, "INSERT INTO user VALUES ('$id', '$nama','$username','$ps', '', 'T', '$jabatan', '$hp') ");
+      $sql = mysqli_query($conn, "INSERT INTO user VALUES ('$id', '$nama','$username','$password', '', 'T', '$jabatan', '$hp') ");
 
       if ($sql) {
         echo "
@@ -148,20 +148,6 @@ if (isset($_POST['daftar'])) {
         }, millisecondsToWait);
         </script>
         ";
-        $url = 'https://app.whacenter.com/api/send';
-        $ch = curl_init($url);
-        // $pesan = $pesan;
-        $data = array(
-          'device_id' => '42e589d874de10923bb28bbfdc11faab',
-          'number' => '085236924510',
-          'message' => $pesan,
-
-        );
-        $payload = $data;
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $result = curl_exec($ch);
-        curl_close($ch);
       }
     }
   }

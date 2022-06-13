@@ -89,9 +89,8 @@ $kos = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM dekos WHERE nis = '
     </style>
 </head>
 
-<!-- <body onload="window.print();"> -->
-
-<body>
+<body onload="window.print();">
+    <!-- <body> -->
     <table border="0" width="100%">
         <tr>
             <td align="center">

@@ -158,7 +158,7 @@ $kos = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM dekos WHERE nis = '
         <tr>
             <td>ALAMAT </td>
             <td>:</td>
-            <td>Gel. <?= $data['desa'] . '-' . $data['kec'] . '-' . $data['kab']; ?></td>
+            <td><?= $data['desa'] . '-' . $data['kec'] . '-' . $data['kab']; ?></td>
         </tr>
         <tr>
             <td></td>

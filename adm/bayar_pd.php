@@ -206,7 +206,7 @@ if ($data['ket'] == 'lama') {
     <!-- bootstrap-daterangepicker -->
     <script src="vendors/moment/min/moment.min.js"></script>
     <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script src="vendor/sw/sweetalert2.all.min.js"></script>
+    <script src="../bunda/vendor/sw/sweetalert2.all.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.min.js"></script>
 
@@ -274,13 +274,13 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 *Jadwal kegiatan Gel.1 :* 
 *Penyerahan berkas dan Tes : 26-28 February 2022*';
 
-    if ($nominal > $byOk) {
+    if ($nominal != $byOk) {
         echo "
                     <script>
                         Swal.fire({
                             icon: 'error',
                             title: 'Maaf',
-                            text: 'Pembayaran Anda Melebihi Ambang Batas!'
+                            text: 'Pembayaran Anda Tidak sesuai nominal!'
                         });
                     </script>
                     ";

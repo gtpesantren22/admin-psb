@@ -159,7 +159,7 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                             <?php
                             $no = 1;
                             // $lm = array("", "MTs", "SMP", "MA", "SMK");
-                            $sql1 = mysqli_query($conn, "SELECT * FROM tb_santri WHERE NOT EXISTS (SELECT * FROM bp_daftar WHERE bp_daftar.nis=tb_santri.nis) ");
+                            $sql1 = mysqli_query($conn, "SELECT * FROM tb_santri WHERE NOT EXISTS (SELECT * FROM bp_daftar WHERE bp_daftar.nis=tb_santri.nis) AND ket = 'baru' ");
                             while ($row1 = mysqli_fetch_assoc($sql1)) {
                             ?>
                                 <tr>

@@ -12,8 +12,8 @@ if (isset($_POST['komplek'])) {
     while ($data = mysqli_fetch_array($hasil)) {
 ?>
 
-<option value="<?php echo  $data['kamar']; ?>"><?php echo $data['kamar']; ?></option>
-<?php
+        <option value="<?php echo  $data['kamar']; ?>"><?php echo $data['kamar']; ?></option>
+    <?php
     }
 }
 if (isset($_POST['kamar'])) {
@@ -26,9 +26,9 @@ if (isset($_POST['kamar'])) {
     echo "<option value=''> -- pilih lemari -- </option>";
     while ($data = mysqli_fetch_array($hasil)) {
     ?>
-<option value="<?php echo  $data['loker']; ?>" <?php if($data['loker'] == '-'){
-    echo 'disabled';
-} ?>><?php echo $data['loker']; ?> - <?php echo $data['wali']; ?></option>
+        <option value="<?php echo  $data['loker']; ?>" <?php if ($data['loker'] == '-') {
+                                                            echo 'disabled';
+                                                        } ?>><?php echo $data['loker']; ?> - <?php echo $data['wali']; ?></option>
 <?php
     }
 }

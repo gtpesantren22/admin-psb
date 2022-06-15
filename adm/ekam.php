@@ -16,7 +16,7 @@ $jl = array("", "Reguler", "Prestasi");
 if ($data['jkl'] == 'Laki-laki') {
     $h_sq = "WHERE komplek = 'Sunan Bonang' OR komplek = 'Sunan Gunung Jati' ";
 } else {
-    $h_sq = "WHERE komplek = 'Al - Adawiyah' OR komplek = 'Aisyah' OR komplek = 'An - Nafisah' ";
+    $h_sq = "WHERE komplek = 'Al-Adawiyah' OR komplek = 'Aisyah' OR komplek = 'Ummu Kulsum' ";
 }
 ?>
 

@@ -84,7 +84,12 @@ $level = $user['level'];
                             <li><a href="km_data.php">Data Penempatan</a></li>
                         </ul>
                     </li>
-                    <li><a href="berkas.php"><i class="fa fa-clone"></i> Berkas pendaftaran </a></li>
+                    <li><a><i class="fa fa-clone"></i> Kelengkapan Pndftran <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="berkas.php">Berkas pendaftaran</a></li>
+                            <li><a href="atribut.php">Atribut pendaftaran</a></li>
+                        </ul>
+                    </li>
                     <li><a><i class="fa fa-money"></i> Registrasi Santri <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="daftar.php">Bayar pendaftaran</a></li>

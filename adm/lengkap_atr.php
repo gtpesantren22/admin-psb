@@ -4,7 +4,7 @@ require 'function.php';
 $nis = $_GET['nis'];
 
 $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT *  FROM tb_santri WHERE nis = '$nis' "));
-$data2 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT *  FROM berkas WHERE nis = '$nis' "));
+$data2 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT *  FROM atribut WHERE nis = '$nis' "));
 
 $almt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tb_santri WHERE nis  = '$nis' "));
 
@@ -56,7 +56,7 @@ $jl = array("", "Reguler", "Prestasi");
                         <div class="col-md-12 col-sm-12  ">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Form untuk melengkapi berkas santri <small>santri baru</small></h2>
+                                    <h2>Form untuk pencatatan penerimaan atribut santri <small>santri baru</small></h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
@@ -95,43 +95,37 @@ $jl = array("", "Reguler", "Prestasi");
                                     <form action="aksi.php?fn=berkas" method="post">
                                         <input type="hidden" name="nis" value="<?= $nis ?>">
                                         <div class="table-responsive">
-                                            <table class="table table-striped jambo_table ">
+                                            <table class="table table-striped jambo_table" width="50%">
                                                 <thead>
                                                     <tr class="headings">
                                                         <th class="column-title">No. </th>
                                                         <th class="column-title">Nama Berkas </th>
-                                                        <th class="column-title">Status Pengumpulan </th>
-                                                        <th class="column-title" colspan="2">Keterangan </th>
+                                                        <th class="column-title">Status Penerimaan </th>
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
                                                     <tr class="even pointer">
                                                         <td>1</td>
-                                                        <td>Kartu Keluarga (KK)</td>
-                                                        <td class="a-center"><input type="checkbox" value="1" class="flat" name="kk" <?php if ($data2['kk'] == 1) {
+                                                        <td>Buku Pedoman Wiridan</td>
+                                                        <td class="a-center"><input type="checkbox" value="1" class="flat" name="wir" <?php if ($data2['wir'] == 1) {
                                                                                                                                             echo 'checked';
                                                                                                                                         }  ?>></td>
-                                                        <td><input type="number" class="form-control" name="k_kk" value="<?= $data2['k_kk'] ?>"> </i></td>
-                                                        <td>/ banyak lembar </i></td>
+
                                                     </tr>
                                                     <tr class="even pointer">
                                                         <td>2</td>
-                                                        <td>Akta Kelahiran</td>
-                                                        <td class="a-center"><input type="checkbox" value="1" class="flat" name="akt" <?php if ($data2['akt'] == 1) {
+                                                        <td>Buku Tatib & Perizinan</td>
+                                                        <td class="a-center"><input type="checkbox" value="1" class="flat" name="tatib" <?php if ($data2['tatib'] == 1) {
                                                                                                                                             echo 'checked';
                                                                                                                                         } ?>></td>
-                                                        <td><input type="number" class="form-control" name="k_akt" value="<?= $data2['k_akt'] ?>"> </i></td>
-                                                        <td>/ banyak lembar </i></td>
                                                     </tr>
                                                     <tr class="even pointer">
                                                         <td>3</td>
-                                                        <td>Ijazah</td>
-                                                        <td class="a-center"><input type="checkbox" value="1" class="flat" name="ijz" <?php if ($data2['ijz'] == 1) {
+                                                        <td>Kartu KTS</td>
+                                                        <td class="a-center"><input type="checkbox" value="1" class="flat" name="kts" <?php if ($data2['kts'] == 1) {
                                                                                                                                             echo 'checked';
                                                                                                                                         }  ?>></td>
-                                                        <td><input type="number" class="form-control" name="k_ijz" value="<?= $data2['k_ijz'] ?>"> </i></td>
-                                                        <td>/ banyak lembar </i></td>
                                                     </tr>
                                                     <?php
                                                     if ($data['jalur'] == 2) {
@@ -142,8 +136,6 @@ $jl = array("", "Reguler", "Prestasi");
                                                             <td class="a-center"><input type="checkbox" value="1" class="flat" name="sfk" <?php if ($data2['sfk'] == 1) {
                                                                                                                                                 echo 'checked';
                                                                                                                                             }  ?>></td>
-                                                            <td><input type="text" class="form-control" name="k_sfk" value="<?= $data2['k_sfk'] ?>"> </i></td>
-                                                            <td>/ disi "Akademik" atau "Non Akademik" </i></td>
                                                         </tr>
                                                         <tr class="even pointer">
                                                             <td>1</td>
@@ -151,8 +143,6 @@ $jl = array("", "Reguler", "Prestasi");
                                                             <td class="a-center"><input type="checkbox" value="1" class="flat" name="pres" <?php if ($data2['pres'] == 1) {
                                                                                                                                                 echo 'checked';
                                                                                                                                             }  ?>></td>
-                                                            <td><input type="number" class="form-control" name="k_pres" value="<?= $data2['k_pres'] ?>"> </i></td>
-                                                            <td>/ banyak lembar </i></td>
                                                         </tr>
                                                     <?php } ?>
                                                 </tbody>

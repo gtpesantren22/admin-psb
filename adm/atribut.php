@@ -1,8 +1,8 @@
 <?php
 require 'function.php';
 
-$data = query("SELECT tb_santri.*, berkas.*  FROM tb_santri 
-JOIN berkas ON tb_santri.nis=berkas.nis ORDER BY tb_santri.id_santri ASC");
+$data = query("SELECT tb_santri.*, atribut.*  FROM tb_santri 
+JOIN atribut ON tb_santri.nis=atribut.nis ORDER BY tb_santri.id_santri ASC");
 $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
 
 ?>
@@ -82,12 +82,15 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                                             <tr>
                                                 <th>No. Daftar</th>
                                                 <th>Nama</th>
-                                                <th>Jalur</th>
-                                                <th>Sertifikat</th>
-                                                <th>Ket. Prestasi</th>
-                                                <th>KK</th>
-                                                <th>Akta</th>
-                                                <th>Ijazah</th>
+                                                <th>Wiridan</th>
+                                                <th>Tatib</th>
+                                                <th>KTS</th>
+                                                <th>Mhrm</th>
+                                                <th>K.Kes</th>
+                                                <th>Calndr</th>
+                                                <th>Ft. Pngsh</th>
+                                                <th>Srgm. Ps</th>
+                                                <th>Srgm. Lm</th>
                                                 <th>Act</th>
                                             </tr>
                                         </thead>
@@ -99,42 +102,63 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                                                 <tr>
                                                     <td><?= $r['nis']; ?></td>
                                                     <td><?= $r['nama']; ?></td>
-                                                    <td><?php if ($r['jalur'] == 1) {
-                                                            echo "<center><span class='badge bg-red' >Reg.</span></center>";
-                                                        } else {
-                                                            echo "<center><span class='badge bg-green'>Pres.</span></center>";
-                                                        }
-                                                        ?>
-                                                    </td>
-                                                    <td><?php if ($r['sfk'] != 0) {
+                                                    <td><?php if ($r['wir'] != 0) {
                                                             echo "<center><i class='glyphicon glyphicon-ok' style='color: green'></i></center>";
                                                         } else {
                                                             echo "<center><i class='glyphicon glyphicon-remove' style='color: red'></i></center>";
                                                         }
                                                         ?>
                                                     </td>
-                                                    <td><?php if ($r['pres'] != 0) {
+                                                    <td><?php if ($r['tatib'] != 0) {
                                                             echo "<center><i class='glyphicon glyphicon-ok' style='color: green'></i></center>";
                                                         } else {
                                                             echo "<center><i class='glyphicon glyphicon-remove' style='color: red'></i></center>";
                                                         }
                                                         ?>
                                                     </td>
-                                                    <td><?php if ($r['kk'] != 0) {
+                                                    <td><?php if ($r['kts'] != 0) {
                                                             echo "<center><i class='glyphicon glyphicon-ok' style='color: green'></i></center>";
                                                         } else {
                                                             echo "<center><i class='glyphicon glyphicon-remove' style='color: red'></i></center>";
                                                         }
                                                         ?>
                                                     </td>
-                                                    <td><?php if ($r['akt'] != 0) {
+                                                    <td><?php if ($r['mahrom'] != 0) {
                                                             echo "<center><i class='glyphicon glyphicon-ok' style='color: green'></i></center>";
                                                         } else {
                                                             echo "<center><i class='glyphicon glyphicon-remove' style='color: red'></i></center>";
                                                         }
                                                         ?>
                                                     </td>
-                                                    <td><?php if ($r['ijz'] != 0) {
+                                                    <td><?php if ($r['kes'] != 0) {
+                                                            echo "<center><i class='glyphicon glyphicon-ok' style='color: green'></i></center>";
+                                                        } else {
+                                                            echo "<center><i class='glyphicon glyphicon-remove' style='color: red'></i></center>";
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td><?php if ($r['kalender'] != 0) {
+                                                            echo "<center><i class='glyphicon glyphicon-ok' style='color: green'></i></center>";
+                                                        } else {
+                                                            echo "<center><i class='glyphicon glyphicon-remove' style='color: red'></i></center>";
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td><?php if ($r['pengasuh'] != 0) {
+                                                            echo "<center><i class='glyphicon glyphicon-ok' style='color: green'></i></center>";
+                                                        } else {
+                                                            echo "<center><i class='glyphicon glyphicon-remove' style='color: red'></i></center>";
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td><?php if ($r['seragam'] != 0) {
+                                                            echo "<center><i class='glyphicon glyphicon-ok' style='color: green'></i></center>";
+                                                        } else {
+                                                            echo "<center><i class='glyphicon glyphicon-remove' style='color: red'></i></center>";
+                                                        }
+                                                        ?>
+                                                    </td>
+                                                    <td><?php if ($r['seragam_l'] != 0) {
                                                             echo "<center><i class='glyphicon glyphicon-ok' style='color: green'></i></center>";
                                                         } else {
                                                             echo "<center><i class='glyphicon glyphicon-remove' style='color: red'></i></center>";
@@ -142,7 +166,7 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                                                         ?>
                                                     </td>
                                                     <td>
-                                                        <a href="<?= 'lengkap.php?nis=' . $r['nis'] ?>"><button type="button" class="btn btn-success btn-xs">Lengkapi</button></a>
+                                                        <a href="<?= 'lengkap_atr.php?nis=' . $r['nis'] ?>"><button type="button" class="btn btn-success btn-xs">Lengkapi</button></a>
                                                     </td>
                                                 </tr>
                                             <?php
@@ -176,7 +200,7 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h4 class="modal-title" id="">Tambah Penempatan Kamar Baru</h4>
+                    <h4 class="modal-title" id="">Tambah Pengambilan Atribut Baru</h4>
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -195,7 +219,7 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                             <?php
                             $no = 1;
                             // $lm = array("", "MTs", "SMP", "MA", "SMK");
-                            $sql1 = mysqli_query($conn, "SELECT * FROM tb_santri WHERE NOT EXISTS (SELECT * FROM berkas WHERE berkas.nis=tb_santri.nis ) AND tb_santri.ket = 'baru' ");
+                            $sql1 = mysqli_query($conn, "SELECT * FROM tb_santri WHERE NOT EXISTS (SELECT * FROM atribut WHERE atribut.nis=tb_santri.nis ) AND tb_santri.ket = 'baru' ");
                             while ($row1 = mysqli_fetch_assoc($sql1)) {
                             ?>
                                 <tr>
@@ -204,7 +228,7 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                                     <td><?= $lm[$row1['lembaga']]; ?></td>
                                     <td><?= $row1['ket']; ?></td>
                                     <td>
-                                        <a href="<?= 'berkasAdd.php?kode=brks&nis=' . $row1['nis'] ?>"><button class="btn btn-xs btn-success"> Pilih santri ini</button></a>
+                                        <a href="<?= 'berkasAdd.php?kode=atr&nis=' . $row1['nis'] ?>"><button class="btn btn-xs btn-success"> Pilih santri ini</button></a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -213,6 +237,7 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
 
             </div>

@@ -104,9 +104,9 @@ $bulan = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="atribut.php">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span>
+                    <span>Atribut Pesantren</span>
                 </a>
             </li>
             <hr class="sidebar-divider">

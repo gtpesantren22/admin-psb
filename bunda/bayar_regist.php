@@ -233,6 +233,9 @@ $pr = array("", "Reguler", "Prestasi");
                                         <a href="hapus.php?kd=rgs&id=<?= $a['id_regist']; ?>" onclick="return confirm('Yakin akan dihapus ?')">
                                             <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                         </a>
+                                        <a href="nota.php?id=<?= $a['id_regist']; ?>" target="_blank">
+                                            <button class="btn btn-primary btn-sm"><i class="fa fa-print"></i></button>
+                                        </a>
                                     </td>
                                     <!-- Modal -->
                                     <div class="modal fade" id="eddit<?= $a['id_regist']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -52,11 +52,11 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                 <div class="">
                     <div class="row">
 
-                        <!-- Al - Adawiyah -->
+                        <!-- Al-Adawiyah -->
                         <div class="col-md-12 col-sm-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2><i class="fa fa-bars"></i> Komplek : Al - Adawiyah <small>Lantai 2</small>
+                                    <h2><i class="fa fa-bars"></i> Komplek : Al-Adawiyah <small>Lantai 2</small>
                                     </h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -95,7 +95,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 1 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al - Adawiyah' AND kamar = 'A1' AND lemari = 'L1' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al-Adawiyah' AND kamar = 'Adawiyah 1 (A1)' AND lemari = 'L1' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -118,7 +118,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 2 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al - Adawiyah' AND kamar = 'A1' AND lemari = 'L2' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al-Adawiyah' AND kamar = 'Adawiyah 1 (A1)' AND lemari = 'L2' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -141,7 +141,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 3 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al - Adawiyah' AND kamar = 'A1' AND lemari = 'L3' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al-Adawiyah' AND kamar = 'Adawiyah 1 (A1)' AND lemari = 'L3' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -170,7 +170,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 1 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al - Adawiyah' AND kamar = 'A2' AND lemari = 'L1' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al-Adawiyah' AND kamar = 'Adawiyah 2 (A2)' AND lemari = 'L1' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -193,7 +193,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 2 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al - Adawiyah' AND kamar = 'A2' AND lemari = 'L2' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al-Adawiyah' AND kamar = 'Adawiyah 2 (A2)' AND lemari = 'L2' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -216,7 +216,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 3 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al - Adawiyah' AND kamar = 'A2' AND lemari = 'L3' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al-Adawiyah' AND kamar = 'Adawiyah 2 (A2)' AND lemari = 'L3' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -239,7 +239,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 4 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al - Adawiyah' AND kamar = 'A2' AND lemari = 'L4' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al-Adawiyah' AND kamar = 'Adawiyah 2 (A2)' AND lemari = 'L4' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -268,7 +268,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 1 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al - Adawiyah' AND kamar = 'A3' AND lemari = 'L1' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al-Adawiyah' AND kamar = 'Adawiyah 3 (A3)' AND lemari = 'L1' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -291,7 +291,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 2 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al - Adawiyah' AND kamar = 'A3' AND lemari = 'L2' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al-Adawiyah' AND kamar = 'Adawiyah 3 (A3)' AND lemari = 'L2' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -314,7 +314,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 3 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al - Adawiyah' AND kamar = 'A3' AND lemari = 'L3' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al-Adawiyah' AND kamar = 'Adawiyah 3 (A3)' AND lemari = 'L3' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -337,7 +337,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 4 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al - Adawiyah' AND kamar = 'A3' AND lemari = 'L4' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Al-Adawiyah' AND kamar = 'Adawiyah 3 (A3)' AND lemari = 'L4' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -406,7 +406,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 1 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A4' AND lemari = 'L1' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 1 (A4)' AND lemari = 'L1' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -429,7 +429,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 2 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A4' AND lemari = 'L2' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 1 (A4)' AND lemari = 'L2' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -452,7 +452,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 3 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A4' AND lemari = 'L3' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 1 (A4)' AND lemari = 'L3' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -475,7 +475,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 4 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A4' AND lemari = 'L4' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 1 (A4)' AND lemari = 'L4' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -504,7 +504,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 1 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A5' AND lemari = 'L1' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 2 (A5)' AND lemari = 'L1' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -527,7 +527,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 2 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A5' AND lemari = 'L2' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 2 (A5)' AND lemari = 'L2' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -550,7 +550,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 3 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A5' AND lemari = 'L3' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 2 (A5)' AND lemari = 'L3' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -573,7 +573,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 4 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A5' AND lemari = 'L4' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 2 (A5)' AND lemari = 'L4' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -596,7 +596,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 5 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A5' AND lemari = 'L5' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 2 (A5)' AND lemari = 'L5' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -619,7 +619,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 6 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A5' AND lemari = 'L6' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 2 (A5)' AND lemari = 'L6' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -648,7 +648,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 1 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A6' AND lemari = 'L1' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 3 (A6)' AND lemari = 'L1' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -671,7 +671,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 2 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A6' AND lemari = 'L2' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 3 (A6)' AND lemari = 'L2' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -694,7 +694,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 3 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A6' AND lemari = 'L3' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 3 (A6)' AND lemari = 'L3' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -717,7 +717,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 4 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A6' AND lemari = 'L4' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 3 (A6)' AND lemari = 'L4' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -740,7 +740,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 5 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'A6' AND lemari = 'L5' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Aisyah' AND kamar = 'Aisyah 3 (A6)' AND lemari = 'L5' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -766,11 +766,11 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                             </div>
                         </div>
 
-                        <!-- An - Nafisah -->
+                        <!-- Ummu Kulsum -->
                         <div class="col-md-12 col-sm-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2><i class="fa fa-bars"></i> Komplek : An - Nafisah<small>Lantai 1</small>
+                                    <h2><i class="fa fa-bars"></i> Komplek : Ummu Kulsum<small>Lantai 1</small>
                                     </h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -806,7 +806,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 1 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'An - Nafisah' AND kamar = 'e1' AND lemari = 'L1' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Ummu Kulsum' AND kamar = 'Ummu Kulsum 1 (E1)' AND lemari = 'L1' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -829,7 +829,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 2 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'An - Nafisah' AND kamar = 'e1' AND lemari = 'L2' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Ummu Kulsum' AND kamar = 'Ummu Kulsum 1 (E1)' AND lemari = 'L2' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -852,7 +852,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 3 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'An - Nafisah' AND kamar = 'e1' AND lemari = 'L3' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Ummu Kulsum' AND kamar = 'Ummu Kulsum 1 (E1)' AND lemari = 'L3' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -875,7 +875,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 4 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'An - Nafisah' AND kamar = 'e1' AND lemari = 'L4' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Ummu Kulsum' AND kamar = 'Ummu Kulsum 1 (E1)' AND lemari = 'L4' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -898,7 +898,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 5 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'An - Nafisah' AND kamar = 'e1' AND lemari = 'L5' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Ummu Kulsum' AND kamar = 'Ummu Kulsum 1 (E1)' AND lemari = 'L5' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -927,7 +927,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 1 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'An - Nafisah' AND kamar = 'e2' AND lemari = 'L1' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Ummu Kulsum' AND kamar = 'Ummu Kulsum 2 (E2)' AND lemari = 'L1' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -950,7 +950,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 2 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'An - Nafisah' AND kamar = 'e2' AND lemari = 'L2' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Ummu Kulsum' AND kamar = 'Ummu Kulsum 2 (E2)' AND lemari = 'L2' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -973,7 +973,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 3 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'An - Nafisah' AND kamar = 'e2' AND lemari = 'L3' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Ummu Kulsum' AND kamar = 'Ummu Kulsum 2 (E2)' AND lemari = 'L3' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -996,7 +996,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 4 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'An - Nafisah' AND kamar = 'e2' AND lemari = 'L4' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Ummu Kulsum' AND kamar = 'Ummu Kulsum 2 (E2)' AND lemari = 'L4' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -1019,7 +1019,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 5 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'An - Nafisah' AND kamar = 'e2' AND lemari = 'L5' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Ummu Kulsum' AND kamar = 'Ummu Kulsum 2 (E2)' AND lemari = 'L5' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>
@@ -1042,7 +1042,7 @@ JOIN lemari ON lemari.nis=tb_santri.nis ORDER BY tb_santri.id_santri ASC");
                                                     <h2> Lemari 6 </h2>
                                                     <article class="media event">
                                                         <?php
-                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'An - Nafisah' AND kamar = 'e2' AND lemari = 'L6' ");
+                                                        $sq = mysqli_query($conn, "SELECT * FROM lemari_data WHERE komplek = 'Ummu Kulsum' AND kamar = 'Ummu Kulsum 2 (E2)' AND lemari = 'L6' ");
                                                         while ($lm = mysqli_fetch_assoc($sq)) {
                                                         ?>
                                                             <?php if ($lm['nis'] != '') { ?>

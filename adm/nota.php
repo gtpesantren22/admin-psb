@@ -161,9 +161,9 @@ $kos = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM dekos WHERE nis = '
             <td><?= $data['desa'] . '-' . $data['kec'] . '-' . $data['kab']; ?></td>
         </tr>
         <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>Lembaga</td>
+            <td>:</td>
+            <td><?= $lm[$data['lembaga']]; ?></td>
         </tr>
     </table>
 
@@ -315,8 +315,8 @@ $kos = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM dekos WHERE nis = '
                 <b><u><?= $data['bapak']; ?></u></b>
             </th>
             <th width="30%">
-
-            </th>
+                Bendahara <br><br><br><br>
+                <b><u>(______________________________)</u></b </th>
             <th width="35%">
                 Penerima <br><br><br><br>
                 <b><u><?= $nama_user; ?></u></b>

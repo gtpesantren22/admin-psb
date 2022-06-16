@@ -116,6 +116,7 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                                                                 <th>No.</th>
                                                                 <th>Nama</th>
                                                                 <th>Alamat</th>
+                                                                <th>Lembaga</th>
                                                                 <th>Bayar</th>
                                                                 <th>Tanggal</th>
                                                                 <th>Tempat</th>
@@ -134,6 +135,7 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                                                                     <td style="text-align: center"><?= $i; ?></td>
                                                                     <td><?= $r['nama']; ?> </td>
                                                                     <td><?= $r['kl'] . ' - ' . $r['kc']; ?> </td>
+                                                                    <td><?= $lm[$r['lembaga']]; ?></td>
                                                                     <td><?= rupiah($r['nominal']); ?> </td>
                                                                     <td><?= $r['tgl']; ?></td>
                                                                     <td><?= $tmp[$r['t_kos']]; ?> </td>

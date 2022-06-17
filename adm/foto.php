@@ -214,10 +214,10 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri ORDER BY tb_santri.id_santr
 
 <?php
 
-$nis = $_POST['nis'];
-$no = $_POST['no'] . $_POST['tipe'];
+// $nis = $_POST['nis'];
+// $no = $_POST['no'] . $_POST['tipe'];
 
-mysqli_query($conn, "UPDATE tb_santri SET foto = '$no' WHERE nis = '$nis' ");
-header("Location: foto.php");
+// mysqli_query($conn, "UPDATE tb_santri SET foto = '$no' WHERE nis = '$nis' ");
+// header("Location: foto.php");
 
 ?>

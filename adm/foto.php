@@ -111,7 +111,7 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri ORDER BY tb_santri.id_santr
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="aksi.php?fn=foto" method="post">
+                                                                <form action="" method="post">
                                                                     <?php
                                                                     $nis = $r['nis'];
                                                                     $query_edit = mysqli_query($conn, "SELECT * FROM tb_santri WHERE nis ='$nis'");
@@ -127,22 +127,19 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri ORDER BY tb_santri.id_santr
                                                                         </div>
                                                                         <div class="col-md-8">
                                                                             <div class="form-group">
-                                                                                <label>No. Foto</label>
-                                                                                <input type="text" name="no" class="form-control" required>
+                                                                                <label>Upload Foto</label>
+                                                                                <input type="file" name="foto" class="form-control" required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <div class="col-md-4">
                                                                                 <label>Format</label>
-                                                                                <select name="tipe" class="form-control" required>
-                                                                                    <option value=".jpg">*.JPG</option>
-                                                                                    <option value=".png">*.PNG</option>
-                                                                                </select>
+                                                                                <input type="text" class="form-control" value="jpg/png" disabled>
                                                                             </div>
                                                                         </div>
                                                                         <br><br><br><br>
                                                                         <div class="modal-footer">
-                                                                            <button type="submit" class="btn btn-success">Update</button>
+                                                                            <button type="submit" name="save" class="btn btn-success">Update</button>
                                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                                         </div>
 
@@ -214,3 +211,13 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri ORDER BY tb_santri.id_santr
 </body>
 
 </html>
+
+<?php
+
+$nis = $_POST['nis'];
+$no = $_POST['no'] . $_POST['tipe'];
+
+mysqli_query($conn, "UPDATE tb_santri SET foto = '$no' WHERE nis = '$nis' ");
+header("Location: foto.php");
+
+?>

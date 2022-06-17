@@ -111,7 +111,7 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri ORDER BY tb_santri.id_santr
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="" method="post">
+                                                                <form action="" method="post" enctype="multipart/form-data">
                                                                     <?php
                                                                     $nis = $r['nis'];
                                                                     $query_edit = mysqli_query($conn, "SELECT * FROM tb_santri WHERE nis ='$nis'");
@@ -214,10 +214,41 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri ORDER BY tb_santri.id_santr
 
 <?php
 
-// $nis = $_POST['nis'];
-// $no = $_POST['no'] . $_POST['tipe'];
+if (isset($_POST['save'])) {
+    $nis = $_POST['nis'];
+    $filename = $_FILES['foto']['name'];
+    $dir = $_FILES['foto']['tmp_name'];
+    $ekstensi =  array('png', 'jpg', 'jpeg', 'gif');
+    $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
-// mysqli_query($conn, "UPDATE tb_santri SET foto = '$no' WHERE nis = '$nis' ");
-// header("Location: foto.php");
+    if (!in_array($ext, $ekstensi)) {
+        echo "
+            <script>
+                alert('Yang anda upload anda bukan foto');
+                window.location = 'foto.php';
+            </script>
+        ";
+    } else {
+        $no_foto = mysqli_fetch_assoc(mysqli_query($conn, "SELECT MAX(foto) AS nm FROM tb_santri "));
+        if ($no_foto['nm'] == '') {
+            $noOk = '1.' . $ext;
+        } else {
+            $urut = explode('.', $no_foto['nm']);
+            $noJd = $urut[0] + 1;
+            $noOk = $noJd . '.' . $ext;
+        }
+
+        $sql = mysqli_query($conn, "UPDATE tb_santri SET foto = '$noOk' WHERE nis = '$nis' ");
+        move_uploaded_file($dir, 'foto_santri/' . $noOk);
+        if ($sql) {
+            echo "
+            <script>
+                alert('Foto sudah masuk');
+                window.location = 'foto.php';
+            </script>
+            ";
+        }
+    }
+}
 
 ?>

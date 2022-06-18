@@ -16,6 +16,8 @@
                 <th>Nama</th>
                 <th>Tempat</th>
                 <th>Tanggal</th>
+                <th>Bulan</th>
+                <th>Tahun</th>
                 <th>Komplek</th>
                 <th>Alamat</th>
                 <th>Bapak</th>
@@ -34,6 +36,7 @@
                 $pc = explode(' ', $r['nama']);
                 $jml = count($pc);
 
+                $tg = explode('-', $r['tanggal']);
 
                 if ($nama > 18) {
                     if ($jml == 2) {
@@ -53,7 +56,9 @@
                     <td><?= $no++; ?></td>
                     <td><?= $nm_ok; ?></td>
                     <td><?= $tmp; ?></td>
-                    <td><?= $r['tanggal']; ?></td>
+                    <td><?= $tg[0]; ?></td>
+                    <td><?= $tg[1]; ?></td>
+                    <td><?= $tg[2]; ?></td>
                     <td><?= $r['komplek']; ?></td>
                     <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab']; ?></td>
                     <td><?= $r['bapak']; ?></td>

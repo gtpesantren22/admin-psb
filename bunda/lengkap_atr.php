@@ -33,7 +33,6 @@ $jl = array("", "Reguler", "Prestasi");
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Atribut Pendaftaran Santri Baru</h6>
-                    <button type="button" data-toggle="modal" data-target="#exampleModal" id="#myBtn" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Baru</button>
                 </div>
                 <ul class="messages">
                     <li>
@@ -121,31 +120,31 @@ $jl = array("", "Reguler", "Prestasi");
 
                                         <tbody>
                                             <tr class="even pointer">
-                                                <td>1</td>
-                                                <td>Buku Pedoman Wiridan</td>
-                                                <td class="a-center"><input type="checkbox" value="1" class="flat" name="wir" <?php if ($data2['wir'] == 1) {
-                                                                                                                                    echo 'checked';
-                                                                                                                                }  ?>></td>
+                                                <td>6</td>
+                                                <td>Kalender</td>
+                                                <td class="a-center"><input type="checkbox" value="1" class="flat" name="kalender" <?php if ($data2['kalender'] == 1) {
+                                                                                                                                        echo 'checked';
+                                                                                                                                    }  ?>></td>
 
                                             </tr>
                                             <tr class="even pointer">
-                                                <td>2</td>
-                                                <td>Buku Tatib & Perizinan</td>
-                                                <td class="a-center"><input type="checkbox" value="1" class="flat" name="tatib" <?php if ($data2['tatib'] == 1) {
-                                                                                                                                    echo 'checked';
-                                                                                                                                } ?>></td>
+                                                <td>7</td>
+                                                <td>Foto Pengasuh</td>
+                                                <td class="a-center"><input type="checkbox" value="1" class="flat" name="pengasuh" <?php if ($data2['pengasuh'] == 1) {
+                                                                                                                                        echo 'checked';
+                                                                                                                                    } ?>></td>
                                             </tr>
                                             <tr class="even pointer">
-                                                <td>3</td>
-                                                <td>Kartu KTS</td>
-                                                <td class="a-center"><input type="checkbox" value="1" class="flat" name="kts" <?php if ($data2['kts'] == 1) {
-                                                                                                                                    echo 'checked';
-                                                                                                                                }  ?>></td>
+                                                <td>8</td>
+                                                <td>Seragam Lembaga</td>
+                                                <td class="a-center"><input type="checkbox" value="1" class="flat" name="seragam_l" <?php if ($data2['seragam_l'] == 1) {
+                                                                                                                                        echo 'checked';
+                                                                                                                                    }  ?>></td>
                                             </tr>
                                             <tr class="even pointer">
-                                                <td>4</td>
-                                                <td>Kartu Mahrom</td>
-                                                <td class="a-center"><input type="checkbox" value="1" class="flat" name="mahrom" <?php if ($data2['mahrom'] == 1) {
+                                                <td>9</td>
+                                                <td>Seragam Pesantren</td>
+                                                <td class="a-center"><input type="checkbox" value="1" class="flat" name="seragam" <?php if ($data2['seragam'] == 1) {
                                                                                                                                         echo 'checked';
                                                                                                                                     }  ?>></td>
                                             </tr>
@@ -154,6 +153,7 @@ $jl = array("", "Reguler", "Prestasi");
                                 </div>
                             </div>
                         </div>
+                        <br>
                         <button type="submit" name="up" class="btn btn-success pull-right"><i class="fa fa-save"></i> Simpan Perubahan</button>
                     </form>
                 </div>
@@ -161,7 +161,5 @@ $jl = array("", "Reguler", "Prestasi");
         </div>
     </div>
     <!--Row-->
-
-
 
     <?php include 'foot.php'; ?>

@@ -21,7 +21,7 @@
             <?php
             include 'koneksi.php';
             $no = 1;
-            $sql = mysqli_query($conn, "SELECT nis, tempat FROM tb_santri ");
+            $sql = mysqli_query($conn, "SELECT nis, tempat, desa, kec, kab FROM tb_santri ");
             while ($r = mysqli_fetch_assoc($sql)) {
             ?>
                 <tr>
@@ -30,6 +30,7 @@
                         <td>
                             <input type="hidden" name="nis" value="<?= $r['nis']; ?>">
                             <input type="text" name="tempat" value="<?= $r['tempat']; ?>">
+                            (<?= $r['desa'] . '-' . $r['kec'] . '-' . $r['kab']; ?>)
                         </td>
                         <td>
                             <button type="submit" name="save">Simpan</button>

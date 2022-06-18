@@ -13,7 +13,7 @@
         <thead>
             <tr>
                 <td>No</td>
-                <td>Nama kec</td>
+                <td>Nama tempat</td>
                 <td>Aksi</td>
             </tr>
         </thead>
@@ -21,7 +21,7 @@
             <?php
             include 'koneksi.php';
             $no = 1;
-            $sql = mysqli_query($conn, "SELECT nis, tempat FROM tb_santri WHERE kec LIKE '%(%' ");
+            $sql = mysqli_query($conn, "SELECT nis, tempat FROM tb_santri WHERE tempat LIKE '%(%' ");
             while ($r = mysqli_fetch_assoc($sql)) {
             ?>
                 <tr>
@@ -29,7 +29,7 @@
                         <td><?= $no++; ?></td>
                         <td>
                             <input type="hidden" name="nis" value="<?= $r['nis']; ?>">
-                            <input type="text" name="kec" value="<?= $r['kec']; ?>">
+                            <input type="text" name="tempat" value="<?= $r['tempat']; ?>">
                         </td>
                         <td>
                             <button type="submit" name="save">Simpan</button>
@@ -47,9 +47,9 @@
 
 if (isset($_POST['save'])) {
     $nis = $_POST['nis'];
-    $kec = $_POST['kec'];
+    $tempat = $_POST['tempat'];
 
-    $sql = mysqli_query($conn, "UPDATE tb_santri SET kec = '$kec' WHERE nis = '$nis' ");
+    $sql = mysqli_query($conn, "UPDATE tb_santri SET tempat = '$tempat' WHERE nis = '$nis' ");
     if ($sql) {
         header("Location: tedit.php");
     }

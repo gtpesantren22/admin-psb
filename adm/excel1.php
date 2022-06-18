@@ -19,7 +19,7 @@ WHEN 3 THEN 'MA'
 WHEN 4 THEN 'SMK'
 END AS
 lm, bapak, ibu, a_pkj, i_pkj, hp, asal, a_asal, 
-stts, gel, jalur, waktu_daftar, no_kk
+stts, gel, jalur, waktu_daftar, no_kk, komplek, kamar
 FROM tb_santri WHERE ket = 'baru'
 ORDER BY waktu_daftar ASC";
 
@@ -65,6 +65,8 @@ $excel->writeLabel(0, 23, "GELOMBANG");
 $excel->writeLabel(0, 24, "JALUR");
 $excel->writeLabel(0, 25, "TANGGAL DAFTAR");
 $excel->writeLabel(0, 26, "NO KK");
+$excel->writeLabel(0, 27, "KOMPLEK");
+$excel->writeLabel(0, 28, "KAMAR");
 
 #isi data
 $i = 1;

@@ -21,7 +21,7 @@
             <?php
             include 'koneksi.php';
             $no = 1;
-            $sql = mysqli_query($conn, "SELECT nis, kec FROM tb_santri WHERE kec LIKE '%(%' ");
+            $sql = mysqli_query($conn, "SELECT nis, tempat FROM tb_santri WHERE kec LIKE '%(%' ");
             while ($r = mysqli_fetch_assoc($sql)) {
             ?>
                 <tr>

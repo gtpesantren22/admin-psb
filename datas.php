@@ -14,10 +14,10 @@
             <tr>
                 <th>No</th>
                 <th>Nama</th>
-                <th>Tetala</th>
-                <th>Tetala</th>
-                <th>Alamat</th>
+                <th>Tempat</th>
+                <th>Tanggal</th>
                 <th>Komplek</th>
+                <th>Alamat</th>
                 <th>Bapak</th>
                 <th>Ibu</th>
                 <th>No. HP</th>
@@ -27,13 +27,19 @@
             <?php
             include 'koneksi.php';
             $no = 1;
-            $sql = mysqli_query($conn, "SELECT * FROM tb_santri");
+            $sql = mysqli_query($conn, "SELECT a.*, b.komplek  FROM tb_santri a JOIN lemari_data b ON a.nis=b.nis WHERE ket = 'baru'");
             while ($r = mysqli_fetch_assoc($sql)) {
             ?>
                 <tr>
                     <td><?= $no++; ?></td>
                     <td><?= $r['nama']; ?></td>
                     <td><?= $r['tempat']; ?></td>
+                    <td><?= $r['tanggal']; ?></td>
+                    <td><?= $r['komplek']; ?></td>
+                    <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab']; ?></td>
+                    <td><?= $r['bapak']; ?></td>
+                    <td><?= $r['ibu']; ?></td>
+                    <td><?= $r['hp']; ?></td>
                 </tr>
             <?php } ?>
         </tbody>

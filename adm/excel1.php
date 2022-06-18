@@ -10,7 +10,7 @@ if ($conn->connect_error) {
 #akhir koneksi
 
 #ambil data
-$query = "SELECT nis, nik, nama, tempat, tanggal, jkl, anak_ke, jml_sdr, jln, rt, rw, 
+$query = "SELECT a.nis, nik, nama, tempat, tanggal, jkl, anak_ke, jml_sdr, jln, rt, rw, 
 desa, kec, kab, 
 CASE lembaga
 WHEN 1 THEN 'MTs'
@@ -19,8 +19,8 @@ WHEN 3 THEN 'MA'
 WHEN 4 THEN 'SMK'
 END AS
 lm, bapak, ibu, a_pkj, i_pkj, hp, asal, a_asal, 
-stts, gel, jalur, waktu_daftar, no_kk, komplek, kamar
-FROM tb_santri WHERE ket = 'baru'
+stts, gel, jalur, waktu_daftar, no_kk, b.komplek, b.kamar
+FROM tb_santri a JOIN lemari_data b ON a.nis=b.nis WHERE ket = 'baru'
 ORDER BY waktu_daftar ASC";
 
 $sql = $conn->query($query);

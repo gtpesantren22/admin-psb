@@ -1,7 +1,7 @@
 <?php
 require 'function.php';
 
-$data = mysqli_query($conn, "SELECT * FROM tb_santri ORDER BY tb_santri.id_santri ASC");
+$data = mysqli_query($conn, "SELECT * FROM tb_santri ORDER BY tb_santri.foto ASC");
 
 ?>
 

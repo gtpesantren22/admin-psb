@@ -89,7 +89,7 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE foto != '' ORDER BY n
                       <div class="col-md-55">
                         <div class="thumbnail">
                           <div class="image view view-first">
-                            <img style="width: 70%; display: block;" src="<?= 'img/ft_santri/' . $r['foto']; ?>" alt="image" />
+                            <img style="width: 70%; display: block;" src="<?= 'img/ft_santri/' . $r['foto'] . '.jpg'; ?>" alt="image" />
                             <div class="mask">
                               <p><?= $r['nis']; ?></p>
                               <div class="tools tools-bottom">

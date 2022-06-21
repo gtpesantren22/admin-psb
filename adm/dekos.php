@@ -122,6 +122,8 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                                                                 <th>Tempat</th>
                                                                 <?php if ($level == 'super') { ?>
                                                                     <th>#</th>
+                                                                <?php } else { ?>
+                                                                    <th>#</th>
                                                                 <?php } ?>
                                                             </tr>
                                                         </thead>

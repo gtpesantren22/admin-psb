@@ -139,13 +139,13 @@ $lm = array("", "MTs DWK", "SMP DWK", "MA DWK", "SMK DWK");
                                                                     <td><?= rupiah($r['nominal']); ?> </td>
                                                                     <td><?= $r['tgl']; ?></td>
                                                                     <td><?= $tmp[$r['t_kos']]; ?> </td>
-                                                                    <?php if ($level == 'super') { ?>
-                                                                        <td>
+                                                                    <td>
+                                                                        <?php if ($level == 'super') { ?>
                                                                             <a href="<?= 'hapus.php?kd=kos&id=' . $r["id_kos"]; ?>" onclick="return confirm('Yakin akan dihapus ?');"><button class="btn btn-danger btn-icon btn-xs"><span class="fa fa-times"></span></button></a>
                                                                             <a href="<?= 'edit_kos.php?id=' . $r["id_kos"]; ?>"><button class="btn btn-warning btn-icon btn-xs"><span class="fa fa-edit"></span></button></a>
-                                                                            <a target="_blank" href="<?= 'nota2.php?id=' . $r["id_kos"]; ?>"><button class="btn btn-success btn-icon btn-xs"><span class="fa fa-print"></span></button></a>
-                                                                        </td>
-                                                                    <?php } ?>
+                                                                        <?php } ?>
+                                                                        <a target="_blank" href="<?= 'nota2.php?id=' . $r["id_kos"]; ?>"><button class="btn btn-success btn-icon btn-xs"><span class="fa fa-print"></span></button></a>
+                                                                    </td>
                                                                 </tr>
                                                                 <?php $i++; ?>
                                                             <?php endforeach; ?>

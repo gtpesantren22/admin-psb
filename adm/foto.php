@@ -81,7 +81,7 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri ORDER BY tb_santri.foto DES
                                                 <th>Nama</th>
                                                 <th>Alamat</th>
                                                 <th>No. Foto</th>
-                                                <th>Foto</th>
+                                                <!-- <th>Foto</th> -->
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -94,7 +94,7 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri ORDER BY tb_santri.foto DES
                                                     <td><?= $r['nama']; ?></td>
                                                     <td><?= $r['desa'] . ' - ' . $r['kec'] . ' - ' . $r['kab']; ?></td>
                                                     <td><?= $r['foto']; ?></td>
-                                                    <td><img src="<?= 'img/ft_santri/' . $r['foto'] . '.jpg'; ?>" alt="" height="50"></td>
+                                                    <!-- <td><img src="<?= 'img/ft_santri/' . $r['foto'] . '.jpg'; ?>" alt="" height="50"></td> -->
                                                     <td>
                                                         <a href="<?= 'foto_b.php?nis=' . $r['nis'] ?>"><button type="button" class="btn btn-info btn-xs"><span class="fa fa-camera"></span> Foto</button></a>
                                                         <a href="#" type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal<?= $r['nis']; ?>"><span class="fa fa-upload"></span> Upload</a>

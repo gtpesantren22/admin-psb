@@ -1,5 +1,5 @@
 <?php
-include '../function.php';
+include '../../koneksi.php';
 //$conn = mysqli_connect("localhost", "root", "", "psb21");
 
 echo "<option value=''>Pilih Provinsi</option>";

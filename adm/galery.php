@@ -2,7 +2,7 @@
 
 require 'function.php';
 
-$data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE foto != '' ORDER BY nis ASC");
+$data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE foto != '' ORDER BY foto DESC");
 ?>
 <!DOCTYPE html>
 <html lang="en">

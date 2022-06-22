@@ -54,10 +54,21 @@ kk = $kk, k_kk = $k_kk, akt = $akt, k_akt = $k_akt, ijz = $ijz, k_ijz = $k_ijz W
     $jln = htmlspecialchars(mysqli_real_escape_string($conn, $_POST["jln"]));
     $rt = htmlspecialchars($_POST["rt"]);
     $rw = htmlspecialchars($_POST["rw"]);
-    $kel = htmlspecialchars($_POST["kel"]);
+
     $prop = $_POST['prop'];
     $kota = $_POST['kota'];
     $kec = $_POST['kec'];
+    $kel = $_POST['kel'];
+
+    $proN = mysqli_fetch_assoc(mysqli_query($conn, "SELECT nama FROM provinsi WHERE id_prov = '$prop'"));
+    $kabN = mysqli_fetch_assoc(mysqli_query($conn, "SELECT nama FROM kabupaten WHERE id_kab = '$kota'"));
+    $kecN = mysqli_fetch_assoc(mysqli_query($conn, "SELECT nama FROM kecamatan WHERE id_kec = '$kec'"));
+    $kelN = mysqli_fetch_assoc(mysqli_query($conn, "SELECT nama FROM kelurahan WHERE id_kel = '$kel'"));
+
+    $proOk = $proN['nama'];
+    $kabOk = $kabN['nama'];
+    $kecOk = $kecN['nama'];
+    $kelOk = $kelN['nama'];
 
     $bapak = strtoupper(htmlspecialchars(mysqli_real_escape_string($conn, $_POST["bapak"])));
     $ibu = strtoupper(htmlspecialchars(mysqli_real_escape_string($conn, $_POST["ibu"])));
@@ -78,7 +89,7 @@ kk = $kk, k_kk = $k_kk, akt = $akt, k_akt = $k_akt, ijz = $ijz, k_ijz = $k_ijz W
         header("Location: santri.php");
     } else {
         $query = "UPDATE tb_santri SET nik = '$nik', nama = '$nama', tempat = '$tempat', tanggal = '$tanggal', jkl = '$jkl', lembaga ='$lembaga', 
-    jln = '$jln', rt = '$rt', rw = '$rw', desa = '$kel', kec = '$kec', kab = '$kota', prov = '$prop', bapak = '$bapak', ibu = '$ibu', hp= '$hp',
+    jln = '$jln', rt = '$rt', rw = '$rw', desa = '$kelOk', kec = '$kecOk', kab = '$kabOk', prov = '$proOk', bapak = '$bapak', ibu = '$ibu', hp= '$hp',
 	anak_ke = '$anak_ke', jml_sdr = '$jml_sdr', a_pkj = '$a_pkj', i_pkj = '$i_pkj', no_kk = '$no_kk', asal = '$asal', a_asal = '$a_asal' 
 	WHERE nis = '$nis' ";
         mysqli_query($conn, $query);

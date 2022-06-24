@@ -88,7 +88,7 @@ $data = query("SELECT * FROM tb_santri a JOIN dekos b ON a.nis=b.nis WHERE a.ket
                       ?>
                         <tr>
                           <td><?= $r['nama']; ?></td>
-                          <td>0<?= $r['hp']; ?></td>
+                          <td><?= $r['hp']; ?></td>
 
                         <?php
                         $i++;

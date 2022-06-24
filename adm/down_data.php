@@ -87,7 +87,7 @@ $data = query("SELECT * FROM tb_santri a JOIN dekos b ON a.nis=b.nis WHERE a.ket
                         $l = array("", "MTs", "SMP", "MA", "SMK");
                       ?>
                         <tr>
-                          <td><?= $r['nama']; ?></td>
+                          <td>Wali MAsuk 22 - <?= $r['nama']; ?></td>
                           <td><?= $r['hp']; ?></td>
 
                         <?php

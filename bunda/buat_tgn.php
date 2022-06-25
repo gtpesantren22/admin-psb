@@ -12,6 +12,7 @@ if ($ket == 'baru') {
     $link = 'bayar_regist.php?id=' . $di;
 } else {
     $by = 25000;
+    $link = 'bayar_regist.php?id=' . $di;
 }
 
 $sql = mysqli_query($conn, "INSERT INTO tanggungan (id_tgn, nis, daftar) VALUES ('$di', '$nis', '$by') ");

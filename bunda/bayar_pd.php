@@ -153,7 +153,7 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam & Bawah
 
 
                 mysqli_query($conn, "UPDATE tb_santri SET stts = 'Terverifikasi' WHERE nis = '$nis' ");
-                mysqli_query($conn, "INSERT INTO tanggungan(id_tgn, nis, daftar) VALUES ('$id_s', '$nis', '$nominal') ");
+                // mysqli_query($conn, "INSERT INTO tanggungan(id_tgn, nis, daftar) VALUES ('$id_s', '$nis', '$nominal') ");
 
                 $curl = curl_init();
                 curl_setopt_array(
@@ -172,7 +172,7 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam & Bawah
                 );
                 $response = curl_exec($curl);
                 curl_close($curl);
-                
+
                 echo "
                     <script>
                             Swal.fire({

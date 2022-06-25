@@ -2,7 +2,7 @@
 include 'koneksi.php';
 include 'head.php';
 
-$tt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(IF(via = 'Transfer', nominal, 0)) as tf, SUM(IF(via = 'Cash', nominal, 0)) as cs FROM regist a JOIN tb_santri b ON a.nis = b.nis WHERE b.ket = 'lama'"));
+$tt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(IF(via = 'Transfer', nominal, 0)) as tf, SUM(IF(via = 'Cash', nominal, 0)) as cs FROM regist a JOIN tb_santri b ON a.nis = b.nis WHERE b.ket = 'lama' "));
 ?>
 
 <!-- Container Fluid-->

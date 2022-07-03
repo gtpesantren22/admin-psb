@@ -17,6 +17,7 @@
                 <th>No</th>
                 <th>Nama</th>
                 <th>Lembaga</th>
+                <th>JKL</th>
                 <th>Ket</th>
             </tr>
         </thead>
@@ -31,6 +32,7 @@
                     <td><?= $no++; ?></td>
                     <td><?= $r['nama']; ?></td>
                     <td><?= $lm[$r['lembaga']]; ?></td>
+                    <td><?= $r['jkl']; ?></td>
                     <td><?= $r['ket']; ?></td>
                 </tr>
             <?php } ?>

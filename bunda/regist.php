@@ -47,7 +47,8 @@ $tt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(IF(via = 'Transfer', no
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Pembayaran Registrasi Santri Baru</h6>
-                    <button type="button" data-toggle="modal" data-target="#exampleModal" id="#myBtn" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Baru</button>
+                    <button type="button" data-toggle="modal" data-target="#exampleModal" id="#myBtn" class="btn btn-primary float-right"><i class="fa fa-plus"></i> Tambah Baru</button>
+                    <a href="ex_regba.php" target="_blank" class="btn btn-success float-right"><i class="fa fa-download"></i> Export to Excel</a>
                 </div>
                 <div class="table-responsive p-3">
                     <table class="table align-items-center table-flush table-hover table-sm table-bordered" id="dataTableHover" style="font-size: 13px;">

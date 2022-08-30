@@ -1,7 +1,7 @@
 <?php
 require_once 'koneksi.php';
 
-$dt = mysqli_query($conn, "SELECT a.*, b.nama, b.desa, b.kec, b.kab, b.lembaga, b.nik, SUM(nominal) AS bayar FROM regist a JOIN tb_santri b ON a.nis=b.nis WHERE b.ket = 'lama' GROUP BY a.nis ORDER BY `b`.`nama` ASC ");
+$dt = mysqli_query($conn, "SELECT a.*, b.nama, b.desa, b.kec, b.kab, b.lembaga, b.nik, b.jkl, SUM(nominal) AS bayar FROM regist a JOIN tb_santri b ON a.nis=b.nis WHERE b.ket = 'lama' GROUP BY a.nis ORDER BY `b`.`nama` ASC ");
 
 $lm = array('', 'MTs', 'SMP', 'MA', 'SMK');
 ?>
@@ -33,6 +33,7 @@ header("Content-Disposition: attachment; filename=Data Pembayaran Registrasi San
                 <th>Nominal Yang dibayar</th>
                 <th>Kekurangan</th>
                 <th>Harus Dibayar</th>
+                <th>Gender</th>
                 <th>Saudara</th>
             </tr>
         </thead>
@@ -53,6 +54,7 @@ header("Content-Disposition: attachment; filename=Data Pembayaran Registrasi San
                     <td><?= $ar['bayar']; ?></td>
                     <td><?= $tang['jml'] - $ar['bayar']; ?></td>
                     <td><?= $tang['jml']; ?></td>
+                    <td><?= $ar['jkl']; ?></td>
                     <td><?= $dpl > 1 ? 'Ya' : '-' ?></td>
                 </tr>
             <?php endforeach; ?>

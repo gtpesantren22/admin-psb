@@ -19,7 +19,7 @@ WHEN 3 THEN 'MA'
 WHEN 4 THEN 'SMK'
 END AS
 lm, bapak, ibu, a_pkj, i_pkj, hp, asal, a_asal, 
-stts, gel, jalur, waktu_daftar, no_kk, b.komplek, b.kamar
+stts, gel, jalur, waktu_daftar, no_kk, b.komplek, b.kamar, foto
 FROM tb_santri a JOIN lemari_data b ON a.nis=b.nis WHERE ket = 'baru'
 ORDER BY waktu_daftar ASC";
 
@@ -67,6 +67,7 @@ $excel->writeLabel(0, 25, "TANGGAL DAFTAR");
 $excel->writeLabel(0, 26, "NO KK");
 $excel->writeLabel(0, 27, "KOMPLEK");
 $excel->writeLabel(0, 28, "KAMAR");
+$excel->writeLabel(0, 29, "NO FOTO");
 
 #isi data
 $i = 1;

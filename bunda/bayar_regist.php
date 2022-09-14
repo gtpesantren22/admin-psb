@@ -8,6 +8,7 @@ $nis = $tang['nis'];
 $data = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tb_santri WHERE nis = '$nis' "));
 $jkl = $data['jkl'];
 $ket = $data['ket'];
+$lembaga = $data['lembaga'];
 $kk = $data['no_kk'];
 
 $byr = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM biaya WHERE jkl = '$jkl' AND ket = '$ket' "));
@@ -341,6 +342,8 @@ $pr = array("", "Reguler", "Prestasi");
         }
 
         if ($data['jalur'] == 2) {
+            $seragam_lemOK = 0;
+        } elseif ($data['lembaga'] == 4 && $data['ket'] == 'lama') {
             $seragam_lemOK = 0;
         } else {
             $seragam_lemOK = $seragam_lem;

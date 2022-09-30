@@ -29,7 +29,7 @@ include 'koneksi.php';
         <tbody>
             <?php
             $no = 1;
-            $sql = mysqli_query($conn, "SELECT a.*, b.* FROM tanggungan a JOIN tb_santri b ON a.nis=b.nis WHERE b.ket = 'lama' ");
+            $sql = mysqli_query($conn, "SELECT a.*, b.* FROM tanggungan a JOIN tb_santri b ON a.nis=b.nis WHERE b.ket = 'lama' ORDER BY a.orsaba ASC ");
             $lm = array("", "MTs", "SMP", "MA", "SMK");
             while ($row = mysqli_fetch_assoc($sql)) {
                 $nis = $row['nis'];

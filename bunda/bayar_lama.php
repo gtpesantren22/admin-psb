@@ -47,10 +47,12 @@ $tt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(IF(via = 'Transfer', no
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Pembayaran Pendaftaran Santri Baru</h6>
-                    <button type="button" data-toggle="modal" data-target="#exampleModal" id="#myBtn" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Baru</button>
+                    <button type="button" data-toggle="modal" data-target="#exampleModal" id="#myBtn"
+                        class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Baru</button>
                 </div>
                 <div class="table-responsive p-3">
-                    <table class="table align-items-center table-flush table-hover table-sm table-bordered" id="dataTableHover" style="font-size: 13px;">
+                    <table class="table align-items-center table-flush table-hover table-sm table-bordered"
+                        id="dataTableHover" style="font-size: 13px;">
                         <thead class="thead-light">
                             <tr>
                                 <th>No</th>
@@ -71,20 +73,25 @@ $tt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(IF(via = 'Transfer', no
                             $lm = array("", "MTs", "SMP", "MA", "SMK");
                             while ($row = mysqli_fetch_assoc($sql)) {
                             ?>
-                                <tr>
-                                    <td><?= $no++; ?></td>
-                                    <td><?= $row['nama']; ?></td>
-                                    <td><?= $lm[$row['lembaga']]; ?></td>
-                                    <td><?= rupiah($row['nominal']); ?></td>
-                                    <td><?= $row['tgl_bayar']; ?></td>
-                                    <td><?= $row['created']; ?></td>
-                                    <td><?= $row['kasir']; ?></td>
-                                    <td><span class="badge badge-success"><?= $row['via']; ?></span></td>
-                                    <td>
-                                        <a onclick="return confirm('Yakin akan dihapus ?')" href="<?= 'hapus.php?kd=hpend&id=' . $row['id_bayar'] ?>"><button class="btn btn-sm btn-danger"> Del</button></a>
-                                        <a onclick="return confirm('Yakin akan dikirim ?')" href="<?= 'kirim.php?kd=df&id=' . $row['id_bayar'] ?>"><button class="btn btn-sm btn-primary"><i class="fa fa-paper-plane"></i></button></a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td><?= $row['nama']; ?></td>
+                                <td><?= $lm[$row['lembaga']]; ?></td>
+                                <td><?= rupiah($row['nominal']); ?></td>
+                                <td><?= $row['tgl_bayar']; ?></td>
+                                <td><?= $row['created']; ?></td>
+                                <td><?= $row['kasir']; ?></td>
+                                <td><span class="badge badge-success"><?= $row['via']; ?></span></td>
+                                <td>
+                                    <a onclick="return confirm('Yakin akan dihapus ?')"
+                                        href="<?= 'hapus.php?kd=hpend&id=' . $row['id_bayar'] ?>"><button
+                                            class="btn btn-sm btn-danger"> Del</button></a>
+                                    <a onclick="return confirm('Yakin akan dikirim ?')"
+                                        href="<?= 'kirim.php?kd=df&id=' . $row['id_bayar'] ?>"><button
+                                            class="btn btn-sm btn-primary"><i
+                                                class="fa fa-paper-plane"></i></button></a>
+                                </td>
+                            </tr>
                             <?php } ?>
                         </tbody>
                     </table>
@@ -95,7 +102,8 @@ $tt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(IF(via = 'Transfer', no
     <!--Row-->
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -122,12 +130,13 @@ $tt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(IF(via = 'Transfer', no
                             $sql1 = mysqli_query($conn, "SELECT * FROM tb_santri WHERE NOT EXISTS (SELECT * FROM tanggungan WHERE tanggungan.nis=tb_santri.nis) ");
                             while ($row1 = mysqli_fetch_assoc($sql1)) {
                             ?>
-                                <tr>
-                                    <td><?= $row1['nama']; ?></td>
-                                    <td><?= $lm[$row1['lembaga']]; ?></td>
-                                    <td><?= $row1['ket']; ?></td>
-                                    <td><a href="<?= 'bayar_pd.php?id=' . $row1['id_santri'] ?>"><button class="btn btn-sm btn-success"> Bayar</button></a></td>
-                                </tr>
+                            <tr>
+                                <td><?= $row1['nama']; ?></td>
+                                <td><?= $lm[$row1['lembaga']]; ?></td>
+                                <td><?= $row1['ket']; ?></td>
+                                <td><a href="<?= 'bayar_pd.php?id=' . $row1['id_santri'] ?>"><button
+                                            class="btn btn-sm btn-success"> Bayar</button></a></td>
+                            </tr>
                             <?php } ?>
                         </tbody>
                     </table>

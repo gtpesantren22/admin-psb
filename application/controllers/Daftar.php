@@ -39,18 +39,46 @@ class Daftar extends CI_Controller
 	public function inDaftar($nis)
 	{
 		$data['santri'] = $this->model->santriNis($nis)->row();
-
+		
 		$this->load->view('bunda/head');
 		$this->load->view('bunda/daftarAdd', $data);
 		$this->load->view('bunda/foot');
+	}
+	
+	public function saveAdd()
+	{
+		$nis = $this->input->post('nis', true);
+		$tangg = preg_replace("/[^0-9]/", "", $this->input->post('tangg', true));
+		$nominal = preg_replace("/[^0-9]/", "", $this->input->post('nominal', true));
+		
+		$cek = $this->model->santriNis($nis)->row();
+		$rdrc = $cek->ket === 'baru' ?'daftar' : 'daftar/lanjut';
+		
+		$data = [
+			'nominal' => $nominal,
+			'tgl_bayar' => $this->input->post('tgl_bayar', true),
+			'created' => date('Y-m-d H:i'),
+			'via' => $this->input->post('via', true)
+		];
+
+		if ($nominal > $tangg) {
+			$this->session->set_flashdata('error', 'Maaf. Pembayaran Melebihi');
+			redirect('daftar/inDaftar/'.$nis);
+		}else {
+			$this->model->edit('bp_daftar', $data, $nis);
+			if ($this->db->affected_rows()>0) {
+				redirect($rdrc);
+			}
+		}
 	}
 
 	public function lanjut()
 	{
 		$data['baru'] = $this->model->lama()->result();
+		$data['nobp'] = $this->model->noBpLama()->result();
 
 		$this->load->view('bunda/head');
-		$this->load->view('bunda/lama', $data);
+		$this->load->view('bunda/daftarLama', $data);
 		$this->load->view('bunda/foot');
 	}
 

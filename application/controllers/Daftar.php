@@ -13,8 +13,8 @@ class Daftar extends CI_Controller
 	{
 		$data['baru'] = $this->model->baru()->result();
 		$data['nobp'] = $this->model->noBp()->result();
-
-		$this->load->view('bunda/head');
+		$data['judul'] = 'daftar';
+		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/daftar', $data);
 		$this->load->view('bunda/foot');
 	}
@@ -39,21 +39,21 @@ class Daftar extends CI_Controller
 	public function inDaftar($nis)
 	{
 		$data['santri'] = $this->model->santriNis($nis)->row();
-		
-		$this->load->view('bunda/head');
+		$data['judul'] = 'daftar';
+		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/daftarAdd', $data);
 		$this->load->view('bunda/foot');
 	}
-	
+
 	public function saveAdd()
 	{
 		$nis = $this->input->post('nis', true);
 		$tangg = preg_replace("/[^0-9]/", "", $this->input->post('tangg', true));
 		$nominal = preg_replace("/[^0-9]/", "", $this->input->post('nominal', true));
-		
+
 		$cek = $this->model->santriNis($nis)->row();
-		$rdrc = $cek->ket === 'baru' ?'daftar' : 'daftar/lanjut';
-		
+		$rdrc = $cek->ket === 'baru' ? 'daftar' : 'daftar/lanjut';
+
 		$data = [
 			'nominal' => $nominal,
 			'tgl_bayar' => $this->input->post('tgl_bayar', true),
@@ -63,10 +63,10 @@ class Daftar extends CI_Controller
 
 		if ($nominal > $tangg) {
 			$this->session->set_flashdata('error', 'Maaf. Pembayaran Melebihi');
-			redirect('daftar/inDaftar/'.$nis);
-		}else {
+			redirect('daftar/inDaftar/' . $nis);
+		} else {
 			$this->model->edit('bp_daftar', $data, $nis);
-			if ($this->db->affected_rows()>0) {
+			if ($this->db->affected_rows() > 0) {
 				redirect($rdrc);
 			}
 		}
@@ -76,8 +76,9 @@ class Daftar extends CI_Controller
 	{
 		$data['baru'] = $this->model->lama()->result();
 		$data['nobp'] = $this->model->noBpLama()->result();
+		$data['judul'] = 'daftar';
 
-		$this->load->view('bunda/head');
+		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/daftarLama', $data);
 		$this->load->view('bunda/foot');
 	}

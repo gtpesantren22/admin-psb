@@ -146,7 +146,7 @@
                     <div class="navbar navbar-light">
                         <div class="container-xl">
                             <ul class="navbar-nav">
-                                <li class="nav-item active">
+                                <li class="nav-item <?= $judul === 'home' ? 'active' : ''; ?>">
                                     <a class="nav-link" href="<?= base_url() ?>">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/home -->
@@ -164,7 +164,7 @@
                                         </span>
                                     </a>
                                 </li>
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown <?= $judul === 'santri' ? 'active' : ''; ?>">
                                     <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
                                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -194,7 +194,7 @@
                                         </a>
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown <?= $judul === 'daftar' ? 'active' : ''; ?>">
                                     <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
                                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">

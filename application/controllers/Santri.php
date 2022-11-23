@@ -12,8 +12,9 @@ class Santri extends CI_Controller
 	public function index()
 	{
 		$data['baru'] = $this->model->baru()->result();
+		$data['judul'] = 'santri';
 
-		$this->load->view('bunda/head');
+		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/baru', $data);
 		$this->load->view('bunda/foot');
 	}
@@ -21,8 +22,9 @@ class Santri extends CI_Controller
 	public function lanjut()
 	{
 		$data['baru'] = $this->model->lama()->result();
+		$data['judul'] = 'santri';
 
-		$this->load->view('bunda/head');
+		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/lama', $data);
 		$this->load->view('bunda/foot');
 	}

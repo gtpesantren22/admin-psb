@@ -6,7 +6,9 @@ class Welcome extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('bunda/head');
+		$data['judul'] = 'home';
+
+		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/index');
 		$this->load->view('bunda/foot');
 	}

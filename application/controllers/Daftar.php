@@ -53,6 +53,8 @@ class Daftar extends CI_Controller
 
 		$cek = $this->model->santriNis($nis)->row();
 		$rdrc = $cek->ket === 'baru' ? 'daftar' : 'daftar/lanjut';
+		$pass = rand(0, 999999);
+		$passOk = password_hash($pass, PASSWORD_BCRYPT);
 
 		$data = [
 			'nominal' => $nominal,
@@ -61,11 +63,17 @@ class Daftar extends CI_Controller
 			'via' => $this->input->post('via', true)
 		];
 
+		$data2 = [
+			'password' => $passOk,
+			'stts' => 'Terverifikasi'
+		];
+
 		if ($nominal > $tangg) {
 			$this->session->set_flashdata('error', 'Maaf. Pembayaran Melebihi');
 			redirect('daftar/inDaftar/' . $nis);
 		} else {
 			$this->model->edit('bp_daftar', $data, $nis);
+			$this->model->edit('tb_santri', $data2, $nis);
 			if ($this->db->affected_rows() > 0) {
 				redirect($rdrc);
 			}

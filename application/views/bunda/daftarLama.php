@@ -65,7 +65,7 @@
                                         <td><?= $no++; ?></td>
                                         <td><?= $row->nama; ?></td>
                                         <td><?= $row->lembaga; ?></td>
-                                        <td>Rp. <?= rupiah($row->nominal); ?></td>
+                                        <td><?= rupiah($row->nominal); ?></td>
                                         <td><?= $row->tgl_bayar; ?></td>
                                         <td><?= $row->created; ?></td>
                                         <td><?= $row->kasir; ?></td>

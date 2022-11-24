@@ -2,7 +2,11 @@
 
 function rupiah($rp)
 {
-    return number_format($rp, 0, ',', '.');
+    if ($rp != null) {
+        return 'Rp. ' . number_format($rp, 0, ',', '.');
+    } else {
+        return 'Rp. ' . number_format(0, 0, ',', '.');
+    }
 }
 
 function bulan($bulan)

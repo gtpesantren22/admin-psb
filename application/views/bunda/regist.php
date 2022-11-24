@@ -8,7 +8,7 @@
                     Biaya Pendafataran
                 </div>
                 <h2 class="page-title">
-                    Biaya Pendafataran Santri Baru
+                    Biaya Registrasi Santri Baru
                 </h2>
             </div>
             <div class="col-auto ms-auto d-print-none">
@@ -48,11 +48,9 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Lembaga</th>
-                                        <th>Nominal</th>
-                                        <th>Tgl Bayar</th>
-                                        <th>Tgl Input</th>
-                                        <th>Verifikator</th>
-                                        <th>Via</th>
+                                        <th>Tanggungan</th>
+                                        <th>Lunas</th>
+                                        <th>Sisa</th>
                                         <th>#</th>
                                     </tr>
                                 </thead>
@@ -65,13 +63,12 @@
                                         <td><?= $no++; ?></td>
                                         <td><?= $row->nama; ?></td>
                                         <td><?= $row->lembaga; ?></td>
-                                        <td><?= rupiah($row->nominal); ?></td>
-                                        <td><?= $row->tgl_bayar; ?></td>
-                                        <td><?= $row->created; ?></td>
-                                        <td><?= $row->kasir; ?></td>
-                                        <td><span class="badge bg-green"><?= $row->via; ?></span></td>
+                                        <td><?= rupiah($row->infaq + $row->buku + $row->kartu + $row->kalender + $row->seragam_pes + $row->seragam_lem + $row->orsaba); ?>
+                                        </td>
+                                        <td>0</td>
+                                        <td>0</td>
                                         <td>
-                                            <a href="<?= base_url('daftar/del/') . $row->id_bayar ?>"
+                                            <a href="<?= base_url('daftar/del/') . $row->id_tgn ?>"
                                                 class="btn btn-danger btn-sm"
                                                 onclick="return confirm('Yakin akan dihapus ?')">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -85,17 +82,21 @@
                                                     <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
                                                     <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
                                                 </svg> Del</a>
-                                            <a href="<?= base_url('daftar/kirim/') . $row->id_bayar ?>"
-                                                class="btn btn-primary btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-send" width="24" height="24"
+                                            <a href="<?= base_url('daftar/kirim/') . $row->id_tgn ?>"
+                                                class="btn btn-warning btn-sm">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon icon-tabler icon-tabler-edit" width="24" height="24"
                                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                                     fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <line x1="10" y1="14" x2="21" y2="3"></line>
                                                     <path
-                                                        d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5">
+                                                        d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1">
                                                     </path>
-                                                </svg> Kirim</a>
+                                                    <path
+                                                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
+                                                    </path>
+                                                    <path d="M16 5l3 3"></path>
+                                                </svg> Edit</a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
@@ -140,7 +141,7 @@
                                 <td><?= $row->desa . ' - ' . $row->kec . ' - ' . $row->kab; ?></td>
                                 <td><?= $row->lembaga; ?></td>
                                 <td>
-                                    <a href="<?= base_url('daftar/addDaftar/') . $row->nis ?>"
+                                    <a href="<?= base_url('regist/addDaftar/') . $row->nis ?>"
                                         class="btn btn-success btn-sm">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="icon icon-tabler icon-tabler-circle-check" width="24" height="24"

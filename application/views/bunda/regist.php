@@ -58,6 +58,7 @@
                                     <?php
                                     $no = 1;
                                     foreach ($baru as $row) :
+                                        $byr = $this->db->query("SELECT SUM(nominal) AS jml FROM regist WHERE nis = $row->nis")->row();
                                     ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
@@ -65,10 +66,11 @@
                                         <td><?= $row->lembaga; ?></td>
                                         <td><?= rupiah($row->infaq + $row->buku + $row->kartu + $row->kalender + $row->seragam_pes + $row->seragam_lem + $row->orsaba); ?>
                                         </td>
-                                        <td>0</td>
-                                        <td>0</td>
+                                        <td><?= rupiah($byr->jml); ?></td>
+                                        <td><?= rupiah(($row->infaq + $row->buku + $row->kartu + $row->kalender + $row->seragam_pes + $row->seragam_lem + $row->orsaba) - $byr->jml); ?>
+                                        </td>
                                         <td>
-                                            <a href="<?= base_url('daftar/del/') . $row->id_tgn ?>"
+                                            <!-- <a href="<?= base_url('daftar/del/') . $row->id_tgn ?>"
                                                 class="btn btn-danger btn-sm"
                                                 onclick="return confirm('Yakin akan dihapus ?')">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +83,7 @@
                                                     <line x1="14" y1="11" x2="14" y2="17"></line>
                                                     <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
                                                     <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                                </svg> Del</a>
+                                                </svg> Del</a> -->
                                             <a href="<?= base_url('regist/inDaftar/') . $row->nis ?>"
                                                 class="btn btn-warning btn-sm">
                                                 <svg xmlns="http://www.w3.org/2000/svg"

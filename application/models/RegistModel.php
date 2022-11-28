@@ -69,6 +69,7 @@ class RegistModel extends CI_Model
 
     function byrSum($nis)
     {
+        $this->db->select('*');
         $this->db->select_sum('nominal');
         $this->db->from('regist');
         $this->db->where('nis', $nis);
@@ -86,6 +87,14 @@ class RegistModel extends CI_Model
         $this->db->from('tb_santri');
         $this->db->where('NOT EXISTS (SELECT * FROM bp_daftar WHERE bp_daftar.nis=tb_santri.nis)', '', false);
         $this->db->where('ket', 'lama');
+        return $this->db->get();
+    }
+
+    function getTgn($jkl, $ket)
+    {
+        $this->db->from('biaya');
+        $this->db->where('jkl', $jkl);
+        $this->db->where('ket', $ket);
         return $this->db->get();
     }
 }

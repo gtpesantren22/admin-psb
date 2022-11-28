@@ -109,3 +109,8 @@ function gel($gel)
     $nm = array(0, 70000, 120000, 170000);
     return $nm[$gel];
 }
+
+function rmRp($string)
+{
+    return preg_replace("/[^0-9]/", "", $string);
+}

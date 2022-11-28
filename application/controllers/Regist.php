@@ -40,39 +40,80 @@ class Regist extends CI_Controller
 		$data['judul'] = 'regist';
 		$data['santri'] = $this->model->santriNis($nis)->row();
 		$data['tgn'] = $this->model->tgnNis($nis)->row();
-		$data['byr'] = $this->model->byrSum($nis)->row();
+		$data['byr'] = $this->model->byrSum($nis);
 
 		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/registAdd', $data);
 		$this->load->view('bunda/foot');
 	}
 
-	public function saveAdd()
+	public function tgnEdit($nis)
+	{
+		$ket = $this->model->santriNis($nis)->row('ket');
+		$jkl = $this->model->santriNis($nis)->row('jkl');
+
+		$biaya = $this->model->getTgn($jkl, $ket)->row();
+		$data = [
+			'infaq' => $biaya->infaq,
+			'buku' => $biaya->buku,
+			'kartu' => $biaya->kartu,
+			'kalender' => $biaya->kalender,
+			'seragam_pes' => $biaya->seragam_pes,
+			'seragam_lem' => $biaya->seragam_lem,
+			'orsaba' => $biaya->orsaba
+		];
+
+		$this->model->edit('tanggungan', $data, $nis);
+		if ($this->db->affected_rows() > 0) {
+			redirect('regist/inDaftar/' . $nis);
+		} else {
+			redirect('regist/inDaftar/' . $nis);
+		}
+	}
+
+	public function tgnEdit2()
 	{
 		$nis = $this->input->post('nis', true);
-		$tangg = preg_replace("/[^0-9]/", "", $this->input->post('tangg', true));
-		$nominal = preg_replace("/[^0-9]/", "", $this->input->post('nominal', true));
-
-		$cek = $this->model->santriNis($nis)->row();
-		$rdrc = $cek->ket === 'baru' ? 'daftar' : 'daftar/lanjut';
 
 		$data = [
-			'nominal' => $nominal,
+			'infaq' => rmRp($this->input->post('infaq', true)),
+			'buku' => rmRp($this->input->post('buku', true)),
+			'kartu' => rmRp($this->input->post('kartu', true)),
+			'kalender' => rmRp($this->input->post('kalender', true)),
+			'seragam_pes' => rmRp($this->input->post('seragam_pes', true)),
+			'seragam_lem' => rmRp($this->input->post('seragam_lem', true)),
+			'orsaba' => rmRp($this->input->post('orsaba', true))
+		];
+		$this->model->edit('tanggungan', $data, $nis);
+		if ($this->db->affected_rows() > 0) {
+			redirect('regist/inDaftar/' . $nis);
+		} else {
+			redirect('regist/inDaftar/' . $nis);
+		}
+	}
+
+	public function saveAdd()
+	{
+		$nis  = $this->input->post('nis', true);
+		$data = [
+			'id_regist' => $this->uuid->v4(),
+			'nis' => $nis,
+			'nominal' => rmRp($this->input->post('nominal', true)),
 			'tgl_bayar' => $this->input->post('tgl_bayar', true),
 			'created' => date('Y-m-d H:i'),
 			'via' => $this->input->post('via', true)
 		];
 
-		if ($nominal > $tangg) {
-			$this->session->set_flashdata('error', 'Maaf. Pembayaran Melebihi');
-			redirect('daftar/inDaftar/' . $nis);
+		var_dump($data);
+
+		$this->model->tambah('regist', $data);
+		if ($this->db->affected_rows() > 0) {
+			redirect('regist/inDaftar/' . $nis);
 		} else {
-			$this->model->edit('bp_daftar', $data, $nis);
-			if ($this->db->affected_rows() > 0) {
-				redirect($rdrc);
-			}
+			redirect('regist/inDaftar/' . $nis);
 		}
 	}
+
 
 	public function lanjut()
 	{
@@ -87,13 +128,14 @@ class Regist extends CI_Controller
 
 	public function del($id)
 	{
-		$this->model->hapus('bp_daftar', $id);
+		$this->model->hapus('regist', $id);
+
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('ok', 'Data berhasil dihapus');
-			redirect('daftar');
+			redirect('regist/inDaftar/');
 		} else {
 			$this->session->set_flashdata('error', 'Data tak berhasil dihapus');
-			redirect('daftar');
+			redirect('regist');
 		}
 	}
 

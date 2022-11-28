@@ -69,8 +69,14 @@ class RegistModel extends CI_Model
 
     function byrSum($nis)
     {
-        $this->db->select('*');
         $this->db->select_sum('nominal');
+        $this->db->from('regist');
+        $this->db->where('nis', $nis);
+        return $this->db->get();
+    }
+
+    function byr($nis)
+    {
         $this->db->from('regist');
         $this->db->where('nis', $nis);
         return $this->db->get();

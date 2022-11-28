@@ -40,7 +40,8 @@ class Regist extends CI_Controller
 		$data['judul'] = 'regist';
 		$data['santri'] = $this->model->santriNis($nis)->row();
 		$data['tgn'] = $this->model->tgnNis($nis)->row();
-		$data['byr'] = $this->model->byrSum($nis);
+		$data['byr'] = $this->model->byr($nis);
+		$data['byrSum'] = $this->model->byrSum($nis);
 
 		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/registAdd', $data);
@@ -95,21 +96,32 @@ class Regist extends CI_Controller
 	public function saveAdd()
 	{
 		$nis  = $this->input->post('nis', true);
+		$nominal = rmRp($this->input->post('nominal', true));
+		$dataTgn = $this->model->tgnNis($nis)->row();
+		$tangg = $dataTgn->infaq + $dataTgn->buku + $dataTgn->kartu + $dataTgn->kalender + $dataTgn->seragam_pes + $dataTgn->seragam_lem + $dataTgn->orsaba;
+		$byr = $this->model->byrSum($nis)->row('nominal') + $nominal;
+
 		$data = [
 			'id_regist' => $this->uuid->v4(),
 			'nis' => $nis,
-			'nominal' => rmRp($this->input->post('nominal', true)),
+			'nominal' => $nominal,
 			'tgl_bayar' => $this->input->post('tgl_bayar', true),
 			'created' => date('Y-m-d H:i'),
 			'via' => $this->input->post('via', true)
 		];
 
-
-		$this->model->tambah('regist', $data);
-		if ($this->db->affected_rows() > 0) {
+		if ($byr > $tangg) {
+			$this->session->set_flashdata('error', 'Maaf. Pembayaran Anda Melebihi');
 			redirect('regist/inDaftar/' . $nis);
-		} else {
-			redirect('regist/inDaftar/' . $nis);
+		}else{
+			
+			$this->model->tambah('regist', $data);
+			if ($this->db->affected_rows() > 0) {
+				$this->session->set_flashdata('ok', 'Pembayaran Berhasil Ditambahkan');
+				redirect('regist/inDaftar/' . $nis);
+			} else {
+				redirect('regist/inDaftar/' . $nis);
+			}
 		}
 	}
 
@@ -181,5 +193,45 @@ selanjutnya, Silahkan bergabung Group WA Santri baru dengan klik link dibawah, u
 
 		kirim_person($key->api_key, $sn->hp, $pesan);
 		redirect('daftar');
+	}
+
+	public function pesan($id)
+	{
+		if ($data['gel'] == '1') {
+			$link = 'https://chat.whatsapp.com/L8O3TgvrpLVFqMejIMoIF3';
+			$jadwal = 'Penyerahan berkas dan Tes : 26-28 February 2022';
+		} else if ($data['gel'] == '2') {
+			$link = 'https://chat.whatsapp.com/Er4uy1eXYAg1PoOTZ9lnCp';
+			$jadwal = 'Penyerahan berkas dan Tes : 26-28 Maret 2022';
+		} else if ($data['gel'] == '3') {
+			$link = 'https://chat.whatsapp.com/FA5KGjmYmrxCGSdg1j7BPD';
+			$jadwal = 'Penyerahan berkas dan Tes : 28-30 Mei 2022';
+		}
+
+		$pesan = '*Terimakasih*
+
+*Kode Pembayaran : ' . strtoupper($id_s) . '*
+Pembayaran Pendaftaran, atas :
+        
+Nama : ' . $data['nama'] . '
+Alamat : ' . $data['desa'] . '-' . $data['kec'] . '-' . $data['kab'] . '
+Lembaga tujuan : ' . $lm[$data['lembaga']] . '
+Nominal : ' . rupiah($nominal) . '
+waktu bayar : ' . date('d-m-Y H:i:s') . '
+Penerima : ' . $nama_user . '
+
+*telah TEREGISTRASI*
+selanjutnya, Silahkan bergabung Group WA Santri baru dengan klik link dibawah, untuk mengetahui informasi test pendaftaran santri baru dan Informasi Lainnya.
+
+*' . $link . '*
+_*Link diatas hanya untuk santri baru*_
+
+*Jumlah Tanggungan : ' . rupiah($tang['jml']) . '*
+*Sudah Bayar : ' . rupiah($jml_bayar) . '*
+*Kekurangan  : ' . rupiah($tang['jml'] - $jml_bayar) . '*
+        
+_*NB : 
+	- Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam
+	- Pesan ini sebgai bukti pembayaran yang sah (Harus dari WA Bendahara PSB)*_';
 	}
 }

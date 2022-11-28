@@ -104,9 +104,27 @@ class Regist extends CI_Controller
 			'via' => $this->input->post('via', true)
 		];
 
-		var_dump($data);
 
 		$this->model->tambah('regist', $data);
+		if ($this->db->affected_rows() > 0) {
+			redirect('regist/inDaftar/' . $nis);
+		} else {
+			redirect('regist/inDaftar/' . $nis);
+		}
+	}
+
+	public function editAdd()
+	{
+		$nis  = $this->input->post('nis', true);
+		$id_regist  = $this->input->post('id_regist', true);
+		$data = [
+			'nominal' => rmRp($this->input->post('nominal', true)),
+			'tgl_bayar' => $this->input->post('tgl_bayar', true),
+			'via' => $this->input->post('via', true)
+		];
+
+
+		$this->model->edit2('regist', $data, $id_regist);
 		if ($this->db->affected_rows() > 0) {
 			redirect('regist/inDaftar/' . $nis);
 		} else {
@@ -128,14 +146,17 @@ class Regist extends CI_Controller
 
 	public function del($id)
 	{
+		$data = $this->model->getId($id)->row();
+		$nis = $data->nis;
+
 		$this->model->hapus('regist', $id);
 
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('ok', 'Data berhasil dihapus');
-			redirect('regist/inDaftar/');
+			redirect('regist/inDaftar/' . $nis);
 		} else {
 			$this->session->set_flashdata('error', 'Data tak berhasil dihapus');
-			redirect('regist');
+			redirect('regist/inDaftar/' . $nis);
 		}
 	}
 

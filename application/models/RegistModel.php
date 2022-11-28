@@ -21,15 +21,15 @@ class RegistModel extends CI_Model
 
     function hapus($table, $where)
     {
-        $this->db->where('id_bayar', $where);
+        $this->db->where('id_regist', $where);
         $this->db->delete($table);
     }
 
     function getId($id)
     {
-        $this->db->from('bp_daftar');
-        $this->db->join('tb_santri', 'ON tb_santri.nis=bp_daftar.nis');
-        $this->db->where('bp_daftar.id_bayar', $id);
+        $this->db->from('regist');
+        $this->db->join('tb_santri', 'ON tb_santri.nis=regist.nis');
+        $this->db->where('regist.id_regist', $id);
         return $this->db->get();
     }
 
@@ -79,6 +79,12 @@ class RegistModel extends CI_Model
     function edit($table, $data, $where)
     {
         $this->db->where('nis', $where);
+        $this->db->update($table, $data);
+    }
+
+    function edit2($table, $data, $where)
+    {
+        $this->db->where('id_regist', $where);
         $this->db->update($table, $data);
     }
 

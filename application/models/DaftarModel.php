@@ -19,12 +19,12 @@ class DaftarModel extends CI_Model
         return $this->db->get();
     }
 
-    // function lama()
-    // {
-    //     $this->db->where('ket', 'lama');
-    //     $this->db->from('bp');
-    //     return $this->db->get();
-    // }
+    function getBpNis($nis)
+    {
+        $this->db->where('nis', $nis);
+        $this->db->from('bp_daftar');
+        return $this->db->get();
+    }
 
     function hapus($table, $where)
     {

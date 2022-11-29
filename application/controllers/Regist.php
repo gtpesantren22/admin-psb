@@ -219,7 +219,7 @@ _*Link diatas hanya untuk santri baru*_
 *Kekurangan  : ' . rupiah($ttg - $byr->nominal) . '*
         
 _*Catatan :_*
-	_*- Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam*_
+	_*- Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam, bawahan Hitam atau gelap pada saat tes*_
 	_*- Pesan ini sebgai bukti pembayaran yang sah (Harus dari WA Bendahara PSB)*_';
 
 		kirim_person($key->api_key, $data->hp, $pesan);

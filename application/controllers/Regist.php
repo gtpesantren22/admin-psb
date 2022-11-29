@@ -100,9 +100,10 @@ class Regist extends CI_Controller
 		$dataTgn = $this->model->tgnNis($nis)->row();
 		$tangg = $dataTgn->infaq + $dataTgn->buku + $dataTgn->kartu + $dataTgn->kalender + $dataTgn->seragam_pes + $dataTgn->seragam_lem + $dataTgn->orsaba;
 		$byr = $this->model->byrSum($nis)->row('nominal') + $nominal;
+		$id = $this->uuid->v4();
 
 		$data = [
-			'id_regist' => $this->uuid->v4(),
+			'id_regist' => $id,
 			'nis' => $nis,
 			'nominal' => $nominal,
 			'tgl_bayar' => $this->input->post('tgl_bayar', true),
@@ -113,11 +114,12 @@ class Regist extends CI_Controller
 		if ($byr > $tangg) {
 			$this->session->set_flashdata('error', 'Maaf. Pembayaran Anda Melebihi');
 			redirect('regist/inDaftar/' . $nis);
-		}else{
-			
+		} else {
+
 			$this->model->tambah('regist', $data);
 			if ($this->db->affected_rows() > 0) {
 				$this->session->set_flashdata('ok', 'Pembayaran Berhasil Ditambahkan');
+				$this->pesan($id);
 				redirect('regist/inDaftar/' . $nis);
 			} else {
 				redirect('regist/inDaftar/' . $nis);
@@ -172,53 +174,39 @@ class Regist extends CI_Controller
 		}
 	}
 
-	public function kirim($id)
-	{
-		$sn = $this->model->getId($id)->row();
-		$key = $this->model->apiKey()->row();
-
-		$pesan = '*Terimakasih*
-
-*Kode Pembayaran : ' . strtoupper($id) . '*
-Pembayaran Pendaftaran, atas :
-        
-Nama : ' . $sn->nama . '
-Alamat : ' . $sn->desa . '-' . $sn->kec . '-' . $sn->kab . '
-Lembaga tujuan : ' . $sn->lembaga . '
-Nominal : ' . rupiah($sn->nominal) . '
-Tgl Bayar : ' . $sn->tgl_bayar . '
-        
-*telah TERVERIFIKASI.*
-selanjutnya, Silahkan bergabung Group WA Santri baru dengan klik link dibawah, untuk mengetahui informasi test pendaftaran santri baru dan Informasi Lainnya.';
-
-		kirim_person($key->api_key, $sn->hp, $pesan);
-		redirect('daftar');
-	}
-
 	public function pesan($id)
 	{
-		if ($data['gel'] == '1') {
+		$key = $this->model->apiKey()->row();
+
+		$data = $this->model->getId($id)->row();
+		$nis = $data->nis;
+		$tgn = $this->model->tgnNis($nis)->row();
+		$byr = $this->model->byrSum($nis)->row();
+
+		$ttg = $tgn->infaq + $tgn->buku + $tgn->kartu + $tgn->kalender + $tgn->seragam_pes + $tgn->seragam_lem + $tgn->orsaba;
+
+		if ($data->gel === '1') {
 			$link = 'https://chat.whatsapp.com/L8O3TgvrpLVFqMejIMoIF3';
 			$jadwal = 'Penyerahan berkas dan Tes : 26-28 February 2022';
-		} else if ($data['gel'] == '2') {
+		} else if ($data->gel === '2') {
 			$link = 'https://chat.whatsapp.com/Er4uy1eXYAg1PoOTZ9lnCp';
 			$jadwal = 'Penyerahan berkas dan Tes : 26-28 Maret 2022';
-		} else if ($data['gel'] == '3') {
+		} else if ($data->gel === '3') {
 			$link = 'https://chat.whatsapp.com/FA5KGjmYmrxCGSdg1j7BPD';
 			$jadwal = 'Penyerahan berkas dan Tes : 28-30 Mei 2022';
 		}
 
 		$pesan = '*Terimakasih*
 
-*Kode Pembayaran : ' . strtoupper($id_s) . '*
+*Kode Pembayaran : ' . strtoupper($id) . '*
 Pembayaran Pendaftaran, atas :
         
-Nama : ' . $data['nama'] . '
-Alamat : ' . $data['desa'] . '-' . $data['kec'] . '-' . $data['kab'] . '
-Lembaga tujuan : ' . $lm[$data['lembaga']] . '
-Nominal : ' . rupiah($nominal) . '
-waktu bayar : ' . date('d-m-Y H:i:s') . '
-Penerima : ' . $nama_user . '
+Nama : ' . $data->nama . '
+Alamat : ' . $data->desa . '-' . $data->kec . '-' . $data->kab . '
+Lembaga tujuan : ' . $data->lembaga . '
+Nominal : ' . rupiah($data->nominal) . '
+waktu bayar : ' . $data->created . '
+Penerima : ' . $data->kasir . '
 
 *telah TEREGISTRASI*
 selanjutnya, Silahkan bergabung Group WA Santri baru dengan klik link dibawah, untuk mengetahui informasi test pendaftaran santri baru dan Informasi Lainnya.
@@ -226,12 +214,15 @@ selanjutnya, Silahkan bergabung Group WA Santri baru dengan klik link dibawah, u
 *' . $link . '*
 _*Link diatas hanya untuk santri baru*_
 
-*Jumlah Tanggungan : ' . rupiah($tang['jml']) . '*
-*Sudah Bayar : ' . rupiah($jml_bayar) . '*
-*Kekurangan  : ' . rupiah($tang['jml'] - $jml_bayar) . '*
+*Jumlah Tanggungan : ' . rupiah($ttg) . '*
+*Sudah Bayar : ' . rupiah($byr->nominal) . '*
+*Kekurangan  : ' . rupiah($ttg - $byr->nominal) . '*
         
-_*NB : 
-	- Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam
-	- Pesan ini sebgai bukti pembayaran yang sah (Harus dari WA Bendahara PSB)*_';
+_*Catatan :_*
+	_*- Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam*_
+	_*- Pesan ini sebgai bukti pembayaran yang sah (Harus dari WA Bendahara PSB)*_';
+
+		kirim_person($key->api_key, $data->hp, $pesan);
+		redirect('regist/inDaftar/' . $nis);
 	}
 }

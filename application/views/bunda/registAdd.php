@@ -240,6 +240,26 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <br>
+                                        <?php
+
+                                        // $seragam_pes = $byrSum->row('nominal');
+                                        // $seragam_lem = $seragam_pes - $tangg->seragam_pes;
+                                        // $orsaba = $seragam_lem - $tangg->seragam_lem;
+                                        // $kartu = $orsaba - $tangg->orsaba;
+                                        // $buku = $kartu - $tangg->kartu;
+                                        // $kalender = $buku - $tangg->buku;
+                                        // $infaq = $kalender - $tangg->kalender;
+
+                                        // echo $seragam_pes . ' seraagam pes, ';
+                                        // echo $seragam_lem . ' seragam lem, ';
+                                        // echo $orsaba . ' orsaba, ';
+                                        // echo $kartu . ' kartu, ';
+                                        // echo $buku . ' buku, ';
+                                        // echo $kalender . ' kalender, ';
+                                        // echo $infaq . ' infaq, ';
+
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -315,43 +335,54 @@
                                             </svg>
                                         </div>
                                     </div>
+
                                     <div class="card-body">
-                                        <h3 class="card-title">Rincian Tanggungan</h3>
+                                        <h3 class="card-title">Rincian Tanggungan
+                                            <a href="<?= base_url('regist/check/' . $santri->nis) ?>"
+                                                class="btn btn-success ms-auto"><svg xmlns="http://www.w3.org/2000/svg"
+                                                    class="icon icon-tabler icon-tabler-refresh" width="24" height="24"
+                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                    <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"></path>
+                                                    <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"></path>
+                                                </svg> Refresh</a>
+                                        </h3>
                                         <table class="table table-sm">
                                             <tr>
                                                 <th>1</th>
                                                 <th>Seragam Pesantren</th>
-                                                <th><?= rupiah($tgn->seragam_pes) ?></th>
+                                                <th><?= check($tgn->st_seragam_pes) . rupiah($tgn->seragam_pes) ?></th>
                                             </tr>
                                             <tr>
                                                 <th>2</th>
                                                 <th>Seragam Lembaga (Khas dan Kaos Olahraga)</th>
-                                                <th><?= rupiah($tgn->seragam_lem) ?></th>
+                                                <th><?= check($tgn->st_seragam_lem) . rupiah($tgn->seragam_lem) ?></th>
                                             </tr>
                                             <tr>
                                                 <th>3</th>
                                                 <th>ORSABA</th>
-                                                <th><?= rupiah($tgn->orsaba) ?></th>
+                                                <th><?= check($tgn->st_orsaba) . rupiah($tgn->orsaba) ?></th>
                                             </tr>
                                             <tr>
                                                 <th>4</th>
                                                 <th>KTS, Kartu Mahrom, Kartu Kesehatan, dan Foto</th>
-                                                <th><?= rupiah($tgn->kartu) ?></th>
+                                                <th><?= check($tgn->st_kartu) . rupiah($tgn->kartu) ?></th>
                                             </tr>
                                             <tr>
                                                 <th>5</th>
                                                 <th>Buku Pedoman Wiridan, Perizinan & Tatib</th>
-                                                <th><?= rupiah($tgn->buku) ?></th>
+                                                <th><?= check($tgn->st_buku) . rupiah($tgn->buku) ?></th>
                                             </tr>
                                             <tr>
                                                 <th>6</th>
                                                 <th>Kalender Pesantren</th>
-                                                <th><?= rupiah($tgn->kalender) ?></th>
+                                                <th><?= check($tgn->st_kalender) . rupiah($tgn->kalender) ?></th>
                                             </tr>
                                             <tr>
                                                 <th>7</th>
                                                 <th>Uang Gedung</th>
-                                                <th><?= rupiah($tgn->infaq) ?></th>
+                                                <th><?= check($tgn->st_infaq) . rupiah($tgn->infaq) ?></th>
                                             </tr>
                                             <tr style="background-color: green; color: white;">
                                                 <th colspan="2">TOTAL</th>

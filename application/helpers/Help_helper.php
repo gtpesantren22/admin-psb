@@ -114,3 +114,28 @@ function rmRp($string)
 {
     return preg_replace("/[^0-9]/", "", $string);
 }
+
+function check($arr)
+{
+    $ok = "
+    <i class='text-success'><svg xmlns='http://www.w3.org/2000/svg'
+                                            class='icon icon-tabler icon-tabler-check' width='24' height='24'
+                                            viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none'
+                                            stroke-linecap='round' stroke-linejoin='round'>
+                                            <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+                                            <path d='M5 12l5 5l10 -10'></path>
+                                        </svg>
+                                    </i>
+    ";
+    $no = "
+    <i class='text-danger'><svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-square-x' width='24' height='24' viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round' stroke-linejoin='round'>
+   <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+   <rect x='4' y='4' width='16' height='16' rx='2'></rect>
+   <path d='M10 10l4 4m0 -4l-4 4'></path>
+</svg>
+                                    </i>
+    ";
+
+    $isi = array($no, $ok);
+    return $isi[$arr];
+}

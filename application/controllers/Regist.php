@@ -43,6 +43,8 @@ class Regist extends CI_Controller
 		$data['byr'] = $this->model->byr($nis);
 		$data['byrSum'] = $this->model->byrSum($nis);
 
+		$data['tangg'] = $this->model->tgnNis($nis)->row();
+
 		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/registAdd', $data);
 		$this->load->view('bunda/foot');
@@ -118,8 +120,9 @@ class Regist extends CI_Controller
 
 			$this->model->tambah('regist', $data);
 			if ($this->db->affected_rows() > 0) {
-				$this->session->set_flashdata('ok', 'Pembayaran Berhasil Ditambahkan');
+				// $this->check($nis);
 				$this->pesan($id);
+				$this->session->set_flashdata('ok', 'Pembayaran Berhasil Ditambahkan');
 				redirect('regist/inDaftar/' . $nis);
 			} else {
 				redirect('regist/inDaftar/' . $nis);
@@ -223,6 +226,58 @@ _*Catatan :_*
 	_*- Pesan ini sebgai bukti pembayaran yang sah (Harus dari WA Bendahara PSB)*_';
 
 		kirim_person($key->api_key, $data->hp, $pesan);
+		redirect('regist/inDaftar/' . $nis);
+	}
+
+	function check($nis)
+	{
+		$tangg = $this->model->tgnNis($nis)->row();
+		$byr = $this->model->byrSum($nis)->row();
+
+		$seragam_pes = $byr->nominal;
+		$seragam_lem = $seragam_pes - $tangg->seragam_pes;
+		$orsaba = $seragam_lem - $tangg->seragam_lem;
+		$kartu = $orsaba - $tangg->orsaba;
+		$buku = $kartu - $tangg->kartu;
+		$kalender = $buku - $tangg->buku;
+		$infaq = $kalender - $tangg->kalender;
+
+		if ($seragam_pes >= $tangg->seragam_pes) {
+			$this->model->edit('tanggungan', ['st_seragam_pes' => 1], $nis);
+		} else {
+			$this->model->edit('tanggungan', ['st_seragam_pes' => 0], $nis);
+		}
+		if ($seragam_lem >= $tangg->seragam_lem) {
+			$this->model->edit('tanggungan', ['st_seragam_lem' => 1], $nis);
+		} else {
+			$this->model->edit('tanggungan', ['st_seragam_lem' => 0], $nis);
+		}
+		if ($orsaba >= $tangg->orsaba) {
+			$this->model->edit('tanggungan', ['st_orsaba' => 1], $nis);
+		} else {
+			$this->model->edit('tanggungan', ['st_orsaba' => 0], $nis);
+		}
+		if ($kartu >= $tangg->kartu) {
+			$this->model->edit('tanggungan', ['st_kartu' => 1], $nis);
+		} else {
+			$this->model->edit('tanggungan', ['st_kartu' => 0], $nis);
+		}
+		if ($buku >= $tangg->buku) {
+			$this->model->edit('tanggungan', ['st_buku' => 1], $nis);
+		} else {
+			$this->model->edit('tanggungan', ['st_buku' => 0], $nis);
+		}
+		if ($kalender >= $tangg->kalender) {
+			$this->model->edit('tanggungan', ['st_kalender' => 1], $nis);
+		} else {
+			$this->model->edit('tanggungan', ['st_kalender' => 0], $nis);
+		}
+		if ($infaq >= $tangg->infaq) {
+			$this->model->edit('tanggungan', ['st_infaq' => 1], $nis);
+		} else {
+			$this->model->edit('tanggungan', ['st_infaq' => 0], $nis);
+		}
+
 		redirect('regist/inDaftar/' . $nis);
 	}
 }

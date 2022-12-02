@@ -38,7 +38,7 @@
                     </button>
                     <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
                         <a href="<?= base_url(); ?>">
-                            Bendahara PSB 2023 - PPDWK
+                            Administrasi PSB 2023 - PPDWK
                         </a>
                     </h1>
                     <div class="navbar-nav flex-row order-md-last">
@@ -198,28 +198,34 @@
                                     <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
                                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                            <!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                class="icon icon-tabler icon-tabler-cash" width="24" height="24"
-                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                                stroke-linecap="round" stroke-linejoin="round">
+                                                class="icon icon-tabler icon-tabler-building-bank" width="24"
+                                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <rect x="7" y="9" width="14" height="10" rx="2"></rect>
-                                                <circle cx="14" cy="14" r="2"></circle>
-                                                <path d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2">
-                                                </path>
+                                                <line x1="3" y1="21" x2="21" y2="21"></line>
+                                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                                <polyline points="5 6 12 3 19 6"></polyline>
+                                                <line x1="4" y1="10" x2="4" y2="21"></line>
+                                                <line x1="20" y1="10" x2="20" y2="21"></line>
+                                                <line x1="8" y1="14" x2="8" y2="17"></line>
+                                                <line x1="12" y1="14" x2="12" y2="17"></line>
+                                                <line x1="16" y1="14" x2="16" y2="17"></line>
                                             </svg>
                                         </span>
                                         <span class="nav-link-title">
-                                            Biaya Pendaftaran
+                                            Kamar Santri
                                         </span>
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="<?= base_url('daftar'); ?>">
-                                            Pendaftaran Baru
+                                        <a class="dropdown-item" href="<?= base_url('santri'); ?>">
+                                            Asrama Putra
                                         </a>
-                                        <a class="dropdown-item" href="<?= base_url('daftar/lanjut'); ?>">
-                                            Pendaftaran Lanjutan
+                                        <a class="dropdown-item" href="<?= base_url('santri/lanjut'); ?>">
+                                            Asrama Putri
+                                        </a>
+                                        <a class="dropdown-item" href="<?= base_url('santri/lanjut'); ?>">
+                                            Data Penempatan
                                         </a>
                                     </div>
                                 </li>
@@ -229,26 +235,94 @@
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                class="icon icon-tabler icon-tabler-wallet" width="24" height="24"
+                                                class="icon icon-tabler icon-tabler-file-zip" width="24" height="24"
                                                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                                 stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                 <path
-                                                    d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12">
+                                                    d="M6 20.735a2 2 0 0 1 -1 -1.735v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-1">
                                                 </path>
-                                                <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4"></path>
+                                                <path
+                                                    d="M11 17a2 2 0 0 1 2 2v2a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-2a2 2 0 0 1 2 -2z">
+                                                </path>
+                                                <line x1="11" y1="5" x2="10" y2="5"></line>
+                                                <line x1="13" y1="7" x2="12" y2="7"></line>
+                                                <line x1="11" y1="9" x2="10" y2="9"></line>
+                                                <line x1="13" y1="11" x2="12" y2="11"></line>
+                                                <line x1="11" y1="13" x2="10" y2="13"></line>
+                                                <line x1="13" y1="15" x2="12" y2="15"></line>
                                             </svg>
                                         </span>
                                         <span class="nav-link-title">
-                                            Registrasi Ulang
+                                            Berkas Pendaftaran
                                         </span>
                                     </a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="<?= base_url('regist'); ?>">
-                                            Registrasi Santri Baru
+                                            Berkas Persyaratan
                                         </a>
                                         <a class="dropdown-item" href="<?= base_url('regist/lanjut'); ?>">
-                                            Registrasi Santri Lanjutan
+                                            Penerimaan Atribut
+                                        </a>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item dropdown <?= $judul === 'regist' ? 'active' : ''; ?>">
+                                    <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
+                                        data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-photo" width="24" height="24"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <line x1="15" y1="8" x2="15.01" y2="8"></line>
+                                                <rect x="4" y="4" width="16" height="16" rx="3"></rect>
+                                                <path d="M4 15l4 -4a3 5 0 0 1 3 0l5 5"></path>
+                                                <path d="M14 14l1 -1a3 5 0 0 1 3 0l2 2"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            Foto Santri
+                                        </span>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="<?= base_url('regist'); ?>">
+                                            Daftar Foto
+                                        </a>
+                                        <a class="dropdown-item" href="<?= base_url('regist/lanjut'); ?>">
+                                            Gallery
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown <?= $judul === 'regist' ? 'active' : ''; ?>">
+                                    <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
+                                        data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-cloud-download" width="24"
+                                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path
+                                                    d="M19 18a3.5 3.5 0 0 0 0 -7h-1a5 4.5 0 0 0 -11 -2a4.6 4.4 0 0 0 -2.1 8.4">
+                                                </path>
+                                                <line x1="12" y1="13" x2="12" y2="22"></line>
+                                                <polyline points="9 19 12 22 15 19"></polyline>
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            Download Data
+                                        </span>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="<?= base_url('regist'); ?>">
+                                            Data Santri Baru
+                                        </a>
+                                        <a class="dropdown-item" href="<?= base_url('regist/lanjut'); ?>">
+                                            Data Santri Lanjutan
                                         </a>
                                     </div>
                                 </li>

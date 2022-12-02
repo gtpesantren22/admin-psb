@@ -7,6 +7,13 @@ class Daftar extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('DaftarModel', 'model');
+		$this->load->model('Auth_model');
+
+		$user = $this->Auth_model->current_user();
+
+		if (!$this->Auth_model->current_user() || $user->level != 'bunda' && $user->level != 'admin') {
+			redirect('login/logout');
+		}
 	}
 
 	public function index()
@@ -14,6 +21,8 @@ class Daftar extends CI_Controller
 		$data['baru'] = $this->model->baru()->result();
 		$data['nobp'] = $this->model->noBp()->result();
 		$data['judul'] = 'daftar';
+		$data['user'] = $this->Auth_model->current_user();
+
 		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/daftar', $data);
 		$this->load->view('bunda/foot');
@@ -41,6 +50,8 @@ class Daftar extends CI_Controller
 		$data['santri'] = $this->model->santriNis($nis)->row();
 		$data['bp'] = $this->model->getBpNis($nis)->row();
 		$data['judul'] = 'daftar';
+		$data['user'] = $this->Auth_model->current_user();
+
 		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/daftarAdd', $data);
 		$this->load->view('bunda/foot');
@@ -48,6 +59,7 @@ class Daftar extends CI_Controller
 
 	public function saveAdd()
 	{
+
 		$nis = $this->input->post('nis', true);
 		$id_bayar = $this->input->post('id_bayar', true);
 
@@ -64,8 +76,10 @@ class Daftar extends CI_Controller
 
 		$pesan = '*Informasi Akun Santri*
 
-Akun ini digunakan untuk melakukan login ke halaman santri yang sudah mendaftar untuk melengkapi data dan berkas-berkasnya.
-Harap untuk menyimpan baik-baik akun ini.
+*SIMPANLAH USER DAN PASSWORD BERIKUT !!!*
+*Akun Pribadi Ini Bersifat Rahasia.*
+
+Silahkan login ke https://psb.ppdwk.com/login untuk melengkapi data dan scan berkas calon santri baru  berikut : 
 
 Nama : ' . $sn->nama . '
 Alamat : ' . $sn->desa . '-' . $sn->kec . '-' . $sn->kab . '
@@ -73,13 +87,17 @@ Lembaga tujuan : ' . $sn->lembaga . '
 Usename : *' . $sn->username . '*
 Password : *' . $pass . '*
 
-silahkan login di *https://psb.ppdwk.com/login*
-Terimaksih';
+Pastikan Data yang dimasukkan adalah Valid. Semua informasi pendaftaran santri baru akan dikirim melalui nomor Whatsapp yang terdaftar di web PSB.
+Terimakasih. 
+
+Panitia 
+';
 
 		$data = [
 			'nominal' => $nominal,
 			'tgl_bayar' => $this->input->post('tgl_bayar', true),
 			'created' => date('Y-m-d H:i'),
+			'kasir' => $this->input->post('kasir', true),
 			'via' => $this->input->post('via', true)
 		];
 
@@ -107,6 +125,7 @@ Terimaksih';
 		$data['baru'] = $this->model->lama()->result();
 		$data['nobp'] = $this->model->noBpLama()->result();
 		$data['judul'] = 'daftar';
+		$data['user'] = $this->Auth_model->current_user();
 
 		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/daftarLama', $data);
@@ -170,5 +189,4 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 		kirim_person($key->api_key, $sn->hp, $pesan);
 		redirect('daftar');
 	}
-
 }

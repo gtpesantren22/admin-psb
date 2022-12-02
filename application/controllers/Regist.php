@@ -7,6 +7,14 @@ class Regist extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('RegistModel', 'model');
+
+		$this->load->model('Auth_model');
+
+		$user = $this->Auth_model->current_user();
+
+		if (!$this->Auth_model->current_user() || $user->level != 'bunda' && $user->level != 'admin') {
+			redirect('login/logout');
+		}
 	}
 
 	public function index()
@@ -15,6 +23,7 @@ class Regist extends CI_Controller
 		$data['nobp'] = $this->model->noBp()->result();
 
 		$data['judul'] = 'regist';
+		$data['user'] = $this->Auth_model->current_user();
 		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/regist', $data);
 		$this->load->view('bunda/foot');
@@ -45,6 +54,7 @@ class Regist extends CI_Controller
 
 		$data['tangg'] = $this->model->tgnNis($nis)->row();
 
+		$data['user'] = $this->Auth_model->current_user();
 		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/registAdd', $data);
 		$this->load->view('bunda/foot');
@@ -103,6 +113,7 @@ class Regist extends CI_Controller
 		$tangg = $dataTgn->infaq + $dataTgn->buku + $dataTgn->kartu + $dataTgn->kalender + $dataTgn->seragam_pes + $dataTgn->seragam_lem + $dataTgn->orsaba;
 		$byr = $this->model->byrSum($nis)->row('nominal') + $nominal;
 		$id = $this->uuid->v4();
+		$user = $this->Auth_model->current_user();
 
 		$data = [
 			'id_regist' => $id,
@@ -110,6 +121,7 @@ class Regist extends CI_Controller
 			'nominal' => $nominal,
 			'tgl_bayar' => $this->input->post('tgl_bayar', true),
 			'created' => date('Y-m-d H:i'),
+			'kasir' => $user->nama,
 			'via' => $this->input->post('via', true)
 		];
 
@@ -153,11 +165,13 @@ class Regist extends CI_Controller
 	public function lanjut()
 	{
 		$data['baru'] = $this->model->lama()->result();
-		$data['nobp'] = $this->model->noBpLama()->result();
+		$data['nobp'] = $this->model->noBp()->result();
+
 		$data['judul'] = 'regist';
+		$data['user'] = $this->Auth_model->current_user();
 
 		$this->load->view('bunda/head', $data);
-		$this->load->view('bunda/daftarLama', $data);
+		$this->load->view('bunda/regist_lama', $data);
 		$this->load->view('bunda/foot');
 	}
 

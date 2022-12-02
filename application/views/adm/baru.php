@@ -8,7 +8,7 @@
                     Data Santri
                 </div>
                 <h2 class="page-title">
-                    Santri Lanjutan
+                    Santri Baru
                 </h2>
             </div>
             <!-- Page title actions -->
@@ -22,7 +22,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Santri Lanjutan</h3>
+                        <h3 class="card-title">Data Santri Baru</h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -38,6 +38,7 @@
                                         <th>No. HP</th>
                                         <th>Lembaga Tujuan</th>
                                         <th>Status</th>
+                                        <td>#</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -49,19 +50,19 @@
                                         <td><?= $no++; ?></td>
                                         <td><?= $row->nis; ?></td>
                                         <td><?= $row->nama; ?></td>
-                                        <td><?= $row->desa; ?></td>
+                                        <td><?= $row->desa . ' - ' . $row->kec . ' - ' . $row->kab; ?></td>
                                         <td><?= $row->jkl; ?></td>
                                         <td><?= $row->gel; ?></td>
                                         <td><?= $row->hp; ?></td>
                                         <td><?= $row->lembaga; ?></td>
                                         <td><?= $row->stts === 'Terverifikasi' ? "<span class='badge bg-green'>Terverifikasi</span>" : "<span class='badge bg-red'>Belum Terverifikasi</span>" ?>
                                         </td>
+                                        <td><a href="<?= base_url('santri/edit/' . $row->nis); ?>">Edit</a></td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                 </div>
             </div>

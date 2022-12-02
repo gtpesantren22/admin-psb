@@ -13,8 +13,8 @@ class RegistModel extends CI_Model
 
     function lama()
     {
-        $this->db->from('bp_daftar');
-        $this->db->join('tb_santri', 'ON tb_santri.nis=bp_daftar.nis');
+        $this->db->from('tanggungan');
+        $this->db->join('tb_santri', 'ON tb_santri.nis=tanggungan.nis');
         $this->db->where('tb_santri.ket', 'lama');
         return $this->db->get();
     }

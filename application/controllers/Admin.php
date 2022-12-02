@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Welcome extends CI_Controller
+class Admin extends CI_Controller
 {
 	function __construct()
 	{
@@ -11,7 +11,7 @@ class Welcome extends CI_Controller
 
 		$user = $this->Auth_model->current_user();
 
-		if (!$this->Auth_model->current_user() || $user->level != 'bunda' && $user->level != 'admin') {
+		if (!$this->Auth_model->current_user() || $user->level != 'adm' && $user->level != 'admin') {
 			redirect('login/logout');
 		}
 	}
@@ -21,8 +21,8 @@ class Welcome extends CI_Controller
 		$data['judul'] = 'home';
 		$data['user'] = $this->Auth_model->current_user();
 
-		$this->load->view('bunda/head', $data);
-		$this->load->view('bunda/index', $data);
-		$this->load->view('bunda/foot');
+		$this->load->view('adm/head', $data);
+		$this->load->view('adm/index', $data);
+		$this->load->view('adm/foot');
 	}
 }

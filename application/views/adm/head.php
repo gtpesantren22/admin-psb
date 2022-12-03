@@ -37,7 +37,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-                        <a href="<?= base_url(); ?>">
+                        <a href="<?= base_url('admin'); ?>">
                             Administrasi PSB 2023 - PPDWK
                         </a>
                     </h1>
@@ -147,7 +147,7 @@
                         <div class="container-xl">
                             <ul class="navbar-nav">
                                 <li class="nav-item <?= $judul === 'home' ? 'active' : ''; ?>">
-                                    <a class="nav-link" href="<?= base_url() ?>">
+                                    <a class="nav-link" href="<?= base_url('admin') ?>">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/home -->
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -186,10 +186,10 @@
                                         </span>
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="<?= base_url('santri'); ?>">
+                                        <a class="dropdown-item" href="<?= base_url('santriAdm'); ?>">
                                             Santri Baru
                                         </a>
-                                        <a class="dropdown-item" href="<?= base_url('santri/lanjut'); ?>">
+                                        <a class="dropdown-item" href="<?= base_url('santriAdm/lanjut'); ?>">
                                             Santri Lanjutan
                                         </a>
                                     </div>

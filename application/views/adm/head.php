@@ -229,7 +229,7 @@
                                         </a>
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown <?= $judul === 'regist' ? 'active' : ''; ?>">
+                                <li class="nav-item dropdown <?= $judul === 'berkas' ? 'active' : ''; ?>">
                                     <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
                                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -258,10 +258,10 @@
                                         </span>
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="<?= base_url('regist'); ?>">
+                                        <a class="dropdown-item" href="<?= base_url('berkas'); ?>">
                                             Berkas Persyaratan
                                         </a>
-                                        <a class="dropdown-item" href="<?= base_url('regist/lanjut'); ?>">
+                                        <a class="dropdown-item" href="<?= base_url('berkas/atr'); ?>">
                                             Penerimaan Atribut
                                         </a>
                                     </div>

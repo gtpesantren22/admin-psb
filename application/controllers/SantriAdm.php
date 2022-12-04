@@ -14,7 +14,8 @@ class SantriAdm extends CI_Controller
 		$this->load->model('DesaModel');
 		$this->load->model('SklModel');
 
-		if (!$this->Auth_model->current_user()) {
+		$user = $this->Auth_model->current_user();
+		if (!$this->Auth_model->current_user() || $user->level != 'bunda' && $user->level != 'adm') {
 			redirect('login/logout');
 		}
 	}
@@ -58,7 +59,8 @@ class SantriAdm extends CI_Controller
 		$this->load->view('adm/foot');
 	}
 
-	public function saveIdentitas(){
+	public function saveIdentitas()
+	{
 
 		$nis = $this->input->post('nis');
 
@@ -68,7 +70,7 @@ class SantriAdm extends CI_Controller
 			'nisn' => $this->input->post('nisn', true),
 			'nama' => $this->input->post('nama', true),
 			'tempat' => $this->input->post('tempat', true),
-			'tanggal' => $this->input->post('tanggal', true) .'-' . $this->input->post('bulan', true).'-'. $this->input->post('tahun', true),
+			'tanggal' => $this->input->post('tanggal', true) . '-' . $this->input->post('bulan', true) . '-' . $this->input->post('tahun', true),
 			'lembaga' => $this->input->post('lembaga', true),
 			'jkl' => $this->input->post('jkl', true),
 			'agama' => $this->input->post('agama', true),
@@ -79,8 +81,8 @@ class SantriAdm extends CI_Controller
 		$this->model->edit('tb_santri', $data, $nis);
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('ok', 'Data sudah diperbarui');
-			redirect('santriAdm/edit/'.$nis);
-		}else {
+			redirect('santriAdm/edit/' . $nis);
+		} else {
 			$this->session->set_flashdata('error', 'Edit Error');
 			redirect('santriAdm/edit/' . $nis);
 		}

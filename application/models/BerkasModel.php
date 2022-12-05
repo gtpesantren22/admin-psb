@@ -25,6 +25,14 @@ class BerkasModel extends CI_Model
 		return $result;
 	}
 
+	public function atrNo()
+	{
+		$this->db->from('tb_santri');
+		$this->db->where('NOT EXISTS (SELECT * FROM atribut WHERE atribut.nis=tb_santri.nis)', '', false);
+		$this->db->where('tb_santri.ket', 'baru');
+		return $this->db->get();
+	}
+
 	public function dtlBerkas($nis)
 	{
 		$this->db->from('berkas_file');

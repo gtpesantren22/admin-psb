@@ -42,13 +42,14 @@
                                     <?php
                                     $no = 1;
                                     foreach ($baru as $row) :
-                                        $akta = $row->akta != '' ? 16.7 : 0;
-                                        $kk = $row->kk != '' ? 16.7 : 0;
-                                        $ktp_ayah = $row->ktp_ayah != '' ? 16.7 : 0;
-                                        $ktp_ibu = $row->ktp_ibu != '' ? 16.7 : 0;
-                                        $skl = $row->skl != '' ? 16.7 : 0;
-                                        $ijazah = $row->ijazah != '' ? 16.7 : 0;
-                                        $ttl = round(($akta + $kk + $ktp_ayah + $ktp_ibu + $skl + $ijazah), 0);
+                                        $akta = $row->akta != '' ? 14.3 : 0;
+                                        $kk = $row->kk != '' ? 14.3 : 0;
+                                        $ktp_ayah = $row->ktp_ayah != '' ? 14.3 : 0;
+                                        $ktp_ibu = $row->ktp_ibu != '' ? 14.3 : 0;
+                                        $skl = $row->skl != '' ? 14.3 : 0;
+                                        $ijazah = $row->ijazah != '' ? 14.3 : 0;
+                                        $kip = $row->kip != '' ? 14.3 : 0;
+                                        $ttl = round(($akta + $kk + $ktp_ayah + $ktp_ibu + $skl +$ijazah + $kip), 0);
                                     ?>
                                     <tr>
                                         <td><?= $no++; ?></td>

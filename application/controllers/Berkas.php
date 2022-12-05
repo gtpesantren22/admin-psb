@@ -31,10 +31,57 @@ class Berkas extends CI_Controller
 		$data['judul'] = 'berkas';
 		$data['user'] = $this->Auth_model->current_user();
 		$data['baru'] = $this->model->atr();
+		$data['atrNo'] = $this->model->atrNo()->result();
 
 		$this->load->view('adm/head', $data);
 		$this->load->view('adm/atr', $data);
 		$this->load->view('adm/foot');
+	}
+
+	public function addAtr($nis)
+	{
+		$this->model->input('atribut', $nis);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('ok', 'Data berhasil ditambahkan');
+			redirect('berkas/atr');
+		} else {
+			$this->session->set_flashdata('error', 'Tambah tak berhasil');
+			redirect('berkas/atr');
+		}
+	}
+
+	public function editAtr($nis)
+	{
+		$wir = $this->input->post('wir', true);
+			$tatib = $this->input->post('tatib', true);
+			$kts = $this->input->post('kts', true);
+			$mahrom = $this->input->post('mahrom', true);
+			$kes = $this->input->post('kes', true);
+			$kalender = $this->input->post('kalender', true);
+			$pengasuh = $this->input->post('pengasuh', true);
+			$seragam = $this->input->post('seragam', true);
+			$seragam_l = $this->input->post('seragam_l', true);
+
+		$data = [
+			'wir' => isset($wir) ? '1' : '0',
+			'tatib' => isset($tatib) ? '1' : '0',
+			'kts' => isset($kts) ? '1' : '0',
+			'mahrom' => isset($mahrom) ? '1' : '0',
+			'kes' => isset($kes) ? '1' : '0',
+			'kalender' => isset($kalender) ? '1' : '0',
+			'pengasuh' => isset($pengasuh) ? '1' : '0',
+			'seragam' => isset($seragam) ? '1' : '0',
+			'seragam_l' => isset($seragam_l) ? '1' : '0'
+		];
+
+		$this->model->upload('atribut', $data, $nis);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('ok', 'Data berhasil diperbarui');
+			redirect('berkas/atr');
+		} else {
+			$this->session->set_flashdata('error', 'Pembruan tak berhasil');
+			redirect('berkas/atr');
+		}
 	}
 
 	public function detail($nis)

@@ -14,6 +14,17 @@ class BerkasModel extends CI_Model
 		return $result;
 	}
 
+	public function atr()
+	{
+		$this->db->from('atribut');
+		$this->db->join('tb_santri', 'ON atribut.nis=tb_santri.nis');
+		$this->db->where('tb_santri.ket', 'baru');
+		$this->db->order_by('nama', 'ASC');
+		$result = $this->db->get()->result(); // Tampilkan semua data kota berdasarkan id provinsi
+
+		return $result;
+	}
+
 	public function dtlBerkas($nis)
 	{
 		$this->db->from('berkas_file');

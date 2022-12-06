@@ -15,7 +15,7 @@ class SantriAdm extends CI_Controller
 		$this->load->model('SklModel');
 
 		$user = $this->Auth_model->current_user();
-		if (!$this->Auth_model->current_user() || $user->level != 'bunda' && $user->level != 'adm') {
+		if (!$this->Auth_model->current_user() || $user->level != 'admin' && $user->level != 'adm') {
 			redirect('login/logout');
 		}
 	}

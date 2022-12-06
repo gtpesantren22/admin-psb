@@ -150,13 +150,13 @@ Panitia
 		$key = $this->model->apiKey()->row();
 
 		if ($sn->gel === '1') {
-			$link = 'https://chat.whatsapp.com/L8O3TgvrpLVFqMejIMoIF3';
+			$link = 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU';
 			$jadwal = 'Penyerahan berkas dan Tes : 26-28 February 2022';
 		} else if ($sn->gel === '2') {
-			$link = 'https://chat.whatsapp.com/Er4uy1eXYAg1PoOTZ9lnCp';
+			$link = 'https://chat.whatsapp.com/GAKAl21yWpJ7TXIaGem1HH';
 			$jadwal = 'Penyerahan berkas dan Tes : 26-28 Maret 2022';
 		} else if ($sn->gel === '3') {
-			$link = 'https://chat.whatsapp.com/FA5KGjmYmrxCGSdg1j7BPD';
+			$link = 'https://chat.whatsapp.com/GQgMWD7JISW5NRqAWCcA4E';
 			$jadwal = 'Penyerahan berkas dan Tes : 28-30 Mei 2022';
 		}
 

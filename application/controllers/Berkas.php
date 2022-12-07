@@ -53,14 +53,14 @@ class Berkas extends CI_Controller
 	public function editAtr($nis)
 	{
 		$wir = $this->input->post('wir', true);
-			$tatib = $this->input->post('tatib', true);
-			$kts = $this->input->post('kts', true);
-			$mahrom = $this->input->post('mahrom', true);
-			$kes = $this->input->post('kes', true);
-			$kalender = $this->input->post('kalender', true);
-			$pengasuh = $this->input->post('pengasuh', true);
-			$seragam = $this->input->post('seragam', true);
-			$seragam_l = $this->input->post('seragam_l', true);
+		$tatib = $this->input->post('tatib', true);
+		$kts = $this->input->post('kts', true);
+		$mahrom = $this->input->post('mahrom', true);
+		$kes = $this->input->post('kes', true);
+		$kalender = $this->input->post('kalender', true);
+		$pengasuh = $this->input->post('pengasuh', true);
+		$seragam = $this->input->post('seragam', true);
+		$seragam_l = $this->input->post('seragam_l', true);
 
 		$data = [
 			'wir' => isset($wir) ? '1' : '0',
@@ -102,7 +102,7 @@ class Berkas extends CI_Controller
 
 		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
 		$config['allowed_types']        = 'jpg|jpeg|png|pdf';
-		$config['file_name']            = 'KK-' . $nis;
+		$config['file_name']            = 'KK-' . $nis . random(4);
 		$config['overwrite']            = true;
 		$config['max_size']             = 0;
 
@@ -111,7 +111,7 @@ class Berkas extends CI_Controller
 		if (!$this->upload->do_upload('berkas')) {
 			$data['error'] = $this->upload->display_errors();
 		} else {
-			if (file_exists('../psb/assets/berkas' . $lama)) {
+			if ($lama != '') {
 				unlink('../psb/assets/berkas/' . $lama);
 			}
 			$uploaded_data = $this->upload->data();
@@ -147,7 +147,7 @@ class Berkas extends CI_Controller
 
 		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
 		$config['allowed_types']        = 'jpg|jpeg|png|pdf';
-		$config['file_name']            = 'akta-' . $nis;
+		$config['file_name']            = 'akta-' . $nis . random(4);
 		$config['overwrite']            = true;
 		$config['max_size']             = 0;
 
@@ -156,7 +156,7 @@ class Berkas extends CI_Controller
 		if (!$this->upload->do_upload('berkas')) {
 			$data['error'] = $this->upload->display_errors();
 		} else {
-			if (file_exists('../psb/assets/berkas' . $lama)) {
+			if ($lama != '') {
 				unlink('../psb/assets/berkas/' . $lama);
 			}
 			$uploaded_data = $this->upload->data();
@@ -192,7 +192,7 @@ class Berkas extends CI_Controller
 
 		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
 		$config['allowed_types']        = 'jpg|jpeg|png|pdf';
-		$config['file_name']            = 'kip-' . $nis;
+		$config['file_name']            = 'kip-' . $nis . random(4);
 		$config['overwrite']            = true;
 		$config['max_size']             = 0;
 
@@ -201,7 +201,7 @@ class Berkas extends CI_Controller
 		if (!$this->upload->do_upload('berkas')) {
 			$data['error'] = $this->upload->display_errors();
 		} else {
-			if (file_exists('../psb/assets/berkas' . $lama)) {
+			if ($lama != '') {
 				unlink('../psb/assets/berkas/' . $lama);
 			}
 			$uploaded_data = $this->upload->data();
@@ -237,7 +237,7 @@ class Berkas extends CI_Controller
 
 		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
 		$config['allowed_types']        = 'jpg|jpeg|png|pdf';
-		$config['file_name']            = 'ktp_ayah-' . $nis;
+		$config['file_name']            = 'ktp_ayah-' . $nis . random(4);
 		$config['overwrite']            = true;
 		$config['max_size']             = 0;
 
@@ -246,7 +246,7 @@ class Berkas extends CI_Controller
 		if (!$this->upload->do_upload('berkas')) {
 			$data['error'] = $this->upload->display_errors();
 		} else {
-			if (file_exists('../psb/assets/berkas' . $lama)) {
+			if ($lama != '') {
 				unlink('../psb/assets/berkas/' . $lama);
 			}
 			$uploaded_data = $this->upload->data();
@@ -282,7 +282,7 @@ class Berkas extends CI_Controller
 
 		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
 		$config['allowed_types']        = 'jpg|jpeg|png|pdf';
-		$config['file_name']            = 'ktp_ibu-' . $nis;
+		$config['file_name']            = 'ktp_ibu-' . $nis . random(4);
 		$config['overwrite']            = true;
 		$config['max_size']             = 0;
 
@@ -327,7 +327,7 @@ class Berkas extends CI_Controller
 
 		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
 		$config['allowed_types']        = 'jpg|jpeg|png|pdf';
-		$config['file_name']            = 'skl-' . $nis;
+		$config['file_name']            = 'skl-' . $nis . random(4);
 		$config['overwrite']            = true;
 		$config['max_size']             = 0;
 
@@ -372,7 +372,7 @@ class Berkas extends CI_Controller
 
 		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
 		$config['allowed_types']        = 'jpg|jpeg|png|pdf';
-		$config['file_name']            = 'ijazah-' . $nis;
+		$config['file_name']            = 'ijazah-' . $nis . random(4);
 		$config['overwrite']            = true;
 		$config['max_size']             = 0;
 

@@ -139,3 +139,14 @@ function check($arr)
     $isi = array($no, $ok);
     return $isi[$arr];
 }
+
+function random($panjang)
+{
+    $karakter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $string = '';
+    for ($i = 0; $i < $panjang; $i++) {
+        $pos = rand(0, strlen($karakter) - 1);
+        $string .= $karakter[$pos];
+    }
+    return $string;
+}

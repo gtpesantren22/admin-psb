@@ -36,4 +36,43 @@ class Image extends CI_Controller
 		$this->load->view('adm/fotoDtl', $data);
 		$this->load->view('adm/foot');
 	}
+
+	public function editImg()
+	{
+		$nis = $this->input->post('nis', true);
+		$lama = $this->input->post('file_lama', true);
+
+		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
+		$config['allowed_types']        = 'jpg|jpeg|png';
+		$config['file_name']            = 'diri-' . $nis . random(4);
+		$config['overwrite']            = true;
+		$config['max_size']             = 0;
+
+		$this->load->library('upload', $config);
+
+		if (!$this->upload->do_upload('berkas')) {
+			$data['error'] = $this->upload->display_errors();
+		} else {
+			if ($lama != '') {
+				unlink('../psb/assets/berkas/' . $lama);
+			}
+			$uploaded_data = $this->upload->data();
+			$new_data = [
+				'diri' => $uploaded_data['file_name']
+			];
+
+			if ($this->model->getFoto($nis)->num_rows() < 1) {
+				$this->model->input('foto_file', $nis);
+				$this->model->upload('foto_file', $new_data, $nis);
+				if ($this->db->affected_rows() > 0) {
+					redirect('image/detail/' . $nis);
+				}
+			} else {
+				$this->model->upload('foto_file', $new_data, $nis);
+				if ($this->db->affected_rows() > 0) {
+					redirect('image/detail/' . $nis);
+				}
+			}
+		}
+	}
 }

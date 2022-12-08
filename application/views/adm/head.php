@@ -319,7 +319,7 @@
                                         </span>
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="<?= base_url('regist'); ?>">
+                                        <a class="dropdown-item" href="<?= base_url('export'); ?>">
                                             Data Santri Baru
                                         </a>
                                         <a class="dropdown-item" href="<?= base_url('regist/lanjut'); ?>">

@@ -219,13 +219,13 @@
                                         </span>
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="<?= base_url('santri'); ?>">
+                                        <a class="dropdown-item" href="#">
                                             Asrama Putra
                                         </a>
-                                        <a class="dropdown-item" href="<?= base_url('santri/lanjut'); ?>">
+                                        <a class="dropdown-item" href="#">
                                             Asrama Putri
                                         </a>
-                                        <a class="dropdown-item" href="<?= base_url('santri/lanjut'); ?>">
+                                        <a class="dropdown-item" href="#">
                                             Data Penempatan
                                         </a>
                                     </div>
@@ -327,6 +327,27 @@
                                         </a>
                                     </div>
                                 </li>
+                                <?php if ($user->level === 'admin') : ?>
+                                <li class="nav-item <?= $judul === 'info' ? 'active' : ''; ?>">
+                                    <a class="nav-link" href="<?= base_url('info') ?>">
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="icon icon-tabler icon-tabler-info-circle" width="24" height="24"
+                                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <circle cx="12" cy="12" r="9"></circle>
+                                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                                <polyline points="11 12 12 12 12 16 13 16"></polyline>
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            Informasi
+                                        </span>
+                                    </a>
+                                </li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>

@@ -12,6 +12,9 @@ function rupiah($rp)
 function bulan($bulan)
 {
     switch ($bulan) {
+        case 0:
+            $bulan = "";
+            break;
         case 1:
             $bulan = "Januari";
             break;

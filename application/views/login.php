@@ -22,8 +22,8 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
-    <link rel="icon" href="<?= base_url('demo'); ?>./favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="<?= base_url('demo'); ?>./favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="<?= base_url('demo'); ?>/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="<?= base_url('demo'); ?>/favicon.ico" type="image/x-icon" />
     <meta name="description"
         content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!" />
     <meta name="twitter:image:src" content="https://preview.tabler.io/static/og.png">
@@ -44,11 +44,11 @@
     <meta property="og:description"
         content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
     <!-- CSS files -->
-    <link href="<?= base_url('demo'); ?>./dist/css/tabler.min.css?1668288743" rel="stylesheet" />
-    <link href="<?= base_url('demo'); ?>./dist/css/tabler-flags.min.css?1668288743" rel="stylesheet" />
-    <link href="<?= base_url('demo'); ?>./dist/css/tabler-payments.min.css?1668288743" rel="stylesheet" />
-    <link href="<?= base_url('demo'); ?>./dist/css/tabler-vendors.min.css?1668288743" rel="stylesheet" />
-    <link href="<?= base_url('demo'); ?>./dist/css/demo.min.css?1668288743" rel="stylesheet" />
+    <link href="<?= base_url('demo'); ?>/dist/css/tabler.min.css?1668288743" rel="stylesheet" />
+    <link href="<?= base_url('demo'); ?>/dist/css/tabler-flags.min.css?1668288743" rel="stylesheet" />
+    <link href="<?= base_url('demo'); ?>/dist/css/tabler-payments.min.css?1668288743" rel="stylesheet" />
+    <link href="<?= base_url('demo'); ?>/dist/css/tabler-vendors.min.css?1668288743" rel="stylesheet" />
+    <link href="<?= base_url('demo'); ?>/dist/css/demo.min.css?1668288743" rel="stylesheet" />
     <style>
     @import url('https://rsms.me/inter/inter.css');
 
@@ -59,11 +59,11 @@
 </head>
 
 <body class=" border-top-wide border-primary d-flex flex-column">
-    <script src="<?= base_url('demo'); ?>./dist/js/demo-theme.min.js?1668288743"></script>
+    <script src="<?= base_url('demo'); ?>/dist/js/demo-theme.min.js?1668288743"></script>
     <div class="page page-center">
         <div class="container container-tight py-4">
             <div class="text-center mb-4">
-                <a href="." class="navbar-brand navbar-brand-autodark"><img src="./static/logo.svg" height="36"
+                <a href="." class="navbar-brand navbar-brand-autodark"><img src="/static/logo.svg" height="36"
                         alt=""></a>
             </div>
             <div class="card card-md">
@@ -115,8 +115,8 @@
     </div>
     <!-- Libs JS -->
     <!-- Tabler Core -->
-    <script src="<?= base_url('demo'); ?>./dist/js/tabler.min.js?1668288743" defer></script>
-    <script src="<?= base_url('demo'); ?>./dist/js/demo.min.js?1668288743" defer></script>
+    <script src="<?= base_url('demo'); ?>/dist/js/tabler.min.js?1668288743" defer></script>
+    <script src="<?= base_url('demo'); ?>/dist/js/demo.min.js?1668288743" defer></script>
 </body>
 
 </html>

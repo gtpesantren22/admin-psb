@@ -9,7 +9,7 @@
                     All rights reserved.
                 </li>
                 <li class="list-inline-item">
-                    <a href="./changelog.html" class="link-secondary" rel="noopener">
+                    <a href="/changelog.html" class="link-secondary" rel="noopener">
                         v1.0.0-beta14
                     </a>
                 </li>
@@ -21,20 +21,20 @@
 </div>
 
 <!-- Libs JS -->
-<script src="<?= base_url('demo'); ?>./dist/libs/apexcharts/dist/apexcharts.min.js?1666304673" defer></script>
-<script src="<?= base_url('demo'); ?>./dist/libs/jsvectormap/dist/js/jsvectormap.min.js?1666304673" defer></script>
-<script src="<?= base_url('demo'); ?>./dist/libs/jsvectormap/dist/maps/world.js?1666304673" defer></script>
-<script src="<?= base_url('demo'); ?>./dist/libs/jsvectormap/dist/maps/world-merc.js?1666304673" defer></script>
-<script src="<?= base_url('demo'); ?>./dist/libs/litepicker/dist/litepicker.js?1668288743" defer></script>
+<script src="<?= base_url('demo'); ?>/dist/libs/apexcharts/dist/apexcharts.min.js?1666304673" defer></script>
+<script src="<?= base_url('demo'); ?>/dist/libs/jsvectormap/dist/js/jsvectormap.min.js?1666304673" defer></script>
+<script src="<?= base_url('demo'); ?>/dist/libs/jsvectormap/dist/maps/world.js?1666304673" defer></script>
+<script src="<?= base_url('demo'); ?>/dist/libs/jsvectormap/dist/maps/world-merc.js?1666304673" defer></script>
+<script src="<?= base_url('demo'); ?>/dist/libs/litepicker/dist/litepicker.js?1668288743" defer></script>
 <!-- Tabler Core -->
-<script src="<?= base_url('demo'); ?>./dist/js/tabler.min.js?1666304673" defer></script>
-<script src="<?= base_url('demo'); ?>./dist/js/demo.min.js?1666304673" defer></script>
+<script src="<?= base_url('demo'); ?>/dist/js/tabler.min.js?1666304673" defer></script>
+<script src="<?= base_url('demo'); ?>/dist/js/demo.min.js?1666304673" defer></script>
 
-<script src="<?= base_url('demo'); ?>./dist/libs/tinymce/tinymce.min.js?1668288743" defer></script>
+<script src="<?= base_url('demo'); ?>/dist/libs/tinymce/tinymce.min.js?1668288743" defer></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
-<script src="<?= base_url('demo'); ?>./dist/jquery.mask.min.js"></script>
+<script src="<?= base_url('demo'); ?>/dist/jquery.mask.min.js"></script>
 
 <script>
 // @formatter:off

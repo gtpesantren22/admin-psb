@@ -57,8 +57,6 @@ class SantriModel extends CI_Model
         return $this->db->get();
     }
 
-
-
     function getprov()
     {
         $this->db->order_by('nama', 'ASC');
@@ -89,5 +87,13 @@ class SantriModel extends CI_Model
         $this->db->where('npsn', $npsn);
         $this->db->from('sekolah');
         return $this->db->get()->row();
+    }
+
+    function baruLmb($lmb)
+    {
+        $this->db->where('lembaga', $lmb);
+        $this->db->where('ket', 'baru');
+        $this->db->from('tb_santri');
+        return $this->db->get();
     }
 }

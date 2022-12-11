@@ -24,7 +24,7 @@ class Export extends CI_Controller
 
 	public function index()
 	{
-		$data['judul'] = 'home';
+		$data['judul'] = 'export';
 		$data['user'] = $this->Auth_model->current_user();
 		$data['baru'] = $this->model->baru()->result();
 
@@ -33,7 +33,7 @@ class Export extends CI_Controller
 		$this->load->view('adm/foot');
 	}
 
-	public function baruXLS()
+	public function baruXLS($lmb)
 	{
 		$spreadsheet = new Spreadsheet();
 		$sheet = $spreadsheet->getActiveSheet();
@@ -265,7 +265,11 @@ class Export extends CI_Controller
 		$sheet->getStyle('BB4')->applyFromArray($style_col);
 
 		// Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
-		$siswa =  $this->model->baru()->result();
+		if ($lmb === 'all') {
+			$siswa =  $this->model->baru()->result();
+		}else {
+			$siswa =  $this->model->baruLmb($lmb)->result();
+		}
 
 		$no = 1; // Untuk penomoran tabel, di awal set dengan 1
 		$numrow = 6; // Set baris pertama untuk isi tabel adalah baris ke 4

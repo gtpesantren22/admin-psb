@@ -297,7 +297,7 @@
                                         </a>
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown <?= $judul === 'regist' ? 'active' : ''; ?>">
+                                <li class="nav-item dropdown <?= $judul === 'export' ? 'active' : ''; ?>">
                                     <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
                                         data-bs-auto-close="outside" role="button" aria-expanded="false">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -322,7 +322,8 @@
                                         <a class="dropdown-item" href="<?= base_url('export'); ?>">
                                             Data Santri Baru
                                         </a>
-                                        <a class="dropdown-item" href="<?= base_url('regist/lanjut'); ?>">
+                                        <!-- <a class="dropdown-item" href="<?= base_url('regist/lanjut'); ?>"> -->
+                                        <a class="dropdown-item" href=#">
                                             Data Santri Lanjutan
                                         </a>
                                     </div>

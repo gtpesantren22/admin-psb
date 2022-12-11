@@ -23,13 +23,13 @@ class SantriModel extends CI_Model
         $this->db->from('tb_santri');
         return $this->db->get();
     }
-    
+
     function agama()
     {
         $this->db->from('agama');
         return $this->db->get();
     }
-    
+
     function edit($table, $data, $where)
     {
         $this->db->where('nis', $where);
@@ -94,6 +94,13 @@ class SantriModel extends CI_Model
         $this->db->where('lembaga', $lmb);
         $this->db->where('ket', 'baru');
         $this->db->from('tb_santri');
+        return $this->db->get();
+    }
+
+    function apikey()
+    {
+        $this->db->select('*');
+        $this->db->from('api');
         return $this->db->get();
     }
 }

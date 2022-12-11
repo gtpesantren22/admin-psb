@@ -332,51 +332,106 @@ class SantriAdm extends CI_Controller
 	public function send($nis)
 	{
 		$data = $this->model->santriNis($nis)->row();
+		$key = $this->model->apiKey()->row();
 
-		if ($data->gel === '1') {
-			$link = 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU';
-			$jadwal = 'Penyerahan berkas dan Tes : 26-28 February 2022';
-			$tmp = array(array('url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU', 'text' => 'Klik disini'));
-		} else if ($data->gel === '2') {
-			$link = 'https://chat.whatsapp.com/GAKAl21yWpJ7TXIaGem1HH';
-			$jadwal = 'Penyerahan berkas dan Tes : 26-28 Maret 2022';
-			$tmp = array(array('url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU', 'text' => 'Klik disini'));
-		} else if ($data->gel === '3') {
-			$link = 'https://chat.whatsapp.com/GQgMWD7JISW5NRqAWCcA4E';
-			$jadwal = 'Penyerahan berkas dan Tes : 28-30 Mei 2022';
-			$tmp = array(array('url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU', 'text' => 'Klik disini'));
+		$jl = date('Y-m-d', strtotime($data->waktu_daftar));
+		$g1 = '2023-01-28';
+		$g2 = '2023-03-11';
+		$g3 = '2023-03-12';
+
+		if ($jl <= $g1) {
+			$gel = "1";
+			$by = 'Rp. 70.000';
+		} else if ($jl > $g1 && $jl <= $g2) {
+			$gel = "2";
+			$by = 'Rp. 120.000';
+		} else if ($jl >= $g3) {
+			$gel = "3";
+			$by = 'Rp. 170.000';
 		}
 
-		if ($data->lembaga === 'MI' || $data->lembaga === 'RA') {
-			$tambahan = $data->lembaga === 'MI' ? 'Silahkan bergabung ke Grup Siswa Baru MI DWK untuk mengetahui informasi lebih lanjut dengan mengklik link dibawah ini : *https://chat.whatsapp.com/Eqwog9EcvmzHXz4hZX14Fc' : 'Silahkan bergabung ke Grup Siswa Baru RA DWK untuk mengetahui informasi lebih lanjut dengan mengklik link berikut ini : https://chat.whatsapp.com/LhePAcQXgD8HWz3O8YJdNF';
-			$tmp = array(array('url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU', 'text' => 'Klik disini. Link Grup Gel. 3'));
+
+		if ($data->lembaga === 'MI') {
+			$tambahan = 'Silahkan bergabung ke Grup Siswa Baru MI DWK untuk mengetahui informasi lebih lanjut dengan mengklik link dipaling bawah';
+			$tmp = array(array('url' => 'https://chat.whatsapp.com/Eqwog9EcvmzHXz4hZX14Fc', 'text' => 'Klik disini untuk bergabung'));
+			$tinggal = 'Non Mukim';
+			$bawahan = '
+_*Catatan Penting :*_
+*- Wali murid segera menyetorkan berkas yang dibutuhkan kepada lembaga (Fotocopy KK, KTP bapak  ibu, Akta Kelahiran)*';
+		} elseif ($data->lembaga === 'RA') {
+			$tambahan = 'Silahkan bergabung ke Grup Siswa Baru RA DWK untuk mengetahui informasi lebih lanjut dengan mengklik link dipaling bawah.';
+			$tmp = array(array('url' => 'https://chat.whatsapp.com/LhePAcQXgD8HWz3O8YJdNF', 'text' => 'Klik disini untuk bergabung'));
+			$tinggal = 'Non Mukim';
+			$bawahan = '
+_*Catatan Penting :*_
+*- Wali murid segera menyetorkan berkas yang dibutuhkan kepada lembaga (Fotocopy KK, KTP bapak  ibu, Akta Kelahiran)*';
 		} else {
-			$tambahan = 'Silahkan bergabung ke Grup Santri Baru Gelombang ' . $data->gel . ' untuk mengetahui informasi lebih lanjut dengan mengklik link dibawah ini';
-			$tmp = array(array('url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU', 'text' => 'Klik disini. Link Grup Gel. 3'));
+			$tambahan = 'selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . $by . '* ke *No.Rek BRI 0582-0101-4254-500 a.n. Hadiryanto Putra Pratama* dan melakukan konfirmasi pembayaran disertai bukti transfer ke *No. WA 082338631044*';
+			$tinggal = 'Mukim';
+			$bawahan = '_*Catatan Penting :*_
+_*Calon santri diwajibkan memakai baju putih, songkok/kerudung hitam saat tes pendaftaran dengan bawahan hitam atau gelap*_';
 		}
 
-		$pesan = '*Link Undangan Grup WhatsApp*
+		$pesan = '*Selamat*
 
-' . $tambahan . ' 
+Data yang anda isi telah  tersimpan di data panitia Penerimaan santri baru PP. Darul Lughah Wal Karomah, atas :
+        
+Nama : ' . $data->nama . '
+Alamat : ' . $data->desa . ' - ' . $data->kec . ' - ' . $data->kab . '
+Lembaga tujuan : ' . $data->lembaga . ' DWK
+jalur : ' . $data->jalur . '
+Gel :  ' . $data->gel . '
+        
+' . $tambahan . '
+    
+*Terimakasih*
+
+' . $bawahan;
+
+		$pesan2 = '*Info tambahan santri baru*
+ 
+No. Pendaftaran : ' . $nis . '
+Nama : ' . $data->nama . '
+Alamat : ' . $data->desa . ' - ' . $data->kec . ' - ' . $data->kab . '
+Lembaga tujuan : ' . $data->lembaga . ' DWK
+jalur : ' . $data->jalur . '
+Gel :  ' . $data->gel . '
+No. HP : ' . $data->hp . '
+Waktu Daftar : ' . $data->waktu_daftar . '
+            
 *Terimakasih*';
 
-		$curl = curl_init();
+		if ($data->lembaga === 'MI' || $data->lembaga === 'RA') {
+			kirim_tmp($key->api_key, $data->hp, $pesan, $tmp, 'https://i.postimg.cc/8c8fghZq/LOGO-WA.jpg');
+			// kirim_group($key->api_key, '120363026604973091@g.us', $pesan2);
+			redirect('santriAdm');
+		} else {
+			kirim_person($key->api_key, $data->hp, $pesan);
+			// kirim_group($key->api_key, '120363026604973091@g.us', $pesan2);
+			redirect('santriAdm');
+		}
+	}
 
-		curl_setopt_array($curl, array(
-			CURLOPT_URL => 'http://8.215.26.187:3000/api/sendTemplateMessage',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'POST',
-			// CURLOPT_POSTFIELDS => 'apiKey=f4064efa9d05f66f9be6151ec91ad846&phone=' . $data->hp . '&body_message=' . $pesan . '&footer=template&template=' . json_encode($tmp) . '&url_file=https://www.petanikode.com/img/json/json.png',
-			CURLOPT_POSTFIELDS => 'apiKey=f4064efa9d05f66f9be6151ec91ad846&phone=082229084447&body_message=' . $pesan . '&footer=template&template=' . json_encode($tmp) . '&url_file=https://srv66.niagahoster.com:2083/cpsess2816233995/viewer/home%2fu9048253%2fpublic_html%2fadmin-psb%2fdemo%2fstatic%2fLogo-Grup/2.jpg',
-		));
+	public function sendGp($nis)
+	{
+		$data = $this->model->santriNis($nis)->row();
+		$key = $this->model->apiKey()->row();
 
-		$response = curl_exec($curl);
 
-		curl_close($curl);
+		$pesan2 = '*Info tambahan santri baru*
+ 
+No. Pendaftaran : ' . $nis . '
+Nama : ' . $data->nama . '
+Alamat : ' . $data->desa . ' - ' . $data->kec . ' - ' . $data->kab . '
+Lembaga tujuan : ' . $data->lembaga . ' DWK
+jalur : ' . $data->jalur . '
+Gel :  ' . $data->gel . '
+No. HP : ' . $data->hp . '
+Waktu Daftar : ' . $data->waktu_daftar . '
+            
+*Terimakasih*';
+
+		kirim_group($key->api_key, '120363026604973091@g.us', $pesan2);
+		redirect('santriAdm');
 	}
 }

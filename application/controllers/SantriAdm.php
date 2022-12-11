@@ -336,24 +336,23 @@ class SantriAdm extends CI_Controller
 		if ($data->gel === '1') {
 			$link = 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU';
 			$jadwal = 'Penyerahan berkas dan Tes : 26-28 February 2022';
-			$tmp = ['url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU','text' => 'Klik disini'];
-			
+			$tmp = array(array('url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU', 'text' => 'Klik disini'));
 		} else if ($data->gel === '2') {
 			$link = 'https://chat.whatsapp.com/GAKAl21yWpJ7TXIaGem1HH';
 			$jadwal = 'Penyerahan berkas dan Tes : 26-28 Maret 2022';
-			$tmp = ['url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU','text' => 'Klik disini'];
+			$tmp = array(array('url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU', 'text' => 'Klik disini'));
 		} else if ($data->gel === '3') {
 			$link = 'https://chat.whatsapp.com/GQgMWD7JISW5NRqAWCcA4E';
 			$jadwal = 'Penyerahan berkas dan Tes : 28-30 Mei 2022';
-			$tmp = ['url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU','text' => 'Klik disini'];
+			$tmp = array(array('url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU', 'text' => 'Klik disini'));
 		}
-		
+
 		if ($data->lembaga === 'MI' || $data->lembaga === 'RA') {
-			$tambahan = $data->lembaga === 'MI' ? 'Silahkan bergabung ke Grup Siswa Baru MI DWK untuk mengetahui informasi lebih lanjut dengan mengklik link berikut ini : *https://chat.whatsapp.com/Eqwog9EcvmzHXz4hZX14Fc' : 'Silahkan bergabung ke Grup Siswa Baru RA DWK untuk mengetahui informasi lebih lanjut dengan mengklik link berikut ini : https://chat.whatsapp.com/LhePAcQXgD8HWz3O8YJdNF';
-			$tmp = ['url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU','text' => 'Klik disini. Link Grup Gel. 3'];
+			$tambahan = $data->lembaga === 'MI' ? 'Silahkan bergabung ke Grup Siswa Baru MI DWK untuk mengetahui informasi lebih lanjut dengan mengklik link dibawah ini : *https://chat.whatsapp.com/Eqwog9EcvmzHXz4hZX14Fc' : 'Silahkan bergabung ke Grup Siswa Baru RA DWK untuk mengetahui informasi lebih lanjut dengan mengklik link berikut ini : https://chat.whatsapp.com/LhePAcQXgD8HWz3O8YJdNF';
+			$tmp = array(array('url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU', 'text' => 'Klik disini. Link Grup Gel. 3'));
 		} else {
-			$tambahan = 'Silahkan bergabung ke Grup Santri Baru Gelombang '.$data->gel.' untuk mengetahui informasi lebih lanjut dengan mengklik link berikut ini';
-			$tmp = ['url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU','text' => 'Klik disini. Link Grup Gel. 3'];
+			$tambahan = 'Silahkan bergabung ke Grup Santri Baru Gelombang ' . $data->gel . ' untuk mengetahui informasi lebih lanjut dengan mengklik link dibawah ini';
+			$tmp = array(array('url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU', 'text' => 'Klik disini. Link Grup Gel. 3'));
 		}
 
 		$pesan = '*Link Undangan Grup WhatsApp*
@@ -372,8 +371,8 @@ class SantriAdm extends CI_Controller
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'POST',
-			CURLOPT_POSTFIELDS => 'apiKey=f4064efa9d05f66f9be6151ec91ad846&phone='.$data->hp.'&body_message='.$pesan. '&footer=template&template='.json_encode($tmp). '&url_file=https://www.petanikode.com/img/json/json.png',
-			// CURLOPT_POSTFIELDS => 'apiKey=f4064efa9d05f66f9be6151ec91ad846&phone=085234980128&body_message='.$pesan.'&footer=&template='.json_encode($tmp).'&url_file='.$link,
+			// CURLOPT_POSTFIELDS => 'apiKey=f4064efa9d05f66f9be6151ec91ad846&phone=' . $data->hp . '&body_message=' . $pesan . '&footer=template&template=' . json_encode($tmp) . '&url_file=https://www.petanikode.com/img/json/json.png',
+			CURLOPT_POSTFIELDS => 'apiKey=f4064efa9d05f66f9be6151ec91ad846&phone=082229084447&body_message=' . $pesan . '&footer=template&template=' . json_encode($tmp) . '&url_file=https://drive.google.com/file/d/1U1ibfGJvuJNVZJ9IabOSkVaBKre0OhM2/view?usp=share_link',
 		));
 
 		$response = curl_exec($curl);

@@ -20,7 +20,7 @@ class Welcome extends CI_Controller
 	{
 		$data['judul'] = 'home';
 		$data['user'] = $this->Auth_model->current_user();
-		$data['rgSum'] = $this->model->bpSum()->row();
+		$data['bpSum'] = $this->model->bpSum()->row();
 		$data['bpCount'] = $this->model->bpCount()->num_rows();
 		
 		$data['registSum'] = $this->model->registSum()->row();

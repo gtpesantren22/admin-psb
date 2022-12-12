@@ -37,11 +37,13 @@
 
 <script>
     // @formatter:off
-    // Pake ini
+    // @formatter:off
+    var bpDes22 = Number(<?= $bpDes22->nom ?>);
+
     document.addEventListener("DOMContentLoaded", function() {
-        window.ApexCharts && (new ApexCharts(document.getElementById('chart-mentions'), {
+        window.ApexCharts && (new ApexCharts(document.getElementById('chart-temperature'), {
             chart: {
-                type: "bar",
+                type: "line",
                 fontFamily: 'inherit',
                 height: 240,
                 parentHeightOffset: 0,
@@ -51,34 +53,21 @@
                 animations: {
                     enabled: false
                 },
-                stacked: true,
-            },
-            plotOptions: {
-                bar: {
-                    columnWidth: '50%',
-                }
-            },
-            dataLabels: {
-                enabled: false,
             },
             fill: {
                 opacity: 1,
             },
+            stroke: {
+                width: 2,
+                lineCap: "round",
+                curve: "smooth",
+            },
             series: [{
-                name: "Web",
-                data: [1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 2, 12, 5, 8, 22, 6, 8, 6, 4, 1, 8, 24,
-                    29, 51, 40, 47, 23, 26, 50, 26, 41, 22, 46, 47, 81, 46, 6
-                ]
+                name: "Pendaftaran",
+                data: [Number(<?= $bpDes22->nom ?>), Number(<?= $bpJan->nom ?>), Number(<?= $bpFeb->nom ?>), Number(<?= $bpMar->nom ?>), Number(<?= $bpApr->nom ?>), Number(<?= $bpMei->nom ?>), Number(<?= $bpJun->nom ?>), Number(<?= $bpJul->nom ?>), Number(<?= $bpAgs->nom ?>), Number(<?= $bpSep->nom ?>), Number(<?= $bpOkt->nom ?>), Number(<?= $bpNov->nom ?>), Number(<?= $bpDes->nom ?>)]
             }, {
-                name: "Social",
-                data: [2, 5, 4, 3, 3, 1, 4, 7, 5, 1, 2, 5, 3, 2, 6, 7, 7, 1, 5, 5, 2, 12, 4,
-                    6, 18, 3, 5, 2, 13, 15, 20, 47, 18, 15, 11, 10, 0
-                ]
-            }, {
-                name: "Other",
-                data: [2, 9, 1, 7, 8, 3, 6, 5, 5, 4, 6, 4, 1, 9, 3, 6, 7, 5, 2, 8, 4, 9, 1,
-                    2, 6, 7, 5, 1, 8, 3, 2, 3, 4, 9, 7, 1, 6
-                ]
+                name: "Registrasi Ulang",
+                data: [Number(<?= $rgDes22->nom ?>), Number(<?= $rgJan->nom ?>), Number(<?= $rgFeb->nom ?>), Number(<?= $rgMar->nom ?>), Number(<?= $rgApr->nom ?>), Number(<?= $rgMei->nom ?>), Number(<?= $rgJun->nom ?>), Number(<?= $rgJul->nom ?>), Number(<?= $rgAgs->nom ?>), Number(<?= $rgSep->nom ?>), Number(<?= $rgOkt->nom ?>), Number(<?= $rgNov->nom ?>), Number(<?= $rgDes->nom ?>)]
             }],
             tooltip: {
                 theme: 'dark'
@@ -91,11 +80,9 @@
                     bottom: -4
                 },
                 strokeDashArray: 4,
-                xaxis: {
-                    lines: {
-                        show: true
-                    }
-                },
+            },
+            dataLabels: {
+                enabled: true,
             },
             xaxis: {
                 labels: {
@@ -104,33 +91,23 @@
                 tooltip: {
                     enabled: false
                 },
-                axisBorder: {
-                    show: false,
-                },
-                type: 'datetime',
+                categories: ['Jan 23', 'Feb 23', 'Mar 23', 'Apr 23', 'May 23', 'Jun 23', 'Jul 23', 'Aug 23', 'Sep 23', 'Oct 23', 'Nov 23', 'Dec 22'],
             },
             yaxis: {
                 labels: {
                     padding: 4
                 },
             },
-            labels: [
-                '2020-06-20', '2020-06-21', '2020-06-22', '2020-06-23', '2020-06-24',
-                '2020-06-25', '2020-06-26', '2020-06-27', '2020-06-28', '2020-06-29',
-                '2020-06-30', '2020-07-01', '2020-07-02', '2020-07-03', '2020-07-04',
-                '2020-07-05', '2020-07-06', '2020-07-07', '2020-07-08', '2020-07-09',
-                '2020-07-10', '2020-07-11', '2020-07-12', '2020-07-13', '2020-07-14',
-                '2020-07-15', '2020-07-16', '2020-07-17', '2020-07-18', '2020-07-19',
-                '2020-07-20', '2020-07-21', '2020-07-22', '2020-07-23', '2020-07-24',
-                '2020-07-25', '2020-07-26'
-            ],
-            colors: [tabler.getColor("primary"), tabler.getColor("primary", 0.8), tabler.getColor(
-                "green", 0.8)],
+            colors: [tabler.getColor("primary"), tabler.getColor("green")],
             legend: {
                 show: false,
             },
+            markers: {
+                size: 2
+            },
         })).render();
     });
+    // @formatter:on
 
     // @formatter:off
     document.addEventListener("DOMContentLoaded", function() {

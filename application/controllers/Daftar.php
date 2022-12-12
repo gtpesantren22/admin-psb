@@ -151,12 +151,15 @@ Panitia
 
 		if ($sn->gel === '1') {
 			$link = 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU';
+			$tmp = array(array('url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU', 'text' => 'Klik disini untuk bergabung'));
 			$jadwal = 'Penyerahan berkas dan Tes : 26-28 February 2022';
 		} else if ($sn->gel === '2') {
 			$link = 'https://chat.whatsapp.com/GAKAl21yWpJ7TXIaGem1HH';
+			$tmp = array(array('url' => 'https://chat.whatsapp.com/GAKAl21yWpJ7TXIaGem1HH', 'text' => 'Klik disini untuk bergabung'));
 			$jadwal = 'Penyerahan berkas dan Tes : 26-28 Maret 2022';
 		} else if ($sn->gel === '3') {
 			$link = 'https://chat.whatsapp.com/GQgMWD7JISW5NRqAWCcA4E';
+			$tmp = array(array('url' => 'https://chat.whatsapp.com/GQgMWD7JISW5NRqAWCcA4E', 'text' => 'Klik disini untuk bergabung'));
 			$jadwal = 'Penyerahan berkas dan Tes : 28-30 Mei 2022';
 		}
 
@@ -174,9 +177,7 @@ Tgl Bayar : ' . $sn->tgl_bayar .
         
 *telah TERVERIFIKASI.*
 selanjutnya, Silahkan bergabung Group WA Santri baru dengan klik link dibawah, untuk mengetahui informasi test pendaftaran santri baru dan Informasi Lainnya.
-
-*' . $link . '*
-_*Link diatas hanya untuk santri baru*_
+_*Link diatas hanya untuk santri baru. Link ada dibagian paling bawah pesan ini*_
         
 _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Bawahan hitam/gelap (Ketika tes dan berangkat mondok)*_
 
@@ -186,7 +187,8 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 - Foto Copy IJAZAH dilegalisir ( Menyusul ) 4 lembar
 ';
 
-		kirim_person($key->api_key, $sn->hp, $pesan);
+		// kirim_person($key->api_key, $sn->hp, $pesan);
+		kirim_tmp($key->api_key, $sn->hp, $pesan, $tmp, 'https://i.postimg.cc/8c8fghZq/LOGO-WA.jpg');
 		redirect('daftar');
 	}
 }

@@ -55,8 +55,8 @@ class import extends CI_Controller
                 if ($key != 0) {
                     $result     = $this->user->get(["npsn" => $val[1]]);
                     if ($result) {
-                        $this->session->set_flashdata('error', 'Data Sudah di Upload');
-                        redirect('import');
+                        // $this->session->set_flashdata('error', 'Data Sudah di Upload');
+                        // redirect('import');
                     } else {
                         $list[] = [
                             'npsn' => $val[1],

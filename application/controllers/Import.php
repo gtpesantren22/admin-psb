@@ -36,9 +36,8 @@ class import extends CI_Controller
         $json         = [];
         $this->upload_config($path);
         if (!$this->upload->do_upload('file')) {
-            $json = [
-                'error_message' => showErrorMessage($this->upload->display_errors()),
-            ];
+            $this->session->set_flashdata('error', 'Upload Gagal');
+            redirect('import');
         } else {
             $file_data     = $this->upload->data();
             $file_name     = $path . $file_data['file_name'];
@@ -56,6 +55,8 @@ class import extends CI_Controller
                 if ($key != 0) {
                     $result     = $this->user->get(["npsn" => $val[1]]);
                     if ($result) {
+                        $this->session->set_flashdata('error', 'Data Sudah di Upload');
+                        redirect('import');
                     } else {
                         $list[] = [
                             'npsn' => $val[1],
@@ -73,21 +74,17 @@ class import extends CI_Controller
             if (count($list) > 0) {
                 $result     = $this->user->add_batch($list);
                 if ($result) {
-                    $json = [
-                        'success_message'     => showSuccessMessage("All Entries are imported successfully."),
-                    ];
+                    $this->session->set_flashdata('ok', 'Upload Selesai');
+                    redirect('import');
                 } else {
-                    $json = [
-                        'error_message'     => showErrorMessage("Something went wrong. Please try again.")
-                    ];
+                    $this->session->set_flashdata('error', 'Upload Gagal');
+                    redirect('import');
                 }
             } else {
-                $json = [
-                    'error_message' => showErrorMessage("No new record is found."),
-                ];
+                $this->session->set_flashdata('error', 'Upload Gagal');
+                redirect('import');
             }
         }
-        echo json_encode($json);
     }
 
     public function upload_config($path)

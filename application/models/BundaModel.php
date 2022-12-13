@@ -25,7 +25,7 @@ class BundaModel extends CI_Model
 		$this->db->from('regist');
 		return $this->db->get();
 	}
-	
+
 	function registCount()
 	{
 		$this->db->from('regist');
@@ -39,10 +39,10 @@ class BundaModel extends CI_Model
 		$this->db->where('stts', 'Terverifikasi');
 		return $this->db->get();
 	}
-	
+
 	function sumBpBy($bl, $thn)
 	{
-		$this->db->select("IFNULL(SUM(nominal), 0) as nom ");
+		$this->db->select("IFNULL(SUM(nominal), 0) AS nom");
 		$this->db->from('bp_daftar');
 		$this->db->where('YEAR(tgl_bayar)', $thn);
 		$this->db->where('MONTH(tgl_bayar)', $bl);
@@ -50,7 +50,7 @@ class BundaModel extends CI_Model
 	}
 	function sumRgBy($bl, $thn)
 	{
-		$this->db->select("IFNULL(SUM(nominal), 0) as nom ");
+		$this->db->select("IFNULL(SUM(nominal), 0) AS nom");
 		$this->db->from('regist');
 		$this->db->where('YEAR(tgl_bayar)', $thn);
 		$this->db->where('MONTH(tgl_bayar)', $bl);

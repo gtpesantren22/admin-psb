@@ -63,7 +63,7 @@ class import extends CI_Controller
                             'alamat' => $val[3],
                             'desa' => $val[4],
                             'stts' => $val[5],
-                            'kode'=> $val[6]
+                            'kode' => $val[6]
                         ];
                     }
                 }

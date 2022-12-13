@@ -26,7 +26,8 @@
                             <div class="subheader">Pemasukan Pendaftaran</div>
                             <div class="ms-auto lh-1">
                                 <div class="dropdown">
-                                    <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                    <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"></a>
                                 </div>
                             </div>
                         </div>
@@ -35,9 +36,11 @@
                             <div>Sudah Bayar</div>
                             <div class="ms-auto">
                                 <span class="text-green d-inline-flex align-items-center lh-1">
-                                    <?= ($bpCount / $santriCount) * 100 ?>%
+                                    <?= round(($bpCount / $santriCount) * 100, 2) ?>%
                                     <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                         <polyline points="3 17 9 11 13 15 21 7" />
                                         <polyline points="14 7 21 7 21 14" />
@@ -46,7 +49,10 @@
                             </div>
                         </div>
                         <div class="progress progress-sm">
-                            <div class="progress-bar bg-primary" style="width: <?= ($bpCount / $santriCount) * 100 ?>%" role="progressbar" aria-valuenow="<?= ($bpCount / $santriCount) * 100 ?>" aria-valuemin="0" aria-valuemax="100" aria-label="<?= ($bpCount / $santriCount) * 100 ?>% Complete">
+                            <div class="progress-bar bg-primary" style="width: <?= ($bpCount / $santriCount) * 100 ?>%"
+                                role="progressbar" aria-valuenow="<?= ($bpCount / $santriCount) * 100 ?>"
+                                aria-valuemin="0" aria-valuemax="100"
+                                aria-label="<?= ($bpCount / $santriCount) * 100 ?>% Complete">
                                 <span class="visually-hidden"><?= ($bpCount / $santriCount) * 100 ?>% Complete</span>
                             </div>
                         </div>
@@ -60,7 +66,8 @@
                             <div class="subheader">Pemasukan Registrasi Ulang</div>
                             <div class="ms-auto lh-1">
                                 <div class="dropdown">
-                                    <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                    <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"></a>
                                 </div>
                             </div>
                         </div>
@@ -69,9 +76,11 @@
                             <div>Sudah Bayar</div>
                             <div class="ms-auto">
                                 <span class="text-green d-inline-flex align-items-center lh-1">
-                                    <?= ($registCount / $santriCount) * 100 ?>%
+                                    <?= round(($registCount / $santriCount) * 100, 2) ?>%
                                     <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                         <polyline points="3 17 9 11 13 15 21 7" />
                                         <polyline points="14 7 21 7 21 14" />
@@ -80,8 +89,12 @@
                             </div>
                         </div>
                         <div class="progress progress-sm">
-                            <div class="progress-bar bg-primary" style="width: <?= ($registCount / $santriCount) * 100 ?>%" role="progressbar" aria-valuenow="<?= ($registCount / $santriCount) * 100 ?>" aria-valuemin="0" aria-valuemax="100" aria-label="<?= ($registCount / $santriCount) * 100 ?>% Complete">
-                                <span class="visually-hidden"><?= ($registCount / $santriCount) * 100 ?>% Complete</span>
+                            <div class="progress-bar bg-primary"
+                                style="width: <?= ($registCount / $santriCount) * 100 ?>%" role="progressbar"
+                                aria-valuenow="<?= ($registCount / $santriCount) * 100 ?>" aria-valuemin="0"
+                                aria-valuemax="100" aria-label="<?= ($registCount / $santriCount) * 100 ?>% Complete">
+                                <span class="visually-hidden"><?= ($registCount / $santriCount) * 100 ?>%
+                                    Complete</span>
                             </div>
                         </div>
                     </div>
@@ -94,7 +107,8 @@
                             <div class="subheader">Terverifikasi</div>
                             <div class="ms-auto lh-1">
                                 <div class="dropdown">
-                                    <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                    <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"></a>
                                 </div>
                             </div>
                         </div>
@@ -104,10 +118,14 @@
                                 <span class="text-green d-inline-flex align-items-center lh-1">
                                     santri
                                     <!-- Download SVG icon from http://tabler-icons.io/i/minus -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-checkbox" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-checkbox" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                         <polyline points="9 11 12 14 20 6"></polyline>
-                                        <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9"></path>
+                                        <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9">
+                                        </path>
                                     </svg>
                                 </span>
                             </div>
@@ -123,7 +141,8 @@
                             <div class="subheader">Belum Terverifikasi</div>
                             <div class="ms-auto lh-1">
                                 <div class="dropdown">
-                                    <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                                    <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"></a>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +152,10 @@
                                 <span class="text-red d-inline-flex align-items-center lh-1">
                                     santri
                                     <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-square-x" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                         <rect x="4" y="4" width="16" height="16" rx="2"></rect>
                                         <path d="M10 10l4 4m0 -4l-4 4"></path>
@@ -265,3 +287,87 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    window.ApexCharts && (new ApexCharts(document.getElementById('chart-temperature'), {
+        chart: {
+            type: "line",
+            fontFamily: 'inherit',
+            height: 240,
+            parentHeightOffset: 0,
+            toolbar: {
+                show: false,
+            },
+            animations: {
+                enabled: false
+            },
+        },
+        fill: {
+            opacity: 1,
+        },
+        stroke: {
+            width: 2,
+            lineCap: "round",
+            curve: "smooth",
+        },
+        series: [{
+            name: "Pendaftaran",
+            data: [Number(<?= $bpJan->nom ?>), Number(
+                <?= $bpFeb->nom ?>), Number(<?= $bpMar->nom ?>), Number(
+                <?= $bpApr->nom ?>), Number(<?= $bpMei->nom ?>), Number(
+                <?= $bpJun->nom ?>), Number(<?= $bpJul->nom ?>), Number(
+                <?= $bpAgs->nom ?>), Number(<?= $bpSep->nom ?>), Number(
+                <?= $bpOkt->nom ?>), Number(<?= $bpNov->nom ?>), Number(
+                <?= $bpDes22->nom ?>)]
+        }, {
+            name: "Registrasi Ulang",
+            data: [Number(<?= $rgJan->nom ?>), Number(
+                <?= $rgFeb->nom ?>), Number(<?= $rgMar->nom ?>), Number(
+                <?= $rgApr->nom ?>), Number(<?= $rgMei->nom ?>), Number(
+                <?= $rgJun->nom ?>), Number(<?= $rgJul->nom ?>), Number(
+                <?= $rgAgs->nom ?>), Number(<?= $rgSep->nom ?>), Number(
+                <?= $rgOkt->nom ?>), Number(<?= $rgNov->nom ?>), Number(
+                <?= $rgDes22->nom ?>)]
+        }],
+        tooltip: {
+            theme: 'dark'
+        },
+        grid: {
+            padding: {
+                top: -20,
+                right: 0,
+                left: -4,
+                bottom: -4
+            },
+            strokeDashArray: 4,
+        },
+        dataLabels: {
+            enabled: true,
+        },
+        xaxis: {
+            labels: {
+                padding: 0,
+            },
+            tooltip: {
+                enabled: false
+            },
+            categories: ['Jan 23', 'Feb 23', 'Mar 23', 'Apr 23', 'May 23', 'Jun 23', 'Jul 23',
+                'Aug 23', 'Sep 23', 'Oct 23', 'Nov 23', 'Dec 22'
+            ],
+        },
+        yaxis: {
+            labels: {
+                padding: 4
+            },
+        },
+        colors: [tabler.getColor("primary"), tabler.getColor("green")],
+        legend: {
+            show: false,
+        },
+        markers: {
+            size: 2
+        },
+    })).render();
+});
+</script>

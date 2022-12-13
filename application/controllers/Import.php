@@ -10,7 +10,7 @@ class import extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('AdminModel', 'model');
+        $this->load->model('AdminModel', 'user');
         $this->load->model('Auth_model');
 
         $user = $this->Auth_model->current_user();
@@ -23,9 +23,10 @@ class import extends CI_Controller
     {
         $data['judul'] = 'import';
         $data['user'] = $this->Auth_model->current_user();
+        $data['jumlah'] = $this->user->get_num_rows();
 
         $this->load->view('adm/head', $data);
-        $this->load->view('adm/sekolah');
+        $this->load->view('adm/sekolah', $data);
         $this->load->view('adm/foot');
     }
 
@@ -53,18 +54,16 @@ class import extends CI_Controller
             $list             = [];
             foreach ($sheet_data as $key => $val) {
                 if ($key != 0) {
-                    $result     = $this->user->get(["country_code" => $val[2], "mobile" => $val[3]]);
+                    $result     = $this->user->get(["npsn" => $val[1]]);
                     if ($result) {
                     } else {
                         $list[] = [
-                            'name'                    => $val[0],
-                            'country_code'            => $val[1],
-                            'mobile'                => $val[2],
-                            'email'                    => $val[3],
-                            'city'                    => $val[4],
-                            'ip_address'            => $this->ip_address,
-                            'created_at'             => $this->datetime,
-                            'status'                => "1",
+                            'npsn' => $val[1],
+                            'nama' => $val[2],
+                            'alamat' => $val[3],
+                            'desa' => $val[4],
+                            'stts' => $val[5],
+                            'kode'=> $val[6]
                         ];
                     }
                 }

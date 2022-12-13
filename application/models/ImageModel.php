@@ -18,6 +18,13 @@ class ImageModel extends CI_Model
 		return $this->db->get();
 	}
 
+	function getFotoNis($nis)
+	{
+		$this->db->from('foto_file');
+		$this->db->where('nis', $nis);
+		return $this->db->get();
+	}
+
 	function upload($tbl, $data, $where)
 	{
 		$this->db->where('nis', $where);

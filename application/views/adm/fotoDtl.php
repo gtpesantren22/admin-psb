@@ -79,7 +79,7 @@
                                         </div>
                                     </div>
                                     <a href="#" class="d-block"><img
-                                            src="<?= 'https://psb.ppdwk.com/psb/assets/berkas/' . $data->ayah ?>"
+                                            src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $foto->ayah ?>"
                                             class="card-img-top"></a>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
                                         </div>
                                     </div>
                                     <a href="#" class="d-block"><img
-                                            src="<?= 'https://psb.ppdwk.com/psb/assets/berkas/' . $data->ibu ?>"
+                                            src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $foto->ibu ?>"
                                             class="card-img-top"></a>
                                 </div>
                             </div>

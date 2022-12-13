@@ -31,6 +31,7 @@ class Image extends CI_Controller
 		$data['judul'] = 'image';
 		$data['data'] = $this->model->getDataNis($nis)->row();
 		$data['user'] = $this->Auth_model->current_user();
+		$data['foto'] = $this->model->getFotoNis($nis)->row();
 
 		$this->load->view('adm/head', $data);
 		$this->load->view('adm/fotoDtl', $data);

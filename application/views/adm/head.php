@@ -135,6 +135,9 @@
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                 <!-- <div class="dropdown-divider"></div> -->
                                 <a href="#" class="dropdown-item">Settings</a>
+                                <?php if ($user->level === 'admin') : ?>
+                                <a href="<?= base_url('import'); ?>" class="dropdown-item">Import</a>
+                                <?php endif; ?>
                                 <a href="<?= base_url('login/logout') ?>" class="dropdown-item">Logout</a>
                             </div>
                         </div>

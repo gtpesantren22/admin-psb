@@ -36,128 +36,59 @@
 <script src="<?= base_url('demo'); ?>/dist/jquery.mask.min.js"></script>
 
 <script>
-    // @formatter:off
-    // @formatter:off
-    var bpDes22 = Number(<?= $bpDes22->nom ?>);
+// @formatter:off
 
-    document.addEventListener("DOMContentLoaded", function() {
-        window.ApexCharts && (new ApexCharts(document.getElementById('chart-temperature'), {
-            chart: {
-                type: "line",
-                fontFamily: 'inherit',
-                height: 240,
-                parentHeightOffset: 0,
-                toolbar: {
-                    show: false,
-                },
-                animations: {
-                    enabled: false
-                },
-            },
-            fill: {
-                opacity: 1,
-            },
-            stroke: {
-                width: 2,
-                lineCap: "round",
-                curve: "smooth",
-            },
-            series: [{
-                name: "Pendaftaran",
-                data: [Number(<?= $bpDes22->nom ?>), Number(<?= $bpJan->nom ?>), Number(<?= $bpFeb->nom ?>), Number(<?= $bpMar->nom ?>), Number(<?= $bpApr->nom ?>), Number(<?= $bpMei->nom ?>), Number(<?= $bpJun->nom ?>), Number(<?= $bpJul->nom ?>), Number(<?= $bpAgs->nom ?>), Number(<?= $bpSep->nom ?>), Number(<?= $bpOkt->nom ?>), Number(<?= $bpNov->nom ?>), Number(<?= $bpDes->nom ?>)]
-            }, {
-                name: "Registrasi Ulang",
-                data: [Number(<?= $rgDes22->nom ?>), Number(<?= $rgJan->nom ?>), Number(<?= $rgFeb->nom ?>), Number(<?= $rgMar->nom ?>), Number(<?= $rgApr->nom ?>), Number(<?= $rgMei->nom ?>), Number(<?= $rgJun->nom ?>), Number(<?= $rgJul->nom ?>), Number(<?= $rgAgs->nom ?>), Number(<?= $rgSep->nom ?>), Number(<?= $rgOkt->nom ?>), Number(<?= $rgNov->nom ?>), Number(<?= $rgDes->nom ?>)]
-            }],
-            tooltip: {
-                theme: 'dark'
-            },
-            grid: {
-                padding: {
-                    top: -20,
-                    right: 0,
-                    left: -4,
-                    bottom: -4
-                },
-                strokeDashArray: 4,
-            },
-            dataLabels: {
-                enabled: true,
-            },
-            xaxis: {
-                labels: {
-                    padding: 0,
-                },
-                tooltip: {
-                    enabled: false
-                },
-                categories: ['Jan 23', 'Feb 23', 'Mar 23', 'Apr 23', 'May 23', 'Jun 23', 'Jul 23', 'Aug 23', 'Sep 23', 'Oct 23', 'Nov 23', 'Dec 22'],
-            },
-            yaxis: {
-                labels: {
-                    padding: 4
-                },
-            },
-            colors: [tabler.getColor("primary"), tabler.getColor("green")],
-            legend: {
-                show: false,
-            },
-            markers: {
-                size: 2
-            },
-        })).render();
-    });
-    // @formatter:on
+// @formatter:on
 
-    // @formatter:off
-    document.addEventListener("DOMContentLoaded", function() {
-        window.Litepicker && (new Litepicker({
-            element: document.getElementById('datepicker'),
-            buttonText: {
-                previousMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
+// @formatter:off
+document.addEventListener("DOMContentLoaded", function() {
+    window.Litepicker && (new Litepicker({
+        element: document.getElementById('datepicker'),
+        buttonText: {
+            previousMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="15 6 9 12 15 18" /></svg>`,
-                nextMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
+            nextMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="9 6 15 12 9 18" /></svg>`,
-            },
-        }));
+        },
+    }));
+});
+// @formatter:on
+
+$(document).ready(function() {
+    $('#example').DataTable();
+    $('#example2').DataTable();
+
+    var dengan_rupiah = document.getElementById('rupiah');
+    dengan_rupiah.addEventListener('keyup', function(e) {
+        dengan_rupiah.value = formatRupiah(this.value, 'Rp. ');
     });
-    // @formatter:on
 
-    $(document).ready(function() {
-        $('#example').DataTable();
-        $('#example2').DataTable();
+    /* Fungsi */
+    function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
-        var dengan_rupiah = document.getElementById('rupiah');
-        dengan_rupiah.addEventListener('keyup', function(e) {
-            dengan_rupiah.value = formatRupiah(this.value, 'Rp. ');
-        });
-
-        /* Fungsi */
-        function formatRupiah(angka, prefix) {
-            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                split = number_string.split(','),
-                sisa = split[0].length % 3,
-                rupiah = split[0].substr(0, sisa),
-                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
-            if (ribuan) {
-                separator = sisa ? '.' : '';
-                rupiah += separator + ribuan.join('.');
-            }
-
-            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
         }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+    }
+});
+
+$(document).ready(function() {
+
+    // Format mata uang.
+    $('.uang').mask('000.000.000.000', {
+        reverse: true
     });
 
-    $(document).ready(function() {
-
-        // Format mata uang.
-        $('.uang').mask('000.000.000.000', {
-            reverse: true
-        });
-
-    })
+})
 </script>
 </body>
 

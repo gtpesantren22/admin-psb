@@ -144,28 +144,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <td><?= tanggalIndo(date('Y-m-d')) ?></td>
-                                    <td><?= $RAPa ?></td>
-                                    <td><?= $RAPi ?></td>
-                                    <td style="background-color: #021c1e; color: white;"><?= $RAPa + $RAPi ?></td>
-                                    <td><?= $MIPa ?></td>
-                                    <td><?= $MIPi ?></td>
-                                    <td style="background-color: #004445; color: white;"><?= $MIPa + $MIPi ?></td>
-                                    <td><?= $MTsPa ?></td>
-                                    <td><?= $MTsPi ?></td>
-                                    <td style="background-color: #2c7873; color: white;"><?= $MTsPa + $MTsPi ?></td>
-                                    <td><?= $SMPPa ?></td>
-                                    <td><?= $SMPPi ?></td>
-                                    <td style="background-color: #6fb98f; color: white;"><?= $SMPPa + $SMPPi ?></td>
-                                    <td><?= $MAPa ?></td>
-                                    <td><?= $MAPi ?></td>
-                                    <td style="background-color: #2e4600; color: white;"><?= $MAPa + $MAPi ?></td>
-                                    <td><?= $SMKPa ?></td>
-                                    <td><?= $SMKPi ?></td>
-                                    <td style="background-color: #486b00; color: white;"><?= $SMKPa + $SMKPi ?></td>
-                                    <td><?= $totalPa ?></td>
-                                    <td><?= $totalPi ?></td>
-                                    <td><?= $total ?></td>
+                                    <td class="text-center"><?= tanggalIndo(date('Y-m-d')) ?></td>
+                                    <td class="text-center"><?= $RAPa ?></td>
+                                    <td class="text-center"><?= $RAPi ?></td>
+                                    <td class="text-center" style="background-color: #021c1e; color: white;"><?= $RAPa + $RAPi ?></td>
+                                    <td class="text-center"><?= $MIPa ?></td>
+                                    <td class="text-center"><?= $MIPi ?></td>
+                                    <td class="text-center" style="background-color: #004445; color: white;"><?= $MIPa + $MIPi ?></td>
+                                    <td class="text-center"><?= $MTsPa ?></td>
+                                    <td class="text-center"><?= $MTsPi ?></td>
+                                    <td class="text-center" style="background-color: #2c7873; color: white;"><?= $MTsPa + $MTsPi ?></td>
+                                    <td class="text-center"><?= $SMPPa ?></td>
+                                    <td class="text-center"><?= $SMPPi ?></td>
+                                    <td class="text-center" style="background-color: #6fb98f; color: white;"><?= $SMPPa + $SMPPi ?></td>
+                                    <td class="text-center"><?= $MAPa ?></td>
+                                    <td class="text-center"><?= $MAPi ?></td>
+                                    <td class="text-center" style="background-color: #2e4600; color: white;"><?= $MAPa + $MAPi ?></td>
+                                    <td class="text-center"><?= $SMKPa ?></td>
+                                    <td class="text-center"><?= $SMKPi ?></td>
+                                    <td class="text-center" style="background-color: #486b00; color: white;"><?= $SMKPa + $SMKPi ?></td>
+                                    <td class="text-center"><?= $totalPa ?></td>
+                                    <td class="text-center"><?= $totalPi ?></td>
+                                    <td class="text-center"><?= $total ?></td>
                                 </tbody>
                             </table>
                         </div>

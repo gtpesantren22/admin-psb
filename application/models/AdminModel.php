@@ -56,4 +56,30 @@ class AdminModel extends CI_Model
     {
         return $this->db->insert_batch($this->table, $data);
     }
+
+    public function total()
+    {
+        $this->db->from('tb_santri');
+        return $this->db->get();
+    }
+    public function totalPa()
+    {
+        $this->db->from('tb_santri');
+        $this->db->where('jkl' , 'Laki-laki');
+        return $this->db->get();
+    }
+    public function totalPi()
+    {
+        $this->db->from('tb_santri');
+        $this->db->where('jkl' , 'Perempuan');
+        return $this->db->get();
+    }
+
+    public function jmlLem($lm, $jkl)
+    {
+        $this->db->from('tb_santri');
+        $this->db->where('jkl', $jkl);
+        $this->db->where('lembaga', $lm);
+        return $this->db->get();
+    }
 }

@@ -39,7 +39,7 @@
                                         </div>
                                     </div>
                                     <a href="#" class="d-block"><img
-                                            src="<?= base_url('../psb/assets/berkas/' . $data->diri) ?>"
+                                            src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->diri ?>"
                                             class="card-img-top"></a>
                                 </div>
                             </div>

@@ -42,4 +42,39 @@ class Info extends CI_Controller
 			redirect('info');
 		}
 	}
+
+	public function edit($id)
+	{
+		$data['judul'] = 'info';
+		$data['user'] = $this->Auth_model->current_user();
+		$data['data'] = $this->model->getId($id)->row();
+
+		$this->load->view('adm/head', $data);
+		$this->load->view('adm/infoEdit', $data);
+		$this->load->view('adm/foot');
+	}
+
+	public function editAct()
+	{
+		$id = $this->input->post('id', true);
+		$data = [
+			'tanggal'  => $this->input->post('tanggal', true),
+			'isi'  => $this->input->post('isi', true)
+		];
+
+		$this->model->edit('info', $data, $id);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('ok', 'Data Berhasil Tersimpan');
+			redirect('info');
+		}
+	}
+	
+	public function del($id)
+	{
+		$this->model->del($id);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('ok', 'Data Berhasil Dihapus');
+			redirect('info');
+		}
+	}
 }

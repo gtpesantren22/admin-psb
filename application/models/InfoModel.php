@@ -13,4 +13,23 @@ class InfoModel extends CI_Model
 	{
 		$this->db->insert($table, $data);
 	}
+
+	function getId($id)
+	{
+		$this->db->where('id_info', $id);
+		$this->db->from('info');
+		return $this->db->get();
+	}
+
+	function edit($table, $data, $id)
+	{
+		$this->db->where('id_info', $id);
+		$this->db->update($table, $data);
+	}
+
+	public function del($id)
+	{
+		$this->db->where('id_info', $id);
+		$this->db->delete('info');
+	}
 }

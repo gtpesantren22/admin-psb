@@ -28,6 +28,10 @@
                         <input type="hidden" name="id" value="<?= $data->id_info ?>">
                         <div class="modal-body">
                             <div class="mb-3">
+                                <label class="form-label">Judul</label>
+                                <input type="text" maxlength="50" class="form-control" placeholder="Judul Informasi" id="" name="judul" value="<?= $data->judul ?>" required>
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label">Tanggal Upload</label>
                                 <input type="text" class="form-control" placeholder="Tanggal Upload Informasi" id="datepicker" name="tanggal" value="<?= $data->tanggal ?>" required>
                             </div>

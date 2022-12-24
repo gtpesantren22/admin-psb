@@ -31,33 +31,35 @@ class Info extends CI_Controller
 	{
 		$user = $this->Auth_model->current_user();
 		$data = [
+			'judul'  => $this->input->post('judul', true),
 			'tanggal'  => $this->input->post('tanggal', true),
 			'oleh'  => $user->nama,
 			'isi'  => $this->input->post('isi', true)
 		];
-
+		
 		$this->model->tambah('info', $data);
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('ok', 'Data Berhasil Tersimpan');
 			redirect('info');
 		}
 	}
-
+	
 	public function edit($id)
 	{
 		$data['judul'] = 'info';
 		$data['user'] = $this->Auth_model->current_user();
 		$data['data'] = $this->model->getId($id)->row();
-
+		
 		$this->load->view('adm/head', $data);
 		$this->load->view('adm/infoEdit', $data);
 		$this->load->view('adm/foot');
 	}
-
+	
 	public function editAct()
 	{
 		$id = $this->input->post('id', true);
 		$data = [
+			'judul'  => $this->input->post('judul', true),
 			'tanggal'  => $this->input->post('tanggal', true),
 			'isi'  => $this->input->post('isi', true)
 		];

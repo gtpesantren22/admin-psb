@@ -43,8 +43,8 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Judul</th>
                                         <th>Tanggal</th>
-                                        <th>Uploader</th>
                                         <th>Isi</th>
                                         <th>#</th>
                                     </tr>
@@ -56,8 +56,8 @@
                                     ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
+                                            <td><?= $row->judul; ?></td>
                                             <td><?= $row->tanggal; ?></td>
-                                            <td><?= $row->oleh; ?></td>
                                             <td><?= $row->isi; ?></td>
                                             <td>
                                                 <a href="<?= base_url('info/del/') . $row->id_info ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin akan dihapus ?')">
@@ -98,6 +98,10 @@
             </div>
             <?= form_open('info/add') ?>
             <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Judul</label>
+                    <input type="text" maxlength="50" class="form-control" placeholder="Judul Informasi" id="" name="judul" required>
+                </div>
                 <div class="mb-3">
                     <label class="form-label">Tanggal Upload</label>
                     <input type="text" class="form-control" placeholder="Tanggal Upload Informasi" id="datepicker" name="tanggal" required>

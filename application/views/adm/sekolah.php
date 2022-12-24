@@ -24,10 +24,10 @@
                 <div class="card">
                     <div class="card-body">
                         <?php if ($this->session->flashdata('ok')) : ?>
-                        <div class="alert alert-success mb-2"><?= $this->session->flashdata('ok') ?></div>
+                            <div class="alert alert-success mb-2"><?= $this->session->flashdata('ok') ?></div>
                         <?php endif; ?>
                         <?php if ($this->session->flashdata('error')) : ?>
-                        <div class="alert alert-danger mb-2"><?= $this->session->flashdata('error') ?></div>
+                            <div class="alert alert-danger mb-2"><?= $this->session->flashdata('error') ?></div>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -45,9 +45,7 @@
                                 <span class="text-green d-inline-flex align-items-center lh-1">
                                     7%
                                     <!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                         <polyline points="3 17 9 11 13 15 21 7" />
                                         <polyline points="14 7 21 7 21 14" />
@@ -56,8 +54,7 @@
                             </div>
                         </div>
                         <div class="progress progress-sm">
-                            <div class="progress-bar bg-primary" style="width: 75%" role="progressbar"
-                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="75% Complete">
+                            <div class="progress-bar bg-primary" style="width: 75%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="75% Complete">
                                 <span class="visually-hidden">75% Complete</span>
                             </div>
                         </div>
@@ -73,16 +70,34 @@
                         <form method="post" action="<?= base_url('import/import'); ?>" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label class="control-label">Pilih Berkas <small class="text-danger">*</small></label>
-                                <input type="file" class="form-control form-control-sm" id="file" name="file"
-                                    accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-                                    required>
+                                <input type="file" class="form-control form-control-sm" id="file" name="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
                                 <small class="text-danger">Upload excel or csv file only.</small>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light"
-                                    id="btnUpload">Upload</button>
+                                <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btnUpload">Upload</button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- <div class="d-flex align-items-center">
+                            <div class="subheader">Upload</div>
+                        </div> -->
+                        
+                            <div class="form-group">
+                                <label class="control-label">Kirim Info Untuk Melengkapi Persyaratan</label> <br>
+                                <small class="text-danger">*</small>
+                                <small class="text-danger">Bagi Santri baru yang terverifikasi selain MI dan RA</small>
+                            </div>
+                            <div class="form-group">
+                                <a href="<?= base_url('info/infoBerkas'); ?>" onclick="return confirm('Yakin akan dikirim ?')" class="btn btn-primary btn-sm waves-effect waves-light"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-telegram" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4"></path>
+                                    </svg> Kirin Pesan</a>
+                            </div>
                     </div>
                 </div>
             </div>

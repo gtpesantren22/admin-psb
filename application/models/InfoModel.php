@@ -32,4 +32,19 @@ class InfoModel extends CI_Model
 		$this->db->where('id_info', $id);
 		$this->db->delete('info');
 	}
+
+	public function dataVeris()
+	{
+		$this->db->where_in('lembaga', array('MTs', 'SMP', 'MA', 'SMK'));
+		$this->db->where('ket', 'baru');
+		$this->db->where('stts', 'Terverifikasi');
+		return $this->db->get('tb_santri');
+	}
+
+	function apikey()
+	{
+		$this->db->select('*');
+		$this->db->from('api');
+		return $this->db->get();
+	}
 }

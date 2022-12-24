@@ -79,4 +79,25 @@ class Info extends CI_Controller
 			redirect('info');
 		}
 	}
+
+	public function infoBerkas()
+	{
+		$key = $this->model->apiKey()->row();
+		$data = $this->model->dataVeris()->result();
+		$tmp = array(array('url' => 'https://psb.ppdwk.com/login', 'text' => 'Klik disini untuk Login'));
+		foreach ($data as $row){
+			$pesan = '
+Assalamualaikum, Wr. Wb
+
+Kami dari panitia Penerimaan Santri Baru 2023 Pondok Pesantren Darul Lughah Wal Karomah, ingin menginformasikan kembali kepada bpk/ibu wali santri baru bahwasanya untuk *Segera Lengkapi Upload Scan/Foto berkas-berkas persayaratan Santri Baru, dengan Login di akun user (klik link dibawah) menggunakan akun yang sudah diterima melalui pesan WA, pada saat melakukan pembayaran pendaftaran*
+
+Terimakasih.
+
+_*Catatan : Bagi Wali santri yang sudah melengkapi berkas, harap mengabaikan pesan ini.*_';
+
+			kirim_tmp($key->api_key, $row->hp, $pesan, $tmp, 'https://i.postimg.cc/8c8fghZq/LOGO-WA.jpg');
+		}
+
+		redirect('import');
+	}
 }

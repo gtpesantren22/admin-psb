@@ -98,4 +98,6 @@ class import extends CI_Controller
         $config['max_size']         = 4096;
         $this->load->library('upload', $config);
     }
+
+    
 }

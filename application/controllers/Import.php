@@ -24,6 +24,7 @@ class import extends CI_Controller
         $data['judul'] = 'import';
         $data['user'] = $this->Auth_model->current_user();
         $data['jumlah'] = $this->user->get_num_rows();
+        $data['lama'] = $this->user->lama()->result();
 
         $this->load->view('adm/head', $data);
         $this->load->view('adm/sekolah', $data);
@@ -99,5 +100,69 @@ class import extends CI_Controller
         $this->load->library('upload', $config);
     }
 
-    
+    public function tarik($nis)
+    {
+        $jl = date('Y-m-d');
+        $g1 = '2023-01-28';
+        $g2 = '2023-03-11';
+        $g3 = '2023-03-12';
+
+        if ($jl <= $g1) {
+            $gel = "1";
+            $by = 'Rp. 70.000';
+        } else if ($jl > $g1 && $jl <= $g2) {
+            $gel = "2";
+            $by = 'Rp. 120.000';
+        } else if ($jl >= $g3) {
+            $gel = "3";
+            $by = 'Rp. 170.000';
+        }
+
+        $dts = $this->user->getBy('tb_lama', 'nis', $nis)->row();
+        $data = [
+            'id_santri' => $dts->id_santri,
+            'nis' => $dts->nis,
+            'nisn' => $dts->nisn,
+            'nik' => $dts->nik,
+            'no_kk' => $dts->no_kk,
+            'nama' => $dts->nama,
+            'tempat' => $dts->tempat,
+            'tanggal' => $dts->tanggal,
+            'jkl' => $dts->jkl,
+            'jln' => $dts->jln,
+            'rt' => $dts->rt,
+            'rw' => $dts->rw,
+            'desa' => $dts->desa,
+            'kec' => $dts->kec,
+            'kab' => $dts->kab,
+            'prov' => $dts->prov,
+            'bapak' => $dts->bapak,
+            'a_nik' => $dts->nik_a,
+            'a_tempat' => $dts->tempat_a,
+            'a_tanggal' => $dts->tanggal_a,
+            'a_pkj' => $dts->pkj_a,
+            'a_pend' => $dts->pend_a,
+            'ibu' => $dts->ibu,
+            'i_nik' => $dts->nik_i,
+            'i_tempat' => $dts->tempat_i,
+            'i_tanggal' => $dts->tanggal_i,
+            'i_pkj' => $dts->pkj_i,
+            'i_pend' => $dts->pend_i,
+            'stts' => 'Belum Terverikasi',
+            'gel' => $gel,
+            'waktu_daftar' => date('Y-m-d H:i'),
+            'jenis' => 'mutasi',
+            'asal' => $dts->t_formal,
+            'ket' => 'lama'
+        ];
+
+        $this->user->input('tb_santri', $data);
+        if ($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('ok', 'Data Berhasil Ditarik');
+            redirect('import');
+        } else {
+            $this->session->set_flashdata('error', 'Upload Gagal');
+            redirect('import');
+        }
+    }
 }

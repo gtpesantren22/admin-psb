@@ -65,13 +65,13 @@ class AdminModel extends CI_Model
     public function totalPa()
     {
         $this->db->from('tb_santri');
-        $this->db->where('jkl' , 'Laki-laki');
+        $this->db->where('jkl', 'Laki-laki');
         return $this->db->get();
     }
     public function totalPi()
     {
         $this->db->from('tb_santri');
-        $this->db->where('jkl' , 'Perempuan');
+        $this->db->where('jkl', 'Perempuan');
         return $this->db->get();
     }
 
@@ -81,5 +81,24 @@ class AdminModel extends CI_Model
         $this->db->where('jkl', $jkl);
         $this->db->where('lembaga', $lm);
         return $this->db->get();
+    }
+
+    public function lama()
+    {
+        $this->db->from('tb_lama');
+        $this->db->where('NOT EXISTS (SELECT * FROM tb_santri WHERE tb_lama.nis=tb_santri.nis)', '', false);
+        $this->db->where('k_formal', 'IX');
+        return $this->db->get();
+    }
+
+    function getBy($table, $where, $dtwhere)
+    {
+        $this->db->where($where, $dtwhere);
+        return $this->db->get($table);
+    }
+
+    function input($tbl, $data)
+    {
+        $this->db->insert($tbl, $data);
     }
 }

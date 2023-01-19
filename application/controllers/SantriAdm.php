@@ -434,4 +434,43 @@ Waktu Daftar : ' . $data->waktu_daftar . '
 		kirim_group($key->api_key, '120363026604973091@g.us', $pesan2);
 		redirect('santriAdm');
 	}
+
+	public function sendAkun($nis)
+	{
+		// $rdrc = $cek->ket === 'baru' ? 'daftar' : 'daftar/lanjut';
+		// $cek = $this->model->santriNis($nis)->row();
+		$pass = rand(0, 999999);
+		$passOk = password_hash($pass, PASSWORD_BCRYPT);
+
+		$sn = $this->model->santriNis($nis)->row();
+		$key = $this->model->apiKey()->row();
+
+		$pesan = '*Informasi Akun Santri*
+
+*SIMPANLAH USER DAN PASSWORD BERIKUT !!!*
+*Akun Pribadi Ini Bersifat Rahasia.*
+
+Silahkan login ke https://psb.ppdwk.com/login untuk melengkapi data dan scan berkas calon santri baru  berikut : 
+
+Nama : ' . $sn->nama . '
+Alamat : ' . $sn->desa . '-' . $sn->kec . '-' . $sn->kab . '
+Lembaga tujuan : ' . $sn->lembaga . '
+Usename : *' . $sn->username . '*
+Password : *' . $pass . '*
+
+Pastikan Data yang dimasukkan adalah Valid. Semua informasi pendaftaran santri baru akan dikirim melalui nomor Whatsapp yang terdaftar di web PSB.
+Terimakasih. 
+
+Panitia 
+';
+		$data2 = [
+			'password' => $passOk
+		];
+
+		$this->model->edit('tb_santri', $data2, $nis);
+		if ($this->db->affected_rows() > 0) {
+			kirim_person($key->api_key, $sn->hp, $pesan);
+			redirect('santriAdm');
+		}
+	}
 }

@@ -100,8 +100,11 @@ class import extends CI_Controller
         $this->load->library('upload', $config);
     }
 
-    public function tarik($nis)
+    public function tarik()
     {
+        $nis = $this->input->post('nis', true);
+        $tujuan = $this->input->post('tujuan', true);
+
         $jl = date('Y-m-d');
         $g1 = '2023-01-28';
         $g2 = '2023-03-11';
@@ -129,6 +132,7 @@ class import extends CI_Controller
             'tempat' => $dts->tempat,
             'tanggal' => $dts->tanggal,
             'jkl' => $dts->jkl,
+            'lembaga' => $tujuan,
             'jln' => $dts->jln,
             'rt' => $dts->rt,
             'rw' => $dts->rw,

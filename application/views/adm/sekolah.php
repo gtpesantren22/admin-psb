@@ -184,9 +184,16 @@
                                 <td><?= $row->desa . ' - ' . $row->kec . ' - ' . $row->kab; ?></td>
                                 <td><?= $row->t_formal; ?></td>
                                 <td>
-                                    <a href="<?= base_url('import/tarik/') . $row->nis ?>"
-                                        onclick="return confirm('Yakin akan lanjutkan ke PSB ?')"
-                                        class="btn btn-success btn-sm">
+                                    <?= form_open('import/tarik/'); ?>
+                                    <input type="hidden" name="nis" value="<?= $row->nis; ?>">
+                                    <div class="form-group">
+                                        <select name="tujuan" class="form-control form-control-sm" required>
+                                            <option value=""> --pilih-- </option>
+                                            <option value="MA">MA</option>
+                                            <option value="SMK">SMK</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-success btn-sm" type="submit">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="icon icon-tabler icon-tabler-circle-check" width="24" height="24"
                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -194,7 +201,8 @@
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <circle cx="12" cy="12" r="9"></circle>
                                             <path d="M9 12l2 2l4 -4"></path>
-                                        </svg> Pilih</a>
+                                        </svg> Pilih</button>
+                                    <?= form_close(); ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

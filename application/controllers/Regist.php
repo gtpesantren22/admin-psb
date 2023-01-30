@@ -203,13 +203,16 @@ class Regist extends CI_Controller
 		$ttg = $tgn->infaq + $tgn->buku + $tgn->kartu + $tgn->kalender + $tgn->seragam_pes + $tgn->seragam_lem + $tgn->orsaba;
 
 		if ($data->gel === '1') {
-			$link = 'https://chat.whatsapp.com/L8O3TgvrpLVFqMejIMoIF3';
+			$link = 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU';
+			$tmp = array(array('url' => 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU', 'text' => 'Klik disini untuk bergabung'));
 			$jadwal = 'Penyerahan berkas dan Tes : 26-28 February 2022';
 		} else if ($data->gel === '2') {
-			$link = 'https://chat.whatsapp.com/Er4uy1eXYAg1PoOTZ9lnCp';
+			$link = 'https://chat.whatsapp.com/GAKAl21yWpJ7TXIaGem1HH';
+			$tmp = array(array('url' => 'https://chat.whatsapp.com/GAKAl21yWpJ7TXIaGem1HH', 'text' => 'Klik disini untuk bergabung'));
 			$jadwal = 'Penyerahan berkas dan Tes : 26-28 Maret 2022';
 		} else if ($data->gel === '3') {
-			$link = 'https://chat.whatsapp.com/FA5KGjmYmrxCGSdg1j7BPD';
+			$link = 'https://chat.whatsapp.com/GQgMWD7JISW5NRqAWCcA4E';
+			$tmp = array(array('url' => 'https://chat.whatsapp.com/GQgMWD7JISW5NRqAWCcA4E', 'text' => 'Klik disini untuk bergabung'));
 			$jadwal = 'Penyerahan berkas dan Tes : 28-30 Mei 2022';
 		}
 
@@ -239,7 +242,8 @@ _*Catatan :_*
 	_*- Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam, bawahan Hitam atau gelap pada saat tes*_
 	_*- Pesan ini sebgai bukti pembayaran yang sah (Harus dari WA Bendahara PSB)*_';
 
-		kirim_person($key->api_key, $data->hp, $pesan);
+		// kirim_person($key->api_key, $data->hp, $pesan);
+		kirim_tmp($key->api_key, $data->hp, $pesan, $tmp, 'https://i.postimg.cc/8c8fghZq/LOGO-WA.jpg');
 		redirect('regist/inDaftar/' . $nis);
 	}
 

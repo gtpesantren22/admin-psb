@@ -101,7 +101,7 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
-$db2['santri'] = array(
+$db['santri'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 

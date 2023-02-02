@@ -8,6 +8,7 @@ class AdminModel extends CI_Model
     {
         parent::__construct();
         $this->table = 'sekolah';
+        $this->db2 = $this->load->database('santri', TRUE);
     }
 
     public function add($data)
@@ -104,10 +105,10 @@ class AdminModel extends CI_Model
 
     public function santriLama()
     {
-        $this->db2->from('tb_satri');
+        $this->db2->from('tb_santri');
         $this->db2->where('t_formal', 'MTs');
-        $this->db2->where('t_formal', 'SMP');
+        $this->db2->or_where('t_formal', 'SMP');
         $this->db2->where('aktif', 'Y');
-        return $this->db->get();
+        return $this->db2->get();
     }
 }

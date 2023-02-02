@@ -122,6 +122,8 @@ class import extends CI_Controller
         }
 
         $dts = $this->user->getBy('tb_lama', 'nis', $nis)->row();
+        $dtada = $this->user->getBy('tb_santri', 'nis', $nis)->num_rows();
+
         $data = [
             'id_santri' => $dts->id_santri,
             'nis' => $dts->nis,
@@ -160,6 +162,10 @@ class import extends CI_Controller
             'ket' => 'lama'
         ];
 
+        if ($dtada > 0) {
+            $this->session->set_flashdata('error', 'Maaf. Data sudah ditarik');
+            redirect('import');
+        }else{
         $this->user->input('tb_santri', $data);
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('ok', 'Data Berhasil Ditarik');
@@ -168,5 +174,6 @@ class import extends CI_Controller
             $this->session->set_flashdata('error', 'Upload Gagal');
             redirect('import');
         }
+    }
     }
 }

@@ -24,7 +24,7 @@ class import extends CI_Controller
         $data['judul'] = 'import';
         $data['user'] = $this->Auth_model->current_user();
         $data['jumlah'] = $this->user->get_num_rows();
-        $data['lama'] = $this->user->lama()->result();
+        $data['lama'] = $this->user->santriLama()->result();
 
         $this->load->view('adm/head', $data);
         $this->load->view('adm/sekolah', $data);

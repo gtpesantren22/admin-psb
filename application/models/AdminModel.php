@@ -101,4 +101,13 @@ class AdminModel extends CI_Model
     {
         $this->db->insert($tbl, $data);
     }
+
+    public function santriLama()
+    {
+        $this->db2->from('tb_satri');
+        $this->db2->where('t_formal', 'MTs');
+        $this->db2->where('t_formal', 'SMP');
+        $this->db2->where('aktif', 'Y');
+        return $this->db->get();
+    }
 }

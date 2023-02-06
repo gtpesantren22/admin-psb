@@ -109,4 +109,12 @@ class RegistModel extends CI_Model
         $this->db->where('ket', $ket);
         return $this->db->get();
     }
+
+    function getLanjuRegist()
+    {
+        $this->db->from('bp_daftar');
+        $this->db->join('tb_santri', 'ON. bp_daftar.nis=tb_santri.nis');
+        $this->db->where('tb_santri.ket', 'lama');
+        return $this->db->get();
+    }
 }

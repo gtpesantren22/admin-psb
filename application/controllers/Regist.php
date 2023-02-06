@@ -165,7 +165,7 @@ class Regist extends CI_Controller
 	public function lanjut()
 	{
 		$data['baru'] = $this->model->lama()->result();
-		$data['nobp'] = $this->model->noBp()->result();
+		$data['nobp'] = $this->model->getLanjuRegist()->result();
 
 		$data['judul'] = 'regist';
 		$data['user'] = $this->Auth_model->current_user();

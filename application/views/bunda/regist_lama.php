@@ -13,12 +13,9 @@
             </div>
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
-                    <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
-                        data-bs-target="#modal-large">
+                    <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-large">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                            stroke-linejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <line x1="12" y1="5" x2="12" y2="19" />
                             <line x1="5" y1="12" x2="19" y2="12" />
@@ -60,17 +57,17 @@
                                     foreach ($baru as $row) :
                                         $byr = $this->db->query("SELECT SUM(nominal) AS jml FROM regist WHERE nis = $row->nis")->row();
                                     ?>
-                                    <tr>
-                                        <td><?= $no++; ?></td>
-                                        <td><?= $row->nama; ?></td>
-                                        <td><?= $row->lembaga; ?></td>
-                                        <td><?= rupiah($row->infaq + $row->buku + $row->kartu + $row->kalender + $row->seragam_pes + $row->seragam_lem + $row->orsaba); ?>
-                                        </td>
-                                        <td><?= rupiah($byr->jml); ?></td>
-                                        <td><?= rupiah(($row->infaq + $row->buku + $row->kartu + $row->kalender + $row->seragam_pes + $row->seragam_lem + $row->orsaba) - $byr->jml); ?>
-                                        </td>
-                                        <td>
-                                            <!-- <a href="<?= base_url('daftar/del/') . $row->id_tgn ?>"
+                                        <tr>
+                                            <td><?= $no++; ?></td>
+                                            <td><?= $row->nama; ?></td>
+                                            <td><?= $row->lembaga; ?></td>
+                                            <td><?= rupiah($row->infaq + $row->buku + $row->kartu + $row->kalender + $row->seragam_pes + $row->seragam_lem + $row->orsaba); ?>
+                                            </td>
+                                            <td><?= rupiah($byr->jml); ?></td>
+                                            <td><?= rupiah(($row->infaq + $row->buku + $row->kartu + $row->kalender + $row->seragam_pes + $row->seragam_lem + $row->orsaba) - $byr->jml); ?>
+                                            </td>
+                                            <td>
+                                                <!-- <a href="<?= base_url('daftar/del/') . $row->id_tgn ?>"
                                                 class="btn btn-danger btn-sm"
                                                 onclick="return confirm('Yakin akan dihapus ?')">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -84,23 +81,17 @@
                                                     <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
                                                     <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
                                                 </svg> Del</a> -->
-                                            <a href="<?= base_url('regist/inDaftar/') . $row->nis ?>"
-                                                class="btn btn-warning btn-sm">
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-edit" width="24" height="24"
-                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <path
-                                                        d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1">
-                                                    </path>
-                                                    <path
-                                                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
-                                                    </path>
-                                                    <path d="M16 5l3 3"></path>
-                                                </svg> Edit</a>
-                                        </td>
-                                    </tr>
+                                                <a href="<?= base_url('regist/inDaftar/') . $row->nis ?>" class="btn btn-warning btn-sm">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1">
+                                                        </path>
+                                                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z">
+                                                        </path>
+                                                        <path d="M16 5l3 3"></path>
+                                                    </svg> Edit</a>
+                                            </td>
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
@@ -114,7 +105,7 @@
 </div>
 
 <div class="modal modal-blur fade" id="modal-large" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Tambah Pembayaran Baru</h5>
@@ -137,24 +128,20 @@
                             $no = 1;
                             foreach ($nobp as $row) :
                             ?>
-                            <tr>
-                                <td><?= $no++; ?></td>
-                                <td><?= $row->nama; ?></td>
-                                <td><?= $row->desa . ' - ' . $row->kec . ' - ' . $row->kab; ?></td>
-                                <td><?= $row->lembaga; ?></td>
-                                <td>
-                                    <a href="<?= base_url('regist/addDaftar/') . $row->nis ?>"
-                                        class="btn btn-success btn-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-circle-check" width="24" height="24"
-                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                            <circle cx="12" cy="12" r="9"></circle>
-                                            <path d="M9 12l2 2l4 -4"></path>
-                                        </svg> Pilih</a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td><?= $no++; ?></td>
+                                    <td><?= $row->nama; ?></td>
+                                    <td><?= $row->desa . ' - ' . $row->kec . ' - ' . $row->kab; ?></td>
+                                    <td><?= $row->lembaga; ?></td>
+                                    <td>
+                                        <a href="<?= base_url('regist/addDaftar/') . $row->nis ?>" class="btn btn-success btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <circle cx="12" cy="12" r="9"></circle>
+                                                <path d="M9 12l2 2l4 -4"></path>
+                                            </svg> Pilih</a>
+                                    </td>
+                                </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>

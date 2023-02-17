@@ -56,4 +56,15 @@ class BundaModel extends CI_Model
 		$this->db->where('MONTH(tgl_bayar)', $bl);
 		return $this->db->get();
 	}
+
+	public function tambah($table, $data)
+	{
+		$this->db->insert($table, $data);
+	}
+
+	public function del($table, $where, $dtwhere)
+	{
+		$this->db->where($where, $dtwhere);
+		$this->db->delete($table);
+	}
 }

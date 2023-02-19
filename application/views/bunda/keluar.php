@@ -32,7 +32,7 @@
 <div class="page-body">
     <div class="container-xl">
         <div class="row row-deck row-cards">
-            <div class="col-12">
+            <div class="col-8">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Data Pembayaran</h3>
@@ -83,6 +83,38 @@
                                         <th colspan="4"><?= rupiah($ttl->ttl) ?></th>
                                     </tr>
                                 </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Rekap Pengeluaran</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table card-table table-vcenter text-nowrap" id="">
+                                <tr>
+                                    <th></th>
+                                    <th>Pemasukan</th>
+                                    <th>Pengeluaran</th>
+                                    <th>Saldo</th>
+                                </tr>
+                                <tr>
+                                    <td>Pendaftaran</td>
+                                    <td><?= rupiah($bp->nominal) ?></td>
+                                    <td><?= rupiah($bpPakai->nominal) ?></td>
+                                    <td><?= rupiah($bp->nominal - $bpPakai->nominal) ?></td>
+                                </tr>
+                                <tr>
+                                    <td>Registrasi</td>
+                                    <td><?= rupiah($regist->nominal) ?></td>
+                                    <td><?= rupiah($registPakai->nominal) ?></td>
+                                    <td><?= rupiah($regist->nominal - $registPakai->nominal) ?></td>
+                                </tr>
                             </table>
                         </div>
                     </div>

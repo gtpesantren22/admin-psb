@@ -19,6 +19,14 @@ class Trans extends CI_Controller
     {
         $data['judul'] = 'trans';
         $data['user'] = $this->Auth_model->current_user();
+
+        $data['regist'] = $this->model->registSum()->row();
+        $data['bp'] = $this->model->bpSum()->row();
+
+        $data['registPakai'] = $this->model->registPakai()->row();
+        $data['bpPakai'] = $this->model->bpPakai()->row();
+
+
         $this->load->view('bunda/head', $data);
         $this->load->view('bunda/keluar', $data);
         $this->load->view('bunda/foot');

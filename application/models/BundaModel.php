@@ -67,4 +67,20 @@ class BundaModel extends CI_Model
 		$this->db->where($where, $dtwhere);
 		$this->db->delete($table);
 	}
+
+	function registPakai()
+	{
+		$this->db->select_sum('nominal');
+		$this->db->from('keluar');
+		$this->db->where('sumber', 'regist');
+		return $this->db->get();
+	}
+
+	function bpPakai()
+	{
+		$this->db->select_sum('nominal');
+		$this->db->from('keluar');
+		$this->db->where('sumber', 'daftar');
+		return $this->db->get();
+	}
 }

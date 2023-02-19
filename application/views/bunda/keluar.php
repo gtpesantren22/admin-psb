@@ -115,6 +115,12 @@
                                     <td><?= rupiah($registPakai->nominal) ?></td>
                                     <td><?= rupiah($regist->nominal - $registPakai->nominal) ?></td>
                                 </tr>
+                                <tr>
+                                    <th>TOTAL</th>
+                                    <th><?= rupiah($regist->nominal + $bp->nominal) ?></th>
+                                    <th><?= rupiah($registPakai->nominal + $bpPakai->nominal) ?></th>
+                                    <th><?= rupiah(($regist->nominal - $registPakai->nominal) + ($bp->nominal - $bpPakai->nominal)) ?></th>
+                                </tr>
                             </table>
                         </div>
                     </div>

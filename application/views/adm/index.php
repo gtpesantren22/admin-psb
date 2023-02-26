@@ -172,7 +172,68 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12">
+            <div class="col-lg-4">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td class="text-center" colspan="4">Update : <?= tanggalIndo(date('Y-m-d')) ?></td>
+                            </tr>
+                            <tr style="background-color: darkcyan; color: white;">
+                                <th>Lembaga</th>
+                                <th>Putra</th>
+                                <th>Putri</th>
+                                <th>TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background-color: #021c1e; color: white;">
+                                <td>RA</td>
+                                <td><?= $RAPa ?></td>
+                                <td><?= $RAPi ?></td>
+                                <td><?= $RAPa + $RAPi ?></td>
+                            </tr>
+                            <tr style="background-color: #004445; color: white;">
+                                <td>MI</td>
+                                <td><?= $MIPa ?></td>
+                                <td><?= $MIPi ?></td>
+                                <td><?= $MIPa + $MIPi ?></td>
+                            </tr>
+                            <tr style="background-color: #2c7873; color: white;">
+                                <td>MTs</td>
+                                <td><?= $MTsPa ?></td>
+                                <td><?= $MTsPi ?></td>
+                                <td><?= $MTsPa + $MTsPi ?></td>
+                            </tr>
+                            <tr style="background-color: #6fb98f; color: white;">
+                                <td>SMP</td>
+                                <td><?= $SMPPa ?></td>
+                                <td><?= $SMPPi ?></td>
+                                <td><?= $SMPPa + $SMPPi ?></td>
+                            </tr>
+                            <tr style="background-color: #2e4600; color: white;">
+                                <td>MA</td>
+                                <td><?= $MAPa ?></td>
+                                <td><?= $MAPi ?></td>
+                                <td><?= $MAPa + $MAPi ?></td>
+                            </tr>
+                            <tr style="background-color: #486b00; color: white;">
+                                <td>SMK</td>
+                                <td><?= $SMKPa ?></td>
+                                <td><?= $SMKPi ?></td>
+                                <td><?= $SMKPa + $SMKPi ?></td>
+                            </tr>
+                            <tr style="background-color: yellow;">
+                                <td>TOTAL</td>
+                                <td><?= $totalPa ?></td>
+                                <td><?= $totalPi ?></td>
+                                <td><?= $total ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">Traffic summary</h3>

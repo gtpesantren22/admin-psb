@@ -44,9 +44,9 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal</th>
-                                        <th>Nominal</th>
                                         <th>Ket</th>
-                                        <th>PJ</th>
+                                        <th>Nominal</th>
+                                        <th>Divisi</th>
                                         <th>#</th>
                                     </tr>
                                 </thead>
@@ -62,7 +62,7 @@
                                             <td><?= date('d M Y', strtotime($row->tanggal)); ?></td>
                                             <td><?= $row->ket; ?></td>
                                             <td><?= rupiah($row->nominal); ?></td>
-                                            <td><?= $row->pj; ?></td>
+                                            <td><?= $row->divisi; ?></td>
                                             <td>
                                                 <a href="<?= base_url('trans/delKeluar/') . $row->id_keluar ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin akan dihapus ?')">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -72,7 +72,15 @@
                                                         <line x1="14" y1="11" x2="14" y2="17"></line>
                                                         <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
                                                         <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                                    </svg> Del</a>
+                                                    </svg> Del
+                                                </a>
+                                                <a href="<?= base_url('trans/editKeluar/') . $row->id_keluar ?>" class="btn btn-warning btn-sm">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
+                                                        <path d="M13.5 6.5l4 4"></path>
+                                                    </svg> Edit
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -165,6 +173,21 @@
                             <option value=""> -pilih- </option>
                             <option value="daftar">Pendaftaran</option>
                             <option value="regist">Registrasi</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label required">Divisi</label>
+                    <div>
+                        <select name="divisi" id="" class="form-control" required>
+                            <option value=""> -pilih- </option>
+                            <option value="KESEKRETARIATAN">KESEKRETARIATAN</option>
+                            <option value="BENDAHARA">BENDAHARA</option>
+                            <option value="PUBLIKASI">PUBLIKASI</option>
+                            <option value="PENDAFTARAN">PENDAFTARAN</option>
+                            <option value="MOSBA">MOSBA</option>
+                            <option value="IT & DATA">IT & DATA</option>
+                            <option value="TURBA">TURBA</option>
                         </select>
                     </div>
                 </div>

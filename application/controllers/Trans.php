@@ -40,6 +40,7 @@ class Trans extends CI_Controller
             'ket' => $this->input->post('ket', true),
             'tanggal' => $this->input->post('tanggal', true),
             'sumber' => $this->input->post('sumber', true),
+            'divisi' => $this->input->post('divisi', true),
             'pj' => $this->input->post('pj', true)
         ];
 
@@ -61,6 +62,40 @@ class Trans extends CI_Controller
             redirect('trans/keluar');
         } else {
             $this->session->set_flashdata('error', 'Pengeluaran Tidak Berhasil Dihapus');
+            redirect('trans/keluar');
+        }
+    }
+
+    public function editKeluar($id)
+    {
+        $data['judul'] = 'trans';
+        $data['user'] = $this->Auth_model->current_user();
+        $data['data'] = $this->model->getBy('keluar', 'id_keluar', $id)->row();
+
+        $this->load->view('bunda/head', $data);
+        $this->load->view('bunda/editKeluar', $data);
+        $this->load->view('bunda/foot');
+    }
+
+    public function updaetKeluar()
+    {
+        $id_keluar = $this->input->post('id', true);
+
+        $data = [
+            'nominal' => rmRp($this->input->post('nominal', true)),
+            'ket' => $this->input->post('ket', true),
+            'tanggal' => $this->input->post('tanggal', true),
+            'sumber' => $this->input->post('sumber', true),
+            'divisi' => $this->input->post('divisi', true),
+            'pj' => $this->input->post('pj', true)
+        ];
+
+        $this->model->edit('keluar', 'id_keluar', $id_keluar, $data);
+        if ($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('ok', 'Pengeluaran Berhasil Diupdate');
+            redirect('trans/keluar');
+        } else {
+            $this->session->set_flashdata('error', 'Pengeluaran Tidak Berhasil Diupdate');
             redirect('trans/keluar');
         }
     }

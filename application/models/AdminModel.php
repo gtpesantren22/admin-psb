@@ -111,4 +111,11 @@ class AdminModel extends CI_Model
         $this->db2->where('aktif', 'Y');
         return $this->db2->get();
     }
+
+    public function getBroad($ket, $lembaga, $jkl, $gel)
+    {
+        return $this->db->query("SELECT nama,hp FROM tb_santri WHERE ket = $ket AND lembaga = $lembaga AND jkl = $jkl AND gel = $gel ");
+        // $qr = "SELECT * FROM tb_santri WHERE ket = $ket AND lembaga = $lembaga AND jkl = $jkl AND gel = $gel ";
+        // return $qr;
+    }
 }

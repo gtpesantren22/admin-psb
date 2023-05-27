@@ -165,15 +165,35 @@ class import extends CI_Controller
         if ($dtada > 0) {
             $this->session->set_flashdata('error', 'Maaf. Data sudah ditarik');
             redirect('import');
-        }else{
-        $this->user->input('tb_santri', $data);
-        if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('ok', 'Data Berhasil Ditarik');
-            redirect('import');
         } else {
-            $this->session->set_flashdata('error', 'Upload Gagal');
-            redirect('import');
+            $this->user->input('tb_santri', $data);
+            if ($this->db->affected_rows() > 0) {
+                $this->session->set_flashdata('ok', 'Data Berhasil Ditarik');
+                redirect('import');
+            } else {
+                $this->session->set_flashdata('error', 'Upload Gagal');
+                redirect('import');
+            }
         }
     }
+
+    public function pesanBroad()
+    {
+        $this->input->post('ket', true) === 'semua' ? $ket = " 'baru' OR ket = 'lama' " : $ket = $this->input->post('ket', true);
+        $this->input->post('lembaga', true) === 'semua' ? $lembaga = " 'MTs' OR lembaga = 'SMP' OR lembaga = 'MA' OR lembaga = 'SMK'  " : $lembaga = $this->input->post('lembaga', true);
+        $this->input->post('jkl', true) === 'semua' ? $jkl = " 'Laki-laki' OR jkl = 'Perempuan' " : $jkl = $this->input->post('jkl', true);
+        $this->input->post('gel', true) === 'semua' ? $gel = " 1 OR gel = 2 " : $gel = $this->input->post('gel', true);
+        $pesan =  $this->input->post('pesan', true);
+
+        $data = $this->user->getBroad($ket, $lembaga, $jkl, $gel)->result();
+        // var_dump($data);
+        foreach ($data as $ar) {
+            echo "
+<ul>
+<li>" . $ar->nama . "</li>
+<li>" . $ar->hp . "</li>
+</ul>
+";
+        }
     }
 }

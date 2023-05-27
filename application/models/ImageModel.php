@@ -41,4 +41,14 @@ class ImageModel extends CI_Model
 	{
 		$this->db->insert($tbl, ['nis' => $nis]);
 	}
+
+	public function getKTS($gel)
+	{
+		$this->db->from('foto_file');
+		$this->db->join('tb_santri', 'ON foto_file.nis=tb_santri.nis');
+		$this->db->where('tb_santri.gel', $gel);
+		$this->db->where('tb_santri.ket', 'baru');
+		$this->db->order_by('tb_santri.jkl', 'ASC');
+		return $this->db->get();
+	}
 }

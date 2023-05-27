@@ -59,9 +59,9 @@
                                     ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
-                                            <td><?= $row->tanggal; ?></td>
-                                            <td><?= rupiah($row->nominal); ?></td>
+                                            <td><?= date('d M Y', strtotime($row->tanggal)); ?></td>
                                             <td><?= $row->ket; ?></td>
+                                            <td><?= rupiah($row->nominal); ?></td>
                                             <td><?= $row->pj; ?></td>
                                             <td>
                                                 <a href="<?= base_url('trans/delKeluar/') . $row->id_keluar ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin akan dihapus ?')">

@@ -76,4 +76,10 @@ class Image extends CI_Controller
 			}
 		}
 	}
+
+	public function kts($gel)
+	{
+		$data['kts'] = $this->model->getKTS($gel)->result();
+		$this->load->view('adm/kts', $data);
+	}
 }

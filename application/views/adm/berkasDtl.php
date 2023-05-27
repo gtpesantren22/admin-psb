@@ -32,43 +32,35 @@
                                         <div class="mb-3">
                                             <label class="form-label required">Akta Kelahiran</label>
                                             <?php if ($data->akta != '') { ?>
-                                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#akta"><i class="ti ti-file-upload"></i> Upload
-                                                Ulang</button>
-                                            <a href="<?= base_url('berkas/downakta/' . $data->nis) ?>"
-                                                class="btn btn-success"><i class="ti ti-file-download"></i> Download</a>
-                                            <button class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#viewakta"><i class="ti ti-file-search"></i>
-                                                Lihat</button>
-                                            <br>
-                                            <small class="text-italic">* Upload max 10 Mb</small>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#akta"><i class="ti ti-file-upload"></i> Upload
+                                                    Ulang</button>
+                                                <a href="<?= base_url('berkas/downakta/' . $data->nis) ?>" class="btn btn-success"><i class="ti ti-file-download"></i> Download</a>
+                                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#viewakta"><i class="ti ti-file-search"></i>
+                                                    Lihat</button>
+                                                <br>
+                                                <small class="text-italic">* Upload max 10 Mb</small>
                                             <?php } else { ?>
-                                            <div class="badge bg-danger">Belum Upload</div>
-                                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#akta"><i class="ti ti-file-upload"></i> Upload
-                                                Berkas</button><br>
-                                            <small class="text-italic">* Upload max 10 Mb</small>
+                                                <div class="badge bg-danger">Belum Upload</div>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#akta"><i class="ti ti-file-upload"></i> Upload
+                                                    Berkas</button><br>
+                                                <small class="text-italic">* Upload max 10 Mb</small>
                                             <?php } ?>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label required">Kartu Keluarga (KK)</label>
                                             <?php if ($data->kk != '') { ?>
-                                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#kk"><i class="ti ti-file-upload"></i> Upload
-                                                Ulang</button>
-                                            <a href="<?= base_url('berkas/downKK/' . $data->nis) ?>"
-                                                class="btn btn-success"><i class="ti ti-file-download"></i> Download</a>
-                                            <button class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#viewkk"><i class="ti ti-file-search"></i>
-                                                Lihat</button>
-                                            <br>
-                                            <small class="text-italic">* Upload max 10 Mb</small>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kk"><i class="ti ti-file-upload"></i> Upload
+                                                    Ulang</button>
+                                                <a href="<?= base_url('berkas/downKK/' . $data->nis) ?>" class="btn btn-success"><i class="ti ti-file-download"></i> Download</a>
+                                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#viewkk"><i class="ti ti-file-search"></i>
+                                                    Lihat</button>
+                                                <br>
+                                                <small class="text-italic">* Upload max 10 Mb</small>
                                             <?php } else { ?>
-                                            <div class="badge bg-danger">Belum Upload</div>
-                                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#kk"><i class="ti ti-file-upload"></i> Upload
-                                                Berkas</button><br>
-                                            <small class="text-italic">* Upload max 10 Mb</small>
+                                                <div class="badge bg-danger">Belum Upload</div>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kk"><i class="ti ti-file-upload"></i> Upload
+                                                    Berkas</button><br>
+                                                <small class="text-italic">* Upload max 10 Mb</small>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -80,43 +72,35 @@
                                         <div class="mb-3">
                                             <label class="form-label required">SKL</label>
                                             <?php if ($data->skl != '') { ?>
-                                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#skl"><i class="ti ti-file-upload"></i> Upload
-                                                Ulang</button>
-                                            <a href="<?= base_url('berkas/downskl/' . $data->nis) ?>"
-                                                class="btn btn-success"><i class="ti ti-file-download"></i> Download</a>
-                                            <button class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#viewskl"><i class="ti ti-file-search"></i>
-                                                Lihat</button>
-                                            <br>
-                                            <small class="text-italic">* Upload max 10 Mb</small>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#skl"><i class="ti ti-file-upload"></i> Upload
+                                                    Ulang</button>
+                                                <a href="<?= base_url('berkas/downskl/' . $data->nis) ?>" class="btn btn-success"><i class="ti ti-file-download"></i> Download</a>
+                                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#viewskl"><i class="ti ti-file-search"></i>
+                                                    Lihat</button>
+                                                <br>
+                                                <small class="text-italic">* Upload max 10 Mb</small>
                                             <?php } else { ?>
-                                            <div class="badge bg-danger">Belum Upload</div>
-                                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#skl"><i class="ti ti-file-upload"></i> Upload
-                                                Berkas</button><br>
-                                            <small class="text-italic">* Upload max 10 Mb</small>
+                                                <div class="badge bg-danger">Belum Upload</div>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#skl"><i class="ti ti-file-upload"></i> Upload
+                                                    Berkas</button><br>
+                                                <small class="text-italic">* Upload max 10 Mb</small>
                                             <?php } ?>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label required">Ijazah</label>
                                             <?php if ($data->ijazah != '') { ?>
-                                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#ijazah"><i class="ti ti-file-upload"></i> Upload
-                                                Ulang</button>
-                                            <a href="<?= base_url('berkas/downijazah/' . $data->nis) ?>"
-                                                class="btn btn-success"><i class="ti ti-file-download"></i> Download</a>
-                                            <button class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#viewijazah"><i class="ti ti-file-search"></i>
-                                                Lihat</button>
-                                            <br>
-                                            <small class="text-italic">* Upload max 10 Mb</small>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ijazah"><i class="ti ti-file-upload"></i> Upload
+                                                    Ulang</button>
+                                                <a href="<?= base_url('berkas/downijazah/' . $data->nis) ?>" class="btn btn-success"><i class="ti ti-file-download"></i> Download</a>
+                                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#viewijazah"><i class="ti ti-file-search"></i>
+                                                    Lihat</button>
+                                                <br>
+                                                <small class="text-italic">* Upload max 10 Mb</small>
                                             <?php } else { ?>
-                                            <div class="badge bg-danger">Belum Upload</div>
-                                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#ijazah"><i class="ti ti-file-upload"></i> Upload
-                                                Berkas</button><br>
-                                            <small class="text-italic">* Upload max 10 Mb</small>
+                                                <div class="badge bg-danger">Belum Upload</div>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ijazah"><i class="ti ti-file-upload"></i> Upload
+                                                    Berkas</button><br>
+                                                <small class="text-italic">* Upload max 10 Mb</small>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -128,64 +112,52 @@
                                         <div class="mb-3">
                                             <label class="form-label required">KTP Ayah</label>
                                             <?php if ($data->ktp_ayah != '') { ?>
-                                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#ktp_ayah"><i class="ti ti-file-upload"></i> Upload
-                                                Ulang</button>
-                                            <a href="<?= base_url('berkas/downktp_ayah/' . $data->nis) ?>"
-                                                class="btn btn-success"><i class="ti ti-file-download"></i> Download</a>
-                                            <button class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#viewktp_ayah"><i class="ti ti-file-search"></i>
-                                                Lihat</button>
-                                            <br>
-                                            <small class="text-italic">* Upload max 10 Mb</small>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ktp_ayah"><i class="ti ti-file-upload"></i> Upload
+                                                    Ulang</button>
+                                                <a href="<?= base_url('berkas/downktp_ayah/' . $data->nis) ?>" class="btn btn-success"><i class="ti ti-file-download"></i> Download</a>
+                                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#viewktp_ayah"><i class="ti ti-file-search"></i>
+                                                    Lihat</button>
+                                                <br>
+                                                <small class="text-italic">* Upload max 10 Mb</small>
                                             <?php } else { ?>
-                                            <div class="badge bg-danger">Belum Upload</div>
-                                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#ktp_ayah"><i class="ti ti-file-upload"></i> Upload
-                                                Berkas</button><br>
-                                            <small class="text-italic">* Upload max 10 Mb</small>
+                                                <div class="badge bg-danger">Belum Upload</div>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ktp_ayah"><i class="ti ti-file-upload"></i> Upload
+                                                    Berkas</button><br>
+                                                <small class="text-italic">* Upload max 10 Mb</small>
                                             <?php } ?>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label required">KTP Ibu</label>
                                             <?php if ($data->ktp_ibu != '') { ?>
-                                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#ktp_ibu"><i class="ti ti-file-upload"></i> Upload
-                                                Ulang</button>
-                                            <a href="<?= base_url('berkas/downktp_ibu/' . $data->nis) ?>"
-                                                class="btn btn-success"><i class="ti ti-file-download"></i> Download</a>
-                                            <button class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#viewktp_ibu"><i class="ti ti-file-search"></i>
-                                                Lihat</button>
-                                            <br>
-                                            <small class="text-italic">* Upload max 10 Mb</small>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ktp_ibu"><i class="ti ti-file-upload"></i> Upload
+                                                    Ulang</button>
+                                                <a href="<?= base_url('berkas/downktp_ibu/' . $data->nis) ?>" class="btn btn-success"><i class="ti ti-file-download"></i> Download</a>
+                                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#viewktp_ibu"><i class="ti ti-file-search"></i>
+                                                    Lihat</button>
+                                                <br>
+                                                <small class="text-italic">* Upload max 10 Mb</small>
                                             <?php } else { ?>
-                                            <div class="badge bg-danger">Belum Upload</div>
-                                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#ktp_ibu"><i class="ti ti-file-upload"></i> Upload
-                                                Berkas</button><br>
-                                            <small class="text-italic">* Upload max 10 Mb</small>
+                                                <div class="badge bg-danger">Belum Upload</div>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ktp_ibu"><i class="ti ti-file-upload"></i> Upload
+                                                    Berkas</button><br>
+                                                <small class="text-italic">* Upload max 10 Mb</small>
                                             <?php } ?>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label required">Kartu KIP</label>
                                             <?php if ($data->kip != '') { ?>
-                                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#kip"><i class="ti ti-file-upload"></i> Upload
-                                                Ulang</button>
-                                            <a href="<?= base_url('berkas/downkip/' . $data->nis) ?>"
-                                                class="btn btn-success"><i class="ti ti-file-download"></i> Download</a>
-                                            <button class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#viewkip"><i class="ti ti-file-search"></i>
-                                                Lihat</button>
-                                            <br>
-                                            <small class="text-italic">* Upload max 10 Mb</small>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kip"><i class="ti ti-file-upload"></i> Upload
+                                                    Ulang</button>
+                                                <a href="<?= base_url('berkas/downkip/' . $data->nis) ?>" class="btn btn-success"><i class="ti ti-file-download"></i> Download</a>
+                                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#viewkip"><i class="ti ti-file-search"></i>
+                                                    Lihat</button>
+                                                <br>
+                                                <small class="text-italic">* Upload max 10 Mb</small>
                                             <?php } else { ?>
-                                            <div class="badge bg-danger">Belum Upload</div>
-                                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#kip"><i class="ti ti-file-upload"></i> Upload
-                                                Berkas</button><br>
-                                            <small class="text-italic">* Upload max 10 Mb</small>
+                                                <div class="badge bg-danger">Belum Upload</div>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kip"><i class="ti ti-file-upload"></i> Upload
+                                                    Berkas</button><br>
+                                                <small class="text-italic">* Upload max 10 Mb</small>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -231,8 +203,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->akta ?>" width="100%" height="500"
-                    style="border:none;"></iframe>
+                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->akta ?>" width="100%" height="500" style="border:none;"></iframe>
             </div>
             <div class="modal-footer">
             </div>
@@ -272,8 +243,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->kk ?>" width="100%" height="500"
-                    style="border:none;"></iframe>
+                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->kk ?>" width="100%" height="500" style="border:none;"></iframe>
             </div>
             <div class="modal-footer">
             </div>
@@ -313,8 +283,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->ktp_ayah ?>" width="100%" height="500"
-                    style="border:none;"></iframe>
+                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->ktp_ayah ?>" width="100%" height="500" style="border:none;"></iframe>
             </div>
             <div class="modal-footer">
             </div>
@@ -354,8 +323,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->ktp_ibu ?>" width="100%" height="500"
-                    style="border:none;"></iframe>
+                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->ktp_ibu ?>" width="100%" height="500" style="border:none;"></iframe>
             </div>
             <div class="modal-footer">
             </div>
@@ -395,8 +363,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->skl ?>" width="100%" height="500"
-                    style="border:none;"></iframe>
+                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->skl ?>" width="100%" height="500" style="border:none;"></iframe>
             </div>
             <div class="modal-footer">
             </div>
@@ -436,8 +403,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->ijazah ?>" width="100%" height="500"
-                    style="border:none;"></iframe>
+                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->ijazah ?>" width="100%" height="500" style="border:none;"></iframe>
             </div>
             <div class="modal-footer">
             </div>
@@ -477,8 +443,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->kip ?>" width="100%" height="500"
-                    style="border:none;"></iframe>
+                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->kip ?>" width="100%" height="500" style="border:none;"></iframe>
             </div>
             <div class="modal-footer">
             </div>

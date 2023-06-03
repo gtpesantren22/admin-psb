@@ -62,28 +62,28 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <?php
-                $no = 1; // Untuk penomoran tabel, di awal set dengan 1
-                foreach ($siswa as $data) { // Lakukan looping pada variabel siswa
-                    $tglA = $data->a_tanggal == '' ? '00-0-0000' : $data->a_tanggal;
-                    $tglI = $data->i_tanggal == '' ? '00-0-0000' : $data->i_tanggal;
+            <?php
+            $no = 1; // Untuk penomoran tabel, di awal set dengan 1
+            foreach ($siswa as $data) { // Lakukan looping pada variabel siswa
+                $tglA = $data->a_tanggal == '' ? '00-0-0000' : $data->a_tanggal;
+                $tglI = $data->i_tanggal == '' ? '00-0-0000' : $data->i_tanggal;
 
-                    $split = explode('-', $data->tanggal);
-                    $tgl = $split[0];
-                    $bln =  $split[1];
-                    $thn = $split[2];
+                $split = explode('-', $data->tanggal);
+                $tgl = $split[0];
+                $bln =  $split[1];
+                $thn = $split[2];
 
-                    $splitA = explode('-', $tglA);
-                    $tgl_a = $splitA[0];
-                    $bln_a =  $splitA[1];
-                    $thn_a = $splitA[2];
+                $splitA = explode('-', $tglA);
+                $tgl_a = $splitA[0];
+                $bln_a =  $splitA[1];
+                $thn_a = $splitA[2];
 
-                    $spliti = explode('-', $tglI);
-                    $tgl_i = $spliti[0];
-                    $bln_i = $spliti[1];
-                    $thn_i = $spliti[2];
-                ?>
+                $spliti = explode('-', $tglI);
+                $tgl_i = $spliti[0];
+                $bln_i = $spliti[1];
+                $thn_i = $spliti[2];
+            ?>
+                <tr>
                     <td><?= $no ?></td>
                     <td><?= $data->nama ?></td>
                     <td><?= $data->jkl ?></td>
@@ -97,9 +97,9 @@
                     <td><?= $data->prov ?></td>
                     <td><?= $data->kd_pos ?></td>
                     <td><?= $data->stts ?></td>
-                <?php $no++;
-                } ?>
-            </tr>
+                </tr>
+            <?php $no++;
+            } ?>
         </tbody>
     </table>
 </body>

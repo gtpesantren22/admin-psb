@@ -267,7 +267,7 @@ class Export extends CI_Controller
 		// Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
 		if ($lmb === 'all') {
 			$siswa =  $this->model->baru()->result();
-		}else {
+		} else {
 			$siswa =  $this->model->baruLmb($lmb)->result();
 		}
 
@@ -459,5 +459,14 @@ class Export extends CI_Controller
 		$this->pdf->setPaper('legal', 'landscape');
 		$this->pdf->filename = "laporan-data-siswa.pdf";
 		$this->pdf->load_view('adm/exBaruPDF', $data);
+	}
+
+	public function lamaPDF()
+	{
+		$data['siswa'] = $this->model->lama()->result();
+		$this->load->library('pdf');
+		$this->pdf->setPaper('legal', 'landscape');
+		$this->pdf->filename = "laporan-data-siswa-lama.pdf";
+		$this->pdf->load_view('adm/exLamaPDF', $data);
 	}
 }

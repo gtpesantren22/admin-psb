@@ -14,6 +14,7 @@ class SantriModel extends CI_Model
     {
         $this->db->where('ket', 'lama');
         $this->db->from('tb_santri');
+        $this->db->order_by('nama', 'ASC');
         return $this->db->get();
     }
 

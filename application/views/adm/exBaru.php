@@ -145,6 +145,33 @@
                             </table>
                         </div> -->
                     </div>
+
+                    <!-- Lama -->
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Export Semua Data - Lanjutan :
+                            <!-- <a href="<?= base_url('export/baruXLS/all') ?>" class="btn btn-success" target="_blnak"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-spreadsheet" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                    </path>
+                                    <path d="M8 11h8v7h-8z"></path>
+                                    <path d="M8 15h8"></path>
+                                    <path d="M11 11v7"></path>
+                                </svg> Export ke Excel
+                            </a> -->
+                            <a href="<?= base_url('export/lamaPDF') ?>" class="btn btn-danger" target="_blnak"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+                                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z">
+                                    </path>
+                                    <line x1="9" y1="9" x2="10" y2="9"></line>
+                                    <line x1="9" y1="13" x2="15" y2="13"></line>
+                                    <line x1="9" y1="17" x2="15" y2="17"></line>
+                                </svg> Export ke PDF
+                            </a>
+                        </h3>
+                    </div>
                 </div>
             </div>
         </div>

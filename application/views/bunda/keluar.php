@@ -59,7 +59,7 @@
                                     ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
-                                            <td><?= date('d M Y', strtotime($row->tanggal)); ?></td>
+                                            <td><?= date('d/m/Y', strtotime($row->tanggal)); ?></td>
                                             <td><?= $row->ket; ?></td>
                                             <td><?= rupiah($row->nominal); ?></td>
                                             <td><?= $row->divisi; ?></td>

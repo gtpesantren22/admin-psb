@@ -298,4 +298,43 @@ _*Catatan :_*
 
 		redirect('regist/inDaftar/' . $nis);
 	}
+
+	function sm()
+	{
+		$data['judul'] = 'regist';
+		$data['user'] = $this->Auth_model->current_user();
+
+		$data['byr'] = $this->model->byrSm();
+
+		$this->load->view('bunda/head', $data);
+		$this->load->view('bunda/registSm', $data);
+		$this->load->view('bunda/foot');
+	}
+
+	public function tarik($id)
+	{
+		$dataSm = $this->model->getBy('regist_sm', 'id_regist', $id)->row();
+
+		$data = [
+			'id_regist' => $this->uuid->v4(),
+			'nis' => $dataSm->nis,
+			'nominal' => $dataSm->nominal,
+			'tgl_bayar' => $dataSm->tgl_bayar,
+			'via' => $dataSm->via,
+			'kasir' => $dataSm->kasir,
+			'created' => $dataSm->created
+		];
+
+		$this->model->tambah('regist', $data);
+		if ($this->db->affected_rows() > 0) {
+			$this->model->hapus('regist_sm', $dataSm->id_regist);
+			if ($this->db->affected_rows() > 0) {
+				$this->session->set_flashdata('ok', 'Data berhasil dipindah');
+				redirect('regist/sm');
+			} else {
+				$this->session->set_flashdata('error', 'Data tak berhasil dipindah');
+				redirect('regist/sm');
+			}
+		}
+	}
 }

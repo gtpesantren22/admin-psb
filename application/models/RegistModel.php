@@ -82,6 +82,13 @@ class RegistModel extends CI_Model
         return $this->db->get();
     }
 
+    function byrSm()
+    {
+        $this->db->from('regist_sm');
+        $this->db->join('tb_santri', 'ON regist_sm.nis = tb_santri.nis');
+        return $this->db->get();
+    }
+
     function edit($table, $data, $where)
     {
         $this->db->where('nis', $where);
@@ -115,6 +122,13 @@ class RegistModel extends CI_Model
         $this->db->from('bp_daftar');
         $this->db->join('tb_santri', 'ON. bp_daftar.nis=tb_santri.nis');
         $this->db->where('tb_santri.ket', 'lama');
+        return $this->db->get();
+    }
+
+    function getBy($table, $where, $dtwhere)
+    {
+        $this->db->where($where, $dtwhere);
+        $this->db->from($table);
         return $this->db->get();
     }
 }

@@ -143,6 +143,17 @@ Panitia
 			redirect('daftar');
 		}
 	}
+	public function delSm($id)
+	{
+		$this->model->hapus('bp_daftar_sm', $id);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('ok', 'Data berhasil dihapus');
+			redirect('daftar/sm');
+		} else {
+			$this->session->set_flashdata('error', 'Data tak berhasil dihapus');
+			redirect('daftar/sm');
+		}
+	}
 
 	public function kirim($id)
 	{
@@ -190,5 +201,43 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 		// kirim_person($key->api_key, $sn->hp, $pesan);
 		kirim_tmp($key->api_key, $sn->hp, $pesan, $tmp, 'https://i.postimg.cc/8c8fghZq/LOGO-WA.jpg');
 		redirect('daftar');
+	}
+
+	public function sm()
+	{
+		$data['judul'] = 'daftar';
+		$data['smData'] = $this->model->smData()->result();
+		$data['user'] = $this->Auth_model->current_user();
+
+		$this->load->view('bunda/head', $data);
+		$this->load->view('bunda/daftarSm', $data);
+		$this->load->view('bunda/foot');
+	}
+
+	public function tarik($id)
+	{
+		$dataSm = $this->model->getBy('bp_daftar_sm', 'id_bayar', $id)->row();
+
+		$data = [
+			'id_bayar' => $this->uuid->v4(),
+			'nis' => $dataSm->nis,
+			'nominal' => $dataSm->nominal,
+			'tgl_bayar' => $dataSm->tgl_bayar,
+			'via' => $dataSm->via,
+			'kasir' => $dataSm->kasir,
+			'created' => $dataSm->created
+		];
+
+		$this->model->tambah2('bp_daftar', $data);
+		if ($this->db->affected_rows() > 0) {
+			$this->model->hapus('bp_daftar_sm', $dataSm->id_bayar);
+			if ($this->db->affected_rows() > 0) {
+				$this->session->set_flashdata('ok', 'Data berhasil dipindah');
+				redirect('daftar/sm');
+			} else {
+				$this->session->set_flashdata('error', 'Data tak berhasil dipindah');
+				redirect('daftar/sm');
+			}
+		}
 	}
 }

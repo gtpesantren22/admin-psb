@@ -11,6 +11,14 @@ class DaftarModel extends CI_Model
         return $this->db->get();
     }
 
+    function smData()
+    {
+        $this->db->from('bp_daftar_sm');
+        $this->db->join('tb_santri', 'ON tb_santri.nis=bp_daftar_sm.nis');
+        // $this->db->where('bp_daftar_sm.move', 'no');
+        return $this->db->get();
+    }
+
     function lama()
     {
         $this->db->from('bp_daftar');
@@ -59,6 +67,10 @@ class DaftarModel extends CI_Model
     {
         $this->db->insert('bp_daftar', $data);
     }
+    function tambah2($table, $data)
+    {
+        $this->db->insert($table, $data);
+    }
 
     function santriNis($data)
     {
@@ -67,7 +79,8 @@ class DaftarModel extends CI_Model
         return $this->db->get();
     }
 
-    function edit($table, $data, $where){
+    function edit($table, $data, $where)
+    {
         $this->db->where('nis', $where);
         $this->db->update($table, $data);
     }
@@ -77,6 +90,13 @@ class DaftarModel extends CI_Model
         $this->db->from('tb_santri');
         $this->db->where('NOT EXISTS (SELECT * FROM bp_daftar WHERE bp_daftar.nis=tb_santri.nis)', '', false);
         $this->db->where('ket', 'lama');
+        return $this->db->get();
+    }
+
+    function getBy($table, $where, $dtwhere)
+    {
+        $this->db->where($where, $dtwhere);
+        $this->db->from($table);
         return $this->db->get();
     }
 }

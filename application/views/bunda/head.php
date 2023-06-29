@@ -30,7 +30,7 @@
     <div class="page">
         <!-- Navbar -->
         <div class="sticky-top">
-            <header class="navbar navbar-expand-md navbar-light d-print-none">
+            <header class="navbar navbar-expand-md navbar-dark d-print-none">
                 <div class="container-xl">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
                         <span class="navbar-toggler-icon"></span>
@@ -191,6 +191,9 @@
                                         <a class="dropdown-item" href="<?= base_url('daftar/lanjut'); ?>">
                                             Pendaftaran Lanjutan
                                         </a>
+                                        <a class="dropdown-item" href="<?= base_url('daftar/sm'); ?>">
+                                            Pendaftaran (Sementara)
+                                        </a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown <?= $judul === 'regist' ? 'active' : ''; ?>">
@@ -214,6 +217,9 @@
                                         </a>
                                         <a class="dropdown-item" href="<?= base_url('regist/lanjut'); ?>">
                                             Registrasi Santri Lanjutan
+                                        </a>
+                                        <a class="dropdown-item" href="<?= base_url('regist/sm'); ?>">
+                                            Registrasi (Sementara)
                                         </a>
                                     </div>
                                 </li>
@@ -242,6 +248,24 @@
                                             Pengeluaran
                                         </a>
                                     </div>
+                                </li>
+
+                                <li class="nav-item <?= $judul === 'dekos' ? 'active' : ''; ?>">
+                                    <a class="nav-link" href="<?= base_url('dekos') ?>">
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/home -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-soup" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M4 11h16a1 1 0 0 1 1 1v.5c0 1.5 -2.517 5.573 -4 6.5v1a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-1c-1.687 -1.054 -4 -5 -4 -6.5v-.5a1 1 0 0 1 1 -1z"></path>
+                                                <path d="M12 4a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"></path>
+                                                <path d="M16 4a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"></path>
+                                                <path d="M8 4a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            Dekosan
+                                        </span>
+                                    </a>
                                 </li>
                             </ul>
                         </div>

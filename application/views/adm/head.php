@@ -31,7 +31,7 @@
     <div class="page">
         <!-- Navbar -->
         <div class="sticky-top">
-            <header class="navbar navbar-expand-md navbar-light d-print-none">
+            <header class="navbar navbar-expand-md navbar-dark d-print-none">
                 <div class="container-xl">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
                         <span class="navbar-toggler-icon"></span>

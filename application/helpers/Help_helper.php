@@ -72,6 +72,8 @@ function tanggalIndo2($tanggal)
     return $tanggal;
 }
 
+// Ok
+
 function kirim_person($key, $no_hp, $pesan)
 {
     $curl2 = curl_init();

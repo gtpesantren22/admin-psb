@@ -80,7 +80,7 @@ function kirim_person($key, $no_hp, $pesan)
     curl_setopt_array(
         $curl2,
         array(
-            CURLOPT_URL => 'http://156.67.221.155:3000/api/sendMessage',
+            CURLOPT_URL => 'http://191.101.3.115:3000/api/sendMessage',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -101,7 +101,7 @@ function kirim_group($key, $id_group, $pesan)
     curl_setopt_array(
         $curl2,
         array(
-            CURLOPT_URL => 'http://156.67.221.155:3000/api/sendMessageGroup',
+            CURLOPT_URL => 'http://191.101.3.115:3000/api/sendMessageGroup',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -122,7 +122,7 @@ function kirim_tmp($key, $no_hp, $pesan, $tmp, $link_logo)
     curl_setopt_array(
         $curl2,
         array(
-            CURLOPT_URL => 'http://156.67.221.155:3000/api/sendTemplateMessage',
+            CURLOPT_URL => 'http://191.101.3.115:3000/api/sendTemplateMessage',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,

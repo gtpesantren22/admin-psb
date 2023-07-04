@@ -86,6 +86,7 @@ class RegistModel extends CI_Model
     {
         $this->db->from('regist_sm');
         $this->db->join('tb_santri', 'ON regist_sm.nis = tb_santri.nis');
+        $this->db->order_by('regist_sm.created', 'DESC');
         return $this->db->get();
     }
 

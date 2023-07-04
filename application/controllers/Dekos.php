@@ -39,4 +39,13 @@ class Dekos extends CI_Controller
 
         $this->model->edit('dekos', 'nis', $nis, $data);
     }
+
+    function del($id)
+    {
+        $this->model->del('dekos', 'id_kos', $id);
+
+        if ($this->db->affected_rows() > 0) {
+            redirect('dekos');
+        }
+    }
 }

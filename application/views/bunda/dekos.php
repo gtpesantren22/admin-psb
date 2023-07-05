@@ -36,6 +36,7 @@
                                         <th>Tgl Bayar</th>
                                         <th>Nominal</th>
                                         <th>Tempat Kos</th>
+                                        <th>Lembaga</th>
                                         <th>Penerima</th>
                                         <th>#</th>
                                     </tr>
@@ -51,6 +52,7 @@
                                             <td><?= rupiah($row->nominal); ?>
                                             </td>
                                             <td><?= $tmpKos[$row->t_kos]; ?></td>
+                                            <td><?= $row->lembaga; ?></td>
                                             <td><?= $row->kasir  ?>
                                             </td>
                                             <td>

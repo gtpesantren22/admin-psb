@@ -53,7 +53,7 @@
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    $dts = $this->db->query("SELECT * FROM keluar")->result();
+                                    $dts = $this->db->query("SELECT * FROM keluar ORDER BY tanggal DESC")->result();
                                     $ttl = $this->db->query("SELECT SUM(nominal) as ttl FROM keluar")->row();
                                     foreach ($dts as $row) :
                                     ?>

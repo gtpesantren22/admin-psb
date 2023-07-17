@@ -47,7 +47,7 @@
                 <th rowspan="2">NAMA LENGKAP</th>
                 <th rowspan="2">JKL</th>
                 <th rowspan="2">LEMBAGA</th>
-                <th colspan="8">ALAMAT</th>
+                <th colspan="7">ALAMAT</th>
                 <th rowspan="2">STTS</th>
                 <th rowspan="2">No. HP</th>
             </tr>
@@ -59,7 +59,6 @@
                 <th>KECAMATAN</th>
                 <th>KABUPATEN</th>
                 <th>PROVINSI</th>
-                <th>KODE POS</th>
             </tr>
         </thead>
         <tbody>

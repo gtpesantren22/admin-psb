@@ -404,13 +404,13 @@ class Export extends CI_Controller
 			$sheet->getStyle('BB' . $numrow)->applyFromArray($style_row);
 
 			$sheet->getCell('D' . $numrow)->setValue($data->nik);
-			$sheet->getStyle('D' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
+			// $sheet->getStyle('D' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
 			$sheet->getCell('E' . $numrow)->setValue($data->no_kk);
-			$sheet->getStyle('E' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
+			// $sheet->getStyle('E' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
 			$sheet->getCell('W' . $numrow)->setValue($data->a_nik);
-			$sheet->getStyle('W' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
+			// $sheet->getStyle('W' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
 			$sheet->getCell('AG' . $numrow)->setValue($data->i_nik);
-			$sheet->getStyle('AG' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
+			// $sheet->getStyle('AG' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
 
 			$no++; // Tambah 1 setiap kali looping
 			$numrow++; // Tambah 1 setiap kali looping

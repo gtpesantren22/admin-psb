@@ -408,13 +408,13 @@ class Export extends CI_Controller
 			$numberFormat->setFormatCode(NumberFormat::FORMAT_TEXT);
 
 			$sheet->getCell('D' . $numrow)->setValue($data->nik);
-			$sheet->getStyle('D' . $numrow)->getNumberFormat()->$numberFormat->setFormatCode(NumberFormat::FORMAT_TEXT);
+			$sheet->getStyle('D' . $numrow)->getNumberFormat()->applyFromArray($numberFormat);
 			$sheet->getCell('E' . $numrow)->setValue($data->no_kk);
-			$sheet->getStyle('E' . $numrow)->getNumberFormat()->$numberFormat->setFormatCode(NumberFormat::FORMAT_TEXT);
+			$sheet->getStyle('E' . $numrow)->getNumberFormat()->applyFromArray($numberFormat);
 			$sheet->getCell('W' . $numrow)->setValue($data->a_nik);
-			$sheet->getStyle('W' . $numrow)->getNumberFormat()->$numberFormat->setFormatCode(NumberFormat::FORMAT_TEXT);
+			$sheet->getStyle('W' . $numrow)->getNumberFormat()->applyFromArray($numberFormat);
 			$sheet->getCell('AG' . $numrow)->setValue($data->i_nik);
-			$sheet->getStyle('AG' . $numrow)->getNumberFormat()->$numberFormat->setFormatCode(NumberFormat::FORMAT_TEXT);
+			$sheet->getStyle('AG' . $numrow)->getNumberFormat()->applyFromArray($numberFormat);
 
 			$no++; // Tambah 1 setiap kali looping
 			$numrow++; // Tambah 1 setiap kali looping

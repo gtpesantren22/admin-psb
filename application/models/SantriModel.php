@@ -3,6 +3,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class SantriModel extends CI_Model
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->db2 = $this->load->database('santri', true);
+    }
+
     function baru()
     {
         $this->db->where('ket', 'baru');
@@ -103,5 +109,28 @@ class SantriModel extends CI_Model
         $this->db->select('*');
         $this->db->from('api');
         return $this->db->get();
+    }
+
+    function cekNisDb2($nis)
+    {
+        $this->db2->where('nis', $nis);
+        return $this->db2->get('tb_santri');
+    }
+
+    function getBy($table, $where, $dtwhere)
+    {
+        $this->db->where($where, $dtwhere);
+        return $this->db->get($table);
+    }
+
+    function inputToDb2($table, $data)
+    {
+        $this->db2->insert($table, $data);
+    }
+
+    function updateToDb2($table, $data, $where, $dtwhere)
+    {
+        $this->db2->update($table, $data);
+        $this->db2->where($where, $dtwhere);
     }
 }

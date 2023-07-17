@@ -282,8 +282,11 @@
                                             Data Santri Baru
                                         </a>
                                         <!-- <a class="dropdown-item" href="<?= base_url('regist/lanjut'); ?>"> -->
-                                        <a class="dropdown-item" href=#">
+                                        <a class="dropdown-item" href="#">
                                             Data Santri Lanjutan
+                                        </a>
+                                        <a class="dropdown-item" href="<?= base_url('santri/kirim') ?>">
+                                            Kirim Data
                                         </a>
                                     </div>
                                 </li>

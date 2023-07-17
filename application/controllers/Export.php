@@ -408,7 +408,7 @@ class Export extends CI_Controller
 			$numberFormat->setFormatCode(NumberFormat::FORMAT_TEXT);
 
 			$sheet->getCell('D' . $numrow)->setValue($data->nik);
-			$sheet->getStyle('D' . $numrow)->getNumberFormat()->setFormatCode($numberFormat->getFormatCode());
+			$sheet->setCellValueExplicit('D', $numrow, \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING);
 			$sheet->getCell('E' . $numrow)->setValue($data->no_kk);
 			$sheet->getStyle('E' . $numrow)->getNumberFormat()->setFormatCode($numberFormat->getFormatCode());
 			$sheet->getCell('W' . $numrow)->setValue($data->a_nik);

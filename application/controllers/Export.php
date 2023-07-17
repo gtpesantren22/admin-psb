@@ -409,7 +409,7 @@ class Export extends CI_Controller
 			$numberFormat = new NumberFormat();
 			$numberFormat->setFormatCode(NumberFormat::FORMAT_TEXT);
 
-			$sheet->getCell('D' . $numrow)->setValue($data->nik);
+			// $sheet->getCell('D' . $numrow)->setValue($data->nik);
 			$sheet->getStyle('D' . $numrow)->getNumberFormat()->setFormatCode($numberFormat->getFormatCode());
 			$sheet->getCell('E' . $numrow)->setValue($data->no_kk);
 			// $sheet->getStyle('E' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');

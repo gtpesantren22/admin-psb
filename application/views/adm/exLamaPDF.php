@@ -15,7 +15,7 @@
         #table td,
         #table th {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 5px;
         }
 
         #table tr:nth-child(even) {
@@ -27,8 +27,8 @@
         }
 
         #table th {
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
             text-align: left;
             background-color: #4CAF50;
             color: white;

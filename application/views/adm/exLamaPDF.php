@@ -49,6 +49,7 @@
                 <th rowspan="2">LEMBAGA</th>
                 <th colspan="8">ALAMAT</th>
                 <th rowspan="2">STTS</th>
+                <th rowspan="2">No. HP</th>
             </tr>
             <tr>
                 <th>JLN/DSN</th>
@@ -97,6 +98,7 @@
                     <td><?= $data->prov ?></td>
                     <td><?= $data->kd_pos ?></td>
                     <td><?= $data->stts ?></td>
+                    <td><?= $data->hp ?></td>
                 </tr>
             <?php $no++;
             } ?>

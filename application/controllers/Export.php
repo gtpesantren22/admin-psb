@@ -6,6 +6,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use \PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class Export extends CI_Controller
 {
@@ -403,14 +404,17 @@ class Export extends CI_Controller
 			$sheet->getStyle('BA' . $numrow)->applyFromArray($style_row);
 			$sheet->getStyle('BB' . $numrow)->applyFromArray($style_row);
 
+			$numberFormat = new NumberFormat();
+			$numberFormat->setFormatCode(NumberFormat::FORMAT_TEXT);
+
 			$sheet->getCell('D' . $numrow)->setValue($data->nik);
-			// $sheet->getStyle('D' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
+			$sheet->getStyle('D' . $numrow)->getNumberFormat()->$numberFormat->setFormatCode(NumberFormat::FORMAT_TEXT);
 			$sheet->getCell('E' . $numrow)->setValue($data->no_kk);
-			// $sheet->getStyle('E' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
+			$sheet->getStyle('E' . $numrow)->getNumberFormat()->$numberFormat->setFormatCode(NumberFormat::FORMAT_TEXT);
 			$sheet->getCell('W' . $numrow)->setValue($data->a_nik);
-			// $sheet->getStyle('W' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
+			$sheet->getStyle('W' . $numrow)->getNumberFormat()->$numberFormat->setFormatCode(NumberFormat::FORMAT_TEXT);
 			$sheet->getCell('AG' . $numrow)->setValue($data->i_nik);
-			// $sheet->getStyle('AG' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
+			$sheet->getStyle('AG' . $numrow)->getNumberFormat()->$numberFormat->setFormatCode(NumberFormat::FORMAT_TEXT);
 
 			$no++; // Tambah 1 setiap kali looping
 			$numrow++; // Tambah 1 setiap kali looping

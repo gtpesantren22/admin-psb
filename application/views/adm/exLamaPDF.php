@@ -97,7 +97,6 @@
                     <td><?= $data->kec ?></td>
                     <td><?= $data->kab ?></td>
                     <td><?= $data->prov ?></td>
-                    <td><?= $data->kd_pos ?></td>
                     <td><?= $data->stts ?></td>
                     <td><?= $hp ?></td>
                 </tr>

@@ -404,17 +404,19 @@ class Export extends CI_Controller
 			$sheet->getStyle('BA' . $numrow)->applyFromArray($style_row);
 			$sheet->getStyle('BB' . $numrow)->applyFromArray($style_row);
 
+			$sheet->setCellValueExplicit('D' . $numrow, $data->nik, DataType::TYPE_STRING);
+
 			$numberFormat = new NumberFormat();
 			$numberFormat->setFormatCode(NumberFormat::FORMAT_TEXT);
 
-			// $sheet->getCell('D' . $numrow)->setValue($data->nik);
-			$sheet->getStyle('D' . $numrow)->getNumberFormat()->applyFromArray($numberFormat);
-			// $sheet->getCell('E' . $numrow)->setValue($data->no_kk);
-			$sheet->getStyle('E' . $numrow)->getNumberFormat()->applyFromArray($numberFormat);
-			// $sheet->getCell('W' . $numrow)->setValue($data->a_nik);
-			$sheet->getStyle('W' . $numrow)->getNumberFormat()->applyFromArray($numberFormat);
-			// $sheet->getCell('AG' . $numrow)->setValue($data->i_nik);
-			$sheet->getStyle('AG' . $numrow)->getNumberFormat()->applyFromArray($numberFormat);
+			$sheet->getCell('D' . $numrow)->setValue($data->nik);
+			$sheet->getStyle('D' . $numrow)->getNumberFormat()->setFormatCode($numberFormat->getFormatCode());
+			$sheet->getCell('E' . $numrow)->setValue($data->no_kk);
+			// $sheet->getStyle('E' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
+			$sheet->getCell('W' . $numrow)->setValue($data->a_nik);
+			// $sheet->getStyle('W' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
+			$sheet->getCell('AG' . $numrow)->setValue($data->i_nik);
+			// $sheet->getStyle('AG' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
 
 			$no++; // Tambah 1 setiap kali looping
 			$numrow++; // Tambah 1 setiap kali looping

@@ -83,6 +83,8 @@
                 $tgl_i = $spliti[0];
                 $bln_i = $spliti[1];
                 $thn_i = $spliti[2];
+
+                $hp = $this->db->query("SELECT hp FROM tb_lama WHERE nis = '$data->nis' ")->row('hp');
             ?>
                 <tr>
                     <td><?= $no ?></td>
@@ -98,7 +100,7 @@
                     <td><?= $data->prov ?></td>
                     <td><?= $data->kd_pos ?></td>
                     <td><?= $data->stts ?></td>
-                    <td><?= $data->hp ?></td>
+                    <td><?= $hp ?></td>
                 </tr>
             <?php $no++;
             } ?>

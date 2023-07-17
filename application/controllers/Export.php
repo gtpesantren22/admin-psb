@@ -405,17 +405,25 @@ class Export extends CI_Controller
 			$sheet->getStyle('BB' . $numrow)->applyFromArray($style_row);
 
 			$sheet->setCellValueExplicit('D' . $numrow, $data->nik, DataType::TYPE_STRING);
+			$sheet->setCellValueExplicit('E' . $numrow, $data->no_kk, DataType::TYPE_STRING);
+			$sheet->setCellValueExplicit('W' . $numrow, $data->a_nik, DataType::TYPE_STRING);
+			$sheet->setCellValueExplicit('AG' . $numrow, $data->i_nik, DataType::TYPE_STRING);
 
 			$numberFormat = new NumberFormat();
 			$numberFormat->setFormatCode(NumberFormat::FORMAT_TEXT);
 
-			// $sheet->getCell('D' . $numrow)->setValue($data->nik);
 			$sheet->getStyle('D' . $numrow)->getNumberFormat()->setFormatCode($numberFormat->getFormatCode());
-			$sheet->getCell('E' . $numrow)->setValue($data->no_kk);
+			$sheet->getStyle('E' . $numrow)->getNumberFormat()->setFormatCode($numberFormat->getFormatCode());
+			$sheet->getStyle('W' . $numrow)->getNumberFormat()->setFormatCode($numberFormat->getFormatCode());
+			$sheet->getStyle('AG' . $numrow)->getNumberFormat()->setFormatCode($numberFormat->getFormatCode());
+
+			// $sheet->getCell('D' . $numrow)->setValue($data->nik);
+			// $sheet->getStyle('D' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
+			// $sheet->getCell('E' . $numrow)->setValue($data->no_kk);
 			// $sheet->getStyle('E' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
-			$sheet->getCell('W' . $numrow)->setValue($data->a_nik);
+			// $sheet->getCell('W' . $numrow)->setValue($data->a_nik);
 			// $sheet->getStyle('W' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
-			$sheet->getCell('AG' . $numrow)->setValue($data->i_nik);
+			// $sheet->getCell('AG' . $numrow)->setValue($data->i_nik);
 			// $sheet->getStyle('AG' . $numrow)->getNumberFormat()->setFormatCode('000000000000000000000000');
 
 			$no++; // Tambah 1 setiap kali looping

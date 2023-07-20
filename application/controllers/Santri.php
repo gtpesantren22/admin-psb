@@ -99,7 +99,7 @@ class Santri extends CI_Controller
 		];
 
 		if ($cekData) {
-			// $this->model->updateToDb2('tb_santri', $data, 'nis', $nis);
+			$this->model->updateToDb2('tb_santri', $data, 'nis', $nis);
 			if ($this->db->affected_rows() > 0) {
 				redirect('santri/kirim');
 			}

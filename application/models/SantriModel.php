@@ -130,7 +130,7 @@ class SantriModel extends CI_Model
 
     function updateToDb2($table, $data, $where, $dtwhere)
     {
-        $this->db2->update($table, $data);
         $this->db2->where($where, $dtwhere);
+        $this->db2->update($table, $data);
     }
 }

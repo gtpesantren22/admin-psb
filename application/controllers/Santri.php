@@ -82,7 +82,7 @@ class Santri extends CI_Controller
 		if (copyOnlineFile($dirLama, $dirTuju)) {
 			$fotoHasil = $foto->diri;
 		} else {
-			$fotoHasil = '-';
+			$fotoHasil = '';
 		}
 
 		$data = [

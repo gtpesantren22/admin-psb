@@ -51,16 +51,12 @@ class Santri extends CI_Controller
 		$this->load->view('adm/foot');
 	}
 
-	function copyOnlineFile($url_sumber_foto, $url_tujuan)
+	function copyOnlineFile($url_sumber_foto, $tujuan_file)
 	{
-		$ch = curl_init($url_sumber_foto);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$foto_data = curl_exec($ch);
-		curl_close($ch);
+		$foto_data = file_get_contents($url_sumber_foto);
 
 		if ($foto_data !== false) {
-			// Menyimpan data foto ke direktori online tujuan
-			if (file_put_contents($url_tujuan, $foto_data)) {
+			if (file_put_contents($tujuan_file, $foto_data)) {
 				return true;
 			} else {
 				return false;

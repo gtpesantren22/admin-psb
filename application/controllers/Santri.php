@@ -64,19 +64,22 @@ class Santri extends CI_Controller
 		$dirTuju = 'https://dpontren.ppdwk.com/images/santri/' . $foto->diri;
 
 
-		function copyOnlineFile($url_sumber, $url_tujuan)
+		function copyOnlineFile($url_sumber_foto, $url_tujuan)
 		{
-			$ch = curl_init($url_sumber);
-			$file_tujuan = fopen($url_tujuan, 'w');
-
-			curl_setopt($ch, CURLOPT_FILE, $file_tujuan);
-			curl_setopt($ch, CURLOPT_HEADER, 0);
-
-			curl_exec($ch);
+			$ch = curl_init($url_sumber_foto);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$foto_data = curl_exec($ch);
 			curl_close($ch);
-			fclose($file_tujuan);
 
-			return true;
+			// Menentukan jalur tujuan file di Aplikasi Tujuan
+			$tujuan_file = $url_tujuan;
+
+			// Menyimpan data foto ke jalur tujuan di Aplikasi Tujuan
+			if (file_put_contents($tujuan_file, $foto_data)) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 
 		if (copyOnlineFile($dirLama, $dirTuju)) {

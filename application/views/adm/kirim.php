@@ -58,7 +58,7 @@
                                                 <?= $cekData ? "<span class='badge bg-warning'>Ada</span>" : "" ?>
                                             </td>
                                             <td>
-                                                <button class="btn btn-sm btn-warning" onclick="window.location = '<?= base_url('santri/send/' . $row->nis) ?>' ">Kirim</button>
+                                                <a href="<?= base_url('santri/send/' . $row->nis) ?>" target="_blank" class="btn btn-sm btn-warning">Kirim</a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

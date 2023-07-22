@@ -51,6 +51,7 @@ class Santri extends CI_Controller
 		$this->load->view('adm/foot');
 	}
 
+
 	public function send($nis)
 	{
 		$cekData = $this->model->cekNisDb2($nis)->row();
@@ -62,7 +63,23 @@ class Santri extends CI_Controller
 		$dirLama = 'https://psb.ppdwk.com/assets/berkas/' . $foto->diri;
 		$dirTuju = 'https://dpontren.ppdwk.com/images/santri/' . $foto->diri;
 
-		if (copy($dirLama, $dirTuju)) {
+
+		function copyOnlineFile($url_sumber, $url_tujuan)
+		{
+			$ch = curl_init($url_sumber);
+			$file_tujuan = fopen($url_tujuan, 'w');
+
+			curl_setopt($ch, CURLOPT_FILE, $file_tujuan);
+			curl_setopt($ch, CURLOPT_HEADER, 0);
+
+			curl_exec($ch);
+			curl_close($ch);
+			fclose($file_tujuan);
+
+			return true;
+		}
+
+		if (copyOnlineFile($dirLama, $dirTuju)) {
 			$fotoHasil = $foto->diri;
 		} else {
 			$fotoHasil = '-';

@@ -71,12 +71,13 @@ class Santri extends CI_Controller
 			$foto_data = curl_exec($ch);
 			curl_close($ch);
 
-			// Menentukan jalur tujuan file di Aplikasi Tujuan
-			$tujuan_file = $url_tujuan;
-
-			// Menyimpan data foto ke jalur tujuan di Aplikasi Tujuan
-			if (file_put_contents($tujuan_file, $foto_data)) {
-				return true;
+			if ($foto_data !== false) {
+				// Menyimpan data foto ke direktori online tujuan
+				if (file_put_contents($url_tujuan, $foto_data)) {
+					return true;
+				} else {
+					return false;
+				}
 			} else {
 				return false;
 			}

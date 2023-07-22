@@ -57,6 +57,16 @@ class Santri extends CI_Controller
 
 		$santri = $this->model->getBy('tb_santri', 'nis', $nis)->row();
 		$dekos = $this->model->getBy('dekos', 'nis', $nis)->row();
+		$foto = $this->model->getBy('foto_file', 'nis', $nis)->row();
+
+		$dirLama = 'https://psb.ppdwk.com/assets/berkas/' . $foto->diri;
+		$dirTuju = 'https://dpontren.ppdwk.com/images/santri/' . $foto->diri;
+
+		if (copy($dirLama, $dirTuju)) {
+			$fotoHasil = $foto->diri;
+		} else {
+			$fotoHasil = '-';
+		}
 
 		$data = [
 			'nis' => $santri->nis,
@@ -94,6 +104,7 @@ class Santri extends CI_Controller
 			'status_i' => $santri->i_stts,
 			'hp' => $santri->hp,
 			't_kos' => $dekos->t_kos,
+			'foto' => $fotoHasil,
 			'ket' => '-',
 			'aktif' => 'Y',
 		];

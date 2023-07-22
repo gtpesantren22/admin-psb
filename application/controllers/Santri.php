@@ -84,7 +84,7 @@ class Santri extends CI_Controller
 		$foto = $this->model->getBy('foto_file', 'nis', $nis)->row();
 
 		$dirLama = 'https://psb.ppdwk.com/assets/berkas/' . $foto->diri;
-		$dirTuju = 'https://dpontren.ppdwk.com/images/santri/' . $foto->diri;
+		$dirTuju = '/dpontren/images/santri/' . $foto->diri;
 
 
 		if ($this->copyOnlineFile($dirLama, $dirTuju)) {

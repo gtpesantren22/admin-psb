@@ -53,10 +53,19 @@ class Santri extends CI_Controller
 
 	function copyOnlineFile($url_sumber_foto, $tujuan_file)
 	{
-		$foto_data = file_get_contents($url_sumber_foto);
+		$ch = curl_init($url_sumber_foto);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$foto_data = curl_exec($ch);
+		curl_close($ch);
 
 		if ($foto_data !== false) {
-			if (file_put_contents($tujuan_file, $foto_data)) {
+			$ch_tujuan = curl_init($tujuan_file);
+			curl_setopt($ch_tujuan, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch_tujuan, CURLOPT_POSTFIELDS, $foto_data);
+			$response_tujuan = curl_exec($ch_tujuan);
+			curl_close($ch_tujuan);
+
+			if ($response_tujuan !== false) {
 				return true;
 			} else {
 				return false;

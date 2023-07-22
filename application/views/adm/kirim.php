@@ -26,7 +26,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table card-table table-vcenter text-nowrap" id="">
+                            <table class="table card-table table-vcenter text-nowrap" id="example">
                                 <thead>
                                     <tr>
                                         <th>No</th>

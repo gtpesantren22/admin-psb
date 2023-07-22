@@ -134,20 +134,20 @@ class Santri extends CI_Controller
 			'aktif' => 'Y',
 		];
 
-		echo $dirLama . "<br>";
-		echo $dirTuju . "<br>";
-		echo $fotoHasil;
+		// echo $dirLama . "<br>";
+		// echo $dirTuju . "<br>";
+		// echo $fotoHasil;
 
-		// if ($cekData) {
-		// 	$this->model->updateToDb2('tb_santri', $data, 'nis', $nis);
-		// 	if ($this->db->affected_rows() > 0) {
-		// 		redirect('santri/kirim');
-		// 	}
-		// } else {
-		// 	$this->model->inputToDb2('tb_santri', $data);
-		// 	if ($this->db->affected_rows() > 0) {
-		// 		redirect('santri/kirim');
-		// 	}
-		// }
+		if ($cekData) {
+			$this->model->updateToDb2('tb_santri', $data, 'nis', $nis);
+			if ($this->db->affected_rows() > 0) {
+				redirect('santri/kirim');
+			}
+		} else {
+			$this->model->inputToDb2('tb_santri', $data);
+			if ($this->db->affected_rows() > 0) {
+				redirect('santri/kirim');
+			}
+		}
 	}
 }

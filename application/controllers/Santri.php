@@ -51,6 +51,24 @@ class Santri extends CI_Controller
 		$this->load->view('adm/foot');
 	}
 
+	function copyOnlineFile($url_sumber_foto, $url_tujuan)
+	{
+		$ch = curl_init($url_sumber_foto);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$foto_data = curl_exec($ch);
+		curl_close($ch);
+
+		if ($foto_data !== false) {
+			// Menyimpan data foto ke direktori online tujuan
+			if (file_put_contents($url_tujuan, $foto_data)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 
 	public function send($nis)
 	{
@@ -64,26 +82,7 @@ class Santri extends CI_Controller
 		$dirTuju = 'https://dpontren.ppdwk.com/images/santri/' . $foto->diri;
 
 
-		function copyOnlineFile($url_sumber_foto, $url_tujuan)
-		{
-			$ch = curl_init($url_sumber_foto);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			$foto_data = curl_exec($ch);
-			curl_close($ch);
-
-			if ($foto_data !== false) {
-				// Menyimpan data foto ke direktori online tujuan
-				if (file_put_contents($url_tujuan, $foto_data)) {
-					return true;
-				} else {
-					return false;
-				}
-			} else {
-				return false;
-			}
-		}
-
-		if (copyOnlineFile($dirLama, $dirTuju)) {
+		if ($this->copyOnlineFile($dirLama, $dirTuju)) {
 			$fotoHasil = $foto->diri;
 		} else {
 			$fotoHasil = '';

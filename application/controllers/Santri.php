@@ -87,11 +87,11 @@ class Santri extends CI_Controller
 		$dirTuju = '../../dpontren/images/santri/' . $foto->diri;
 
 
-		if ($this->copyOnlineFile($dirLama, $dirTuju)) {
-			$fotoHasil = $foto->diri;
-		} else {
-			$fotoHasil = '';
-		}
+		// if ($this->copyOnlineFile($dirLama, $dirTuju)) {
+		// 	$fotoHasil = $foto->diri;
+		// } else {
+		// 	$fotoHasil = '';
+		// }
 
 		$data = [
 			'nis' => $santri->nis,
@@ -129,7 +129,7 @@ class Santri extends CI_Controller
 			'status_i' => $santri->i_stts,
 			'hp' => $santri->hp,
 			't_kos' => $dekos->t_kos,
-			'foto' => $fotoHasil,
+			'foto' => '',
 			'ket' => '-',
 			'aktif' => 'Y',
 		];

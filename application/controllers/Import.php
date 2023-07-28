@@ -179,21 +179,106 @@ class import extends CI_Controller
 
     public function pesanBroad()
     {
-        $this->input->post('ket', true) === 'semua' ? $ket = " 'baru' OR ket = 'lama' " : $ket = $this->input->post('ket', true);
-        $this->input->post('lembaga', true) === 'semua' ? $lembaga = " 'MTs' OR lembaga = 'SMP' OR lembaga = 'MA' OR lembaga = 'SMK'  " : $lembaga = $this->input->post('lembaga', true);
-        $this->input->post('jkl', true) === 'semua' ? $jkl = " 'Laki-laki' OR jkl = 'Perempuan' " : $jkl = $this->input->post('jkl', true);
-        $this->input->post('gel', true) === 'semua' ? $gel = " 1 OR gel = 2 " : $gel = $this->input->post('gel', true);
-        $pesan =  $this->input->post('pesan', true);
+        $key = $this->user->apiKey()->row();
 
-        $data = $this->user->getBroad($ket, $lembaga, $jkl, $gel)->result();
-        // var_dump($data);
-        foreach ($data as $ar) {
-            echo "
-<ul>
-<li>" . $ar->nama . "</li>
-<li>" . $ar->hp . "</li>
-</ul>
-";
+        $pesan =  $this->input->post('pesan', true);
+        // $data = $this->user->getBroad($ket, $lembaga, $jkl, $gel)->result();
+
+        $stts = $this->input->post('stts', true);
+        $gel = $this->input->post('gel', true);
+        $lembaga = $this->input->post('lembaga', true);
+        $jkl = $this->input->post('jkl', true);
+        $ket = $this->input->post('ket', true);
+
+        $query = "SELECT * FROM tb_santri WHERE ";
+
+        if (!empty($stts)) {
+            $query .= "stts = '$stts'";
+        } else {
+            $query .= "stts IN ('Terverifikasi', 'Belum Terverifikasi')";
         }
+
+        $query .= " AND ";
+
+        if (!empty($gel)) {
+            $query .= "gel = '$gel'";
+        } else {
+            $query .= "gel IN ('1', '2', '3')";
+        }
+
+        $query .= " AND ";
+
+        if (!empty($lembaga)) {
+            $query .= "lembaga = '$lembaga'";
+        } else {
+            $query .= "lembaga IN ('MTs', 'SMP', 'MA', 'SMK')";
+        }
+
+        $query .= " AND ";
+
+        if (!empty($jkl)) {
+            $query .= "jkl = '$jkl'";
+        } else {
+            $query .= "jkl IN ('Laki-laki', 'Perempuan')";
+        }
+
+        $query .= " AND ";
+
+        if (!empty($ket)) {
+            $query .= "ket = '$ket'";
+        } else {
+            $query .= "ket IN ('baru', 'lama')";
+        }
+
+        $data = $this->db->query($query)->result();
+
+        foreach ($data as $row) :
+            $hp = $row->hp;
+            kirim_person($key->api_key, $hp, $pesan);
+        endforeach;
+
+        echo "
+        
+            <table border='1'>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>NIS</th>
+                <th>Nama</th>
+                <th>Alamat</th>
+                <th>Lembaga</th>
+                <th>Status</th>
+                <th>Ket</th>
+                <th>Gel</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            ";
+        $no = 1;
+        foreach ($data as $row) :
+
+            echo "
+
+                <tr>
+                    <td>" . $no++ . "</td>
+                    <td>" . $row->nis . "</td>
+                    <td>" . $row->nama . "</td>
+                    <td>" . $row->desa . "</td>
+                    <td>" . $row->lembaga . "</td>
+                    <td>" . $row->stts . "</td>
+                    <td>" . $row->ket . "</td>
+                    <td>" . $row->gel . "</td>
+                </tr>
+             ";
+        endforeach;
+        echo " 
+        </tbody>
+    </table>
+        
+        ";
+
+        // echo $pesan;
+
     }
 }

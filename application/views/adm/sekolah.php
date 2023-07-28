@@ -207,7 +207,7 @@
                     <div class="form-group">
                         <label for="">Keterangan</label>
                         <select name="ket" id="" class="form-control">
-                            <option value="semua">Semua</option>
+                            <option value="">Semua</option>
                             <option value="baru">Santri Baru</option>
                             <option value="lama">Santri Lanjutan</option>
                         </select>
@@ -215,7 +215,7 @@
                     <div class="form-group mt-2">
                         <label for="">Lembaga</label>
                         <select name="lembaga" id="" class="form-control">
-                            <option value="semua">Semua</option>
+                            <option value="">Semua</option>
                             <option value="MTs">MTs</option>
                             <option value="SMP">SMP</option>
                             <option value="SMK">SMK</option>
@@ -225,7 +225,7 @@
                     <div class="form-group mt-2">
                         <label for="">Jenkel</label>
                         <select name="jkl" id="" class="form-control">
-                            <option value="semua">Semua</option>
+                            <option value="">Semua</option>
                             <option value="Laki-laki">Laki-laki</option>
                             <option value="Perempuan">Perempuan</option>
                         </select>
@@ -233,9 +233,17 @@
                     <div class="form-group mt-2">
                         <label for="">Gelombang</label>
                         <select name="gel" id="" class="form-control">
-                            <option value="semua">Semua</option>
+                            <option value="">Semua</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
+                        </select>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="">Status</label>
+                        <select name="gel" id="" class="form-control">
+                            <option value="">Semua</option>
+                            <option value="Terverifikasi">Terverifikasi</option>
+                            <option value="Belum Terverifikasi">Belum Terverifikasi</option>
                         </select>
                     </div>
                     <div class="form-group mt-2">

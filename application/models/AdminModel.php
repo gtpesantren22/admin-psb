@@ -118,4 +118,11 @@ class AdminModel extends CI_Model
         // $qr = "SELECT * FROM tb_santri WHERE ket = $ket AND lembaga = $lembaga AND jkl = $jkl AND gel = $gel ";
         // return $qr;
     }
+
+    function apikey()
+    {
+        $this->db->select('*');
+        $this->db->from('api');
+        return $this->db->get();
+    }
 }

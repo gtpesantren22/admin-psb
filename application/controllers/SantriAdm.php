@@ -482,4 +482,18 @@ Panitia
 			redirect('santriAdm/lanjut');
 		}
 	}
+
+	public function sincLama()
+	{
+		$data = $this->model->lama()->result();
+		foreach ($data as $key) {
+			$dt = ['t_formal' => $key->lembaga];
+			$nis = $key->nis;
+			$this->model->updateToDb2('tb_santri', $dt, 'nis', $nis);
+		}
+
+		if ($this->db->affected_rows() > 0) {
+			redirect('santriAdm/lanjut');
+		}
+	}
 }

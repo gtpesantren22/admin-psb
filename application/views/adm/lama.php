@@ -23,6 +23,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Data Santri Lanjutan</h3>
+                        <a href="<?= base_url('santriAdm/sincLama') ?>" class="btn btn-success btn-sm pull-right">Sinkron Santri Lanjutan</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

@@ -473,4 +473,13 @@ Panitia
 			redirect('santriAdm');
 		}
 	}
+
+	public function sendOld($nis)
+	{
+		$cek = $this->model->getby('tb_santri', 'nis', $nis)->row();
+		$this->model->updateToDb2('tb_santri', ['t_formal' => $cek->lembaga], 'nis', $nis);
+		if ($this->db->affected_rows() > 0) {
+			redirect('santriAdm/lanjut');
+		}
+	}
 }

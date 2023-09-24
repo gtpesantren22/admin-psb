@@ -176,8 +176,8 @@ _*Terimakasih*_';
 
         $this->model->edit('pengajuan', 'kode_pengajuan', $kode, $data);
         if ($this->db->affected_rows() > 0) {
-            // kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
-            kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
+            kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
+            // kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
             $this->session->set_flashdata('ok', 'Pengajuan Berhasil');
             redirect('bidang/pengajuanDetail/' . $kode);
         } else {
@@ -235,8 +235,8 @@ Terimakasih';
 
             if ($this->db->affected_rows() > 0) {
 
-                // kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
-                kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
+                kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
+                // kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
 
                 $this->session->set_flashdata('ok', 'Bukti SPJ berhasil diupload');
                 redirect('bidang/pengajuan');

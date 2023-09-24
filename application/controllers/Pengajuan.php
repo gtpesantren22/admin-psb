@@ -70,8 +70,8 @@ class Pengajuan extends CI_Controller
 
         $this->model->edit('pengajuan', 'kode_pengajuan', $kode, $data);
         if ($this->db->affected_rows() > 0) {
-            // kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
-            kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
+            kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
+            // kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
             $this->session->set_flashdata('ok', 'Pengajuan Berhasil');
             redirect('pengajuan/pengajuanDetail/' . $kode);
         } else {
@@ -103,8 +103,8 @@ class Pengajuan extends CI_Controller
 
         $this->model->edit('pengajuan', 'kode_pengajuan', $kode_pengajuan, $data);
         if ($this->db->affected_rows() > 0) {
-            // kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
-            kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
+            kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
+            // kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
             $this->session->set_flashdata('ok', 'Pengajuan Berhasil');
             redirect('pengajuan/pengajuanDetail/' . $kode_pengajuan);
         } else {
@@ -149,8 +149,8 @@ class Pengajuan extends CI_Controller
         if ($this->db->affected_rows() > 0) {
             $this->model->tambah('spj', $dataSpj);
 
-            // kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
-            kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
+            kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
+            // kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
 
             $this->session->set_flashdata('ok', 'Pengajuan Berhasil');
             redirect('pengajuan/pengajuanDetail/' . $kode_pengajuan);
@@ -197,8 +197,8 @@ Terimakasih';
         $this->model->edit('spj', 'kode_pengajuan', $kode, $data);
         $this->model->edit('pengajuan', 'kode_pengajuan', $kode, $data2);
         if ($this->db->affected_rows() > 0) {
-            // kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
-            kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
+            kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
+            // kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
             $this->session->set_flashdata('ok', 'Pengajuan Berhasil');
             redirect('pengajuan');
         } else {
@@ -230,8 +230,8 @@ _*Terimakasih*_';
 
         $this->model->edit('spj', 'kode_pengajuan', $kode, $data);
         if ($this->db->affected_rows() > 0) {
-            // kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
-            kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
+            kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
+            // kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
             $this->session->set_flashdata('ok', 'Pengajuan Berhasil');
             redirect('pengajuan');
         } else {

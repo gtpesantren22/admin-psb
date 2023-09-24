@@ -104,4 +104,9 @@ class BundaModel extends CI_Model
 		$this->db->join($table2, $table1 . '.' . $on1 . '=' . $table2 . '.' . $on2);
 		return $this->db->get();
 	}
+
+	function getAll($tbl)
+	{
+		return $this->db->get($tbl);
+	}
 }

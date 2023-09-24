@@ -36,7 +36,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-                        <a href="<?= base_url(); ?>">
+                        <a href="<?= base_url('bidang'); ?>">
                             Bendahara PSB 2023 - PPDWK
                         </a>
                     </h1>
@@ -126,7 +126,7 @@
                         <div class="container-xl">
                             <ul class="navbar-nav">
                                 <li class="nav-item <?= $judul === 'home' ? 'active' : ''; ?>">
-                                    <a class="nav-link" href="<?= base_url() ?>">
+                                    <a class="nav-link" href="<?= base_url('bidang') ?>">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/home -->
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -160,110 +160,29 @@
                                         </span>
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="<?= base_url('santri'); ?>">
+                                        <a class="dropdown-item" href="<?= base_url('santridv'); ?>">
                                             Santri Baru
                                         </a>
-                                        <a class="dropdown-item" href="<?= base_url('santri/lanjut'); ?>">
+                                        <a class="dropdown-item" href="<?= base_url('santridv/lanjut'); ?>">
                                             Santri Lanjutan
                                         </a>
                                     </div>
                                 </li>
-                                <li class="nav-item dropdown <?= $judul === 'daftar' ? 'active' : ''; ?>">
-                                    <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                            <!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <rect x="7" y="9" width="14" height="10" rx="2"></rect>
-                                                <circle cx="14" cy="14" r="2"></circle>
-                                                <path d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2">
-                                                </path>
-                                            </svg>
-                                        </span>
-                                        <span class="nav-link-title">
-                                            Biaya Pendaftaran
-                                        </span>
-                                    </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="<?= base_url('daftar'); ?>">
-                                            Pendaftaran Baru
-                                        </a>
-                                        <a class="dropdown-item" href="<?= base_url('daftar/lanjut'); ?>">
-                                            Pendaftaran Lanjutan
-                                        </a>
-                                        <a class="dropdown-item" href="<?= base_url('daftar/sm'); ?>">
-                                            Pendaftaran (Sementara)
-                                        </a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown <?= $judul === 'regist' ? 'active' : ''; ?>">
-                                    <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                            <!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12">
-                                                </path>
-                                                <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4"></path>
-                                            </svg>
-                                        </span>
-                                        <span class="nav-link-title">
-                                            Registrasi Ulang
-                                        </span>
-                                    </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="<?= base_url('regist'); ?>">
-                                            Registrasi Santri Baru
-                                        </a>
-                                        <a class="dropdown-item" href="<?= base_url('regist/lanjut'); ?>">
-                                            Registrasi Santri Lanjutan
-                                        </a>
-                                        <a class="dropdown-item" href="<?= base_url('regist/sm'); ?>">
-                                            Registrasi (Sementara)
-                                        </a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown <?= $judul === 'trans' ? 'active' : ''; ?>">
-                                    <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                            <!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-truck-loading" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M2 3h1a2 2 0 0 1 2 2v10a2 2 0 0 0 2 2h15"></path>
-                                                <path d="M9 6m0 3a3 3 0 0 1 3 -3h4a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-4a3 3 0 0 1 -3 -3z"></path>
-                                                <path d="M9 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-                                                <path d="M18 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
-                                            </svg>
-                                        </span>
-                                        <span class="nav-link-title">
-                                            Transaksi
-                                        </span>
-                                    </a>
-                                    <div class="dropdown-menu">
-                                        <!-- <a class="dropdown-item" href="#">
-                                            <a class="dropdown-item" href="<?= base_url('trans/masuk'); ?>">
-                                            Pemasukan
-                                        </a> -->
-                                        <a class="dropdown-item" href="<?= base_url('pengajuan'); ?>">
-                                            Pengajuan
-                                        </a>
-                                    </div>
-                                </li>
 
-                                <li class="nav-item <?= $judul === 'dekos' ? 'active' : ''; ?>">
-                                    <a class="nav-link" href="<?= base_url('dekos') ?>">
+                                <li class="nav-item <?= $judul === 'pengajuan' ? 'active' : ''; ?>">
+                                    <a class="nav-link" href="<?= base_url('bidang/pengajuan') ?>">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/home -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-soup" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M4 11h16a1 1 0 0 1 1 1v.5c0 1.5 -2.517 5.573 -4 6.5v1a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-1c-1.687 -1.054 -4 -5 -4 -6.5v-.5a1 1 0 0 1 1 -1z"></path>
-                                                <path d="M12 4a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"></path>
-                                                <path d="M16 4a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"></path>
-                                                <path d="M8 4a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"></path>
+                                                <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                                                <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                                                <path d="M17 17h-11v-14h-2"></path>
+                                                <path d="M6 5l14 1l-1 7h-13"></path>
                                             </svg>
                                         </span>
                                         <span class="nav-link-title">
-                                            Dekosan
+                                            Pengajuan
                                         </span>
                                     </a>
                                 </li>
@@ -274,3 +193,5 @@
             </div>
         </div>
         <div class="page-wrapper">
+            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('ok') ?>"></div>
+            <div class="flash-data-error" data-flashdata="<?= $this->session->flashdata('error') ?>"></div>

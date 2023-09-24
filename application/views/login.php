@@ -24,25 +24,20 @@
     <meta name="MobileOptimized" content="320" />
     <link rel="icon" href="<?= base_url('demo'); ?>/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="<?= base_url('demo'); ?>/favicon.ico" type="image/x-icon" />
-    <meta name="description"
-        content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!" />
+    <meta name="description" content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!" />
     <meta name="twitter:image:src" content="https://preview.tabler.io/static/og.png">
     <meta name="twitter:site" content="@tabler_ui">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title"
-        content="Tabler: Premium and Open Source dashboard template with responsive and high quality UI.">
-    <meta name="twitter:description"
-        content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
+    <meta name="twitter:title" content="Tabler: Premium and Open Source dashboard template with responsive and high quality UI.">
+    <meta name="twitter:description" content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
     <meta property="og:image" content="https://preview.tabler.io/static/og.png">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="640">
     <meta property="og:site_name" content="Tabler">
     <meta property="og:type" content="object">
-    <meta property="og:title"
-        content="Tabler: Premium and Open Source dashboard template with responsive and high quality UI.">
+    <meta property="og:title" content="Tabler: Premium and Open Source dashboard template with responsive and high quality UI.">
     <meta property="og:url" content="https://preview.tabler.io/static/og.png">
-    <meta property="og:description"
-        content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
+    <meta property="og:description" content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
     <!-- CSS files -->
     <link href="<?= base_url('demo'); ?>/dist/css/tabler.min.css?1668288743" rel="stylesheet" />
     <link href="<?= base_url('demo'); ?>/dist/css/tabler-flags.min.css?1668288743" rel="stylesheet" />
@@ -50,11 +45,11 @@
     <link href="<?= base_url('demo'); ?>/dist/css/tabler-vendors.min.css?1668288743" rel="stylesheet" />
     <link href="<?= base_url('demo'); ?>/dist/css/demo.min.css?1668288743" rel="stylesheet" />
     <style>
-    @import url('https://rsms.me/inter/inter.css');
+        @import url('https://rsms.me/inter/inter.css');
 
-    :root {
-        --tblr-font-sans-serif: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
-    }
+        :root {
+            --tblr-font-sans-serif: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+        }
     </style>
 </head>
 
@@ -63,8 +58,7 @@
     <div class="page page-center">
         <div class="container container-tight py-4">
             <div class="text-center mb-4">
-                <a href="." class="navbar-brand navbar-brand-autodark"><img src="/static/logo.svg" height="36"
-                        alt=""></a>
+                <a href="." class="navbar-brand navbar-brand-autodark"><img src="/static/logo.svg" height="36" alt=""></a>
             </div>
             <div class="card card-md">
                 <div class="card-body">
@@ -72,8 +66,7 @@
                     <form action="<?= base_url('login/masuk'); ?>" method="post" autocomplete="off" novalidate>
                         <div class="mb-3">
                             <label class="form-label">Username</label>
-                            <input type="text" class="form-control" name="username" placeholder="Username" required
-                                autocomplete="off">
+                            <input type="text" class="form-control" name="username" placeholder="Username" required autocomplete="off">
                         </div>
                         <div class="mb-2">
                             <label class="form-label">
@@ -83,8 +76,7 @@
                                 </span> -->
                             </label>
                             <div class="input-group input-group-flat">
-                                <input type="password" class="form-control" name="password" placeholder="Your password"
-                                    required autocomplete="off">
+                                <input type="password" class="form-control" name="password" placeholder="Your password" required autocomplete="off">
                             </div>
                         </div>
                         <div class="mb-3">
@@ -93,6 +85,7 @@
                                 <option value=""> -pilih- </option>
                                 <option value="adm"> Administrasi </option>
                                 <option value="bunda"> Admin Bendahara </option>
+                                <option value="bidang"> Admin Bidang </option>
                             </select>
                         </div>
                         <!-- <div class="mb-2">

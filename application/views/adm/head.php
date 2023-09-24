@@ -315,3 +315,5 @@
             </div>
         </div>
         <div class="page-wrapper">
+            <div class="flash-data" data-flashdata="<?= $this->session->flashdata('ok') ?>"></div>
+            <div class="flash-data-error" data-flashdata="<?= $this->session->flashdata('error') ?>"></div>

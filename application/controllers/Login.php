@@ -13,12 +13,7 @@ class Login extends CI_Controller
 
     public function index()
     {
-
-        // $data['daftar'] = $this->DataModel->data()->result();
-
-        // $this->load->view('layout/head');
         $this->load->view('login');
-        // $this->load->view('layout/foot');
     }
 
     public function masuk()
@@ -47,22 +42,26 @@ class Login extends CI_Controller
                 redirect('welcome');
             } elseif ($user->level === 'adm' && $tujuan === 'adm') {
                 redirect('admin');
+            } elseif ($user->level === 'admin' && $tujuan === 'bidang') {
+                redirect('bidang');
+            } elseif ($user->level === 'division' && $tujuan === 'bidang') {
+                redirect('bidang');
             } else {
                 echo "
-            <script>
-                alert('Maaf tujuan anda salah');
-                window.location = '" . base_url('login') . "';
-            </script>
-            ";
+                    <script>
+                        alert('Maaf tujuan anda salah');
+                        window.location = '" . base_url('login') . "';
+                    </script>
+                ";
             }
         } else {
             // $this->session->set_flashdata('message_login_error', 'Login Gagal, pastikan username dan passwrod benar!');
             echo "
-            <script>
-                alert('Maaf username atau password salah');
-                window.location = '" . base_url('login') . "';
-            </script>
-            ";
+                    <script>
+                        alert('Maaf username atau password salah');
+                        window.location = '" . base_url('login') . "';
+                    </script>
+                ";
             // $this->load->view('login');
         }
     }

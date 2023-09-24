@@ -41,6 +41,10 @@
 <!-- panggil adapter jquery ckeditor -->
 <script type="text/javascript" src="<?= base_url('demo'); ?>/ckeditor/adapters/jquery.js"></script>
 <!-- setup selector -->
+
+<script src="<?= base_url('demo/'); ?>sw/sweetalert2.all.min.js"></script>
+<script src="<?= base_url('demo/'); ?>sw/my-notif.js"></script>
+
 <script type="text/javascript">
     $('textarea.texteditor').ckeditor();
 </script>

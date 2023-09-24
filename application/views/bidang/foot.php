@@ -29,12 +29,12 @@
 <!-- Tabler Core -->
 <script src="<?= base_url('demo'); ?>/dist/js/tabler.min.js?1666304673" defer></script>
 <script src="<?= base_url('demo'); ?>/dist/js/demo.min.js?1666304673" defer></script>
+<script src="<?= base_url('demo'); ?>/sw/sweetalert2.all.min.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
 <script src="<?= base_url('demo'); ?>/dist/jquery.mask.min.js"></script>
-<script src="<?= base_url('demo'); ?>/sw/sweetalert2.all.min.js"></script>
 <script src="<?= base_url('demo'); ?>/sw/my-notif.js"></script>
 
 <script>

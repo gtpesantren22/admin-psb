@@ -12,17 +12,6 @@
                 </h2>
             </div>
             <div class="col-auto ms-auto d-print-none">
-                <div class="btn-list">
-                    <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#addBaruPengajuan">
-                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <line x1="12" y1="5" x2="12" y2="19" />
-                            <line x1="5" y1="12" x2="19" y2="12" />
-                        </svg>
-                        Buat Pengajuan Baru
-                    </a>
-                </div>
             </div>
             <!-- Page title actions -->
         </div>
@@ -35,7 +24,14 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Pengajuan Saya</h3>
+                        <h3 class="card-title"><a href="#" data-bs-toggle="modal" data-bs-target="#addBaruPengajuan">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+                                    <path d="M9 12h6"></path>
+                                    <path d="M12 9v6"></path>
+                                </svg>
+                                Buat Pengajuan</a></h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

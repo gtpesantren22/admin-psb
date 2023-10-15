@@ -61,41 +61,54 @@ class Daftar extends CI_Controller
 	{
 
 		$nis = $this->input->post('nis', true);
-		$id_bayar = $this->input->post('id_bayar', true);
 
 		$tangg = preg_replace("/[^0-9]/", "", $this->input->post('tangg', true));
 		$nominal = preg_replace("/[^0-9]/", "", $this->input->post('nominal', true));
 
 		$cek = $this->model->santriNis($nis)->row();
 		$rdrc = $cek->ket === 'baru' ? 'daftar' : 'daftar/lanjut';
-		$pass = rand(0, 999999);
+		$pass = generateRandomString(5);
 		$passOk = password_hash($pass, PASSWORD_BCRYPT);
+		$tgl_bayar = $this->input->post('tgl_bayar', true);
 
 		$sn = $this->model->santriNis($nis)->row();
 		$key = $this->model->apiKey()->row();
 
-		$pesan = '*Informasi Akun Santri*
 
-*SIMPANLAH USER DAN PASSWORD BERIKUT !!!*
-*Akun Pribadi Ini Bersifat Rahasia.*
+		$pesan2 = '*Terimakasih*
 
-Silahkan login ke https://psb.ppdwk.com/login untuk melengkapi data dan scan berkas calon santri baru  berikut : 
-
+*Kode Pendaftaran : ' . ($nis) . '*
+Pembayaran Pendaftaran, atas :
+        
 Nama : ' . $sn->nama . '
 Alamat : ' . $sn->desa . '-' . $sn->kec . '-' . $sn->kab . '
 Lembaga tujuan : ' . $sn->lembaga . '
+Nominal : ' . rupiah($nominal) . '
+Tgl Bayar : ' . $tgl_bayar . '
+        
+*telah TERVERIFIKASI.*
+________________________________
+
+*Informasi Akun Santri*
+
+*SIMPANLAH USER DAN PASSWORD BERIKUT !!!*
+Silahkan login ke https://psb.ppdwk.com/login untuk melengkapi data dan scan berkas calon santri baru serta informasi lainnya. 
+
 Usename : *' . $sn->username . '*
 Password : *' . $pass . '*
+        
+_*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Bawahan hitam/gelap (Ketika tes dan berangkat mondok)*_
 
-Pastikan Data yang dimasukkan adalah Valid. Semua informasi pendaftaran santri baru akan dikirim melalui nomor Whatsapp yang terdaftar di web PSB.
-Terimakasih. 
-
-Panitia 
-';
+*dengan membawa berkas dibawah ini :*
+- Foto Copy Kartu Keluarga 4 lembar
+- Foto Copy Akta Kelahiran 4 lembar
+- Foto Copy IJAZAH dilegalisir ( Menyusul ) 4 lembar';
 
 		$data = [
+			'id_bayar' => $this->uuid->v4(),
+			'nis' => $nis,
 			'nominal' => $nominal,
-			'tgl_bayar' => $this->input->post('tgl_bayar', true),
+			'tgl_bayar' => $tgl_bayar,
 			'created' => date('Y-m-d H:i'),
 			'kasir' => $this->input->post('kasir', true),
 			'via' => $this->input->post('via', true)
@@ -106,15 +119,18 @@ Panitia
 			'stts' => 'Terverifikasi'
 		];
 
+		$listPh = [$sn->hp, $sn->hp];
+
+		// var_dump($listPh);
 		if ($nominal > $tangg) {
 			$this->session->set_flashdata('error', 'Maaf. Pembayaran Melebihi');
 			redirect('daftar/inDaftar/' . $nis);
 		} else {
-			$this->model->edit('bp_daftar', $data, $nis);
+			$this->model->tambah2('bp_daftar', $data);
 			$this->model->edit('tb_santri', $data2, $nis);
-			kirim_person($key->api_key, $sn->hp, $pesan);
 			if ($this->db->affected_rows() > 0) {
-				$this->kirim($id_bayar);
+				kirim_person($key->api_key, $sn->hp, $pesan2);
+				// addContact_to_group($key->api, $listPh, '6285236924510-1620187184@g.us');
 				redirect($rdrc);
 			}
 		}
@@ -134,6 +150,10 @@ Panitia
 
 	public function del($id)
 	{
+		$data = $this->model->getBy('bp_daftar', 'id_bayar', $id)->row();
+		$verv = ['stts' => 'Belum Terverifikasi'];
+
+		$this->model->edit('tb_santri', $verv, $data->nis);
 		$this->model->hapus('bp_daftar', $id);
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('ok', 'Data berhasil dihapus');

@@ -496,4 +496,90 @@ Panitia
 			redirect('santriAdm/lanjut');
 		}
 	}
+
+
+	public function verifikasi()
+	{
+		$data['baru'] = $this->model->getAll('tb_santri_sm')->result();
+		$data['judul'] = 'santri';
+		$data['user'] = $this->Auth_model->current_user();
+
+		$this->load->view('adm/head', $data);
+		$this->load->view('adm/cekSantri', $data);
+		$this->load->view('adm/foot');
+	}
+
+	public function cek($nis)
+	{
+		$data['data'] = $this->model->getby('tb_santri_sm', 'nis', $nis)->row();
+		$data['berkas'] = $this->model->getby('berkas_file', 'nis', $nis)->row();
+		$data['judul'] = 'santri';
+		$data['user'] = $this->Auth_model->current_user();
+
+		$this->load->view('adm/head', $data);
+		$this->load->view('adm/detailSantri', $data);
+		$this->load->view('adm/foot');
+	}
+
+	public function verval($nis)
+	{
+		$this->db->query("INSERT INTO tb_santri SELECT * FROM tb_santri_sm WHERE nis = $nis ");
+		$data = $this->model->getBy('tb_santri_sm', 'nis', $nis)->row();
+		$alm = $data->desa . '-' . $data->kec . '-' . $data->kab;
+		$key = $this->model->apiKey()->row();
+
+		if ($data->gel == 1) {
+			$gel = "1";
+			$by = 'Rp. 80.000';
+		} else if ($data->gel == 2) {
+			$gel = "2";
+			$by = 'Rp. 130.000';
+		} else if ($data->gel == 3) {
+			$gel = "3";
+			$by = 'Rp. 180.000';
+		}
+
+		$tambahan = 'selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . $by . '* ke *No.Rek BRI 0582-0101-4254-500 a.n. Hadiryanto Putra Pratama* dan melakukan konfirmasi pembayaran disertai bukti transfer ke *No. WA 082338631044*';
+		$bawahan = '_*Catatan Penting :*_
+_*Calon santri diwajibkan memakai baju putih, songkok/kerudung hitam saat tes pendaftaran dengan bawahan hitam atau gelap*_';
+
+		$pesan = '*Selamat*
+Data yang anda isi telah  tersimpan di data panitia Penerimaan santri baru PP. Darul Lughah Wal Karomah, atas :
+        
+Nama : ' . $data->nama . '
+Alamat : ' . $alm . '
+Lembaga tujuan : ' . $data->lembaga . ' DWK
+jalur : ' . $data->jalur . '
+Gel :  ' . $data->gel . '
+        
+' . $tambahan . '
+
+*Terimakasih*
+
+' . $bawahan;
+
+		$pesan2 = '*Info tambahan santri baru*
+
+No. Pendaftaran : ' . $nis . '
+Nama : ' . $data->nama . '
+Alamat : ' . $alm . '
+Lembaga tujuan : ' . $data->lembaga . ' DWK
+jalur : ' . $data->jalur . '
+Gel :  ' . $gel . '
+No. HP : ' . $data->hp . '
+Waktu Daftar : ' . date('d-m-Y H:i:s') . '
+            
+*Terimakasih*';
+
+		if ($this->db->affected_rows() > 0) {
+			kirim_person($key->api_key, $data->hp, $pesan);
+			// kirim_group($key->api_key, '120363026604973091@g.us', $pesan2);
+			$this->model->hapus('tb_santri_sm', 'nis', $nis);
+			$this->session->set_flashdata('ok', 'Data berhasil dipindahkan');
+			redirect('santriAdm/verifikasi');
+		} else {
+			$this->session->set_flashdata('error', 'Data gagal dipindahkan');
+			redirect('santriAdm/verifikasi');
+		}
+	}
 }

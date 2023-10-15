@@ -133,4 +133,15 @@ class SantriModel extends CI_Model
         $this->db2->where($where, $dtwhere);
         $this->db2->update($table, $data);
     }
+
+    function getAll($table)
+    {
+        return $this->db->get($table);
+    }
+
+    function hapus($table, $where, $dtwhere)
+    {
+        $this->db->where($where, $dtwhere);
+        $this->db->delete($table);
+    }
 }

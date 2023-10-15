@@ -126,7 +126,7 @@ class Regist extends CI_Controller
 		];
 
 		if ($byr > $tangg) {
-			$this->session->set_flashdata('error', 'Maaf. Pembayaran Anda Melebihi');
+			$this->session->set_flashdata('error', 'Maaf Pembayaran Anda Melebihi.');
 			redirect('regist/inDaftar/' . $nis);
 		} else {
 

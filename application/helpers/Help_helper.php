@@ -68,7 +68,7 @@ function tanggalIndo($tanggal)
 function tanggalIndo2($tanggal)
 {
     $a = explode('-', $tanggal);
-    $tanggal = $a['0'] . "-" . bulan($a['1']) . "-" . $a['2'];
+    $tanggal = $a['0'] . " " . bulan($a['1']) . " " . $a['2'];
     return $tanggal;
 }
 
@@ -137,9 +137,30 @@ function kirim_tmp($key, $no_hp, $pesan, $tmp, $link_logo)
     curl_close($curl2);
 }
 
+function addContact_to_group($key, $no_hp, $id_group)
+{
+    $curl2 = curl_init();
+    curl_setopt_array(
+        $curl2,
+        array(
+            CURLOPT_URL => 'http://191.101.3.115:3000/api/addParticipantGroup',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => 'apiKey=' . $key . '&id_group=' . $id_group . '&phone=' . $no_hp,
+        )
+    );
+    $response = curl_exec($curl2);
+    curl_close($curl2);
+}
+
 function gel($gel)
 {
-    $nm = array(0, 70000, 120000, 170000);
+    $nm = array(0, 80000, 130000, 180000);
     return $nm[$gel];
 }
 
@@ -182,4 +203,16 @@ function random($panjang)
         $string .= $karakter[$pos];
     }
     return $string;
+}
+
+function generateRandomString($length = 10)
+{
+    $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $randomString = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+
+    return $randomString;
 }

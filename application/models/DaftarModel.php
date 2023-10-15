@@ -58,8 +58,11 @@ class DaftarModel extends CI_Model
     function noBp()
     {
         $this->db->from('tb_santri');
-        $this->db->where('NOT EXISTS (SELECT * FROM bp_daftar WHERE bp_daftar.nis=tb_santri.nis)', '', false);
         $this->db->where('ket', 'baru');
+        $this->db->where('lembaga <>', 'MI');
+        $this->db->where('lembaga <>', 'RA');
+        // $this->db->where_not_in('nis', array_column($subquery, 'nis'));
+        $this->db->where('NOT EXISTS (SELECT * FROM bp_daftar WHERE bp_daftar.nis=tb_santri.nis)', '', false);
         return $this->db->get();
     }
 

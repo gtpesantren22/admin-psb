@@ -81,19 +81,13 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Login ke</label>
-                            <select class="form-control" name="tujuan" placeholder="Username" required>
+                            <select class="form-control" name="tujuan" required>
                                 <option value=""> -pilih- </option>
                                 <option value="adm"> Administrasi </option>
                                 <option value="bunda"> Admin Bendahara </option>
                                 <option value="bidang"> Admin Bidang </option>
                             </select>
                         </div>
-                        <!-- <div class="mb-2">
-                            <label class="form-check">
-                                <input type="checkbox" class="form-check-input" />
-                                <span class="form-check-label">Ingat saya</span>
-                            </label>
-                        </div> -->
                         <div class="form-footer">
                             <button type="submit" class="btn btn-primary w-100">Masuk</button>
                         </div>

@@ -25,29 +25,6 @@
                         <h3 class="card-title">Input Pendaftaran</h3>
                     </div>
                     <div class="card-body">
-                        <?php if ($this->session->flashdata('error')) : ?>
-                            <div class="alert alert-danger">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-triangle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M12 9v2m0 4v.01"></path>
-                                    <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75">
-                                    </path>
-                                </svg>
-
-                                <?= $this->session->flashdata('error'); ?>
-                            </div>
-                        <?php endif; ?>
-                        <?php if ($this->session->flashdata('ok')) : ?>
-                            <div class="alert alert-success">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <circle cx="12" cy="12" r="9"></circle>
-                                    <path d="M9 12l2 2l4 -4"></path>
-                                </svg>
-
-                                <?= $this->session->flashdata('ok'); ?>
-                            </div>
-                        <?php endif; ?>
 
                         <div class="row">
                             <div class="col-md-6">

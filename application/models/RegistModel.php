@@ -42,9 +42,10 @@ class RegistModel extends CI_Model
 
     function noBp()
     {
-        $this->db->from('tb_santri');
-        $this->db->where('NOT EXISTS (SELECT * FROM tanggungan WHERE tanggungan.nis=tb_santri.nis)', '', false);
-        $this->db->where('ket', 'baru');
+        $this->db->from('bp_daftar');
+        $this->db->join('tb_santri', 'ON tb_santri.nis=bp_daftar.nis');
+        $this->db->where('NOT EXISTS (SELECT * FROM tanggungan WHERE tanggungan.nis=bp_daftar.nis)', '', false);
+        $this->db->where('tb_santri.ket', 'baru');
         return $this->db->get();
     }
 

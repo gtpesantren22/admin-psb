@@ -47,14 +47,15 @@ class Bidang extends CI_Controller
 
     public function pengajuanpAdd()
     {
-        $cek = $this->model->getBy('pengajuan', 'status <>', 'selesai')->row();
+        $user = $this->Auth_model->current_user();
+
+        $cek = $this->model->getBy2('pengajuan', 'status <>', 'bidang', 'selesai', $user->jabatan)->row();
         if ($cek) {
             $this->session->set_flashdata('error', 'Maaf. Mohon untuk menyelesaikan pengajuan sebelumnya');
             redirect('bidang/pengajuan');
         } else {
             $bln = $this->input->post('bulan', true);
             $tanggal = $this->input->post('tanggal', true);
-            $user = $this->Auth_model->current_user();
 
             $dataKode = $this->db->query("SELECT COUNT(*) as jml FROM pengajuan ")->row();
             $kodeBarang = $dataKode->jml + 1;

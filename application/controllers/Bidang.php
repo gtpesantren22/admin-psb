@@ -49,7 +49,7 @@ class Bidang extends CI_Controller
     {
         $user = $this->Auth_model->current_user();
 
-        $cek = $this->model->getBy2('pengajuan', 'status <>', 'bidang', 'selesai', $user->jabatan)->row();
+        $cek = $this->model->getBy2('pengajuan', 'status <>', 'selesai', 'bidang', $user->jabatan)->row();
         if ($cek) {
             $this->session->set_flashdata('error', 'Maaf. Mohon untuk menyelesaikan pengajuan sebelumnya');
             redirect('bidang/pengajuan');

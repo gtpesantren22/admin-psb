@@ -91,6 +91,14 @@ class BundaModel extends CI_Model
 		$this->db->where($where, $dtwhere);
 		return $this->db->get();
 	}
+	public function getBy2($table, $where, $dtwhere, $where1, $dtwhere1)
+	{
+		$this->db->select('*');
+		$this->db->from($table);
+		$this->db->where($where, $dtwhere);
+		$this->db->where($where1, $dtwhere1);
+		return $this->db->get();
+	}
 
 	public function edit($table, $where, $dtwhere, $data)
 	{

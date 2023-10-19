@@ -42,6 +42,8 @@ class Login extends CI_Controller
                 redirect('welcome');
             } elseif ($user->level === 'adm' && $tujuan === 'adm') {
                 redirect('admin');
+            } elseif ($user->level === 'adm' && $tujuan === 'bidang') {
+                redirect('bidang');
             } elseif ($user->level === 'admin' && $tujuan === 'bidang') {
                 redirect('bidang');
             } elseif ($user->level === 'division' && $tujuan === 'bidang') {

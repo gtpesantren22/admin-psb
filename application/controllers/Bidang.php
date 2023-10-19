@@ -13,7 +13,7 @@ class Bidang extends CI_Controller
         $this->tahun = '2024/2025';
         $this->bulan = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
-        if (!$this->Auth_model->current_user() || $user->level != 'division' && $user->level != 'admin') {
+        if (!$this->Auth_model->current_user() || ($user->level != 'division' && $user->level != 'admin' && $user->level != 'adm')) {
             redirect('login/logout');
         }
     }

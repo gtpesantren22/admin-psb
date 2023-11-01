@@ -102,4 +102,11 @@ class DaftarModel extends CI_Model
         $this->db->from($table);
         return $this->db->get();
     }
+
+    function getJoin($tbl1, $tbl2, $on1, $on2)
+    {
+        $this->db->from($tbl1);
+        $this->db->join($tbl2, "$tbl1.$on1=$tbl2.$on2");
+        return $this->db->get();
+    }
 }

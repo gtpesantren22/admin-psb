@@ -539,7 +539,7 @@ Panitia
 			$by = 'Rp. 180.000';
 		}
 
-		$tambahan = 'selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . $by . '* ke *No.Rek BRI 0582-0101-4254-500 a.n. Hadiryanto Putra Pratama* dan melakukan konfirmasi pembayaran disertai bukti transfer ke *No. WA 082338631044*';
+		$tambahan = 'selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . $by . '* ke *No.Rek BRI 0582-01000-847-303 a.n. PP DARUL LUGHAH WAL KAROAH* dan melakukan konfirmasi pembayaran disertai bukti transfer ke *No. WA 0823-2964-1926*';
 		$bawahan = '_*Catatan Penting :*_
 _*Calon santri diwajibkan memakai baju putih, songkok/kerudung hitam saat tes pendaftaran dengan bawahan hitam atau gelap*_';
 
@@ -554,9 +554,7 @@ Gel :  ' . $data->gel . '
         
 ' . $tambahan . '
 
-*Terimakasih*
-
-' . $bawahan;
+*Terimakasih*';
 
 		$pesan2 = '*Info tambahan santri baru*
 
@@ -573,7 +571,7 @@ Waktu Daftar : ' . date('d-m-Y H:i:s') . '
 
 		if ($this->db->affected_rows() > 0) {
 			kirim_person($key->api_key, $data->hp, $pesan);
-			// kirim_group($key->api_key, '120363026604973091@g.us', $pesan2);
+			kirim_group($key->api_key, '120363026604973091@g.us', $pesan2);
 			$this->model->hapus('tb_santri_sm', 'nis', $nis);
 			$this->session->set_flashdata('ok', 'Data berhasil dipindahkan');
 			redirect('santriAdm/verifikasi');

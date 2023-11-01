@@ -260,4 +260,76 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 			}
 		}
 	}
+
+	public function verval()
+	{
+		$data['baru'] = $this->model->getJoin('tb_santri_sm', 'berkas_file', 'id_santri', 'id_file')->result();
+		$data['judul'] = 'santri';
+		$data['user'] = $this->Auth_model->current_user();
+
+		$this->load->view('bunda/head', $data);
+		$this->load->view('bunda/cekSantri', $data);
+		$this->load->view('bunda/foot');
+	}
+
+	public function cek($nis)
+	{
+		$data['data'] = $this->model->getby('tb_santri_sm', 'id_santri', $nis)->row();
+		$data['berkas'] = $this->model->getby('berkas_file', 'id_file', $nis)->row();
+		$data['judul'] = 'santri';
+		$data['user'] = $this->Auth_model->current_user();
+
+		$this->load->view('bunda/head', $data);
+		$this->load->view('bunda/detailSantri', $data);
+		$this->load->view('bunda/foot');
+	}
+
+	public function vervalNota($id)
+	{
+		$santri = $this->model->getBy('tb_santri_sm', 'id_santri', $id)->row();
+		$berkas = $this->model->getBy('berkas_file', 'id_file', $id)->row();
+		$foto = $this->model->getBy('foto_file', 'id_file', $id)->row();
+		$user = $this->Auth_model->current_user();
+
+		$jk = $santri->jkl == 'Laki-laki' ? '1' : '2';
+		$data = $this->db->query("SELECT max(substring(nis, 6)) as maxKode FROM tb_santri WHERE ket = 'baru' ")->row();
+		$kodeBarang = $data->maxKode ? $data->maxKode : '00000000';
+		$noUrut = (int) substr($kodeBarang, 0, 3);
+		$noUrut++;
+		$char = "2024";
+		$kodeBarang = $char . $jk . sprintf("%03s", $noUrut);
+		$nis = htmlspecialchars($kodeBarang);
+
+		$kk = $nis . '-kk.' . pathinfo($berkas->kk, PATHINFO_EXTENSION);
+		$akta = $nis . '-akta.' . pathinfo($berkas->akta, PATHINFO_EXTENSION);
+		$ktp_ayah = $nis . '-ktp_ayah.' . pathinfo($berkas->ktp_ayah, PATHINFO_EXTENSION);
+		$ktp_ibu = $nis . '-ktp_ibu.' . pathinfo($berkas->ktp_ibu, PATHINFO_EXTENSION);
+		$bukti = $nis . '-bukti.' . pathinfo($berkas->bukti, PATHINFO_EXTENSION);
+		$skl = $berkas->skl != '' ? $nis . '-skl.' . pathinfo($berkas->skl, PATHINFO_EXTENSION) : '';
+		$kip = $berkas->kip != '' ? $nis . '-kip.' . pathinfo($berkas->kip, PATHINFO_EXTENSION) : '';
+		$fotoDiri = $nis . '-foto.' . pathinfo($foto->diri, PATHINFO_EXTENSION);
+
+		$dataBerkas = [
+			'nis' => $nis,
+			'kk' => $kk,
+			'akta' => $akta,
+			'ktp_ayah' => $ktp_ayah,
+			'ktp_ibu' => $ktp_ibu,
+			'skl' => $skl,
+			'kip' => $kip,
+			'bukti' => $bukti,
+		];
+		$fotoData = ['nis' => $nis, 'diri' => $fotoDiri];
+		$seragam = ['nis' => $nis];
+		$dtsantri = ['nis' => $nis];
+		$bayar = [
+			'id_bayar' => $id,
+			'nis' => $nis,
+			'nominal' => gel($santri->gel),
+			'tgl_bayar' => date('Y-m-d'),
+			'via' => 'Transfer',
+			'kasir' => $user->nama,
+			'created' => date('Y-m-d H:i:s'),
+		];
+	}
 }

@@ -63,7 +63,7 @@
             <div class="card card-md">
                 <div class="card-body">
                     <h2 class="h2 text-center mb-4">Login Admin PSB</h2>
-                    <form action="<?= base_url('login/masuk'); ?>" method="post" autocomplete="off" novalidate>
+                    <form action="<?= base_url('login/masuk'); ?>" method="post">
                         <div class="mb-3">
                             <label class="form-label">Username</label>
                             <input type="text" class="form-control" name="username" placeholder="Username" required autocomplete="off">

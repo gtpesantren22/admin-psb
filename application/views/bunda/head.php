@@ -194,6 +194,9 @@
                                         <a class="dropdown-item" href="<?= base_url('daftar/sm'); ?>">
                                             Pendaftaran (Sementara)
                                         </a>
+                                        <a class="dropdown-item" href="<?= base_url('daftar/verval'); ?>">
+                                            Varifikasi Pendaftaran
+                                        </a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown <?= $judul === 'regist' ? 'active' : ''; ?>">

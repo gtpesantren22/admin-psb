@@ -30,11 +30,11 @@
                                 <?php
                                 $extension = pathinfo($berkas->bukti, PATHINFO_EXTENSION);
                                 if ($extension == 'pdf') { ?>
-                                    <!-- <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/bukti/' . $berkas->bukti ?>" width="100%" height="460" style="border:none;"></iframe> -->
-                                    <iframe src="<?= 'http://localhost/psb/assets/berkas/bukti/' . $berkas->bukti ?>" width="100%" height="460" style="border:none;"></iframe>
+                                    <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/bukti/' . $berkas->bukti ?>" width="100%" height="460" style="border:none;"></iframe>
+                                    <!-- <iframe src="<?= 'http://localhost/psb/assets/berkas/bukti/' . $berkas->bukti ?>" width="100%" height="460" style="border:none;"></iframe> -->
                                 <?php } else { ?>
-                                    <!-- <img src="<?= 'https://psb.ppdwk.com/assets/berkas/bukti/' . $berkas->bukti ?>" alt="" height="460"> -->
-                                    <img src="<?= 'http://localhost/psb/assets/berkas/bukti/' . $berkas->bukti ?>" alt="" height="460">
+                                    <img src="<?= 'https://psb.ppdwk.com/assets/berkas/bukti/' . $berkas->bukti ?>" alt="" height="460">
+                                    <!-- <img src="<?= 'http://localhost/psb/assets/berkas/bukti/' . $berkas->bukti ?>" alt="" height="460"> -->
                                 <?php } ?>
                             </div>
                             <div class="col-md-6">

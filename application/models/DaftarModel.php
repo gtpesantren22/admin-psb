@@ -88,6 +88,12 @@ class DaftarModel extends CI_Model
         $this->db->update($table, $data);
     }
 
+    function ubah($table, $where, $dtwhere, $data)
+    {
+        $this->db->where($where, $dtwhere);
+        $this->db->update($table, $data);
+    }
+
     function noBpLama()
     {
         $this->db->from('tb_santri');
@@ -108,5 +114,11 @@ class DaftarModel extends CI_Model
         $this->db->from($tbl1);
         $this->db->join($tbl2, "$tbl1.$on1=$tbl2.$on2");
         return $this->db->get();
+    }
+
+    function hapus2($tbl, $where, $dtwhere)
+    {
+        $this->db->where($where, $dtwhere);
+        $this->db->delete($tbl);
     }
 }

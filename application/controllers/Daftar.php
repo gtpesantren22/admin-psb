@@ -215,11 +215,10 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 *dengan membawa berkas dibawah ini :*
 - Foto Copy Kartu Keluarga 4 lembar
 - Foto Copy Akta Kelahiran 4 lembar
-- Foto Copy IJAZAH dilegalisir ( Menyusul ) 4 lembar
-';
+- Foto Copy IJAZAH dilegalisir ( Menyusul ) 4 lembar';
 
 		// kirim_person($key->api_key, $sn->hp, $pesan);
-		kirim_tmp($key->api_key, $sn->hp, $pesan, $tmp, 'https://i.postimg.cc/8c8fghZq/LOGO-WA.jpg');
+		kirim_tmp($key->api_key, $sn->hp, $pesan, $tmp, 'https://i.postimg.cc/8c8fghZq/LOGO-WA.jpg', '', '');
 		redirect('daftar');
 	}
 
@@ -290,6 +289,9 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 		$berkas = $this->model->getBy('berkas_file', 'id_file', $id)->row();
 		$foto = $this->model->getBy('foto_file', 'id_file', $id)->row();
 		$user = $this->Auth_model->current_user();
+		$password = random(5);
+		$key = $this->model->apiKey()->row();
+		$linkImg = 'https://psb.ppdwk.com/viho/assets/images/logo/Logo-psb.png';
 
 		$jk = $santri->jkl == 'Laki-laki' ? '1' : '2';
 		$data = $this->db->query("SELECT max(substring(nis, 6)) as maxKode FROM tb_santri WHERE ket = 'baru' ")->row();
@@ -300,28 +302,19 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 		$kodeBarang = $char . $jk . sprintf("%03s", $noUrut);
 		$nis = htmlspecialchars($kodeBarang);
 
-		$kk = $nis . '-kk.' . pathinfo($berkas->kk, PATHINFO_EXTENSION);
-		$akta = $nis . '-akta.' . pathinfo($berkas->akta, PATHINFO_EXTENSION);
-		$ktp_ayah = $nis . '-ktp_ayah.' . pathinfo($berkas->ktp_ayah, PATHINFO_EXTENSION);
-		$ktp_ibu = $nis . '-ktp_ibu.' . pathinfo($berkas->ktp_ibu, PATHINFO_EXTENSION);
-		$bukti = $nis . '-bukti.' . pathinfo($berkas->bukti, PATHINFO_EXTENSION);
-		$skl = $berkas->skl != '' ? $nis . '-skl.' . pathinfo($berkas->skl, PATHINFO_EXTENSION) : '';
-		$kip = $berkas->kip != '' ? $nis . '-kip.' . pathinfo($berkas->kip, PATHINFO_EXTENSION) : '';
-		$fotoDiri = $nis . '-foto.' . pathinfo($foto->diri, PATHINFO_EXTENSION);
+		// $kk = $nis . '-kk.' . pathinfo($berkas->kk, PATHINFO_EXTENSION);
+		// $akta = $nis . '-akta.' . pathinfo($berkas->akta, PATHINFO_EXTENSION);
+		// $ktp_ayah = $nis . '-ktp_ayah.' . pathinfo($berkas->ktp_ayah, PATHINFO_EXTENSION);
+		// $ktp_ibu = $nis . '-ktp_ibu.' . pathinfo($berkas->ktp_ibu, PATHINFO_EXTENSION);
+		// $bukti = $nis . '-bukti.' . pathinfo($berkas->bukti, PATHINFO_EXTENSION);
+		// $skl = $berkas->skl != '' ? $nis . '-skl.' . pathinfo($berkas->skl, PATHINFO_EXTENSION) : '';
+		// $kip = $berkas->kip != '' ? $nis . '-kip.' . pathinfo($berkas->kip, PATHINFO_EXTENSION) : '';
+		// $fotoDiri = $nis . '-foto.' . pathinfo($foto->diri, PATHINFO_EXTENSION);
 
-		$dataBerkas = [
-			'nis' => $nis,
-			'kk' => $kk,
-			'akta' => $akta,
-			'ktp_ayah' => $ktp_ayah,
-			'ktp_ibu' => $ktp_ibu,
-			'skl' => $skl,
-			'kip' => $kip,
-			'bukti' => $bukti,
-		];
-		$fotoData = ['nis' => $nis, 'diri' => $fotoDiri];
+		$dataBerkas = ['nis' => $nis];
+		$fotoData = ['nis' => $nis];
 		$seragam = ['nis' => $nis];
-		$dtsantri = ['nis' => $nis];
+		$dtsantri = ['nis' => $nis, 'username' => $nis, 'password' => $password];
 		$bayar = [
 			'id_bayar' => $id,
 			'nis' => $nis,
@@ -331,5 +324,90 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 			'kasir' => $user->nama,
 			'created' => date('Y-m-d H:i:s'),
 		];
+
+		$pesan2 = '*Terimakasih*
+
+*Kode Pendaftaran : ' . ($nis) . '*
+Pembayaran Pendaftaran, atas :
+        
+Nama : ' . $santri->nama . '
+Alamat : ' . $santri->desa . '-' . $santri->kec . '-' . $santri->kab . '
+Lembaga tujuan : ' . $santri->lembaga . '
+Nominal : ' . rupiah(gel($santri->gel)) . '
+Via : Transfer
+        
+*telah TERVERIFIKASI.*
+________________________________
+
+*Informasi Akun Santri*
+
+*SIMPANLAH USER DAN PASSWORD BERIKUT !!!*
+Silahkan login ke https://psb.ppdwk.com/login untuk melengkapi data dan scan berkas calon santri baru serta informasi lainnya. 
+
+Usename : *' . $nis . '*
+Password : *' . $password . '*
+________________________________
+
+_*Silahkan bergabung dilink undangan group diatas untuk mengetahui informasi lebih lanjut*_
+Terimakasih';
+
+		// UPDATE BERKAS
+		$this->model->ubah('berkas_file', 'id_file', $id, $dataBerkas);
+		if ($this->db->affected_rows() > 0) {
+
+			// UPDATE FOTO
+			$this->model->ubah('foto_file', 'id_file', $id, $fotoData);
+			if ($this->db->affected_rows() > 0) {
+
+				// UPDATE SERAGAM
+				$this->model->ubah('seragam', 'id_seragam', $id, $seragam);
+				if ($this->db->affected_rows() > 0) {
+
+					// UPDATE DTSANTRI
+					$this->model->ubah('tb_santri_sm', 'id_santri', $id, $dtsantri);
+					if ($this->db->affected_rows() > 0) {
+
+						// INSERT KE TABEL PEMBAYARAN
+						$this->model->tambah2('bp_daftar', $bayar);
+						if ($this->db->affected_rows() > 0) {
+
+							// PINDAH DATA SANTRI
+							$this->db->query("INSERT INTO tb_santri SELECT * FROM tb_santri_sm WHERE id_santri = '$id' ");
+							if ($this->db->affected_rows() > 0) {
+
+								// HAPUS SANTRI SM
+								$this->model->hapus2('tb_santri_sm', 'id_santri', $id);
+								if ($this->db->affected_rows() > 0) {
+									kirim_tmp($key->api_key, $santri->hp, 'LINK GROUP', 'Link undangan bergabung group', $pesan2, $linkImg, linkGroup($santri->gel));
+									$this->session->set_flashdata('ok', 'Verifikasi data berhasil');
+									redirect('daftar/verval');
+								} else {
+									$this->session->set_flashdata('error', 'Hapus data santri Gagal');
+									redirect('daftar/cek/' . $id);
+								}
+							} else {
+								$this->session->set_flashdata('error', 'Pindah data santri Gagal');
+								redirect('daftar/cek/' . $id);
+							}
+						} else {
+							$this->session->set_flashdata('error', 'Insert data pembayaran Gagal');
+							redirect('daftar/cek/' . $id);
+						}
+					} else {
+						$this->session->set_flashdata('error', 'Update Seragam Gagal');
+						redirect('daftar/cek/' . $id);
+					}
+				} else {
+					$this->session->set_flashdata('error', 'Update Seragam Gagal');
+					redirect('daftar/cek/' . $id);
+				}
+			} else {
+				$this->session->set_flashdata('error', 'Update Foto Gagal');
+				redirect('daftar/cek/' . $id);
+			}
+		} else {
+			$this->session->set_flashdata('error', 'Update Berkas Gagal');
+			redirect('daftar/cek/' . $id);
+		}
 	}
 }

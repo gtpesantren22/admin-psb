@@ -402,7 +402,7 @@ Waktu Daftar : ' . $data->waktu_daftar . '
 *Terimakasih*';
 
 		if ($data->lembaga === 'MI' || $data->lembaga === 'RA') {
-			kirim_tmp($key->api_key, $data->hp, $pesan, $tmp, 'https://i.postimg.cc/8c8fghZq/LOGO-WA.jpg');
+			kirim_tmp($key->api_key, $data->hp, $pesan, $tmp, 'https://i.postimg.cc/8c8fghZq/LOGO-WA.jpg', '', '');
 			// kirim_group($key->api_key, '120363026604973091@g.us', $pesan2);
 			redirect('santriAdm');
 		} else {

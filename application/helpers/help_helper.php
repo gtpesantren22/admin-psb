@@ -116,13 +116,13 @@ function kirim_group($key, $id_group, $pesan)
     curl_close($curl2);
 }
 
-function kirim_tmp($key, $no_hp, $pesan, $tmp, $link_logo)
+function kirim_tmp($apiKey, $no_hp, $title, $desc, $isi, $link_logo, $link)
 {
     $curl2 = curl_init();
     curl_setopt_array(
         $curl2,
         array(
-            CURLOPT_URL => 'http://191.101.3.115:3000/api/sendTemplateMessage',
+            CURLOPT_URL => 'http://191.101.3.115:3000/api/sendAdReplyMessage',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -130,7 +130,7 @@ function kirim_tmp($key, $no_hp, $pesan, $tmp, $link_logo)
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => 'apiKey=' . $key . '&phone=' . $no_hp . '&body_message=' . $pesan . '&footer=&template=' . json_encode($tmp) . '&url_file=' . $link_logo,
+            CURLOPT_POSTFIELDS => 'apiKey=' . $apiKey . '&phone=' . $no_hp . '&title=' . $title . '&desc=' . $desc . '&body_message=' . $isi . '&url_file=' . $link_logo . '&url=' . $link,
         )
     );
     $response = curl_exec($curl2);
@@ -161,6 +161,12 @@ function addContact_to_group($key, $no_hp, $id_group)
 function gel($gel)
 {
     $nm = array(0, 80000, 130000, 180000);
+    return $nm[$gel];
+}
+
+function linkGroup($gel)
+{
+    $nm = array('', 'https://chat.whatsapp.com/CWmP8eFenvk9kSCQQepMC6', '', '');
     return $nm[$gel];
 }
 
@@ -196,7 +202,7 @@ function check($arr)
 
 function random($panjang)
 {
-    $karakter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $karakter = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $string = '';
     for ($i = 0; $i < $panjang; $i++) {
         $pos = rand(0, strlen($karakter) - 1);

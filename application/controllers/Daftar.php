@@ -286,8 +286,8 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 	public function vervalNota($id)
 	{
 		$santri = $this->model->getBy('tb_santri_sm', 'id_santri', $id)->row();
-		$berkas = $this->model->getBy('berkas_file', 'id_file', $id)->row();
-		$foto = $this->model->getBy('foto_file', 'id_file', $id)->row();
+		// $berkas = $this->model->getBy('berkas_file', 'id_file', $id)->row();
+		// $foto = $this->model->getBy('foto_file', 'id_file', $id)->row();
 		$user = $this->Auth_model->current_user();
 		$password = random(5);
 		$key = $this->model->apiKey()->row();
@@ -302,19 +302,10 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 		$kodeBarang = $char . $jk . sprintf("%03s", $noUrut);
 		$nis = htmlspecialchars($kodeBarang);
 
-		// $kk = $nis . '-kk.' . pathinfo($berkas->kk, PATHINFO_EXTENSION);
-		// $akta = $nis . '-akta.' . pathinfo($berkas->akta, PATHINFO_EXTENSION);
-		// $ktp_ayah = $nis . '-ktp_ayah.' . pathinfo($berkas->ktp_ayah, PATHINFO_EXTENSION);
-		// $ktp_ibu = $nis . '-ktp_ibu.' . pathinfo($berkas->ktp_ibu, PATHINFO_EXTENSION);
-		// $bukti = $nis . '-bukti.' . pathinfo($berkas->bukti, PATHINFO_EXTENSION);
-		// $skl = $berkas->skl != '' ? $nis . '-skl.' . pathinfo($berkas->skl, PATHINFO_EXTENSION) : '';
-		// $kip = $berkas->kip != '' ? $nis . '-kip.' . pathinfo($berkas->kip, PATHINFO_EXTENSION) : '';
-		// $fotoDiri = $nis . '-foto.' . pathinfo($foto->diri, PATHINFO_EXTENSION);
-
 		$dataBerkas = ['nis' => $nis];
 		$fotoData = ['nis' => $nis];
 		$seragam = ['nis' => $nis];
-		$dtsantri = ['nis' => $nis, 'username' => $nis, 'password' => $password];
+		$dtsantri = ['nis' => $nis, 'username' => $nis, 'password' => $password, 'stts' => 'Terverifikasi'];
 		$bayar = [
 			'id_bayar' => $id,
 			'nis' => $nis,
@@ -351,6 +342,19 @@ ________________________________
 _*Silahkan bergabung dilink undangan group diatas untuk mengetahui informasi lebih lanjut*_
 Terimakasih';
 
+		$pesan = '*Info tambahan santri baru*
+
+No. Pendaftaran : ' . $nis . '
+Nama : ' . $santri->nama . '
+Alamat : ' .  $santri->desa . '-' . $santri->kec . '-' . $santri->kab . '
+Lembaga tujuan : ' . $santri->lembaga . ' DWK
+jalur : ' . $santri->jalur . '
+Gel :  ' . $santri->gel . '
+No. HP : ' . $santri->hp . '
+Waktu Daftar : ' . date('d-m-Y H:i:s') . '
+            
+*Terimakasih*';
+
 		// UPDATE BERKAS
 		$this->model->ubah('berkas_file', 'id_file', $id, $dataBerkas);
 		if ($this->db->affected_rows() > 0) {
@@ -379,6 +383,7 @@ Terimakasih';
 								$this->model->hapus2('tb_santri_sm', 'id_santri', $id);
 								if ($this->db->affected_rows() > 0) {
 									kirim_tmp($key->api_key, $santri->hp, 'LINK GROUP', 'Link undangan bergabung group', $pesan2, $linkImg, linkGroup($santri->gel));
+									kirim_group($key->api_key, '120363026604973091@g.us', $pesan);
 									$this->session->set_flashdata('ok', 'Verifikasi data berhasil');
 									redirect('daftar/verval');
 								} else {

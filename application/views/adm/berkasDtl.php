@@ -171,6 +171,11 @@
     </div>
 </div>
 
+<?php
+$dir = 'https://psb.ppdwk.com/assets/berkas/';
+// $dir = 'http://localhost/psb/assets/berkas/';
+?>
+
 <!-- AKTA -->
 <div class="modal modal-blur fade" id="akta" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -203,7 +208,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->akta ?>" width="100%" height="500" style="border:none;"></iframe>
+                <?php if (pathinfo($data->akta, PATHINFO_EXTENSION) == 'pdf') { ?>
+                    <iframe src="<?= $dir . 'akta/' . $data->akta ?>" width="100%" height="500" style="border:none;"></iframe>
+                <?php } else { ?>
+                    <img src="<?= $dir . 'akta/' . $data->akta ?>" height="500">
+                <?php } ?>
             </div>
             <div class="modal-footer">
             </div>
@@ -243,7 +252,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->kk ?>" width="100%" height="500" style="border:none;"></iframe>
+                <?php if (pathinfo($data->kk, PATHINFO_EXTENSION) == 'pdf') { ?>
+                    <iframe src="<?= $dir . 'kk/' . $data->kk ?>" width="100%" height="500" style="border:none;"></iframe>
+                <?php } else { ?>
+                    <img src="<?= $dir . 'kk/' . $data->kk ?>" height="500">
+                <?php } ?>
             </div>
             <div class="modal-footer">
             </div>
@@ -283,7 +296,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->ktp_ayah ?>" width="100%" height="500" style="border:none;"></iframe>
+                <?php if (pathinfo($data->ktp_ayah, PATHINFO_EXTENSION) == 'pdf') { ?>
+                    <iframe src="<?= $dir . 'ktp_ayah/' . $data->ktp_ayah ?>" width="100%" height="500" style="border:none;"></iframe>
+                <?php } else { ?>
+                    <img src="<?= $dir . 'ktp_ayah/' . $data->ktp_ayah ?>" height="500">
+                <?php } ?>
             </div>
             <div class="modal-footer">
             </div>
@@ -323,7 +340,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->ktp_ibu ?>" width="100%" height="500" style="border:none;"></iframe>
+                <?php if (pathinfo($data->ktp_ibu, PATHINFO_EXTENSION) == 'pdf') { ?>
+                    <iframe src="<?= $dir . 'ktp_ibu/' . $data->ktp_ibu ?>" width="100%" height="500" style="border:none;"></iframe>
+                <?php } else { ?>
+                    <img src="<?= $dir . 'ktp_ibu/' . $data->ktp_ibu ?>" height="500">
+                <?php } ?>
             </div>
             <div class="modal-footer">
             </div>
@@ -363,7 +384,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->skl ?>" width="100%" height="500" style="border:none;"></iframe>
+                <?php if (pathinfo($data->skl, PATHINFO_EXTENSION) == 'pdf') { ?>
+                    <iframe src="<?= $dir . 'skl/' . $data->skl ?>" width="100%" height="500" style="border:none;"></iframe>
+                <?php } else { ?>
+                    <img src="<?= $dir . 'skl/' . $data->skl ?>" height="500">
+                <?php } ?>
             </div>
             <div class="modal-footer">
             </div>
@@ -403,7 +428,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->ijazah ?>" width="100%" height="500" style="border:none;"></iframe>
+                <?php if (pathinfo($data->ijazah, PATHINFO_EXTENSION) == 'pdf') { ?>
+                    <iframe src="<?= $dir . 'ijazah/' . $data->ijazah ?>" width="100%" height="500" style="border:none;"></iframe>
+                <?php } else { ?>
+                    <img src="<?= $dir . 'ijazah/' . $data->ijazah ?>" height="500">
+                <?php } ?>
             </div>
             <div class="modal-footer">
             </div>
@@ -443,7 +472,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <iframe src="<?= 'https://psb.ppdwk.com/assets/berkas/' . $data->kip ?>" width="100%" height="500" style="border:none;"></iframe>
+                <?php if (pathinfo($data->kip, PATHINFO_EXTENSION) == 'pdf') { ?>
+                    <iframe src="<?= $dir . 'kip/' . $data->kip ?>" width="100%" height="500" style="border:none;"></iframe>
+                <?php } else { ?>
+                    <img src="<?= $dir . 'kip/' . $data->kip ?>" height="500">
+                <?php } ?>
             </div>
             <div class="modal-footer">
             </div>

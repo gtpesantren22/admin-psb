@@ -262,7 +262,8 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 
 	public function verval()
 	{
-		$data['baru'] = $this->model->getJoin('tb_santri_sm', 'berkas_file', 'id_santri', 'id_file')->result();
+		// $data['baru'] = $this->model->getJoin('tb_santri_sm', 'berkas_file', 'id_santri', 'id_file')->result();
+		$data['baru'] = $this->model->getByJoin('tb_santri_sm', 'berkas_file', 'id_santri', 'id_file', 'berkas_file.bukti !=', '')->result();
 		$data['judul'] = 'santri';
 		$data['user'] = $this->Auth_model->current_user();
 

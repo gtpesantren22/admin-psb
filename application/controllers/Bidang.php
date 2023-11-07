@@ -247,4 +247,23 @@ Terimakasih';
             }
         }
     }
+
+    public function seragam()
+    {
+        $data['judul'] = 'seragam';
+        $data['user'] = $this->Auth_model->current_user();
+        $data['bulan'] = $this->bulan;
+        $data['tahun'] = $this->tahun;
+
+        $data['data'] = $this->model->getByJoin('tb_santri', 'seragam', 'nis', 'nis', 'tb_santri.ket', 'baru')->result();
+
+        $data['atasSMP'] = $this->db->query("SELECT atasan, COUNT(*) AS jml FROM seragam JOIN tb_santri ON seragam.nis=tb_santri.nis WHERE lembaga = 'MTs' OR lembaga = 'SMP' AND ket = 'baru' GROUP BY seragam.atasan ")->result();
+        $data['atasSMA'] = $this->db->query("SELECT atasan, COUNT(*) AS jml FROM seragam JOIN tb_santri ON seragam.nis=tb_santri.nis WHERE lembaga = 'MA' OR lembaga = 'SMK' AND ket = 'baru' GROUP BY seragam.atasan ")->result();
+        $data['bawahSMP'] = $this->db->query("SELECT bawahan, COUNT(*) AS jml FROM seragam JOIN tb_santri ON seragam.nis=tb_santri.nis WHERE lembaga = 'MTs' OR lembaga = 'SMP' AND ket = 'baru' GROUP BY seragam.bawahan ")->result();
+        $data['bawahSMA'] = $this->db->query("SELECT bawahan, COUNT(*) AS jml FROM seragam JOIN tb_santri ON seragam.nis=tb_santri.nis WHERE lembaga = 'MA' OR lembaga = 'SMK' AND ket = 'baru' GROUP BY seragam.bawahan ")->result();
+
+        $this->load->view('bidang/head', $data);
+        $this->load->view('bidang/seragam', $data);
+        $this->load->view('bidang/foot', $data);
+    }
 }

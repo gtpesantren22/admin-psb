@@ -37,7 +37,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="#" class="d-block"><img src="<?= 'https://psb.ppdwk.com/assets/foto/' . $data->diri ?>" class="card-img-top"></a>
+                                    <a href="#" class="d-block"><img src="<?= 'https://psb.ppdwk.com/assets/berkas/foto/' . $data->diri ?>" class="card-img-top"></a>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-lg-3">
@@ -70,7 +70,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="#" class="d-block"><img src="<?= 'https://psb.ppdwk.com/assets/foto/' . $foto->ayah ?>" class="card-img-top"></a>
+                                    <a href="#" class="d-block"><img src="<?= 'https://psb.ppdwk.com/assets/berkas/foto/' . $foto->ayah ?>" class="card-img-top"></a>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-lg-3">
@@ -84,7 +84,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="#" class="d-block"><img src="<?= 'https://psb.ppdwk.com/assets/foto/' . $foto->ibu ?>" class="card-img-top"></a>
+                                    <a href="#" class="d-block"><img src="<?= 'https://psb.ppdwk.com/assets/berkas/foto/' . $foto->ibu ?>" class="card-img-top"></a>
                                 </div>
                             </div>
                         </div>

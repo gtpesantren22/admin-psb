@@ -172,7 +172,7 @@
 </div>
 
 <?php
-$dir = 'https://psb.ppdwk.com/assets/berkas/';
+$dir = '../psb/assets/berkas/foto/';
 // $dir = 'http://localhost/psb/assets/berkas/';
 ?>
 

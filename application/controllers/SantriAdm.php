@@ -511,8 +511,8 @@ Panitia
 
 	public function cek($nis)
 	{
-		$data['data'] = $this->model->getby('tb_santri_sm', 'nis', $nis)->row();
-		$data['berkas'] = $this->model->getby('berkas_file', 'nis', $nis)->row();
+		$data['data'] = $this->model->getby('tb_santri_sm', 'id_santri', $nis)->row();
+		$data['berkas'] = $this->model->getby('berkas_file', 'id_file', $nis)->row();
 		$data['judul'] = 'santri';
 		$data['user'] = $this->Auth_model->current_user();
 
@@ -579,5 +579,31 @@ Waktu Daftar : ' . date('d-m-Y H:i:s') . '
 			$this->session->set_flashdata('error', 'Data gagal dipindahkan');
 			redirect('santriAdm/verifikasi');
 		}
+	}
+
+	public function kirimInfo($id)
+	{
+		$data = $this->model->getBy('tb_santri_sm', 'id_santri', $id)->row();
+		$alm = $data->desa . '-' . $data->kec . '-' . $data->kab;
+		$key = $this->model->apiKey()->row();
+		$linkImg = 'https://psb.ppdwk.com/viho/assets/images/logo/Logo-psb.png';
+
+		$pesan = '*Selamat*
+Data yang anda isi telah  tersimpan di data panitia Penerimaan santri baru PP. Darul Lughah Wal Karomah, atas :
+        
+Nama : ' . $data->nama . '
+Alamat : ' . $alm . '
+Lembaga tujuan : ' . $data->lembaga . ' DWK
+jalur : ' . $data->jalur . '
+Gel :  ' . $data->gel . '
+        
+selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupiah(gel($data->gel)) . '* ke *No.Rek BRI 0582-01000-847-303 a.n. PP DARUL LUGHAH WAL KAROMAH* dan melakukan upload bukti Transfer pada LINK Berikut ini
+		
+*Terimakasih*';
+
+		kirim_person($key->api_key, $data->hp, $pesan);
+		kirim_tmp($key->api_key, $data->hp, 'LINK UPLOAD', 'Link upload bukti transfer', 'Klik link diatas untuk upload bukti transfer pendaftaran', $linkImg, 'https://psb.ppdwk.com/data/uploadBukti/' . $id);
+
+		redirect('santriAdm/verifikasi');
 	}
 }

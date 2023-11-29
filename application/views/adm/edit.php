@@ -17,8 +17,8 @@ $tgl_i = $spliti[0];
 $bln_i = $spliti[1];
 $thn_i = $spliti[2];
 
-// $dir = 'https://psb.ppdwk.com/assets/berkas/';
-$dir = 'http://localhost/psb/assets/berkas/';
+$dir = 'https://psb.ppdwk.com/assets/berkas/';
+// $dir = 'http://localhost/psb/assets/berkas/';
 
 ?>
 <!-- Page header -->

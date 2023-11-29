@@ -13,6 +13,7 @@ class SantriAdm extends CI_Controller
 		$this->load->model('KecModel');
 		$this->load->model('DesaModel');
 		$this->load->model('SklModel');
+		$this->load->model('BerkasModel');
 
 		$user = $this->Auth_model->current_user();
 		if (!$this->Auth_model->current_user() || $user->level != 'admin' && $user->level != 'adm') {
@@ -53,6 +54,9 @@ class SantriAdm extends CI_Controller
 		$data['pkj'] = $this->model->pkj()->result();
 		$data['hasil'] = $this->model->hasil()->result();
 		$data['provinsi'] = $this->ProvinsiModel->view();
+
+		$data['berkas'] = $this->BerkasModel->dtlBerkas($nis)->row();
+		$data['foto'] = $this->model->getBy('foto_file', 'nis', $nis)->row();
 
 		$this->load->view('adm/head', $data);
 		$this->load->view('adm/edit', $data);
@@ -605,5 +609,17 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 		kirim_tmp($key->api_key, $data->hp, 'LINK UPLOAD', 'Link upload bukti transfer', 'Klik link diatas untuk upload bukti transfer pendaftaran', $linkImg, 'https://psb.ppdwk.com/data/uploadBukti/' . $id);
 
 		redirect('santriAdm/verifikasi');
+	}
+
+	public function delSantri($id)
+	{
+		$this->model->hapus('tb_santri_sm', 'id_santri', $id);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('ok', 'Data berhasil dihapus');
+			redirect('santriAdm/verifikasi');
+		} else {
+			$this->session->set_flashdata('error', 'Data gagal dihapus');
+			redirect('santriAdm/verifikasi');
+		}
 	}
 }

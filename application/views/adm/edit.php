@@ -16,6 +16,10 @@ $spliti = explode('-', $tglI);
 $tgl_i = $spliti[0];
 $bln_i = $spliti[1];
 $thn_i = $spliti[2];
+
+// $dir = 'https://psb.ppdwk.com/assets/berkas/';
+$dir = 'http://localhost/psb/assets/berkas/';
+
 ?>
 <!-- Page header -->
 <div class="page-header d-print-none">
@@ -112,6 +116,23 @@ $thn_i = $spliti[2];
                                                 <line x1="11" y1="18" x2="20" y2="18"></line>
                                             </svg>
                                             Lainnya
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#berkas" class="nav-link" data-bs-toggle="tab">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/user -->
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-zip" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M6 20.735a2 2 0 0 1 -1 -1.735v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-1" />
+                                                <path d="M11 17a2 2 0 0 1 2 2v2a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-2a2 2 0 0 1 2 -2z" />
+                                                <path d="M11 5l-1 0" />
+                                                <path d="M13 7l-1 0" />
+                                                <path d="M11 9l-1 0" />
+                                                <path d="M13 11l-1 0" />
+                                                <path d="M11 13l-1 0" />
+                                                <path d="M13 15l-1 0" />
+                                            </svg>
+                                            Berkas
                                         </a>
                                     </li>
                                 </ul>
@@ -711,6 +732,70 @@ $thn_i = $spliti[2];
                                                 </div>
                                             </div>
                                         </form>
+                                    </div>
+                                    <div class="tab-pane" id="berkas">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title">Kartu Keluarga (KK)</h3>
+                                                        <?php if (pathinfo($berkas->kk, PATHINFO_EXTENSION) == 'pdf') { ?>
+                                                            <iframe src="<?= $dir . 'kk/' . $berkas->kk ?>" width="100%" height="500" style="border:none;"></iframe>
+                                                        <?php } else { ?>
+                                                            <img src="<?= $dir . 'kk/' . $berkas->kk ?>" height="500">
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title">Akta Kelahiran</h3>
+                                                        <?php if (pathinfo($berkas->akta, PATHINFO_EXTENSION) == 'pdf') { ?>
+                                                            <iframe src="<?= $dir . 'akta/' . $berkas->akta ?>" width="100%" height="500" style="border:none;"></iframe>
+                                                        <?php } else { ?>
+                                                            <img src="<?= $dir . 'akta/' . $berkas->akta ?>" height="500">
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title">KTP Ayah</h3>
+                                                        <?php if (pathinfo($berkas->ktp_ayah, PATHINFO_EXTENSION) == 'pdf') { ?>
+                                                            <iframe src="<?= $dir . 'ktp_ayah/' . $berkas->ktp_ayah ?>" width="100%" height="500" style="border:none;"></iframe>
+                                                        <?php } else { ?>
+                                                            <img src="<?= $dir . 'ktp_ayah/' . $berkas->ktp_ayah ?>" height="500">
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title">KTP Ibu</h3>
+                                                        <?php if (pathinfo($berkas->ktp_ibu, PATHINFO_EXTENSION) == 'pdf') { ?>
+                                                            <iframe src="<?= $dir . 'ktp_ibu/' . $berkas->ktp_ibu ?>" width="100%" height="500" style="border:none;"></iframe>
+                                                        <?php } else { ?>
+                                                            <img src="<?= $dir . 'ktp_ibu/' . $berkas->ktp_ibu ?>" height="500">
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title">Foto Santri</h3>
+                                                        <?php if (pathinfo($foto->diri, PATHINFO_EXTENSION) == 'pdf') { ?>
+                                                            <iframe src="<?= $dir . 'foto/' . $foto->diri ?>" width="100%" height="500" style="border:none;"></iframe>
+                                                        <?php } else { ?>
+                                                            <img src="<?= $dir . 'foto/' . $foto->diri ?>" height="500">
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

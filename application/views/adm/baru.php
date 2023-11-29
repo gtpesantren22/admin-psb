@@ -33,11 +33,11 @@
                                         <th>NIS</th>
                                         <th>Nama</th>
                                         <th>Alamat</th>
-                                        <th>Jenkel</th>
+                                        <!-- <th>Jenkel</th> -->
                                         <th>Gel</th>
-                                        <th>No. HP</th>
-                                        <th>Lembaga Tujuan</th>
-                                        <th>Status</th>
+                                        <!-- <th>No. HP</th> -->
+                                        <th>Lembaga</th>
+                                        <!-- <th>Status</th> -->
                                         <td>#</td>
                                     </tr>
                                 </thead>
@@ -51,12 +51,11 @@
                                             <td><?= $row->nis; ?></td>
                                             <td><?= $row->nama; ?></td>
                                             <td><?= $row->desa . ' - ' . $row->kec . ' - ' . $row->kab; ?></td>
-                                            <td><?= $row->jkl; ?></td>
+                                            <!-- <td><?= $row->jkl; ?></td> -->
                                             <td><?= $row->gel; ?></td>
-                                            <td><?= $row->hp; ?></td>
+                                            <!-- <td><?= $row->hp; ?></td> -->
                                             <td><?= $row->lembaga; ?></td>
-                                            <td><?= $row->stts === 'Terverifikasi' ? "<span class='badge bg-green'>Terverifikasi</span>" : "<span class='badge bg-red'>Belum Terverifikasi</span>" ?>
-                                            </td>
+                                            <!-- <td><?= $row->stts === 'Terverifikasi' ? "<span class='badge bg-green'>Terverifikasi</span>" : "<span class='badge bg-red'>Belum Terverifikasi</span>" ?></td> -->
                                             <td>
                                                 <div class="btn-group btn-sm btn-success" role="group">
                                                     <label for="btn-radio-dropdown-dropdown" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

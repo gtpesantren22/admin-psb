@@ -740,9 +740,9 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                                                     <div class="card-body">
                                                         <h3 class="card-title">Kartu Keluarga (KK)</h3>
                                                         <?php if (pathinfo($berkas->kk, PATHINFO_EXTENSION) == 'pdf') { ?>
-                                                            <iframe src="<?= $dir . 'kk/' . $berkas->kk ?>" width="100%" height="500" style="border:none;"></iframe>
+                                                            <iframe src="<?= $dir . 'kk/' . $berkas->kk ?>" width="100%" style="border:none;"></iframe>
                                                         <?php } else { ?>
-                                                            <img src="<?= $dir . 'kk/' . $berkas->kk ?>" height="500">
+                                                            <img src="<?= $dir . 'kk/' . $berkas->kk ?>">
                                                         <?php } ?>
                                                     </div>
                                                 </div>
@@ -752,9 +752,9 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                                                     <div class="card-body">
                                                         <h3 class="card-title">Akta Kelahiran</h3>
                                                         <?php if (pathinfo($berkas->akta, PATHINFO_EXTENSION) == 'pdf') { ?>
-                                                            <iframe src="<?= $dir . 'akta/' . $berkas->akta ?>" width="100%" height="500" style="border:none;"></iframe>
+                                                            <iframe src="<?= $dir . 'akta/' . $berkas->akta ?>" width="100%" style="border:none;"></iframe>
                                                         <?php } else { ?>
-                                                            <img src="<?= $dir . 'akta/' . $berkas->akta ?>" height="500">
+                                                            <img src="<?= $dir . 'akta/' . $berkas->akta ?>">
                                                         <?php } ?>
                                                     </div>
                                                 </div>
@@ -764,9 +764,9 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                                                     <div class="card-body">
                                                         <h3 class="card-title">KTP Ayah</h3>
                                                         <?php if (pathinfo($berkas->ktp_ayah, PATHINFO_EXTENSION) == 'pdf') { ?>
-                                                            <iframe src="<?= $dir . 'ktp_ayah/' . $berkas->ktp_ayah ?>" width="100%" height="500" style="border:none;"></iframe>
+                                                            <iframe src="<?= $dir . 'ktp_ayah/' . $berkas->ktp_ayah ?>" width="100%" style="border:none;"></iframe>
                                                         <?php } else { ?>
-                                                            <img src="<?= $dir . 'ktp_ayah/' . $berkas->ktp_ayah ?>" height="500">
+                                                            <img src="<?= $dir . 'ktp_ayah/' . $berkas->ktp_ayah ?>">
                                                         <?php } ?>
                                                     </div>
                                                 </div>
@@ -776,9 +776,9 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                                                     <div class="card-body">
                                                         <h3 class="card-title">KTP Ibu</h3>
                                                         <?php if (pathinfo($berkas->ktp_ibu, PATHINFO_EXTENSION) == 'pdf') { ?>
-                                                            <iframe src="<?= $dir . 'ktp_ibu/' . $berkas->ktp_ibu ?>" width="100%" height="500" style="border:none;"></iframe>
+                                                            <iframe src="<?= $dir . 'ktp_ibu/' . $berkas->ktp_ibu ?>" width="100%" style="border:none;"></iframe>
                                                         <?php } else { ?>
-                                                            <img src="<?= $dir . 'ktp_ibu/' . $berkas->ktp_ibu ?>" height="500">
+                                                            <img src="<?= $dir . 'ktp_ibu/' . $berkas->ktp_ibu ?>">
                                                         <?php } ?>
                                                     </div>
                                                 </div>
@@ -788,9 +788,21 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                                                     <div class="card-body">
                                                         <h3 class="card-title">Foto Santri</h3>
                                                         <?php if (pathinfo($foto->diri, PATHINFO_EXTENSION) == 'pdf') { ?>
-                                                            <iframe src="<?= $dir . 'foto/' . $foto->diri ?>" width="100%" height="500" style="border:none;"></iframe>
+                                                            <iframe src="<?= $dir . 'foto/' . $foto->diri ?>" width="100%" style="border:none;"></iframe>
                                                         <?php } else { ?>
-                                                            <img src="<?= $dir . 'foto/' . $foto->diri ?>" height="500">
+                                                            <img src="<?= $dir . 'foto/' . $foto->diri ?>">
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title">KIP</h3>
+                                                        <?php if (pathinfo($berkas->kip, PATHINFO_EXTENSION) == 'pdf') { ?>
+                                                            <iframe src="<?= $dir . 'kip/' . $berkas->kip ?>" width="100%" style="border:none;"></iframe>
+                                                        <?php } else { ?>
+                                                            <img src="<?= $dir . 'kip/' . $berkas->kip ?>">
                                                         <?php } ?>
                                                     </div>
                                                 </div>

@@ -125,7 +125,7 @@ class import extends CI_Controller
         $dtada = $this->user->getBy('tb_santri', 'nis', $nis)->num_rows();
 
         $data = [
-            'id_santri' => $dts->id_santri,
+            'id_santri' => $this->uuid->v4(),
             'nis' => $dts->nis,
             'nisn' => $dts->nisn,
             'nik' => $dts->nik,

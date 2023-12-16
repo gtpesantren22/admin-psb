@@ -104,6 +104,23 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 - Foto Copy Akta Kelahiran 4 lembar
 - Foto Copy IJAZAH dilegalisir ( Menyusul ) 4 lembar';
 
+		$psnLnjut =
+			'*Terimakasih*
+
+*Kode Pendaftaran : ' . ($nis) . '*
+Pembayaran Pendaftaran, atas :
+        
+Nama : ' . $sn->nama . '
+Alamat : ' . $sn->desa . '-' . $sn->kec . '-' . $sn->kab . '
+Lembaga tujuan : ' . $sn->lembaga . '
+Nominal : ' . rupiah($nominal) . '
+Tgl Bayar : ' . $tgl_bayar . '
+        
+*telah TERVERIFIKASI.*
+________________________________
+
+*Terimakasih';
+
 		$data = [
 			'id_bayar' => $this->uuid->v4(),
 			'nis' => $nis,
@@ -121,6 +138,12 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 
 		$listPh = [$sn->hp, $sn->hp];
 
+		if ($sn->ket == 'baru') {
+			$pesanOk = $pesan2;
+		} else {
+			$pesanOk = $psnLnjut;
+		}
+
 		// var_dump($listPh);
 		if ($nominal > $tangg) {
 			$this->session->set_flashdata('error', 'Maaf. Pembayaran Melebihi');
@@ -129,7 +152,7 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 			$this->model->tambah2('bp_daftar', $data);
 			$this->model->edit('tb_santri', $data2, $nis);
 			if ($this->db->affected_rows() > 0) {
-				kirim_person($key->api_key, $sn->hp, $pesan2);
+				kirim_person($key->api_key, $sn->hp, $pesanOk);
 				// addContact_to_group($key->api, $listPh, '6285236924510-1620187184@g.us');
 				redirect($rdrc);
 			}

@@ -112,6 +112,26 @@ class AdminModel extends CI_Model
         return $this->db2->get();
     }
 
+    public function ambilsantriLama()
+    {
+        $this->db2->from('tb_santri');
+        $this->db2->where('k_formal', 'IX');
+        $this->db2->where('t_formal', 'MTs');
+        $this->db2->or_where('t_formal', 'SMP');
+        $this->db2->where('aktif', 'Y');
+        return $this->db2->get();
+    }
+    public function ambilsantriLamaNis($nis)
+    {
+        $this->db2->from('tb_santri');
+        $this->db2->where('nis', $nis);
+        $this->db2->where('k_formal', 'IX');
+        $this->db2->where('t_formal', 'MTs');
+        $this->db2->or_where('t_formal', 'SMP');
+        $this->db2->where('aktif', 'Y');
+        return $this->db2->get();
+    }
+
     public function getBroad($ket, $lembaga, $jkl, $gel)
     {
         return $this->db->query("SELECT nama,hp FROM tb_santri WHERE ket = $ket AND lembaga = $lembaga AND jkl = $jkl AND gel = $gel ");

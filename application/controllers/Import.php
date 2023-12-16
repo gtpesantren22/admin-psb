@@ -24,7 +24,7 @@ class import extends CI_Controller
         $data['judul'] = 'import';
         $data['user'] = $this->Auth_model->current_user();
         $data['jumlah'] = $this->user->get_num_rows();
-        $data['lama'] = $this->user->santriLama()->result();
+        $data['lama'] = $this->user->ambilsantriLama()->result();
 
         $this->load->view('adm/head', $data);
         $this->load->view('adm/sekolah', $data);
@@ -112,16 +112,16 @@ class import extends CI_Controller
 
         if ($jl <= $g1) {
             $gel = "1";
-            $by = 'Rp. 70.000';
+            $by = 'Rp. 80.000';
         } else if ($jl > $g1 && $jl <= $g2) {
             $gel = "2";
-            $by = 'Rp. 120.000';
+            $by = 'Rp. 130.000';
         } else if ($jl >= $g3) {
             $gel = "3";
-            $by = 'Rp. 170.000';
+            $by = 'Rp. 180.000';
         }
 
-        $dts = $this->user->getBy('tb_lama', 'nis', $nis)->row();
+        $dts = $this->user->ambilsantriLamaNis($nis)->row();
         $dtada = $this->user->getBy('tb_santri', 'nis', $nis)->num_rows();
 
         $data = [

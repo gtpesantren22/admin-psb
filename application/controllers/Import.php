@@ -155,7 +155,7 @@ class import extends CI_Controller
             'i_pkj' => $dts->pkj_i,
             'i_pend' => $dts->pend_i,
             'stts' => 'Belum Terverikasi',
-            'gel' => $gel,
+            'gel' => 1,
             'waktu_daftar' => date('Y-m-d H:i'),
             'jenis' => 'mutasi',
             'asal' => $dts->t_formal,

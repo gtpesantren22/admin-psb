@@ -13,6 +13,16 @@ class SantriModel extends CI_Model
     {
         $this->db->where('ket', 'baru');
         $this->db->from('tb_santri');
+        $this->db->order_by('waktu_daftar', 'DESC');
+        return $this->db->get();
+    }
+
+    function baruLm($lembaga)
+    {
+        $this->db->where('ket', 'baru');
+        $this->db->where('lembaga', $lembaga);
+        $this->db->from('tb_santri');
+        $this->db->order_by('waktu_daftar', 'DESC');
         return $this->db->get();
     }
 

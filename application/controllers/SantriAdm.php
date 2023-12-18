@@ -23,9 +23,15 @@ class SantriAdm extends CI_Controller
 
 	public function index()
 	{
-		$data['baru'] = $this->model->baru()->result();
 		$data['judul'] = 'santri';
 		$data['user'] = $this->Auth_model->current_user();
+
+		$lmUser = $data['user']->lembaga;
+		if ($lmUser == 'umum') {
+			$data['baru'] = $this->model->baru()->result();
+		} else {
+			$data['baru'] = $this->model->baruLm($lmUser)->result();
+		}
 
 		$this->load->view('adm/head', $data);
 		$this->load->view('adm/baru', $data);

@@ -135,6 +135,8 @@ function kirim_tmp($apiKey, $no_hp, $title, $desc, $isi, $link_logo, $link)
     );
     $response = curl_exec($curl2);
     curl_close($curl2);
+
+    return $response;
 }
 
 function addContact_to_group($key, $no_hp, $id_group)

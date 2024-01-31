@@ -31,8 +31,10 @@
                                     <tr style="color: white; background-color: #17A2B8; font-weight: bold;">
                                         <th>No</th>
                                         <th>Kode</th>
+                                        <th>Bidang</th>
                                         <th>Bulan</th>
                                         <th>Tahun</th>
+                                        <th>Nominal</th>
                                         <th>Status</th>
                                         <th>#</th>
                                     </tr>
@@ -42,12 +44,16 @@
                                     $no = 1;
                                     foreach ($data as $ls_jns) :
                                         $spj = $this->db->query("SELECT * FROM spj WHERE kode_pengajuan = '$ls_jns->kode_pengajuan' ")->row();
+                                        $bd = $this->db->query("SELECT nama FROM jabatan WHERE kode = '$ls_jns->bidang' ")->row();
+                                        $jml = $this->db->query("SELECT SUM(qty*harga_satuan) AS total FROM pengajuan_detail WHERE kode_pengajuan = '$ls_jns->kode_pengajuan' ")->row();
                                     ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
                                             <td><?= $ls_jns->kode_pengajuan; ?></td>
+                                            <td><?= $bd->nama; ?></td>
                                             <td><?= $bulan[$ls_jns->bulan]; ?></td>
                                             <td><?= $ls_jns->tahun; ?></td>
+                                            <td><?= rupiah($jml->total); ?></td>
                                             <td>
                                                 <?php
                                                 if ($ls_jns->status == 'proses') {

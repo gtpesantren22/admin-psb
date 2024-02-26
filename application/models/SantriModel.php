@@ -53,6 +53,12 @@ class SantriModel extends CI_Model
         $this->db->update($table, $data);
     }
 
+    function edit2($table, $data, $where, $dtwhere)
+    {
+        $this->db->where($where, $dtwhere);
+        $this->db->update($table, $data);
+    }
+
     function pend()
     {
         $this->db->select('*');

@@ -69,6 +69,26 @@ class SantriAdm extends CI_Controller
 		$this->load->view('adm/foot');
 	}
 
+	public function edit2($id)
+	{
+		$data['judul'] = 'santri';
+		$data['user'] = $this->Auth_model->current_user();
+		$data['data'] = $this->model->getBy('tb_santri_sm', 'id_santri', $id)->row();
+		$data['agama'] = $this->model->agama()->result();
+
+		$data['pend'] = $this->model->pend()->result();
+		$data['pkj'] = $this->model->pkj()->result();
+		$data['hasil'] = $this->model->hasil()->result();
+		$data['provinsi'] = $this->ProvinsiModel->view();
+
+		// $data['berkas'] = $this->BerkasModel->dtlBerkas($nis)->row();
+		// $data['foto'] = $this->model->getBy('foto_file', 'nis', $nis)->row();
+
+		$this->load->view('adm/head', $data);
+		$this->load->view('adm/edit2', $data);
+		$this->load->view('adm/foot');
+	}
+
 	public function saveIdentitas()
 	{
 
@@ -626,6 +646,162 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 		} else {
 			$this->session->set_flashdata('error', 'Data gagal dihapus');
 			redirect('santriAdm/verifikasi');
+		}
+	}
+
+
+	public function saveIdentitas2()
+	{
+
+		$nis = $this->input->post('id');
+
+		$data = [
+			'nik' => $this->input->post('nik', true),
+			'no_kk' => $this->input->post('no_kk', true),
+			'nisn' => $this->input->post('nisn', true),
+			'nama' => $this->input->post('nama', true),
+			'tempat' => $this->input->post('tempat', true),
+			'tanggal' => $this->input->post('tanggal', true) . '-' . $this->input->post('bulan', true) . '-' . $this->input->post('tahun', true),
+			'lembaga' => $this->input->post('lembaga', true),
+			'jkl' => $this->input->post('jkl', true),
+			'agama' => $this->input->post('agama', true),
+			'anak_ke' => $this->input->post('anak_ke', true),
+			'jml_sdr' => $this->input->post('jml_sdr', true)
+		];
+
+		$this->model->edit2('tb_santri_sm', $data, 'id_santri', $nis);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('ok', 'Data sudah diperbarui');
+			redirect('santriAdm/edit2/' . $nis);
+		} else {
+			$this->session->set_flashdata('error', 'Edit Error');
+			redirect('santriAdm/edit2/' . $nis);
+		}
+	}
+
+	public function saveMahrom2()
+	{
+		$data = [
+			'a_nik' => $this->input->post('a_nik', true),
+			'bapak' => strtoupper($this->input->post('bapak', true)),
+			'a_tempat' => strtoupper($this->input->post('a_tempat', true)),
+			'a_tanggal' => $this->input->post('tanggal', true) . '-' . $this->input->post('bulan', true) . '-' . $this->input->post('tahun', true),
+			'a_pend' => $this->input->post('a_pend', true),
+			'a_pkj' => $this->input->post('a_pkj', true),
+			'a_hasil' => $this->input->post('a_hasil', true),
+			'a_stts' => $this->input->post('a_stts', true),
+
+			// IBU
+			'i_nik' => $this->input->post('i_nik', true),
+			'ibu' => strtoupper($this->input->post('ibu', true)),
+			'i_tempat' => strtoupper($this->input->post('i_tempat', true)),
+			'i_tanggal' => $this->input->post('tanggal_i', true) . '-' . $this->input->post('bulan_i', true) . '-' . $this->input->post('tahun_i', true),
+			'i_pend' => $this->input->post('i_pend', true),
+			'i_pkj' => $this->input->post('i_pkj', true),
+			'i_hasil' => $this->input->post('i_hasil', true),
+			'i_stts' => $this->input->post('i_stts', true)
+		];
+
+		$where = $this->input->post('id', true);
+
+		$this->model->edit2('tb_santri_sm', $data, 'id_santri', $where);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('ok', 'Data sudah diperbarui');
+			redirect('santriAdm/edit2/' . $where);
+		} else {
+			$this->session->set_flashdata('error', 'Edit Error');
+			redirect('santriAdm/edit2/' . $where);
+		}
+	}
+
+	public function saveAddres2()
+	{
+		if ($this->input->post('kelurahan') === '') {
+			$almt = explode('-', $this->input->post('alamat'));
+			$provOk = $almt[3];
+			$kabOk = $almt[2];
+			$kecOk = $almt[1];
+			$kelOk = $almt[0];
+		} else {
+			$provinsi = $this->input->post('provinsi', TRUE);
+			$kabupaten = $this->input->post('kabupaten', TRUE);
+			$kecamatan = $this->input->post('kecamatan', TRUE);
+			$kelurahan = $this->input->post('kelurahan', TRUE);
+
+			$pr = $this->db->query("SELECT nama FROM provinsi WHERE id_prov = '$provinsi' ")->row();
+			$provOk = $pr->nama;
+			$kb = $this->db->query("SELECT nama FROM kabupaten WHERE id_kab = '$kabupaten' ")->row();
+			$kabOk = $kb->nama;
+			$kc = $this->db->query("SELECT nama FROM kecamatan WHERE id_kec = '$kecamatan' ")->row();
+			$kecOk = $kc->nama;
+			$kl = $this->db->query("SELECT nama FROM kelurahan WHERE id_kel = '$kelurahan' ")->row();
+			$kelOk = $kl->nama;
+		}
+
+		$data = [
+			'jln' => $this->input->post('jln', true),
+			'rt' => $this->input->post('rt', true),
+			'rw' => $this->input->post('rw', true),
+			'kd_pos' => $this->input->post('kd_pos', true),
+			'desa' => $kelOk,
+			'kec' => $kecOk,
+			'kab' => $kabOk,
+			'prov' => $provOk
+		];
+
+		$where = $this->input->post('id', true);
+
+		$this->model->edit2('tb_santri_sm', $data, 'id_santri', $where);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('ok', 'Data sudah diperbarui');
+			redirect('santriAdm/edit2/' . $where);
+		} else {
+			$this->session->set_flashdata('error', 'Edit Error');
+			redirect('santriAdm/edit2/' . $where);
+		}
+	}
+
+	public function saveUniv2()
+	{
+		$npsn = $this->input->post('npsn');
+		$dtSkl = $this->model->getSkl($npsn);
+
+		$data = [
+			'npsn' => $npsn,
+			'asal' => $dtSkl->nama,
+			'a_asal' => $dtSkl->alamat . ', Desa/Kel. ' . $dtSkl->desa
+		];
+
+		$where = $this->input->post('id', true);
+
+		$this->model->edit2('tb_santri_sm', $data, 'id_santri', $where);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('ok', 'Data sudah diperbarui');
+			redirect('santriAdm/edit2/' . $where);
+		} else {
+			$this->session->set_flashdata('error', 'Edit Error');
+			redirect('santriAdm/edit2/' . $where);
+		}
+	}
+
+	public function saveOther2()
+	{
+
+		$data = [
+			'hp' => $this->input->post('hp', true),
+			'jenis' => $this->input->post('jenis', true),
+			'tinggal' => $this->input->post('tinggal', true)
+		];
+
+		$where = $this->input->post('id', true);
+
+		$this->model->edit2('tb_santri_sm', $data, 'id_santri', $where);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('ok', 'Data sudah diperbarui');
+			redirect('santriAdm/edit2/' . $where);
+		} else {
+			$this->session->set_flashdata('error', 'Edit Error');
+			redirect('santriAdm/edit2/' . $where);
 		}
 	}
 }

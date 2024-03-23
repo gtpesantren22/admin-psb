@@ -173,6 +173,9 @@
                                         <a class="dropdown-item" href="<?= base_url('santriAdm/verifikasi'); ?>">
                                             Verifikasi Santri
                                         </a>
+                                        <a class="dropdown-item" href="<?= base_url('santriAdm/verifikasiBerkas'); ?>">
+                                            Verifikasi Berkas
+                                        </a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown <?= $judul === 'kamar' ? 'active' : ''; ?>">

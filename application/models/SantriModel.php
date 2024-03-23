@@ -160,4 +160,12 @@ class SantriModel extends CI_Model
         $this->db->where($where, $dtwhere);
         $this->db->delete($table);
     }
+
+    function getBerkasSantri()
+    {
+        $this->db->select("tb_santri.nis, nama, desa, kec, kab, catatan, lembaga");
+        $this->db->from("tb_santri");
+        $this->db->join("berkas_file", 'tb_santri.nis=berkas_file.nis', 'left');
+        return $this->db->get();
+    }
 }

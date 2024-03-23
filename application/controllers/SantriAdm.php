@@ -804,4 +804,45 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 			redirect('santriAdm/edit2/' . $where);
 		}
 	}
+
+	public function verifikasiBerkas()
+	{
+		$data['judul'] = 'santri';
+		$data['user'] = $this->Auth_model->current_user();
+
+		$data['data'] = $this->model->getBerkasSantri()->result();
+
+		$this->load->view('adm/head', $data);
+		$this->load->view('adm/verifikasiBerkas', $data);
+		$this->load->view('adm/foot');
+	}
+	public function berkasDetail($nis)
+	{
+		$data['judul'] = 'santri';
+		$data['user'] = $this->Auth_model->current_user();
+
+		$data['santri'] = $this->model->getBy('tb_santri', 'nis', $nis)->row();
+		$data['berkas'] = $this->model->getBy('berkas_file', 'nis', $nis)->row();
+		$data['foto'] = $this->model->getBy('foto_file', 'nis', $nis)->row();
+
+		$this->load->view('adm/head', $data);
+		$this->load->view('adm/berkasDetail', $data);
+		$this->load->view('adm/foot');
+	}
+
+	public function addCatatan()
+	{
+		$nis = $this->input->post('nis', true);
+		$catatan = $this->input->post('catatan', true);
+		$data = ['catatan' => $catatan];
+
+		$this->model->edit('berkas_file', $data, $nis);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('ok', 'Data sudah diperbarui');
+			redirect('santriAdm/verifikasiBerkas');
+		} else {
+			$this->session->set_flashdata('error', 'Edit Error');
+			redirect('santriAdm/verifikasiBerkas');
+		}
+	}
 }

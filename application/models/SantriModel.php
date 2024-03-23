@@ -166,6 +166,9 @@ class SantriModel extends CI_Model
         $this->db->select("tb_santri.nis, nama, desa, kec, kab, catatan, lembaga");
         $this->db->from("tb_santri");
         $this->db->join("berkas_file", 'tb_santri.nis=berkas_file.nis', 'left');
+        $this->db->where("tb_santri.lembaga", '!= MI');
+        $this->db->where("tb_santri.lembaga", '!= RA');
+        $this->db->where("tb_santri.ket", 'baru');
         return $this->db->get();
     }
 }

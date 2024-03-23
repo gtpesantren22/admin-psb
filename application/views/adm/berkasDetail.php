@@ -113,7 +113,7 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label class="form-label">Isi Catatan</label>
-                                        <textarea id="" class="texteditor" name="catatan" required></textarea>
+                                        <textarea id="" class="texteditor" name="catatan" required><?= $berkas->catatan ?></textarea>
                                     </div>
 
                                 </div>

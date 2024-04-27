@@ -29,6 +29,28 @@ class Regist extends CI_Controller
 		$this->load->view('bunda/foot');
 	}
 
+	public function hasilBaru()
+	{
+		$data['byr'] = $this->db->query("SELECT regist.*, tb_santri.nis, tb_santri.nama FROM regist JOIN tb_santri ON regist.nis = tb_santri.nis WHERE tb_santri.ket = 'baru' ORDER BY tgl_bayar ASC");
+
+		$data['judul'] = 'regist';
+		$data['user'] = $this->Auth_model->current_user();
+		$this->load->view('bunda/head', $data);
+		$this->load->view('bunda/hasil_baru', $data);
+		$this->load->view('bunda/foot');
+	}
+
+	public function hasilLama()
+	{
+		$data['byr'] = $this->db->query("SELECT regist.*, tb_santri.nis, tb_santri.nama FROM regist JOIN tb_santri ON regist.nis = tb_santri.nis WHERE tb_santri.ket = 'lama' ORDER BY tgl_bayar ASC");
+
+		$data['judul'] = 'regist';
+		$data['user'] = $this->Auth_model->current_user();
+		$this->load->view('bunda/head', $data);
+		$this->load->view('bunda/hasil_lama', $data);
+		$this->load->view('bunda/foot');
+	}
+
 	public function addDaftar($nis)
 	{
 		$data = [

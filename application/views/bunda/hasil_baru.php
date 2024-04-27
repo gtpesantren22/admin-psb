@@ -50,6 +50,8 @@
                                     ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
+                                            <td><?= $row->nis; ?></td>
+                                            <td><?= $row->nama; ?></td>
                                             <td><?= $row->tgl_bayar; ?></td>
                                             <td><?= $row->kasir; ?></td>
                                             <td><?= $row->via; ?></td>

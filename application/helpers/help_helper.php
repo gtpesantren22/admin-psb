@@ -168,7 +168,7 @@ function gel($gel)
 
 function linkGroup($gel)
 {
-    $nm = array('', 'https://chat.whatsapp.com/CWmP8eFenvk9kSCQQepMC6', 'https://chat.whatsapp.com/IqBWCvrlG7N7ot5Os49a4s', '');
+    $nm = array('', 'https://chat.whatsapp.com/CWmP8eFenvk9kSCQQepMC6', 'https://chat.whatsapp.com/IqBWCvrlG7N7ot5Os49a4s', 'https://chat.whatsapp.com/CNgZbOjQp58A2fuSR8e6X1');
     return $nm[$gel];
 }
 

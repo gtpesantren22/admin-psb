@@ -233,11 +233,65 @@
                     </table>
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title">Traffic summary</h3>
-                        <div id="chart-mentions" class="chart-lg"></div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td class="text-center" colspan="4">Rekap Kecamatan. Update : <?= tanggalIndo(date('Y-m-d')) ?></td>
+                                    </tr>
+                                    <tr style="background-color: darkcyan; color: white;">
+                                        <th>No</th>
+                                        <th>Nama Kecamatan</th>
+                                        <th>TOTAL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $no = 1;
+                                    foreach ($kec as $kc) : ?>
+                                        <tr style="background-color: #004445; color: white;">
+                                            <td><?= $no++ ?></td>
+                                            <td><?= $kc->kec ?></td>
+                                            <td><?= $kc->jml ?></td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td class="text-center" colspan="4">Rekap Kabupaten. Update : <?= tanggalIndo(date('Y-m-d')) ?></td>
+                                    </tr>
+                                    <tr style="background-color: darkcyan; color: white;">
+                                        <th>No</th>
+                                        <th>Nama Daerah</th>
+                                        <th>TOTAL</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $no = 1;
+                                    foreach ($kab as $kc) : ?>
+                                        <tr style="background-color: #2c7873; color: white;">
+                                            <td><?= $no++ ?></td>
+                                            <td><?= $kc->kab ?></td>
+                                            <td><?= $kc->jml ?></td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

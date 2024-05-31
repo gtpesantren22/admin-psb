@@ -20,14 +20,14 @@ class Admin extends CI_Controller
 	{
 		$data['judul'] = 'home';
 		$data['user'] = $this->Auth_model->current_user();
-		
+
 		$data['total'] = $this->model->total()->num_rows();
 		$data['totalPa'] = $this->model->totalPa()->num_rows();
 		$data['totalPi'] = $this->model->totalPi()->num_rows();
 
 		$data['RAPa'] = $this->model->jmlLem('RA', 'Laki-laki')->num_rows();
 		$data['RAPi'] = $this->model->jmlLem('RA', 'Perempuan')->num_rows();
-		
+
 		$data['MIPa'] = $this->model->jmlLem('MI', 'Laki-laki')->num_rows();
 		$data['MIPi'] = $this->model->jmlLem('MI', 'Perempuan')->num_rows();
 
@@ -43,6 +43,8 @@ class Admin extends CI_Controller
 		$data['SMKPa'] = $this->model->jmlLem('SMK', 'Laki-laki')->num_rows();
 		$data['SMKPi'] = $this->model->jmlLem('SMK', 'Perempuan')->num_rows();
 
+		$data['kec'] = $this->db->query("SELECT kec, COUNT(kec) AS jml FROM tb_santri WHERE ket = 'baru' AND lembaga != 'MI' AND lembaga != 'RA' ")->result();
+		$data['kab'] = $this->db->query("SELECT kab, COUNT(kab) AS jml FROM tb_santri WHERE ket = 'baru' AND lembaga != 'MI' AND lembaga != 'RA' ")->result();
 
 		$this->load->view('adm/head', $data);
 		$this->load->view('adm/index', $data);

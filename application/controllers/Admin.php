@@ -43,8 +43,8 @@ class Admin extends CI_Controller
 		$data['SMKPa'] = $this->model->jmlLem('SMK', 'Laki-laki')->num_rows();
 		$data['SMKPi'] = $this->model->jmlLem('SMK', 'Perempuan')->num_rows();
 
-		$data['kec'] = $this->db->query("SELECT kec, COUNT(kec) AS jml FROM tb_santri WHERE ket = 'baru' AND lembaga != 'MI' AND lembaga != 'RA' ")->result();
-		$data['kab'] = $this->db->query("SELECT kab, COUNT(kab) AS jml FROM tb_santri WHERE ket = 'baru' AND lembaga != 'MI' AND lembaga != 'RA' ")->result();
+		$data['kec'] = $this->db->query("SELECT kec, COUNT(kec) AS jml FROM tb_santri WHERE ket = 'baru' AND lembaga != 'MI' AND lembaga != 'RA' GROUP BY kec ")->result();
+		$data['kab'] = $this->db->query("SELECT kab, COUNT(kab) AS jml FROM tb_santri WHERE ket = 'baru' AND lembaga != 'MI' AND lembaga != 'RA' GROUP BY kab ")->result();
 
 		$this->load->view('adm/head', $data);
 		$this->load->view('adm/index', $data);

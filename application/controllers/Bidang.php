@@ -255,7 +255,7 @@ Terimakasih';
         $data['bulan'] = $this->bulan;
         $data['tahun'] = $this->tahun;
 
-        $data['data'] = $this->model->getByJoin('tb_santri', 'seragam', 'id_santri', 'id_seragam', 'tb_santri.ket', 'baru')->result();
+        $data['data'] = $this->model->getByJoin('seragam', 'tb_santri', 'id_seragam', 'id_santri', 'tb_santri.ket', 'baru')->result();
 
         $data['atasSMP'] = $this->db->query("SELECT atasan, COUNT(*) AS jml FROM seragam JOIN tb_santri ON seragam.nis=tb_santri.nis WHERE lembaga = 'MTs' OR lembaga = 'SMP' AND ket = 'baru' GROUP BY seragam.atasan ")->result();
         $data['atasSMA'] = $this->db->query("SELECT atasan, COUNT(*) AS jml FROM seragam JOIN tb_santri ON seragam.nis=tb_santri.nis WHERE lembaga = 'MA' OR lembaga = 'SMK' AND ket = 'baru' GROUP BY seragam.atasan ")->result();

@@ -8,6 +8,7 @@ class Bidang extends CI_Controller
         parent::__construct();
         $this->load->model('BundaModel', 'model');
         $this->load->model('Auth_model');
+        $this->load->model('RegistModel', 'registMd');
 
         $user = $this->Auth_model->current_user();
         $this->tahun = '2024/2025';
@@ -265,5 +266,43 @@ Terimakasih';
         $this->load->view('bidang/head', $data);
         $this->load->view('bidang/seragam', $data);
         $this->load->view('bidang/foot', $data);
+    }
+
+    public function registrasi()
+    {
+        $data['baru'] = $this->registMd->baru()->result();
+        $data['nobp'] = $this->registMd->noBp()->result();
+
+        $data['judul'] = 'registrasi';
+        $data['user'] = $this->Auth_model->current_user();
+        $this->load->view('bidang/head', $data);
+        $this->load->view('bidang/regist', $data);
+        $this->load->view('bidang/foot');
+    }
+
+    public function inDaftar($nis)
+    {
+        $data['judul'] = 'registrasi';
+        $data['santri'] = $this->registMd->santriNis($nis)->row();
+        $data['byr'] = $this->registMd->byr($nis);
+        $data['byrSum'] = $this->registMd->byrSum($nis);
+
+        $data['user'] = $this->Auth_model->current_user();
+        $this->load->view('bidang/head', $data);
+        $this->load->view('bidang/registAdd', $data);
+        $this->load->view('bidang/foot');
+    }
+
+    public function registrasiLanjut()
+    {
+        $data['baru'] = $this->registMd->lama()->result();
+        $data['nobp'] = $this->registMd->getLanjuRegist()->result();
+
+        $data['judul'] = 'registrasi';
+        $data['user'] = $this->Auth_model->current_user();
+
+        $this->load->view('bidang/head', $data);
+        $this->load->view('bidang/regist_lama', $data);
+        $this->load->view('bidang/foot');
     }
 }

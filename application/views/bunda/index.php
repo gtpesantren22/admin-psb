@@ -155,6 +155,33 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-7">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Penggunaan Anggran Bidang</h3>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Bidang</th>
+                                    <th scope="col">Anggaran</th>
+                                    <th scope="col">Penggunaan</th>
+                                    <th scope="col">Sisa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($anggaran as $ang) : ?>
+                                    <tr>
+                                        <td><?= $ang->nama ?></td>
+                                        <td><?= rupiah($ang->pagu) ?></td>
+                                        <td><?= rupiah($ang->pakai) ?></td>
+                                        <td><?= rupiah($ang->pagu - $ang->pakai) ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

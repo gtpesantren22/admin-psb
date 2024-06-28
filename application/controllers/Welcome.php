@@ -56,7 +56,7 @@ class Welcome extends CI_Controller
 		$data['rgOkt'] = $this->model->sumRgBy(10, 2023)->row();
 		$data['rgNov'] = $this->model->sumRgBy(11, 2023)->row();
 		$data['rgDes'] = $this->model->sumRgBy(12, 2023)->row();
-
+		$data['anggaran'] = $this->db->query("SELECT a.nama, a.pagu, SUM(b.qty*b.harga_satuan) AS pakai FROM jabatan a LEFT JOIN pengajuan_detail b ON a.kode=b.bidang GROUP BY a.kode ")->result();
 
 		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/index', $data);

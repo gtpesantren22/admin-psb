@@ -64,4 +64,9 @@ class BerkasModel extends CI_Model
 		$this->db->where('nis', $where);
 		$this->db->update($tbl, $data);
 	}
+
+	function simpan($table, $data)
+	{
+		$this->db->insert($table, $data);
+	}
 }

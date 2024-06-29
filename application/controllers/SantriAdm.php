@@ -845,4 +845,16 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 			redirect('santriAdm/verifikasiBerkas');
 		}
 	}
+
+	public function kirimPesan()
+	{
+		$nis = $this->input->post('nis', true);
+		$hp = $this->input->post('hp', true);
+		$pesan = $this->input->post('pesan', true);
+		$key = $this->model->apiKey()->row();
+
+		kirim_person($key->api_key, $hp, $pesan);
+		$this->session->set_flashdata('ok', 'Pesan sudah terkirim');
+		redirect('santriAdm/berkasDetail/' . $nis);
+	}
 }

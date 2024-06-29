@@ -89,6 +89,7 @@ class Berkas extends CI_Controller
 		$data['judul'] = 'berkas';
 		$data['user'] = $this->Auth_model->current_user();
 		$data['data'] = $this->model->dtlBerkas($nis)->row();
+		$data['nis'] = $nis;
 
 		$this->load->view('adm/head', $data);
 		$this->load->view('adm/berkasDtl', $data);
@@ -408,5 +409,20 @@ class Berkas extends CI_Controller
 		$file = $this->model->getFile($nis)->row();
 		force_download('../psb/assets/berkas/' . $file->ijazah, NULL);
 		redirect('berkas/detail/' . $nis);
+	}
+
+	public function generate($nis)
+	{
+		$data = [
+			'id_file' => $this->uuid->v4(),
+			'nis' => $nis,
+		];
+
+		$this->model->simpan('berkas_file', $data);
+		$this->model->simpan('foto_file', $data);
+		if ($this->db->affected_rows() > 0) {
+			$this->session->set_flashdata('ok', 'Generate berhasil');
+			redirect('berkas/detail/' . $nis);
+		}
 	}
 }

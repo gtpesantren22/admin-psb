@@ -243,10 +243,10 @@
                                         </span>
                                     </a>
                                     <div class="dropdown-menu">
-                                        <!-- <a class="dropdown-item" href="#">
-                                            <a class="dropdown-item" href="<?= base_url('trans/masuk'); ?>">
-                                            Pemasukan
-                                        </a> -->
+                                        <!-- <a class="dropdown-item" href="#"> -->
+                                        <a class="dropdown-item" href="<?= base_url('trans/keluar'); ?>">
+                                            Pengeluaran
+                                        </a>
                                         <a class="dropdown-item" href="<?= base_url('pengajuan'); ?>">
                                             Pengajuan
                                         </a>

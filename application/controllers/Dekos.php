@@ -21,7 +21,7 @@ class Dekos extends CI_Controller
         $data['user'] = $this->Auth_model->current_user();
 
         $data['dekosan'] = $this->model->getJoin('dekos', 'tb_santri', 'nis', 'nis');
-        $data['tmpKos'] = array("", "Kantin", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny. Sa'adah", "Ny. Mamjudah", "Ny. Naily Z.", "Ny. Lathifah");
+        $data['tmpKos'] = array("", "Kantin", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny. Sa'adah", "Ny. Mamjudah", "Ny. Naily Z.", "Ny. Lathifah", "Ny. Ummi Kultsum");
         $data['jmlDekos'] = $this->db->query("SELECT COUNT(*) AS jml, t_kos FROM dekos GROUP BY t_kos ORDER BY t_kos ASC");
 
         $this->load->view('bunda/head', $data);

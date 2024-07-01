@@ -27,6 +27,7 @@ class Pengajuan extends CI_Controller
 
         $data['data'] = $this->model->getAll('pengajuan')->result();
         $data['totalKeluar'] = $this->db->query("SELECT SUM(qty * harga_satuan) as total FROM pengajuan_detail")->row();
+        $data['keluarAll'] = $this->db->query("SELECT SUM(nominal) as total FROM keluar")->row();
 
         $this->load->view('bunda/head', $data);
         $this->load->view('bunda/pengajuan', $data);

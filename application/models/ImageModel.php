@@ -7,6 +7,8 @@ class ImageModel extends CI_Model
 		$this->db->from('foto_file');
 		$this->db->join('tb_santri', 'ON foto_file.nis=tb_santri.nis');
 		$this->db->where('tb_santri.ket', 'baru');
+		$this->db->where('tb_santri.lembaga !=', 'MI');
+		$this->db->where('tb_santri.lembaga !=', 'RA');
 		return $this->db->get();
 	}
 

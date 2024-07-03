@@ -58,7 +58,7 @@
                                                         $lokerbonang = $this->db->query("SELECT * FROM lemari_data WHERE komplek = '$dtbo->komplek' AND kamar = '$dtbo->kamar' AND lemari = '$lmrbon->lemari' ")->result();
                                                         foreach ($lokerbonang as $loker) :
                                                             $nis = $loker->nis == '' ? '00000' : $loker->nis;
-                                                            $ident = $this->db->query("SELECT nis,nama FROM tb_santri WHERE nis = $nis ")->row();
+                                                            $ident = $this->db->query("SELECT nis,nama FROM tb_santri WHERE nis = $nis AND lembaga != 'MI' AND lembaga != 'RA' ")->row();
                                                             $foto = $this->db->query("SELECT diri FROM foto_file WHERE nis = $nis ")->row();
                                                             $nama = $ident ? $ident->nama : 'Belum Ada';
                                                             $bg = $ident ? 'green' : 'red';

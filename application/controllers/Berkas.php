@@ -101,7 +101,7 @@ class Berkas extends CI_Controller
 		$nis = $this->input->post('nis', true);
 		$lama = $this->input->post('file_lama', true);
 
-		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
+		$config['upload_path']          = FCPATH . '../psb/assets/berkas/kk/';
 		$config['allowed_types']        = 'jpg|jpeg|png|pdf';
 		$config['file_name']            = 'KK-' . $nis . random(4);
 		$config['overwrite']            = true;
@@ -113,7 +113,7 @@ class Berkas extends CI_Controller
 			$data['error'] = $this->upload->display_errors();
 		} else {
 			if ($lama != '') {
-				unlink('../psb/assets/berkas/' . $lama);
+				unlink('../psb/assets/berkas/kk/' . $lama);
 			}
 			$uploaded_data = $this->upload->data();
 			$new_data = [
@@ -146,7 +146,7 @@ class Berkas extends CI_Controller
 		$nis = $this->input->post('nis', true);
 		$lama = $this->input->post('file_lama', true);
 
-		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
+		$config['upload_path']          = FCPATH . '../psb/assets/berkas/akta/';
 		$config['allowed_types']        = 'jpg|jpeg|png|pdf';
 		$config['file_name']            = 'akta-' . $nis . random(4);
 		$config['overwrite']            = true;
@@ -158,7 +158,7 @@ class Berkas extends CI_Controller
 			$data['error'] = $this->upload->display_errors();
 		} else {
 			if ($lama != '') {
-				unlink('../psb/assets/berkas/' . $lama);
+				unlink('../psb/assets/berkas/akta/' . $lama);
 			}
 			$uploaded_data = $this->upload->data();
 			$new_data = [
@@ -191,7 +191,7 @@ class Berkas extends CI_Controller
 		$nis = $this->input->post('nis', true);
 		$lama = $this->input->post('file_lama', true);
 
-		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
+		$config['upload_path']          = FCPATH . '../psb/assets/berkas/kip/';
 		$config['allowed_types']        = 'jpg|jpeg|png|pdf';
 		$config['file_name']            = 'kip-' . $nis . random(4);
 		$config['overwrite']            = true;
@@ -203,7 +203,7 @@ class Berkas extends CI_Controller
 			$data['error'] = $this->upload->display_errors();
 		} else {
 			if ($lama != '') {
-				unlink('../psb/assets/berkas/' . $lama);
+				unlink('../psb/assets/berkas/kip/' . $lama);
 			}
 			$uploaded_data = $this->upload->data();
 			$new_data = [
@@ -236,7 +236,7 @@ class Berkas extends CI_Controller
 		$nis = $this->input->post('nis', true);
 		$lama = $this->input->post('file_lama', true);
 
-		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
+		$config['upload_path']          = FCPATH . '../psb/assets/berkas/ktp_ayah/';
 		$config['allowed_types']        = 'jpg|jpeg|png|pdf';
 		$config['file_name']            = 'ktp_ayah-' . $nis . random(4);
 		$config['overwrite']            = true;
@@ -248,7 +248,7 @@ class Berkas extends CI_Controller
 			$data['error'] = $this->upload->display_errors();
 		} else {
 			if ($lama != '') {
-				unlink('../psb/assets/berkas/' . $lama);
+				unlink('../psb/assets/berkas/ktp_ayah/' . $lama);
 			}
 			$uploaded_data = $this->upload->data();
 			$new_data = [
@@ -281,7 +281,7 @@ class Berkas extends CI_Controller
 		$nis = $this->input->post('nis', true);
 		$lama = $this->input->post('file_lama', true);
 
-		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
+		$config['upload_path']          = FCPATH . '../psb/assets/berkas/ktp_ibu/';
 		$config['allowed_types']        = 'jpg|jpeg|png|pdf';
 		$config['file_name']            = 'ktp_ibu-' . $nis . random(4);
 		$config['overwrite']            = true;
@@ -292,8 +292,8 @@ class Berkas extends CI_Controller
 		if (!$this->upload->do_upload('berkas')) {
 			$data['error'] = $this->upload->display_errors();
 		} else {
-			if (file_exists('../psb/assets/berkas/' . $lama)) {
-				unlink('../psb/assets/berkas/' . $lama);
+			if (file_exists('../psb/assets/berkas/ktp_ibu/' . $lama)) {
+				unlink('../psb/assets/berkas/ktp_ibu/' . $lama);
 			}
 			$uploaded_data = $this->upload->data();
 			$new_data = [
@@ -326,7 +326,7 @@ class Berkas extends CI_Controller
 		$nis = $this->input->post('nis', true);
 		$lama = $this->input->post('file_lama', true);
 
-		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
+		$config['upload_path']          = FCPATH . '../psb/assets/berkas/skl/';
 		$config['allowed_types']        = 'jpg|jpeg|png|pdf';
 		$config['file_name']            = 'skl-' . $nis . random(4);
 		$config['overwrite']            = true;
@@ -337,8 +337,8 @@ class Berkas extends CI_Controller
 		if (!$this->upload->do_upload('berkas')) {
 			$data['error'] = $this->upload->display_errors();
 		} else {
-			if (file_exists('../psb/assets/berkas/' . $lama)) {
-				unlink('../psb/assets/berkas/' . $lama);
+			if (file_exists('../psb/assets/berkas/skl/' . $lama)) {
+				unlink('../psb/assets/berkas/skl/' . $lama);
 			}
 			$uploaded_data = $this->upload->data();
 			$new_data = [
@@ -371,7 +371,7 @@ class Berkas extends CI_Controller
 		$nis = $this->input->post('nis', true);
 		$lama = $this->input->post('file_lama', true);
 
-		$config['upload_path']          = FCPATH . '../psb/assets/berkas/';
+		$config['upload_path']          = FCPATH . '../psb/assets/berkas/ijazah/';
 		$config['allowed_types']        = 'jpg|jpeg|png|pdf';
 		$config['file_name']            = 'ijazah-' . $nis . random(4);
 		$config['overwrite']            = true;
@@ -382,8 +382,8 @@ class Berkas extends CI_Controller
 		if (!$this->upload->do_upload('berkas')) {
 			$data['error'] = $this->upload->display_errors();
 		} else {
-			if (file_exists('../psb/assets/berkas/' . $lama)) {
-				unlink('../psb/assets/berkas/' . $lama);
+			if (file_exists('../psb/assets/berkas/ijazah/' . $lama)) {
+				unlink('../psb/assets/berkas/ijazah/' . $lama);
 			}
 			$uploaded_data = $this->upload->data();
 			$new_data = [

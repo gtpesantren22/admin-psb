@@ -137,7 +137,7 @@ class Berkas extends CI_Controller
 	public function downKK($nis)
 	{
 		$file = $this->model->getFile($nis)->row();
-		force_download('../psb/assets/berkas/' . $file->kk, NULL);
+		force_download('../psb/assets/berkas/kk/' . $file->kk, NULL);
 		redirect('berkas/detail/' . $nis);
 	}
 
@@ -182,7 +182,7 @@ class Berkas extends CI_Controller
 	public function downakta($nis)
 	{
 		$file = $this->model->getFile($nis)->row();
-		force_download('../psb/assets/berkas/' . $file->akta, NULL);
+		force_download('../psb/assets/berkas/akta/' . $file->akta, NULL);
 		redirect('berkas/detail/' . $nis);
 	}
 
@@ -227,7 +227,7 @@ class Berkas extends CI_Controller
 	public function downkip($nis)
 	{
 		$file = $this->model->getFile($nis)->row();
-		force_download('../psb/assets/berkas/' . $file->kip, NULL);
+		force_download('../psb/assets/berkas/kip/' . $file->kip, NULL);
 		redirect('berkas/detail/' . $nis);
 	}
 
@@ -272,7 +272,7 @@ class Berkas extends CI_Controller
 	public function downktp_ayah($nis)
 	{
 		$file = $this->model->getFile($nis)->row();
-		force_download('../psb/assets/berkas/' . $file->ktp_ayah, NULL);
+		force_download('../psb/assets/berkas/ktp_ayah/' . $file->ktp_ayah, NULL);
 		redirect('berkas/detail/' . $nis);
 	}
 
@@ -317,7 +317,7 @@ class Berkas extends CI_Controller
 	public function downktp_ibu($nis)
 	{
 		$file = $this->model->getFile($nis)->row();
-		force_download('../psb/assets/berkas/' . $file->ktp_ibu, NULL);
+		force_download('../psb/assets/berkas/ktp_ibu/' . $file->ktp_ibu, NULL);
 		redirect('berkas/detail/' . $nis);
 	}
 
@@ -362,7 +362,7 @@ class Berkas extends CI_Controller
 	public function downskl($nis)
 	{
 		$file = $this->model->getFile($nis)->row();
-		force_download('../psb/assets/berkas/' . $file->skl, NULL);
+		force_download('../psb/assets/berkas/skl/' . $file->skl, NULL);
 		redirect('berkas/detail/' . $nis);
 	}
 
@@ -407,7 +407,7 @@ class Berkas extends CI_Controller
 	public function downijazah($nis)
 	{
 		$file = $this->model->getFile($nis)->row();
-		force_download('../psb/assets/berkas/' . $file->ijazah, NULL);
+		force_download('../psb/assets/berkas/ijazah/' . $file->ijazah, NULL);
 		redirect('berkas/detail/' . $nis);
 	}
 

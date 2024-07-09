@@ -71,6 +71,7 @@
                                                         <a class="dropdown-item" href="<?= base_url('santriAdm/send/' . $row->nis); ?>">Japri</a>
                                                         <a class="dropdown-item" href="<?= base_url('santriAdm/sendGp/' . $row->nis); ?>">Group</a>
                                                         <a class="dropdown-item" href="<?= base_url('santriAdm/sendAkun/' . $row->nis); ?>">Akun</a>
+                                                        <a class="dropdown-item" href="<?= base_url('santriAdm/sendData/' . $row->nis); ?>">Kirim Data</a>
                                                     </div>
                                                 </div>
                                                 <!-- <a class="btn btn-warning btn-sm"

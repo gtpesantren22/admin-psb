@@ -857,4 +857,34 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 		$this->session->set_flashdata('ok', 'Pesan sudah terkirim');
 		redirect('santriAdm/berkasDetail/' . $nis);
 	}
+
+	public function sendData($nis)
+	{
+		$data['judul'] = 'santri';
+		$data['user'] = $this->Auth_model->current_user();
+		$data['data'] = $this->model->santriNis($nis)->row();
+		$data['agama'] = $this->model->agama()->result();
+
+		$data['pend'] = $this->model->pend()->result();
+		$data['pkj'] = $this->model->pkj()->result();
+		$data['hasil'] = $this->model->hasil()->result();
+		$data['provinsi'] = $this->ProvinsiModel->view();
+
+		$data['berkas'] = $this->BerkasModel->dtlBerkas($nis)->row();
+		$data['foto'] = $this->model->getBy('foto_file', 'nis', $nis)->row();
+
+		$this->load->view('adm/head', $data);
+		$this->load->view('adm/kirimData', $data);
+		$this->load->view('adm/foot');
+	}
+
+	public function viewBerkasModal($jenis, $id)
+	{
+		$data['judul'] = 'santri';
+		$data['jenis'] = $jenis;
+		$data['user'] = $this->Auth_model->current_user();
+		$data['data'] = $this->db->query("SELECT $jenis as hasil FROM berkas_file WHERE id_file = '$id' ")->row();
+
+		$this->load->view('adm/viewBerkasModal', $data);
+	}
 }

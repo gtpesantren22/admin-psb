@@ -37,7 +37,7 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                             <div class="alert alert-danger"><?= $this->session->flashdata('error') ?></div>
                         <?php endif; ?>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-header">
                                         <li>Identitas Diri</li>
@@ -191,15 +191,12 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-header">
                                         <li>Berkas Santri</li>
                                     </div>
                                     <div class="card-body">
-                                        <h5>Foto Santri</h5>
-                                        <img src="<?= $dir . 'foto/' . $foto->diri ?>" class="card-img-top">
-                                        <br>
                                         <table class="table table-borderless">
                                             <tr>
                                                 <td>KK</td>
@@ -238,6 +235,17 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                                                 </td>
                                             </tr>
                                         </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <li>Foto Santri</li>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5>Foto Santri</h5>
+                                        <img src="<?= $dir . 'foto/' . $foto->diri ?>" class="card-img-top">
                                     </div>
                                 </div>
                             </div>

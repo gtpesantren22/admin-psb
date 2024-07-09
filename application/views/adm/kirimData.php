@@ -1,9 +1,14 @@
 <?php
 
-$dir = 'https://psb.ppdwk.com/assets/berkas/';
-// $dir = 'http://localhost/psb/assets/berkas/';
+// $dir = 'https://psb.ppdwk.com/assets/berkas/';
+$dir = 'http://localhost/psb/assets/berkas/';
 ?>
 <!-- Page header -->
+<style>
+    .loading-spinner {
+        display: none;
+    }
+</style>
 <div class="page-header d-print-none">
     <div class="container-xl">
         <div class="row g-2 align-items-center">
@@ -37,10 +42,11 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                             <div class="alert alert-danger"><?= $this->session->flashdata('error') ?></div>
                         <?php endif; ?>
                         <div class="row">
+                            <!-- Identitas -->
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        <li>Identitas Diri</li>
+                                        <li>Identitas Diri | <a class="float-right" href="<?= base_url('santriAdm/edit/' . $data->nis) ?>">Edit Santri</a></li>
                                     </div>
                                     <div class="card-body">
                                         <table class="table table-sm">
@@ -191,10 +197,11 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                                     </div>
                                 </div>
                             </div>
+                            <!-- Berkas -->
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-header">
-                                        <li>Berkas Santri</li>
+                                        <li>Berkas Santri | <a class="float-right" href="<?= base_url('berkas/detail/' . $data->nis) ?>">Edit Berkas</a></li>
                                     </div>
                                     <div class="card-body">
                                         <table class="table table-borderless">
@@ -237,14 +244,30 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                                         </table>
                                     </div>
                                 </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <li>Kirim Data ke D'Pontren</li>
+                                    </div>
+                                    <div class="card-body">
+                                        Fitur ini akan mengirimkan santri terpilih berikut dengan Foto dan berkas-berkas santri tersebut
+                                        <br><br>
+                                        <form id="sincForm">
+                                            <input type="hidden" name="nis" id="nis" value="<?= $data->nis ?>">
+                                            <input type="hidden" name="id_santri" id="id_santri" value="<?= $data->id_santri ?>">
+
+                                            <button type="submit" id="sincButn" class="btn btn-danger"><i class="fa fa-send"></i> Kirim Data Santri ke DPontren</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- Foto -->
                             <div class="col-md-3">
                                 <div class="card">
                                     <div class="card-header">
-                                        <li>Foto Santri</li>
+                                        <li>Foto Santri | <a class="float-right" href="<?= base_url('image/detail/' . $data->nis) ?>">Edit Foto</a></li>
                                     </div>
                                     <div class="card-body">
-                                        <h5>Foto Santri</h5>
                                         <img src="<?= $dir . 'foto/' . $foto->diri ?>" class="card-img-top">
                                     </div>
                                 </div>
@@ -272,7 +295,10 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
         </div>
     </div>
 </div>
+
+<link rel="stylesheet" href="style.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="<?= base_url('demo/'); ?>sw/sweetalert2.all.min.js"></script>
 <script>
     function loadModalContent(jenis, id) {
         $.ajax({
@@ -290,4 +316,47 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
             }
         });
     }
+
+    $(document).ready(function() {
+        $('#sincForm').submit(function(event) {
+            event.preventDefault(); // Mencegah form submit secara default
+
+            var formData = new FormData(this);
+            var $uploadButton = $('#sincButn');
+            $uploadButton.prop('disabled', true).text('Proses pengiriman data...');
+
+            $.ajax({
+                url: '<?= base_url("santriAdm/sinc_data") ?>',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.message == 'success') {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Proses kirim data berhasil',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: response.message
+                        })
+                        $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    var errorMessage = 'Error: ' + xhr.status + ' ' + xhr.statusText;
+                    alert(errorMessage)
+                    $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
+                }
+            });
+        });
+    });
 </script>

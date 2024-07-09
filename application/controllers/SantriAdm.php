@@ -907,7 +907,7 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 		$pathData = FCPATH . '../dpontren/images/';
 
 		$dataSantri = [
-			'id_santri' => $santri->id_santri,
+			// 'id_santri' => $santri->id_santri,
 			'nis' => $santri->nis,
 			'nik' => $santri->nik,
 			'no_kk' => $santri->no_kk,

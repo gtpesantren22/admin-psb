@@ -1,7 +1,7 @@
 <?php
 
-// $dir = 'https://psb.ppdwk.com/assets/berkas/';
-$dir = 'http://localhost/psb/assets/berkas/';
+$dir = 'https://psb.ppdwk.com/assets/berkas/';
+// $dir = 'http://localhost/psb/assets/berkas/';
 ?>
 <!-- Page header -->
 <div class="page-header d-print-none">

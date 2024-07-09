@@ -892,6 +892,11 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 	{
 		$nis = $this->input->post('nis', true);
 		$id_santri = $this->input->post('id_santri', true);
+		$cek = $this->model->getBy('sync_data', 'nis', $nis)->row();
+		if ($cek) {
+			$this->session->set_flashdata('error', 'Data sudah di sinkronisasi');
+			redirect('santriAdm/sendData/' . $nis);
+		}
 
 		$santri = $this->db->query("SELECT * FROM tb_santri WHERE nis = $nis OR id_santri = '$id_santri' ")->row();
 		$foto = $this->db->query("SELECT * FROM foto_file WHERE nis = $nis OR id_file = '$id_santri' ")->row();
@@ -955,6 +960,10 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 			'kip' => $berkas->kip,
 			'ijazah' => $berkas->ijazah,
 		];
+		$sydata = [
+			'nis' => $nis,
+			'waktu' => date('Y-m-d H:i:s'),
+		];
 
 		if ($this->check_and_copy_file($pathPSB . 'foto/' . $foto->diri, $pathData . 'santri/' . $foto->diri)) {
 			if ($this->check_and_copy_file($pathPSB . 'kk/' . $berkas->kk, $pathData . 'kk/' . $berkas->kk)) {
@@ -966,6 +975,7 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 									if ($this->check_and_copy_file($pathPSB . 'kip/' . $berkas->kip, $pathData . 'kip/' . $berkas->kip)) {
 										$this->model->inputToDb2('tb_santri', $dataSantri);
 										$this->model->inputToDb2('berkas_file', $berkasData);
+										$this->model->simpan('sync_data', $sydata);
 
 										if ($this->db->affected_rows() > 0) {
 											echo json_encode(['message' => 'success']);

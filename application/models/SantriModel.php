@@ -143,6 +143,10 @@ class SantriModel extends CI_Model
     {
         $this->db2->insert($table, $data);
     }
+    function simpan($table, $data)
+    {
+        $this->db->insert($table, $data);
+    }
 
     function updateToDb2($table, $data, $where, $dtwhere)
     {

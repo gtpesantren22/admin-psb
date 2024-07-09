@@ -894,8 +894,7 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 		$id_santri = $this->input->post('id_santri', true);
 		$cek = $this->model->getBy('sync_data', 'nis', $nis)->row();
 		if ($cek) {
-			$this->session->set_flashdata('error', 'Data sudah di sinkronisasi');
-			redirect('santriAdm/sendData/' . $nis);
+			echo json_encode(['message' => 'Data sudah di sinkronisasi']);
 		}
 
 		$santri = $this->db->query("SELECT * FROM tb_santri WHERE nis = $nis OR id_santri = '$id_santri' ")->row();

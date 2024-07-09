@@ -1013,7 +1013,7 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 	{
 		// Pengecekan apakah file sumber ada
 		if (!file_exists($filPSB)) {
-			return FALSE;
+			return TRUE;
 		}
 
 		// Menggunakan fungsi copy() untuk menyalin file

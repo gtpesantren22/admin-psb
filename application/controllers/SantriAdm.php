@@ -1021,6 +1021,6 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 			return TRUE;
 		}
 
-		return FALSE;
+		return true;
 	}
 }

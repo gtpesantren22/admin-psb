@@ -892,7 +892,7 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 	{
 		$nis = $this->input->post('nis', true);
 		$id_santri = $this->input->post('id_santri', true);
-		$cek = $this->model->getBy('sync_data', 'nis', $nis)->row();
+		$cek = $this->model->getByDb2('tb_santri', 'nis', $nis)->row();
 		if ($cek) {
 			$santri = $this->db->query("SELECT * FROM tb_santri WHERE nis = $nis OR id_santri = '$id_santri' ")->row();
 			$foto = $this->db->query("SELECT * FROM foto_file WHERE nis = $nis OR id_file = '$id_santri' ")->row();
@@ -967,13 +967,15 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 									if ($this->check_and_copy_file($pathPSB . 'ijazah/' . $berkas->ijazah, $pathData . 'ijazah/' . $berkas->ijazah)) {
 										if ($this->check_and_copy_file($pathPSB . 'kip/' . $berkas->kip, $pathData . 'kip/' . $berkas->kip)) {
 											$this->model->updateToDb2('tb_santri', $dataSantri, 'nis', $nis);
-											$this->model->updateToDb2('berkas_file', $berkasData, 'nis', $nis);
-											// $this->model->simpan('sync_data', $sydata);
-
 											if ($this->db->affected_rows() > 0) {
-												echo json_encode(['message' => 'success']);
+												$this->model->updateToDb2('berkas_file', $berkasData, 'nis', $nis);
+												if ($this->db->affected_rows() > 0) {
+													echo json_encode(['message' => 'success']);
+												} else {
+													echo json_encode(['message' => 'error update data berkas didpontren']);
+												}
 											} else {
-												echo json_encode(['message' => 'error']);
+												echo json_encode(['message' => 'error update data santri didpontren']);
 											}
 										} else {
 											echo json_encode(['message' => 'upload kip gagal']);

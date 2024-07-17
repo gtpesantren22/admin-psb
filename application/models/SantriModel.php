@@ -139,6 +139,12 @@ class SantriModel extends CI_Model
         return $this->db->get($table);
     }
 
+    function getByDb2($table, $where, $dtwhere)
+    {
+        $this->db2->where($where, $dtwhere);
+        return $this->db2->get($table);
+    }
+
     function inputToDb2($table, $data)
     {
         $this->db2->insert($table, $data);

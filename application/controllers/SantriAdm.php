@@ -953,14 +953,14 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 
 		if ($cek > 0) {
 			$this->model->updateToDb2('tb_santri', $dataSantri, 'nis', $nis);
-			if ($this->db->affected_rows() > 0) {
+			if ($this->db2->affected_rows() > 0) {
 				echo json_encode(['message' => 'success']);
 			} else {
 				echo json_encode(['message' => 'error UPDATE data santri didpontren']);
 			}
 		} else {
 			$this->model->inputToDb2('tb_santri', $dataSantri);
-			if ($this->db->affected_rows() > 0) {
+			if ($this->db2->affected_rows() > 0) {
 				$this->model->simpan('sync_data', $sydata);
 				echo json_encode(['message' => 'success']);
 			} else {

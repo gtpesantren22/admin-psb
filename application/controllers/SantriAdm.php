@@ -893,223 +893,177 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 		$nis = $this->input->post('nis', true);
 		$id_santri = $this->input->post('id_santri', true);
 		$cek = $this->model->getByDb2('tb_santri', 'nis', $nis)->row();
+
+		$santri = $this->db->query("SELECT * FROM tb_santri WHERE nis = $nis OR id_santri = '$id_santri' ")->row();
+		$foto = $this->db->query("SELECT * FROM foto_file WHERE nis = $nis OR id_file = '$id_santri' ")->row();
+		$berkas = $this->db->query("SELECT * FROM berkas_file WHERE nis = $nis OR id_file = '$id_santri' ")->row();
+		$dekos = $this->db->query("SELECT * FROM dekos WHERE nis = $nis ")->row();
+		$lemari = $this->db->query("SELECT * FROM lemari_data WHERE nis = $nis ")->row();
+
+
+		$dataSantri = [
+			'nis' => $santri->nis,
+			'nik' => $santri->nik,
+			'no_kk' => $santri->no_kk,
+			'nama' => $santri->nama,
+			'nisn' => $santri->nisn,
+			'jkl' => $santri->jkl,
+			'desa' => $santri->desa,
+			'kec' => $santri->kec,
+			'kab' => $santri->kab,
+			'prov' => $santri->prov,
+			'tempat' => $santri->tempat,
+			'tanggal' => $santri->tanggal,
+			'jln' => $santri->jln,
+			'rt' => $santri->rt,
+			'rw' => $santri->rw,
+			't_formal' => $santri->lembaga,
+			'anak_ke' => $santri->anak_ke,
+			'jml_sdr' => $santri->jml_sdr,
+			'bapak' => $santri->bapak,
+			'nik_a' => $santri->a_nik,
+			'pkj_a' => $santri->a_pkj,
+			'pend_a' => $santri->a_pend,
+			'status_a' => $santri->a_stts,
+			'tempat_a' => $santri->a_tempat,
+			'tanggal_a' => $santri->a_tanggal,
+			'ibu' => $santri->ibu,
+			'nik_i' => $santri->i_nik,
+			'pkj_i' => $santri->i_pkj,
+			'pend_i' => $santri->i_pend,
+			'status_i' => $santri->i_stts,
+			'tempat_i' => $santri->i_tempat,
+			'tanggal_i' => $santri->i_tanggal,
+			'hp' => $santri->hp,
+			't_kos' => $dekos->t_kos,
+			'foto' => $foto->diri,
+			'ket' => 0,
+			'aktif' => 'Y',
+			'komplek' => $lemari->komplek,
+			'kamar' => $lemari->kamar,
+		];
+		$berkasData = [
+			'id_file' => $berkas->id_file,
+			'kk' => $berkas->kk,
+			'akta' => $berkas->akta,
+			'ktp_ayah' => $berkas->ktp_ayah,
+			'ktp_ibu' => $berkas->ktp_ibu,
+			'skl' => $berkas->skl,
+			'kip' => $berkas->kip,
+			'ijazah' => $berkas->ijazah,
+		];
+		$sydata = [
+			'nis' => $nis,
+			'waktu' => date('Y-m-d H:i:s'),
+		];
+
 		if ($cek) {
-			$santri = $this->db->query("SELECT * FROM tb_santri WHERE nis = $nis OR id_santri = '$id_santri' ")->row();
-			$foto = $this->db->query("SELECT * FROM foto_file WHERE nis = $nis OR id_file = '$id_santri' ")->row();
-			$berkas = $this->db->query("SELECT * FROM berkas_file WHERE nis = $nis OR id_file = '$id_santri' ")->row();
-			$dekos = $this->db->query("SELECT * FROM dekos WHERE nis = $nis ")->row();
-			$lemari = $this->db->query("SELECT * FROM lemari_data WHERE nis = $nis ")->row();
-			$pathPSB = FCPATH . '../psb/assets/berkas/';
-			$pathData = FCPATH . '../dpontren/images/';
-
-			$dataSantri = [
-				'nis' => $santri->nis,
-				'nik' => $santri->nik,
-				'no_kk' => $santri->no_kk,
-				'nama' => $santri->nama,
-				'nisn' => $santri->nisn,
-				'jkl' => $santri->jkl,
-				'desa' => $santri->desa,
-				'kec' => $santri->kec,
-				'kab' => $santri->kab,
-				'prov' => $santri->prov,
-				'tempat' => $santri->tempat,
-				'tanggal' => $santri->tanggal,
-				'jln' => $santri->jln,
-				'rt' => $santri->rt,
-				'rw' => $santri->rw,
-				't_formal' => $santri->lembaga,
-				'anak_ke' => $santri->anak_ke,
-				'jml_sdr' => $santri->jml_sdr,
-				'bapak' => $santri->bapak,
-				'nik_a' => $santri->a_nik,
-				'pkj_a' => $santri->a_pkj,
-				'pend_a' => $santri->a_pend,
-				'status_a' => $santri->a_stts,
-				'tempat_a' => $santri->a_tempat,
-				'tanggal_a' => $santri->a_tanggal,
-				'ibu' => $santri->ibu,
-				'nik_i' => $santri->i_nik,
-				'pkj_i' => $santri->i_pkj,
-				'pend_i' => $santri->i_pend,
-				'status_i' => $santri->i_stts,
-				'tempat_i' => $santri->i_tempat,
-				'tanggal_i' => $santri->i_tanggal,
-				'hp' => $santri->hp,
-				't_kos' => $dekos->t_kos,
-				'foto' => $foto->diri,
-				'ket' => 0,
-				'aktif' => 'Y',
-				'komplek' => $lemari->komplek,
-				'kamar' => $lemari->kamar,
-			];
-			$berkasData = [
-				'id_file' => $berkas->id_file,
-				'kk' => $berkas->kk,
-				'akta' => $berkas->akta,
-				'ktp_ayah' => $berkas->ktp_ayah,
-				'ktp_ibu' => $berkas->ktp_ibu,
-				'skl' => $berkas->skl,
-				'kip' => $berkas->kip,
-				'ijazah' => $berkas->ijazah,
-			];
-			$sydata = [
-				'nis' => $nis,
-				'waktu' => date('Y-m-d H:i:s'),
-			];
-
-			if ($this->check_and_copy_file($pathPSB . 'foto/' . $foto->diri, $pathData . 'santri/' . $foto->diri)) {
-				if ($this->check_and_copy_file($pathPSB . 'kk/' . $berkas->kk, $pathData . 'kk/' . $berkas->kk)) {
-					if ($this->check_and_copy_file($pathPSB . 'akta/' . $berkas->akta, $pathData . 'akta/' . $berkas->akta)) {
-						if ($this->check_and_copy_file($pathPSB . 'ktp_ayah/' . $berkas->ktp_ayah, $pathData . 'ktp_ayah/' . $berkas->ktp_ayah)) {
-							if ($this->check_and_copy_file($pathPSB . 'ktp_ibu/' . $berkas->ktp_ibu, $pathData . 'ktp_ibu/' . $berkas->ktp_ibu)) {
-								if ($this->check_and_copy_file($pathPSB . 'skl/' . $berkas->skl, $pathData . 'skl/' . $berkas->skl)) {
-									if ($this->check_and_copy_file($pathPSB . 'ijazah/' . $berkas->ijazah, $pathData . 'ijazah/' . $berkas->ijazah)) {
-										if ($this->check_and_copy_file($pathPSB . 'kip/' . $berkas->kip, $pathData . 'kip/' . $berkas->kip)) {
-											$this->model->updateToDb2('tb_santri', $dataSantri, 'nis', $nis);
-											if ($this->db->affected_rows() > 0) {
-												$this->model->updateToDb2('berkas_file', $berkasData, 'nis', $nis);
-												if ($this->db->affected_rows() > 0) {
-													echo json_encode(['message' => 'success']);
-												} else {
-													echo json_encode(['message' => 'error update data berkas didpontren']);
-												}
-											} else {
-												echo json_encode(['message' => 'error update data santri didpontren']);
-											}
-										} else {
-											echo json_encode(['message' => 'upload kip gagal']);
-										}
-									} else {
-										echo json_encode(['message' => 'upload ijazah gagal']);
-									}
-								} else {
-									echo json_encode(['message' => 'upload skl gagal']);
-								}
-							} else {
-								echo json_encode(['message' => 'upload ktp_ibu gagal']);
-							}
-						} else {
-							echo json_encode(['message' => 'upload ktp_ayah gagal']);
-						}
-					} else {
-						echo json_encode(['message' => 'upload akta gagal']);
-					}
+			$this->model->updateToDb2('tb_santri', $dataSantri, 'nis', $nis);
+			if ($this->db->affected_rows() > 0) {
+				$this->model->updateToDb2('berkas_file', $berkasData, 'nis', $nis);
+				if ($this->db->affected_rows() > 0) {
+					echo json_encode(['message' => 'success']);
 				} else {
-					echo json_encode(['message' => 'upload kk gagal']);
+					echo json_encode(['message' => 'error update data berkas didpontren']);
 				}
 			} else {
-				echo json_encode(['message' => 'upload foto gagal']);
+				echo json_encode(['message' => 'error update data santri didpontren']);
 			}
 		} else {
-
-			$santri = $this->db->query("SELECT * FROM tb_santri WHERE nis = $nis OR id_santri = '$id_santri' ")->row();
-			$foto = $this->db->query("SELECT * FROM foto_file WHERE nis = $nis OR id_file = '$id_santri' ")->row();
-			$berkas = $this->db->query("SELECT * FROM berkas_file WHERE nis = $nis OR id_file = '$id_santri' ")->row();
-			$dekos = $this->db->query("SELECT * FROM dekos WHERE nis = $nis ")->row();
-			$lemari = $this->db->query("SELECT * FROM lemari_data WHERE nis = $nis ")->row();
-			$pathPSB = FCPATH . '../psb/assets/berkas/';
-			$pathData = FCPATH . '../dpontren/images/';
-
-			$dataSantri = [
-				'nis' => $santri->nis,
-				'nik' => $santri->nik,
-				'no_kk' => $santri->no_kk,
-				'nama' => $santri->nama,
-				'nisn' => $santri->nisn,
-				'jkl' => $santri->jkl,
-				'desa' => $santri->desa,
-				'kec' => $santri->kec,
-				'kab' => $santri->kab,
-				'prov' => $santri->prov,
-				'tempat' => $santri->tempat,
-				'tanggal' => $santri->tanggal,
-				'jln' => $santri->jln,
-				'rt' => $santri->rt,
-				'rw' => $santri->rw,
-				't_formal' => $santri->lembaga,
-				'anak_ke' => $santri->anak_ke,
-				'jml_sdr' => $santri->jml_sdr,
-				'bapak' => $santri->bapak,
-				'nik_a' => $santri->a_nik,
-				'pkj_a' => $santri->a_pkj,
-				'pend_a' => $santri->a_pend,
-				'status_a' => $santri->a_stts,
-				'tempat_a' => $santri->a_tempat,
-				'tanggal_a' => $santri->a_tanggal,
-				'ibu' => $santri->ibu,
-				'nik_i' => $santri->i_nik,
-				'pkj_i' => $santri->i_pkj,
-				'pend_i' => $santri->i_pend,
-				'status_i' => $santri->i_stts,
-				'tempat_i' => $santri->i_tempat,
-				'tanggal_i' => $santri->i_tanggal,
-				'hp' => $santri->hp,
-				't_kos' => $dekos->t_kos,
-				'foto' => $foto->diri,
-				'ket' => 0,
-				'aktif' => 'Y',
-				'komplek' => $lemari->komplek,
-				'kamar' => $lemari->kamar,
-			];
-			$berkasData = [
-				'id_file' => $berkas->id_file,
-				'kk' => $berkas->kk,
-				'akta' => $berkas->akta,
-				'ktp_ayah' => $berkas->ktp_ayah,
-				'ktp_ibu' => $berkas->ktp_ibu,
-				'skl' => $berkas->skl,
-				'kip' => $berkas->kip,
-				'ijazah' => $berkas->ijazah,
-			];
-			$sydata = [
-				'nis' => $nis,
-				'waktu' => date('Y-m-d H:i:s'),
-			];
-
-			if ($this->check_and_copy_file($pathPSB . 'foto/' . $foto->diri, $pathData . 'santri/' . $foto->diri)) {
-				if ($this->check_and_copy_file($pathPSB . 'kk/' . $berkas->kk, $pathData . 'kk/' . $berkas->kk)) {
-					if ($this->check_and_copy_file($pathPSB . 'akta/' . $berkas->akta, $pathData . 'akta/' . $berkas->akta)) {
-						if ($this->check_and_copy_file($pathPSB . 'ktp_ayah/' . $berkas->ktp_ayah, $pathData . 'ktp_ayah/' . $berkas->ktp_ayah)) {
-							if ($this->check_and_copy_file($pathPSB . 'ktp_ibu/' . $berkas->ktp_ibu, $pathData . 'ktp_ibu/' . $berkas->ktp_ibu)) {
-								if ($this->check_and_copy_file($pathPSB . 'skl/' . $berkas->skl, $pathData . 'skl/' . $berkas->skl)) {
-									if ($this->check_and_copy_file($pathPSB . 'ijazah/' . $berkas->ijazah, $pathData . 'ijazah/' . $berkas->ijazah)) {
-										if ($this->check_and_copy_file($pathPSB . 'kip/' . $berkas->kip, $pathData . 'kip/' . $berkas->kip)) {
-											$this->model->inputToDb2('tb_santri', $dataSantri);
-											$this->model->inputToDb2('berkas_file', $berkasData);
-											$this->model->simpan('sync_data', $sydata);
-
-											if ($this->db->affected_rows() > 0) {
-												echo json_encode(['message' => 'success']);
-											} else {
-												echo json_encode(['message' => 'error']);
-											}
-										} else {
-											echo json_encode(['message' => 'upload kip gagal']);
-										}
-									} else {
-										echo json_encode(['message' => 'upload ijazah gagal']);
-									}
-								} else {
-									echo json_encode(['message' => 'upload skl gagal']);
-								}
-							} else {
-								echo json_encode(['message' => 'upload ktp_ibu gagal']);
-							}
-						} else {
-							echo json_encode(['message' => 'upload ktp_ayah gagal']);
-						}
-					} else {
-						echo json_encode(['message' => 'upload akta gagal']);
-					}
+			$this->model->insertToDb2('tb_santri', $dataSantri, 'nis', $nis);
+			if ($this->db->affected_rows() > 0) {
+				$this->model->insertToDb2('berkas_file', $berkasData, 'nis', $nis);
+				if ($this->db->affected_rows() > 0) {
+					echo json_encode(['message' => 'success']);
 				} else {
-					echo json_encode(['message' => 'upload kk gagal']);
+					echo json_encode(['message' => 'error update data berkas didpontren']);
 				}
 			} else {
-				echo json_encode(['message' => 'upload foto gagal']);
+				echo json_encode(['message' => 'error update data santri didpontren']);
 			}
 		}
-		// echo json_encode(['message' => 'success', 'data' => $nis, 'data2' => $id_santri]);
+	}
+
+	public function sinc_berkas()
+	{
+		$nis = $this->input->post('nis', true);
+		$id_santri = $this->input->post('id_santri', true);
+
+		$pathPSB = FCPATH . '../psb/assets/berkas/';
+		$pathData = FCPATH . '../dpontren/images/';
+		$berkas = $this->db->query("SELECT * FROM berkas_file WHERE nis = $nis OR id_file = '$id_santri' ")->row();
+		$foto = $this->db->query("SELECT * FROM foto_file WHERE nis = $nis OR id_file = '$id_santri' ")->row();
+
+		$berkasData = [
+			'id_file' => $berkas->id_file,
+			'kk' => $berkas->kk,
+			'akta' => $berkas->akta,
+			'ktp_ayah' => $berkas->ktp_ayah,
+			'ktp_ibu' => $berkas->ktp_ibu,
+			'skl' => $berkas->skl,
+			'kip' => $berkas->kip,
+			'ijazah' => $berkas->ijazah,
+		];
+
+		$cek = $this->model->getByDb2('berkas_file', 'nis', $nis)->row();
+		if ($cek) {
+			$this->model->inputToDb2('berkas_file', $berkasData);
+			if ($this->db->affected_rows() > 0) {
+				echo json_encode(['message' => 'success']);
+			} else {
+				echo json_encode(['message' => 'error']);
+			}
+		} else {
+			$this->model->updateToDb2('berkas_file', $berkasData, 'nis', $nis);
+			if ($this->db->affected_rows() > 0) {
+				echo json_encode(['message' => 'success']);
+			} else {
+				echo json_encode(['message' => 'error']);
+			}
+		}
+
+
+
+		if ($this->check_and_copy_file($pathPSB . 'foto/' . $foto->diri, $pathData . 'santri/' . $foto->diri)) {
+			$this->session->set_flashdata('ok', 'Upload foto OK');
+			if ($this->check_and_copy_file($pathPSB . 'kk/' . $berkas->kk, $pathData . 'kk/' . $berkas->kk)) {
+				$this->session->set_flashdata('ok', 'Upload KK Ok');
+				if ($this->check_and_copy_file($pathPSB . 'akta/' . $berkas->akta, $pathData . 'akta/' . $berkas->akta)) {
+					$this->session->set_flashdata('ok', 'Upload Akta Ok');
+					if ($this->check_and_copy_file($pathPSB . 'ktp_ayah/' . $berkas->ktp_ayah, $pathData . 'ktp_ayah/' . $berkas->ktp_ayah)) {
+						$this->session->set_flashdata('ok', 'Upload KTP Ayah Ok');
+						if ($this->check_and_copy_file($pathPSB . 'ktp_ibu/' . $berkas->ktp_ibu, $pathData . 'ktp_ibu/' . $berkas->ktp_ibu)) {
+							$this->session->set_flashdata('ok', 'Upload KTP Ibu Ok');
+							if ($this->check_and_copy_file($pathPSB . 'skl/' . $berkas->skl, $pathData . 'skl/' . $berkas->skl)) {
+								$this->session->set_flashdata('ok', 'Upload SKL Ok');
+								if ($this->check_and_copy_file($pathPSB . 'ijazah/' . $berkas->ijazah, $pathData . 'ijazah/' . $berkas->ijazah)) {
+									$this->session->set_flashdata('ok', 'Upload Iajazah Ok');
+									if ($this->check_and_copy_file($pathPSB . 'kip/' . $berkas->kip, $pathData . 'kip/' . $berkas->kip)) {
+										$this->session->set_flashdata('ok', 'Upload KIP Ok');
+									} else {
+										echo json_encode(['message' => 'upload kip gagal']);
+									}
+								} else {
+									echo json_encode(['message' => 'upload ijazah gagal']);
+								}
+							} else {
+								echo json_encode(['message' => 'upload skl gagal']);
+							}
+						} else {
+							echo json_encode(['message' => 'upload ktp_ibu gagal']);
+						}
+					} else {
+						echo json_encode(['message' => 'upload ktp_ayah gagal']);
+					}
+				} else {
+					echo json_encode(['message' => 'upload akta gagal']);
+				}
+			} else {
+				echo json_encode(['message' => 'upload kk gagal']);
+			}
+		} else {
+			echo json_encode(['message' => 'upload foto gagal']);
+		}
 	}
 
 	private function check_and_copy_file($filPSB, $fileData)

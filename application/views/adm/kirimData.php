@@ -258,6 +258,12 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
 
                                             <button type="submit" id="sincButn" class="btn btn-danger"><i class="fa fa-send"></i> Kirim Data Santri ke DPontren</button>
                                         </form>
+                                        <form id="sincFormBerkas">
+                                            <input type="hidden" name="nis" id="nis" value="<?= $data->nis ?>">
+                                            <input type="hidden" name="id_santri" id="id_santri" value="<?= $data->id_santri ?>">
+
+                                            <button type="submit" id="sincButn" class="btn btn-danger"><i class="fa fa-send"></i> Kirim Data Berkas ke DPontren</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -327,6 +333,47 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
 
             $.ajax({
                 url: '<?= base_url("santriAdm/sinc_data") ?>',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.message == 'success') {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Proses kirim data berhasil',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: response.message
+                        })
+                        $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    var errorMessage = 'Error: ' + xhr.status + ' ' + xhr.statusText;
+                    alert(errorMessage)
+                    $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
+                }
+            });
+        });
+
+        $('#sincFormBerkas').submit(function(event) {
+            event.preventDefault(); // Mencegah form submit secara default
+
+            var formData = new FormData(this);
+            var $uploadButton = $('#sincButn');
+            $uploadButton.prop('disabled', true).text('Proses pengiriman data...');
+
+            $.ajax({
+                url: '<?= base_url("santriAdm/sinc_berkas") ?>',
                 type: 'POST',
                 data: formData,
                 contentType: false,

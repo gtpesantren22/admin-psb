@@ -340,24 +340,24 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                 processData: false,
                 dataType: 'json',
                 success: function(response) {
-                    alert(response)
-                    // if (response.message == 'success') {
-                    //     Swal.fire({
-                    //         position: 'top-end',
-                    //         icon: 'success',
-                    //         title: 'Proses kirim data berhasil',
-                    //         showConfirmButton: false,
-                    //         timer: 1500
-                    //     })
-                    //     $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
-                    // } else {
-                    //     Swal.fire({
-                    //         icon: 'error',
-                    //         title: 'Error',
-                    //         text: response.message
-                    //     })
-                    //     $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
-                    // }
+                    // alert(response)
+                    if (response.message == 'success') {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Proses kirim data berhasil',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: response.message
+                        })
+                        $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
+                    }
                 },
                 error: function(xhr, status, error) {
                     var errorMessage = 'Error: ' + xhr.status + ' ' + xhr.statusText;

@@ -361,7 +361,7 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                 error: function(xhr, status, error) {
                     var errorMessage = 'Error: ' + xhr.status + ' ' + xhr.statusText;
                     alert(errorMessage)
-                    $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
+                    $uploadButton.prop('disabled', false).text('Kirim Data Berkas ke DPontren');
                 }
             });
         });
@@ -389,20 +389,20 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                             showConfirmButton: false,
                             timer: 1500
                         })
-                        $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
+                        $uploadButton.prop('disabled', false).text('Kirim Data Berkas ke DPontren');
                     } else {
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
                             text: response.message
                         })
-                        $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
+                        $uploadButton.prop('disabled', false).text('Kirim Data Berkas ke DPontren');
                     }
                 },
                 error: function(xhr, status, error) {
                     var errorMessage = 'Error: ' + xhr.status + ' ' + xhr.statusText;
                     alert(errorMessage)
-                    $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
+                    $uploadButton.prop('disabled', false).text('Kirim Data Berkas ke DPontren');
                 }
             });
         });

@@ -900,7 +900,6 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 		$dekos = $this->db->query("SELECT * FROM dekos WHERE nis = $nis ")->row();
 		$lemari = $this->db->query("SELECT * FROM lemari_data WHERE nis = $nis ")->row();
 
-
 		$dataSantri = [
 			'nis' => $santri->nis,
 			'nik' => $santri->nik,
@@ -1007,14 +1006,14 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 
 		$cek = $this->model->getByDb2('berkas_file', 'nis', $nis)->row();
 		if ($cek) {
-			$this->model->inputToDb2('berkas_file', $berkasData);
+			$this->model->updateToDb2('berkas_file', $berkasData);
 			if ($this->db->affected_rows() > 0) {
 				echo json_encode(['message' => 'success']);
 			} else {
 				echo json_encode(['message' => 'error']);
 			}
 		} else {
-			$this->model->updateToDb2('berkas_file', $berkasData, 'nis', $nis);
+			$this->model->inputToDb2('berkas_file', $berkasData, 'nis', $nis);
 			if ($this->db->affected_rows() > 0) {
 				echo json_encode(['message' => 'success']);
 			} else {

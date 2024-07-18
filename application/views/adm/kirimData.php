@@ -256,7 +256,7 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                                             <input type="hidden" name="nis" id="nis" value="<?= $data->nis ?>">
                                             <input type="hidden" name="id_santri" id="id_santri" value="<?= $data->id_santri ?>">
 
-                                            <button type="submit" id="sincButn" class="btn btn-danger"><i class="fa fa-send"></i> Kirim Data Santri ke DPontren</button>
+                                            <button type="submit" id="sincButnData" class="btn btn-danger"><i class="fa fa-send"></i> Kirim Data Santri ke DPontren</button>
                                         </form>
                                         <form id="sincFormBerkas">
                                             <input type="hidden" name="nis" id="nis" value="<?= $data->nis ?>">
@@ -328,7 +328,7 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
             event.preventDefault(); // Mencegah form submit secara default
 
             var formData = new FormData(this);
-            var $uploadButton = $('#sincButn');
+            var $uploadButton = $('#sincButnData');
             $uploadButton.prop('disabled', true).text('Proses pengiriman data...');
 
             $.ajax({

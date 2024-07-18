@@ -148,6 +148,12 @@ class SantriModel extends CI_Model
     function inputToDb2($table, $data)
     {
         $this->db2->insert($table, $data);
+
+        if ($this->db2->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
     function simpan($table, $data)
     {
@@ -158,6 +164,12 @@ class SantriModel extends CI_Model
     {
         $this->db2->where($where, $dtwhere);
         $this->db2->update($table, $data);
+
+        if ($this->db2->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     function getAll($table)

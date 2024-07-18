@@ -258,6 +258,7 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
 
                                             <button type="submit" id="sincButnData" class="btn btn-danger"><i class="fa fa-send"></i> Kirim Data Santri ke DPontren</button>
                                         </form>
+                                        <br><br>
                                         <form id="sincFormBerkas">
                                             <input type="hidden" name="nis" id="nis" value="<?= $data->nis ?>">
                                             <input type="hidden" name="id_santri" id="id_santri" value="<?= $data->id_santri ?>">

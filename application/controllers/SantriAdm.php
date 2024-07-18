@@ -936,12 +936,12 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 			'tempat_i' => $santri->i_tempat,
 			'tanggal_i' => $santri->i_tanggal,
 			'hp' => $santri->hp,
-			't_kos' => $dekos->t_kos,
-			'foto' => $foto->diri,
+			't_kos' => $dekos ? $dekos->t_kos : 0,
+			'foto' => $foto ? $foto->diri : '-',
 			'ket' => 0,
 			'aktif' => 'Y',
-			'komplek' => $lemari->komplek,
-			'kamar' => $lemari->kamar,
+			'komplek' => $lemari ? $lemari->komplek : '-',
+			'kamar' => $lemari ? $lemari->kamar : '-',
 		];
 
 		// echo json_encode($santri->nama);

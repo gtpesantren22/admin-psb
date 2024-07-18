@@ -895,11 +895,12 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 		$cek = $this->model->getByDb2('tb_santri', 'nis', $nis)->num_rows();
 
 
-		$santri = $this->db->query("SELECT * FROM tb_santri WHERE nis = $nis OR id_santri = '$id_santri' ")->row();
 		$foto = $this->db->query("SELECT * FROM foto_file WHERE nis = $nis OR id_file = '$id_santri' ")->row();
+		$santri = $this->db->query("SELECT * FROM tb_santri WHERE nis = $nis OR id_santri = '$id_santri' ")->row();
 		$dekos = $this->db->query("SELECT * FROM dekos WHERE nis = $nis ")->row();
 		$lemari = $this->db->query("SELECT * FROM lemari_data WHERE nis = $nis ")->row();
 
+		// echo json_encode($santri->nama);
 
 		$dataSantri = [
 			'nis' => $santri->nis,
@@ -954,17 +955,25 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 		if ($cek > 0) {
 			$qry = $this->model->updateToDb2('tb_santri', $dataSantri, 'nis', $nis);
 			if ($qry) {
-				echo json_encode(['message' => 'success']);
+				$this->session->set_flashdata('ok', 'Data berhasil diupdate');
+				redirect('santriAdm/sendData/' . $nis);
+				// echo json_encode(['message' => 'success']);
 			} else {
-				echo json_encode(['message' => 'error UPDATE data santri didpontren']);
+				$this->session->set_flashdata('ok', 'Data gagal diupdate');
+				redirect('santriAdm/sendData/' . $nis);
+				// echo json_encode(['message' => 'error UPDATE data santri didpontren']);
 			}
 		} else {
 			$sql = $this->model->inputToDb2('tb_santri', $dataSantri);
 			if ($sql) {
 				$this->model->simpan('sync_data', $sydata);
-				echo json_encode(['message' => 'success']);
+				$this->session->set_flashdata('ok', 'Data berhasil ditambahkan');
+				redirect('santriAdm/sendData/' . $nis);
+				// echo json_encode(['message' => 'success']);
 			} else {
-				echo json_encode(['message' => 'error TAMBAH data santri didpontren']);
+				$this->session->set_flashdata('ok', 'Data gagal ditambahkan');
+				redirect('santriAdm/sendData/' . $nis);
+				// echo json_encode(['message' => 'error TAMBAH data santri didpontren']);
 			}
 		}
 	}

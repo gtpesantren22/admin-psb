@@ -258,7 +258,7 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
 
                                             <button type="submit" id="sincButnData" class="btn btn-danger"><i class="fa fa-send"></i> Kirim Data Santri ke DPontren</button>
                                         </form>
-                                        <br><br>
+                                        <br>
                                         <form id="sincFormBerkas">
                                             <input type="hidden" name="nis" id="nis" value="<?= $data->nis ?>">
                                             <input type="hidden" name="id_santri" id="id_santri" value="<?= $data->id_santri ?>">
@@ -340,23 +340,24 @@ $dir = 'https://psb.ppdwk.com/assets/berkas/';
                 processData: false,
                 dataType: 'json',
                 success: function(response) {
-                    if (response.message == 'success') {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Proses kirim data berhasil',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: response.message
-                        })
-                        $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
-                    }
+                    alert(response)
+                    // if (response.message == 'success') {
+                    //     Swal.fire({
+                    //         position: 'top-end',
+                    //         icon: 'success',
+                    //         title: 'Proses kirim data berhasil',
+                    //         showConfirmButton: false,
+                    //         timer: 1500
+                    //     })
+                    //     $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
+                    // } else {
+                    //     Swal.fire({
+                    //         icon: 'error',
+                    //         title: 'Error',
+                    //         text: response.message
+                    //     })
+                    //     $uploadButton.prop('disabled', false).text('Kirim Data Santri ke DPontren');
+                    // }
                 },
                 error: function(xhr, status, error) {
                     var errorMessage = 'Error: ' + xhr.status + ' ' + xhr.statusText;

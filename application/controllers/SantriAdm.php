@@ -892,13 +892,14 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 	{
 		$nis = $this->input->post('nis', true);
 		$id_santri = $this->input->post('id_santri', true);
-		$cek = $this->model->getByDb2('tb_santri', 'nis', $nis)->row();
+		$cek = $this->model->getByDb2('tb_santri', 'nis', $nis)->num_rows();
+
 
 		$santri = $this->db->query("SELECT * FROM tb_santri WHERE nis = $nis OR id_santri = '$id_santri' ")->row();
 		$foto = $this->db->query("SELECT * FROM foto_file WHERE nis = $nis OR id_file = '$id_santri' ")->row();
-		$berkas = $this->db->query("SELECT * FROM berkas_file WHERE nis = $nis OR id_file = '$id_santri' ")->row();
 		$dekos = $this->db->query("SELECT * FROM dekos WHERE nis = $nis ")->row();
 		$lemari = $this->db->query("SELECT * FROM lemari_data WHERE nis = $nis ")->row();
+
 
 		$dataSantri = [
 			'nis' => $santri->nis,
@@ -941,42 +942,27 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 			'komplek' => $lemari->komplek,
 			'kamar' => $lemari->kamar,
 		];
-		$berkasData = [
-			'id_file' => $berkas->id_file,
-			'kk' => $berkas->kk,
-			'akta' => $berkas->akta,
-			'ktp_ayah' => $berkas->ktp_ayah,
-			'ktp_ibu' => $berkas->ktp_ibu,
-			'skl' => $berkas->skl,
-			'kip' => $berkas->kip,
-			'ijazah' => $berkas->ijazah,
-		];
+
+		// echo json_encode($santri->nama);
+
 		$sydata = [
 			'nis' => $nis,
 			'waktu' => date('Y-m-d H:i:s'),
 		];
 
-		if ($cek) {
+
+		if ($cek > 0) {
 			$this->model->updateToDb2('tb_santri', $dataSantri, 'nis', $nis);
 			if ($this->db->affected_rows() > 0) {
-				$this->model->updateToDb2('berkas_file', $berkasData, 'nis', $nis);
-				if ($this->db->affected_rows() > 0) {
-					echo json_encode(['message' => 'success']);
-				} else {
-					echo json_encode(['message' => 'error update data berkas didpontren']);
-				}
+				echo json_encode(['message' => 'success']);
 			} else {
 				echo json_encode(['message' => 'error update data santri didpontren']);
 			}
 		} else {
-			$this->model->insertToDb2('tb_santri', $dataSantri, 'nis', $nis);
+			$this->model->inputToDb2('tb_santri', $dataSantri);
 			if ($this->db->affected_rows() > 0) {
-				$this->model->insertToDb2('berkas_file', $berkasData, 'nis', $nis);
-				if ($this->db->affected_rows() > 0) {
-					echo json_encode(['message' => 'success']);
-				} else {
-					echo json_encode(['message' => 'error update data berkas didpontren']);
-				}
+				$this->model->simpan('sync_data', $sydata);
+				echo json_encode(['message' => 'success']);
 			} else {
 				echo json_encode(['message' => 'error update data santri didpontren']);
 			}

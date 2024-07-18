@@ -959,7 +959,7 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 				redirect('santriAdm/sendData/' . $nis);
 				// echo json_encode(['message' => 'success']);
 			} else {
-				$this->session->set_flashdata('ok', 'Data gagal diupdate');
+				$this->session->set_flashdata('error', 'Data gagal diupdate');
 				redirect('santriAdm/sendData/' . $nis);
 				// echo json_encode(['message' => 'error UPDATE data santri didpontren']);
 			}
@@ -971,7 +971,7 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 				redirect('santriAdm/sendData/' . $nis);
 				// echo json_encode(['message' => 'success']);
 			} else {
-				$this->session->set_flashdata('ok', 'Data gagal ditambahkan');
+				$this->session->set_flashdata('error', 'Data gagal ditambahkan');
 				redirect('santriAdm/sendData/' . $nis);
 				// echo json_encode(['message' => 'error TAMBAH data santri didpontren']);
 			}

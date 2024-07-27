@@ -250,6 +250,9 @@
                                         <a class="dropdown-item" href="<?= base_url('pengajuan'); ?>">
                                             Pengajuan
                                         </a>
+                                        <a class="dropdown-item" href="<?= base_url('trans/masuk'); ?>">
+                                            Pemasukan
+                                        </a>
                                     </div>
                                 </li>
 

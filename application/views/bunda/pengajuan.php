@@ -135,7 +135,7 @@
                                     foreach ($data as $ls_jns) :
                                         $spj = $this->db->query("SELECT * FROM spj WHERE kode_pengajuan = '$ls_jns->kode_pengajuan' ")->row();
                                         $bd = $this->db->query("SELECT nama,pengajuan FROM jabatan WHERE kode = '$ls_jns->bidang' ")->row();
-                                        $jml = $this->db->query("SELECT SUM(qty*harga_satuan) AS total FROM pengajuan_detail WHERE kode_pengajuan = '$ls_jns->kode_pengajuan' ")->row();
+$jml = $this->db->query("SELECT SUM(qty*harga_satuan) AS total FROM pengajuan_detail WHERE kode_pengajuan = '$ls_jns->kode_pengajuan' ")->row();
                                     ?>
                                         <tr>
                                             <td><?= $no++; ?></td>

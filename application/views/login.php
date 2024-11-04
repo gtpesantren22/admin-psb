@@ -83,7 +83,7 @@
                             <label class="form-label">Login ke</label>
                             <select class="form-control" name="tujuan" required>
                                 <option value=""> -pilih- </option>
-                                <option value="adm"> Administrasi </option>
+                                <!-- <option value="adm"> Administrasi </option> -->
                                 <option value="bunda"> Admin Bendahara </option>
                                 <option value="bidang"> Admin Bidang </option>
                             </select>

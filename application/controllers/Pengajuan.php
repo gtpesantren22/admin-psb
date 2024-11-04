@@ -60,15 +60,15 @@ class Pengajuan extends CI_Controller
 
 
         $psn = '*INFORMASI VERVAL PENGAJUAN PSB*
-        Pengajuan dari :
+Pengajuan dari :
         
-        Bidang : ' . $pj->nama . '
-        Nominal : ' . rupiah($nominal->total) . '
-        Tanggal : ' . $pjn->tanggal . '
+Bidang : ' . $pj->nama . '
+Nominal : ' . rupiah($nominal->total) . '
+Tanggal : ' . $pjn->tanggal . '
         
-        Pengajuan telah disetujui oleh Bendahara. Selanjutnya pencairan bisa dilakukan oleh PIC bidang terkait di KASIR Pesantren.
+Pengajuan telah disetujui oleh Bendahara. Selanjutnya pencairan bisa dilakukan oleh PIC bidang terkait di KASIR Pesantren.
         
-        _*Terimakasih*_';
+_*Terimakasih*_';
 
         $this->model->edit('pengajuan', 'kode_pengajuan', $kode, $data);
         if ($this->db->affected_rows() > 0) {
@@ -93,15 +93,15 @@ class Pengajuan extends CI_Controller
         $data = ['status' => 'ditolak'];
 
         $psn = '*INFORMASI PENOLAKAN PENGAJUAN PSB*
-        Pengajuan dari :
+Pengajuan dari :
         
-        Bidang : ' . $pj->nama . '
-        Nominal : ' . rupiah($nominal->total) . '
+Bidang : ' . $pj->nama . '
+Nominal : ' . rupiah($nominal->total) . '
         
-        Pengajuan ditolak oleh Bendahara dengan catatan *' . $catatan . '*.
-        Diharap kepada PIC Bagian untuk segera memperbaikinya.
+Pengajuan ditolak oleh Bendahara dengan catatan *' . $catatan . '*.
+Diharap kepada PIC Bagian untuk segera memperbaikinya.
         
-        _*Terimakasih*_';
+_*Terimakasih*_';
 
         $this->model->edit('pengajuan', 'kode_pengajuan', $kode_pengajuan, $data);
         if ($this->db->affected_rows() > 0) {
@@ -136,16 +136,16 @@ class Pengajuan extends CI_Controller
         ];
 
         $psn = '*INFORMASI PENCAIRAN PENGAJUAN PSB*
-        Pengajuan dari :
+Pengajuan dari :
         
-        Bidang : ' . $pj->nama . '
-        Nominal : ' . rupiah($nominal->total) . '
-        Tanggal : ' . date('d-m-Y') . '
-        penerima : ' . $penerima . '
+Bidang : ' . $pj->nama . '
+Nominal : ' . rupiah($nominal->total) . '
+Tanggal : ' . date('d-m-Y') . '
+penerima : ' . $penerima . '
         
-        Pencairan telah selesai. Diharapkan kepada PIC Bidang terkait untuk segera menyusun SPJ jika telah selesai.
+Pencairan telah selesai. Diharapkan kepada PIC Bidang terkait untuk segera menyusun SPJ jika telah selesai.
         
-        _*Terimakasih*_';
+_*Terimakasih*_';
 
         $this->model->edit('pengajuan', 'kode_pengajuan', $kode_pengajuan, $data);
         if ($this->db->affected_rows() > 0) {
@@ -193,7 +193,7 @@ Bidang : ' . $bidang->nama . '
 Kode Pengajuan : ' . $kode . '
 Pada : ' . date('d-m-Y H:i') . '
 
-*_dimohon kepada Bendahara PSB untuk segera mengecek nya._*
+*_SPJ sudah disetujui. Selanjutnya silahkan menyetorkan SPJ hardcopy._*
 Terimakasih';
 
         $this->model->edit('spj', 'kode_pengajuan', $kode, $data);
@@ -238,6 +238,70 @@ _*Terimakasih*_';
             redirect('pengajuan');
         } else {
             $this->session->set_flashdata('error', 'Pengajuan gagal');
+            redirect('pengajuan');
+        }
+    }
+
+    public function editItem()
+    {
+        $id = $this->input->post('id', true);
+        $kode = $this->input->post('kode', true);
+        $data = [
+            'qty' => $this->input->post('qty', true),
+            'harga_satuan' => rmRp($this->input->post('harga_satuan', true)),
+            'cair' => $this->input->post('cair', true),
+        ];
+
+        $this->model->edit('pengajuan_detail', 'id_detail', $id, $data);
+        if ($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('ok', 'Update Berhasil');
+            redirect('pengajuan/pengajuanDetail/' . $kode);
+        } else {
+            $this->session->set_flashdata('error', 'Update gagal');
+            redirect('pengajuan/pengajuanDetail/' . $kode);
+        }
+    }
+
+    public function cetak($kode)
+    {
+        $data['user'] = $this->Auth_model->current_user();
+
+        $data['data'] = $this->model->getBy('pengajuan', 'kode_pengajuan', $kode)->row();
+        $data['detail'] = $this->db->query("SELECT * FROM pengajuan_detail JOIN jabatan ON pengajuan_detail.bidang=jabatan.kode WHERE kode_pengajuan = '$kode' ORDER BY cair ASC")->result();
+        $data['dataSum'] = $this->db->query("SELECT SUM(qty * harga_satuan) AS jml FROM pengajuan_detail WHERE kode_pengajuan = '$kode' ")->row();
+        $data['tunai'] = $this->db->query("SELECT SUM(qty * harga_satuan) AS jml FROM pengajuan_detail WHERE kode_pengajuan = '$kode' AND cair = 'Cair Tunai' ")->row();
+        $data['pj'] = $this->model->getBy('jabatan', 'kode', $data['data']->bidang)->row();
+        $this->load->view('bunda/cetakPengajuan', $data);
+    }
+
+    public function open($kode)
+    {
+
+        $pjn = $this->model->getBy('pengajuan', 'kode_pengajuan', $kode)->row();
+        $pj = $this->model->getBy('jabatan', 'kode', $pjn->bidang)->row();
+        $nominal = $this->db->query("SELECT SUM(qty * harga_satuan) as total FROM pengajuan_detail WHERE kode_pengajuan = '$kode' ")->row();
+
+        $data = ['pengajuan' => 'Y'];
+
+        $psn = '*INFORMASI PENCAIRAN PENGAJUAN PSB*
+Pengajuan dari :
+        
+Kode : ' . $kode . '
+Bidang : ' . $pj->nama . '
+Nominal : ' . rupiah($nominal->total) . '
+Tanggal : ' . date('d-m-Y') . '
+        
+SPJ hardcopy sudah selesai. Bisa melakukan pengajuan berikutnya.
+_*Terimakasih*_';
+
+        $this->model->edit('jabatan', 'kode', $pjn->bidang, $data);
+        if ($this->db->affected_rows() > 0) {
+            kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
+
+            $this->session->set_flashdata('ok', 'Buka akses Berhasil');
+            redirect('pengajuan');
+        } else {
+            $this->session->set_flashdata('error', 'Buka akses gagal');
             redirect('pengajuan');
         }
     }

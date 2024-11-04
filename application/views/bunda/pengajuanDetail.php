@@ -23,7 +23,7 @@
                                 <path d="M9 8h4"></path>
                                 <path d="M9 12h2"></path>
                             </svg>
-                            Verval Pengajuan
+                            Verval
                         </a>
                         <a href="#" class="btn btn-danger d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#addBaruPengajuan">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-alert" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -33,7 +33,16 @@
                                 <path d="M12 17l.01 0"></path>
                                 <path d="M12 11l0 3"></path>
                             </svg>
-                            Tolak Pengajuan
+                            Tolak
+                        </a>
+                        <a href="<?= base_url('pengajuan/cetak/' . $data->kode_pengajuan) ?>" target="_blank" class="btn btn-info d-none d-sm-inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-printer">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2" />
+                                <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4" />
+                                <path d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z" />
+                            </svg>
+                            Cetak
                         </a>
                     </div>
                 <?php endif ?>
@@ -47,6 +56,15 @@
                                 <path d="M17 9v-2a2 2 0 0 0 -2 -2h-10a2 2 0 0 0 -2 2v6a2 2 0 0 0 2 2h2"></path>
                             </svg>
                             Cairkan Pengajuan
+                        </a>
+                        <a href="<?= base_url('pengajuan/cetak/' . $data->kode_pengajuan) ?>" target="_blank" class="btn btn-info d-none d-sm-inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-printer">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2" />
+                                <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4" />
+                                <path d="M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z" />
+                            </svg>
+                            Cetak
                         </a>
                     </div>
                 <?php endif ?>
@@ -74,6 +92,7 @@
                                         <th>QTY</th>
                                         <th>Harga</th>
                                         <th>Total</th>
+                                        <th>Cair</th>
                                         <th>#</th>
                                     </tr>
                                 </thead>
@@ -89,7 +108,91 @@
                                             <td><?= $ls_jns->qty . ' ' . $ls_jns->satuan; ?></td>
                                             <td><?= rupiah($ls_jns->harga_satuan); ?></td>
                                             <td><?= rupiah($ls_jns->qty * $ls_jns->harga_satuan); ?></td>
+                                            <td><?= $ls_jns->cair ?></td>
                                             <td>
+                                                <?php if ($data->status == 'proses') { ?>
+                                                    <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?= $ls_jns->id_detail ?>">Edit</button>
+                                                    <div class="modal fade" id="edit<?= $ls_jns->id_detail ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Item Pengajuan</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <?= form_open('pengajuan/editItem'); ?>
+                                                                <input type="hidden" name="id" value="<?= $ls_jns->id_detail ?>">
+                                                                <input type="hidden" name="kode" value="<?= $ls_jns->kode_pengajuan ?>">
+                                                                <div class="modal-body">
+                                                                    <div class="form-group mb-1">
+                                                                        <label for="inputEmail3" class="col-sm-3 control-label">Nama Item</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" class="form-control" value="<?= $ls_jns->uraian ?>" readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group mb-1">
+                                                                        <label for="inputEmail3" class="col-sm-3 control-label">QTY</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="number" name="qty" class="form-control" value="<?= $ls_jns->qty ?>">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group mb-1">
+                                                                        <label for="inputEmail3" class="col-sm-3 control-label">Nominal</label>
+                                                                        <div class="col-sm-9">
+                                                                            <input type="text" name="harga_satuan" class="form-control uang" value="<?= $ls_jns->harga_satuan ?>">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group mb-1">
+                                                                        <label for="inputEmail3" class="col-sm-3 control-label">Jenis Cair</label>
+                                                                        <div class="col-sm-9">
+                                                                            <label class="form-check">
+                                                                                <input class="form-check-input" type="radio" name="cair" value="Cair Tunai" <?= $ls_jns->cair == 'Cair Tunai' ? 'checked' : '' ?> />
+                                                                                <span class="form-check-label">Cair Tunai</span>
+                                                                            </label>
+                                                                            <label for="">Non Tunai</label>
+                                                                            <ul>
+                                                                                <li>
+                                                                                    <label class="form-check">
+                                                                                        <input class="form-check-input" type="radio" name="cair" value="Unit Usaha" <?= $ls_jns->cair == 'Unit Usaha' ? 'checked' : '' ?> />
+                                                                                        <span class="form-check-label">Unit Usaha</span>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <label class="form-check">
+                                                                                        <input class="form-check-input" type="radio" name="cair" value="MDP" <?= $ls_jns->cair == 'MDP' ? 'checked' : '' ?> />
+                                                                                        <span class="form-check-label">MDP</span>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <label class="form-check">
+                                                                                        <input class="form-check-input" type="radio" name="cair" value="Kopontren" <?= $ls_jns->cair == 'Kopontren' ? 'checked' : '' ?> />
+                                                                                        <span class="form-check-label">Kopontren</span>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <label class="form-check">
+                                                                                        <input class="form-check-input" type="radio" name="cair" value="HSP" <?= $ls_jns->cair == 'HSP' ? 'checked' : '' ?> />
+                                                                                        <span class="form-check-label">HSP</span>
+                                                                                    </label>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <label class="form-check">
+                                                                                        <input class="form-check-input" type="radio" name="cair" value="NF Printing" <?= $ls_jns->cair == 'NF Printing' ? 'checked' : '' ?> />
+                                                                                        <span class="form-check-label">NF Printing</span>
+                                                                                    </label>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-success">Simpan Data</button>
+                                                                </div>
+                                                                <?= form_close(); ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
 
                                             </td>
                                         </tr>
@@ -98,7 +201,7 @@
                                 <tfoot>
                                     <tr>
                                         <th colspan="5">TOTAL</th>
-                                        <th colspan="2"><?= rupiah($dataSum->jml) ?></th>
+                                        <th colspan="3"><?= rupiah($dataSum->jml) ?></th>
                                     </tr>
                                 </tfoot>
                             </table>

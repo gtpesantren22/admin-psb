@@ -134,7 +134,7 @@
                                     $no = 1;
                                     foreach ($data as $ls_jns) :
                                         $spj = $this->db->query("SELECT * FROM spj WHERE kode_pengajuan = '$ls_jns->kode_pengajuan' ")->row();
-                                        $bd = $this->db->query("SELECT nama FROM jabatan WHERE kode = '$ls_jns->bidang' ")->row();
+                                        $bd = $this->db->query("SELECT nama,pengajuan FROM jabatan WHERE kode = '$ls_jns->bidang' ")->row();
                                         $jml = $this->db->query("SELECT SUM(qty*harga_satuan) AS total FROM pengajuan_detail WHERE kode_pengajuan = '$ls_jns->kode_pengajuan' ")->row();
                                     ?>
                                         <tr>
@@ -164,8 +164,12 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <td><a href="<?= base_url('pengajuan/pengajuanDetail/' . $ls_jns->kode_pengajuan) ?>"><button class="btn btn-info btn-sm"><i class="bx bx-search"></i>
-                                                        cek</button></a></td>
+                                            <td>
+                                                <a href="<?= base_url('pengajuan/pengajuanDetail/' . $ls_jns->kode_pengajuan) ?>"><button class="btn btn-info btn-sm"><i class="bx bx-search"></i>cek</button></a>
+                                                <?php if ($ls_jns->status == 'selesai' && $bd->pengajuan == 'N') { ?>
+                                                    <a href="<?= base_url('pengajuan/open/' . $ls_jns->kode_pengajuan) ?>" class="btn btn-sm btn-danger tbl-confirm" value="Pengajuan berikutnya akan dibuka">Buka Pengajuan</a>
+                                                <?php } ?>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

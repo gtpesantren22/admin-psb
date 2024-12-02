@@ -578,7 +578,8 @@ Terimakasih';
 				$this->model->tambah2('tb_santri', $dataSantri);
 				$this->model->tambah2('seragam', $seragam);
 				// kirim_tmp($key->api_key, $whatsapp, 'LINK GROUP', 'Link undangan bergabung group', $pesan2, $linkImg, linkGroup($gel));
-				kirim_tmp($key->api_key, '085236924510', 'LINK GROUP', 'Link undangan bergabung group', $pesan2, $linkImg, linkGroup($gel));
+				kirim_tmp($key->api_key, $whatsapp, 'LINK GROUP', 'Link undangan bergabung group', $pesan2, $linkImg, 'https://chat.whatsapp.com/BDIVkDP4NFpKIDEO9hGkAY');
+				// kirim_tmp($key->api_key, '085236924510', 'LINK GROUP', 'Link undangan bergabung group', $pesan2, $linkImg, 'https://chat.whatsapp.com/BDIVkDP4NFpKIDEO9hGkAY');
 				$this->session->set_flashdata('ok', 'Verifikasi data berhasil');
 				redirect('daftar/cekHasil');
 			}

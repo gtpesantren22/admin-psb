@@ -15,34 +15,34 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Admin PSB 23 - PPDWK</title>
     <script defer data-api="/stats/api/event" data-domain="preview.tabler.io" src="/stats/js/script.js"></script>
-    <meta name="msapplication-TileColor" content="" />
-    <meta name="theme-color" content="" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="MobileOptimized" content="320" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Admin PSB 23 - PPDWK</title>
+    <script defer data-api="/stats/api/event" data-domain="preview.tabler.io" src="/stats/js/script.js"></script>
+    <!-- <meta name="msapplication-TileColor" content="" /> -->
+    <!-- <meta name="theme-color" content="" /> -->
+    <!-- <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> -->
+    <!-- <meta name="apple-mobile-web-app-capable" content="yes" /> -->
+    <!-- <meta name="mobile-web-app-capable" content="yes" /> -->
+    <!-- <meta name="HandheldFriendly" content="True" /> -->
+    <!-- <meta name="MobileOptimized" content="320" /> -->
     <link rel="icon" href="<?= base_url('demo'); ?>/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="<?= base_url('demo'); ?>/favicon.ico" type="image/x-icon" />
-    <meta name="description"
-        content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!" />
-    <meta name="twitter:image:src" content="https://preview.tabler.io/static/og.png">
-    <meta name="twitter:site" content="@tabler_ui">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title"
-        content="Tabler: Premium and Open Source dashboard template with responsive and high quality UI.">
-    <meta name="twitter:description"
-        content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
-    <meta property="og:image" content="https://preview.tabler.io/static/og.png">
-    <meta property="og:image:width" content="1280">
-    <meta property="og:image:height" content="640">
-    <meta property="og:site_name" content="Tabler">
-    <meta property="og:type" content="object">
-    <meta property="og:title"
-        content="Tabler: Premium and Open Source dashboard template with responsive and high quality UI.">
-    <meta property="og:url" content="https://preview.tabler.io/static/og.png">
-    <meta property="og:description"
-        content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!">
+    <!-- <meta name="description" content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!" /> -->
+    <!-- <meta name="twitter:image:src" content="https://preview.tabler.io/static/og.png"> -->
+    <!-- <meta name="twitter:site" content="@tabler_ui"> -->
+    <!-- <meta name="twitter:card" content="summary"> -->
+    <!-- <meta name="twitter:title" content="Tabler: Premium and Open Source dashboard template with responsive and high quality UI."> -->
+    <!-- <meta name="twitter:description" content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!"> -->
+    <!-- <meta property="og:image" content="https://preview.tabler.io/static/og.png"> -->
+    <!-- <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="640"> -->
+    <!-- <meta property="og:site_name" content="Tabler"> -->
+    <!-- <meta property="og:type" content="object"> -->
+    <!-- <meta property="og:title" content="Tabler: Premium and Open Source dashboard template with responsive and high quality UI."> -->
+    <!-- <meta property="og:url" content="https://preview.tabler.io/static/og.png"> -->
+    <!-- <meta property="og:description" content="Tabler comes with tons of well-designed components and features. Start your adventure with Tabler and make your dashboard great again. For free!"> -->
     <!-- CSS files -->
     <link href="<?= base_url('demo'); ?>/dist/css/tabler.min.css?1668288743" rel="stylesheet" />
     <link href="<?= base_url('demo'); ?>/dist/css/tabler-flags.min.css?1668288743" rel="stylesheet" />
@@ -50,11 +50,11 @@
     <link href="<?= base_url('demo'); ?>/dist/css/tabler-vendors.min.css?1668288743" rel="stylesheet" />
     <link href="<?= base_url('demo'); ?>/dist/css/demo.min.css?1668288743" rel="stylesheet" />
     <style>
-    @import url('https://rsms.me/inter/inter.css');
+        @import url('https://rsms.me/inter/inter.css');
 
-    :root {
-        --tblr-font-sans-serif: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
-    }
+        :root {
+            --tblr-font-sans-serif: Inter, -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+        }
     </style>
 </head>
 
@@ -70,9 +70,9 @@
                 <div class="card-body">
                     <h2 class="h2 text-center mb-4">Daftar Akun Admin PSB</h2>
                     <?php if ($this->session->userdata('ok')) : ?>
-                    <div class="alert alert-success">
-                        <?= $this->session->userdata('ok') ?>
-                    </div>
+                        <div class="alert alert-success">
+                            <?= $this->session->userdata('ok') ?>
+                        </div>
                     <?php endif; ?>
                     <form action="<?= base_url('login/daftarAct'); ?>" method="post" autocomplete="off" novalidate>
                         <div class="mb-3">

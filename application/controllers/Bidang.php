@@ -26,6 +26,9 @@ class Bidang extends CI_Controller
         $bidang = $data['user']->jabatan;
         $data['jab'] = $this->model->getBy('jabatan', 'kode', $data['user']->jabatan)->row();
         $data['pakai'] = $this->db->query("SELECT SUM(qty * harga_satuan) as total FROM pengajuan_detail WHERE bidang = '$bidang' ")->row();
+        if ($data['user']->jabatan === 'KETUA') {
+            $data['anggaran'] = $this->db->query("SELECT a.nama, a.pagu, SUM(b.qty*b.harga_satuan) AS pakai FROM jabatan a LEFT JOIN pengajuan_detail b ON a.kode=b.bidang GROUP BY a.kode ")->result();
+        }
 
         $this->load->view('bidang/head', $data);
         $this->load->view('bidang/index', $data);
@@ -39,7 +42,12 @@ class Bidang extends CI_Controller
         $data['bulan'] = $this->bulan;
         $data['tahun'] = $this->tahun;
 
-        $data['data'] = $this->model->getBy('pengajuan', 'bidang', $data['user']->jabatan)->result();
+        if ($data['user']->jabatan == 'KETUA') {
+            $data['data'] = $this->model->getAll('pengajuan')->result();
+        } else {
+            $data['data'] = $this->model->getBy('pengajuan', 'bidang', $data['user']->jabatan)->result();
+        }
+
 
         $this->load->view('bidang/head', $data);
         $this->load->view('bidang/pengajuan', $data);
@@ -94,13 +102,24 @@ class Bidang extends CI_Controller
         $data['bulan'] = $this->bulan;
         $data['tahun'] = $this->tahun;
 
-        $data['data'] = $this->model->getBy('pengajuan', 'kode_pengajuan', $kode)->row();
-        $data['detail'] = $this->db->query("SELECT * FROM pengajuan_detail JOIN jabatan ON pengajuan_detail.bidang=jabatan.kode WHERE kode_pengajuan = '$kode' ")->result();
-        $data['dataSum'] = $this->db->query("SELECT SUM(qty * harga_satuan) AS jml FROM pengajuan_detail WHERE kode_pengajuan = '$kode' ")->row();
+        if ($data['user']->jabatan == 'KETUA') {
+            $data['data'] = $this->model->getBy('pengajuan', 'kode_pengajuan', $kode)->row();
+            $data['detail'] = $this->db->query("SELECT * FROM pengajuan_detail JOIN jabatan ON pengajuan_detail.bidang=jabatan.kode WHERE kode_pengajuan = '$kode' ")->result();
+            $data['dataSum'] = $this->db->query("SELECT SUM(qty * harga_satuan) AS jml FROM pengajuan_detail WHERE kode_pengajuan = '$kode' ")->row();
+            $data['pj'] = $this->model->getBy('jabatan', 'kode', $data['data']->bidang)->row();
 
-        $this->load->view('bidang/head', $data);
-        $this->load->view('bidang/pengajuanDetail', $data);
-        $this->load->view('bidang/foot', $data);
+            $this->load->view('bidang/head', $data);
+            $this->load->view('bidang/pengajuanDetail2', $data);
+            $this->load->view('bidang/foot', $data);
+        } else {
+            $data['data'] = $this->model->getBy('pengajuan', 'kode_pengajuan', $kode)->row();
+            $data['detail'] = $this->db->query("SELECT * FROM pengajuan_detail JOIN jabatan ON pengajuan_detail.bidang=jabatan.kode WHERE kode_pengajuan = '$kode' ")->result();
+            $data['dataSum'] = $this->db->query("SELECT SUM(qty * harga_satuan) AS jml FROM pengajuan_detail WHERE kode_pengajuan = '$kode' ")->row();
+
+            $this->load->view('bidang/head', $data);
+            $this->load->view('bidang/pengajuanDetail', $data);
+            $this->load->view('bidang/foot', $data);
+        }
     }
 
     public function pjAddInput()
@@ -305,5 +324,69 @@ Terimakasih';
         $this->load->view('bidang/head', $data);
         $this->load->view('bidang/regist_lama', $data);
         $this->load->view('bidang/foot');
+    }
+
+    public function verval($kode)
+    {
+        $data = ['status' => 'disetujui'];
+        $pjn = $this->model->getBy('pengajuan', 'kode_pengajuan', $kode)->row();
+        $nominal = $this->db->query("SELECT SUM(qty * harga_satuan) as total FROM pengajuan_detail WHERE kode_pengajuan = '$kode' ")->row();
+        $pj = $this->model->getBy('jabatan', 'kode', $pjn->bidang)->row();
+
+
+        $psn = '*INFORMASI VERVAL PENGAJUAN PSB*
+Pengajuan dari :
+        
+Bidang : ' . $pj->nama . '
+Nominal : ' . rupiah($nominal->total) . '
+Tanggal : ' . $pjn->tanggal . '
+        
+Pengajuan telah disetujui oleh Ketua Panitia. Selanjutnya pencairan bisa dilakukan oleh PIC bidang terkait di KASIR Pesantren.
+        
+_*Terimakasih*_';
+
+        $this->model->edit('pengajuan', 'kode_pengajuan', $kode, $data);
+        if ($this->db->affected_rows() > 0) {
+            kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
+            // kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
+            $this->session->set_flashdata('ok', 'Pengajuan Berhasil');
+            redirect('bidang/pengajuanDetail/' . $kode);
+        } else {
+            $this->session->set_flashdata('error', 'Pengajuan gagal');
+            redirect('bidang/pengajuanDetail/' . $kode);
+        }
+    }
+
+    public function pengajuanTolak()
+    {
+        $kode_pengajuan = $this->input->post('kode_pengajuan', true);
+        $catatan = $this->input->post('catatan', true);
+
+        $pjn = $this->model->getBy('pengajuan', 'kode_pengajuan', $kode_pengajuan)->row();
+        $nominal = $this->db->query("SELECT SUM(qty * harga_satuan) as total FROM pengajuan_detail WHERE kode_pengajuan = '$kode_pengajuan' ")->row();
+        $pj = $this->model->getBy('jabatan', 'kode', $pjn->bidang)->row();
+        $data = ['status' => 'ditolak'];
+
+        $psn = '*INFORMASI PENOLAKAN PENGAJUAN PSB*
+Pengajuan dari :
+        
+Bidang : ' . $pj->nama . '
+Nominal : ' . rupiah($nominal->total) . '
+        
+Pengajuan ditolak oleh Ketua Panitia dengan catatan *' . $catatan . '*.
+Diharap kepada PIC Bagian untuk segera memperbaikinya.
+        
+_*Terimakasih*_';
+
+        $this->model->edit('pengajuan', 'kode_pengajuan', $kode_pengajuan, $data);
+        if ($this->db->affected_rows() > 0) {
+            kirim_group('f4064efa9d05f66f9be6151ec91ad846', '120363180487956301@g.us', $psn);
+            // kirim_person('f4064efa9d05f66f9be6151ec91ad846', '085236924510', $psn);
+            $this->session->set_flashdata('ok', 'Pengajuan Berhasil');
+            redirect('bidang/pengajuanDetail/' . $kode_pengajuan);
+        } else {
+            $this->session->set_flashdata('error', 'Pengajuan gagal');
+            redirect('bidang/pengajuanDetail/' . $kode_pengajuan);
+        }
     }
 }

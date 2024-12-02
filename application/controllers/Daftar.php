@@ -14,6 +14,7 @@ class Daftar extends CI_Controller
 		if (!$this->Auth_model->current_user() || $user->level != 'bunda' && $user->level != 'admin') {
 			redirect('login/logout');
 		}
+		$this->bearer = $this->model->getBy('api', 'url', 'bearer')->row('api_key');
 	}
 
 	public function index()
@@ -437,6 +438,150 @@ Waktu Daftar : ' . date('d-m-Y H:i:s') . '
 		} else {
 			$this->session->set_flashdata('error', 'Update Berkas Gagal');
 			redirect('daftar/cek/' . $id);
+		}
+	}
+
+	public function cekHasil()
+	{
+		$url = 'https://data.ppdwk.com/api/datatables?data=pendaftar&page=1&per_page=100&q=&sortby=created_at&sortbydesc=DESC&status=1';
+		$token = $this->bearer;
+		$data = [];
+		$response = aksesEndpoint($url, $token, $data);
+		$result = [];
+		if ($response) {
+			foreach ($response['data']['data'] as $item) {
+				if ($item['dok_transfer'] !== null) {
+					$result[] = [
+						'id_santri' => $item['peserta_didik_id'],
+						'nama' => $item['nama'],
+						'nis' => $item['nis'],
+						'nik' => $item['nik'],
+						'desa' => $item['wilayah']['nama'],
+						'kec' => $item['wilayah']['parrent_recursive']['nama'],
+						'kab' => $item['wilayah']['parrent_recursive']['parrent_recursive']['nama'],
+						'lembaga' => $item['lembaga']['nama'],
+					];
+				}
+			}
+		} else {
+			echo "Gagal mengakses endpoint";
+		}
+		$data['baru'] = $result;
+		$data['judul'] = 'santri';
+		$data['user'] = $this->Auth_model->current_user();
+
+		$this->load->view('bunda/head', $data);
+		$this->load->view('bunda/cekSantri', $data);
+		$this->load->view('bunda/foot');
+	}
+
+	public function cekHasilDetail($id)
+	{
+		$data['judul'] = 'santri';
+		$data['user'] = $this->Auth_model->current_user();
+
+		$url = 'https://data.ppdwk.com/api/datatables?data=pendaftar&page=1&per_page=10&q=' . $id . '&sortby=created_at&sortbydesc=DESC&status=1';
+		$token = $this->bearer;
+
+		$dataKirim = [];
+		$response = aksesEndpoint($url, $token, $dataKirim);
+
+		if ($response) {
+			$data['data'] = $response['data']['data'][0];
+		} else {
+			echo "Gagal mengakses endpoint";
+		}
+
+		$this->load->view('bunda/head', $data);
+		$this->load->view('bunda/detailSantri', $data);
+		$this->load->view('bunda/foot');
+	}
+
+	public function vervalNota2($nik)
+	{
+		$user = $this->Auth_model->current_user();
+		$key = $this->model->apiKey()->row();
+		$linkImg = 'https://psb.ppdwk.com/viho/assets/images/logo/Logo-psb.png';
+		$url = 'https://data.ppdwk.com/api/datatables?data=pendaftar&page=1&per_page=10&q=' . $nik . '&sortby=created_at&sortbydesc=DESC&status=1';
+		$token = $this->bearer;
+		$dataKirim = [];
+		$response = aksesEndpoint($url, $token, $dataKirim);
+		if ($response) {
+			$id_santri = $response['data']['data'][0]['peserta_didik_id'];
+			$nis = $response['data']['data'][0]['nis'];
+			$nik = $response['data']['data'][0]['nik'];
+			$gel = $response['data']['data'][0]['gelombang'];
+			$nama = $response['data']['data'][0]['nama'];
+			$desa = $response['data']['data'][0]['wilayah']['nama'];
+			$kec = $response['data']['data'][0]['wilayah']['parrent_recursive']['nama'];
+			$kab = $response['data']['data'][0]['wilayah']['parrent_recursive']['parrent_recursive']['nama'];
+			$lemvaga = $response['data']['data'][0]['lembaga']['nama'];
+			$jkl = $response['data']['data'][0]['jenis_kelamin'] == 'L' ? 'Laki-laki' : 'Perempuan';
+			$tempat = $response['data']['data'][0]['tempat_lahir'];
+			$tanggal = $response['data']['data'][0]['tanggal_lahir'];
+			$bapak = $response['data']['data'][0]['nama_ayah'];
+			$ibu = $response['data']['data'][0]['nama_ibu'];
+			$jalur = $response['data']['data'][0]['jalur'] == 0 ? 'Reguler' : 'Prestasi';
+			$whatsapp = $response['data']['data'][0]['whatsapp'];
+
+			$seragam = ['id_seragam' => $id_santri, 'nis' => $nis];
+			$bayar = [
+				'id_bayar' => $id_santri,
+				'nis' => $nis,
+				'nominal' => gel($gel),
+				'tgl_bayar' => date('Y-m-d'),
+				'via' => 'Transfer',
+				'kasir' => $user->nama,
+				'created' => date('Y-m-d H:i:s'),
+			];
+
+			$pesan2 = '*Terimakasih*
+
+*Kode Pendaftaran : ' . ($nis) . '*
+Pembayaran Pendaftaran, atas :
+        
+Nama : ' . $nama . '
+Alamat : ' . $desa . '-' . $kec . '-' . $kab . '
+Lembaga tujuan : ' . $lemvaga . '
+Nominal : ' . rupiah(gel($gel)) . '
+Via : Transfer
+        
+*telah TERVERIFIKASI.*
+________________________________
+
+_*Silahkan bergabung dilink undangan group diatas untuk mengetahui informasi lebih lanjut*_
+Terimakasih';
+
+			$dataSantri = [
+				'id_santri' => $id_santri,
+				'nis' => $nis,
+				'nik' => $nik,
+				'gel' => $gel,
+				'nama' => $nama,
+				'desa' => $desa,
+				'kec' => $kec,
+				'kab' => $kab,
+				'lembaga' => $lemvaga,
+				'jkl' => $jkl,
+				'tempat' => $tempat,
+				'tanggal' => $tanggal,
+				'bapak' => $bapak,
+				'ibu' => $ibu,
+				'jalur' => $jalur,
+				'hp' => $whatsapp,
+				'ket' => 'baru',
+				'stts' => 'Terverifikasi',
+			];
+
+			$this->model->tambah2('bp_daftar', $bayar);
+			if ($this->db->affected_rows() > 0) {
+				$this->model->tambah2('tb_santri', $dataSantri);
+				$this->model->tambah2('seragam', $seragam);
+				// kirim_tmp($key->api_key, $whatsapp, 'LINK GROUP', 'Link undangan bergabung group', $pesan2, $linkImg, linkGroup($gel));
+				kirim_tmp($key->api_key, '085236924510', 'LINK GROUP', 'Link undangan bergabung group', $pesan2, $linkImg, linkGroup($gel));
+				$this->session->set_flashdata('ok', 'Verifikasi data berhasil');
+				redirect('daftar/cekHasil');
+			}
 		}
 	}
 }

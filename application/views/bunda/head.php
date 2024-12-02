@@ -193,7 +193,7 @@
                                         <a class="dropdown-item" href="<?= base_url('daftar/sm'); ?>">
                                             Pendaftaran (Sementara)
                                         </a>
-                                        <a class="dropdown-item" href="<?= base_url('daftar/verval'); ?>">
+                                        <a class="dropdown-item" href="<?= base_url('daftar/cekHasil'); ?>">
                                             Varifikasi Pendaftaran
                                         </a>
                                     </div>

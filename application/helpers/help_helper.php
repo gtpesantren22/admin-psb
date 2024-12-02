@@ -225,3 +225,36 @@ function generateRandomString($length = 10)
     return $randomString;
 }
 // KotaModel
+
+function aksesEndpoint($url, $token, $data = [])
+{
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $url); // Endpoint URL
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Return response as a string
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "Authorization: Bearer $token",  // Set Bearer Token
+        "Content-Type: application/json" // Set content type as JSON
+    ]);
+
+    // If data is provided, set it as POST request with JSON payload
+    if (!empty($data)) {
+        curl_setopt($ch, CURLOPT_POST, true); // Set method to POST
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data)); // Add JSON data
+    }
+
+    // Execute request
+    $response = curl_exec($ch);
+
+    // Check for errors
+    if (curl_errno($ch)) {
+        echo 'Error:' . curl_error($ch);
+        return false;
+    }
+
+    // Close cURL session
+    curl_close($ch);
+
+    // Decode JSON response to PHP array
+    return json_decode($response, true);
+}

@@ -45,13 +45,12 @@
                                     ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
-                                            <td><?= $row->nis; ?></td>
-                                            <td><?= $row->nama; ?></td>
-                                            <td><?= $row->desa . ' - ' . $row->kec . ' - ' . $row->kab; ?></td>
-                                            <td><?= $row->lembaga; ?></td>
-                                            <!-- <td><?= $row->stts === 'Terverifikasi' ? "<span class='badge bg-green'>Terverifikasi</span>" : "<span class='badge bg-red'>Belum Terverifikasi</span>" ?></td> -->
+                                            <td><?= $row['nis']; ?></td>
+                                            <td><?= $row['nama']; ?></td>
+                                            <td><?= $row['desa'] . ' - ' . $row['kec'] . ' - ' . $row['kab']; ?></td>
+                                            <td><?= $row['lembaga']; ?></td>
                                             <td>
-                                                <a class="btn btn-warning btn-sm" href="<?= base_url('daftar/cek/' . $row->id_santri); ?>"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <a class="btn btn-warning btn-sm" href="<?= base_url('daftar/cekHasilDetail/' . $row['nik']); ?>"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                         <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1">
                                                         </path>

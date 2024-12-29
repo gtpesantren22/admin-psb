@@ -35,21 +35,20 @@ class Santri extends CI_Controller
 			foreach ($response['data']['data'] as $item) {
 				$id = $item['peserta_didik_id'];
 				$cek = $this->db->query("SELECT nis FROM tb_santri WHERE id_santri = '$id' ")->row();
-				if ($item['dok_transfer'] !== null) {
-					$result[] = [
-						'id_santri' => $id,
-						'nama' => $item['nama'],
-						'nis' => $item['nis'],
-						'jkl' => $item['jenis_kelamin'],
-						'gel' => $item['gelombang'],
-						'hp' => $item['whatsapp'],
-						'desa' => $item['wilayah']['nama'],
-						'kec' => $item['wilayah']['parrent_recursive']['nama'],
-						'kab' => $item['wilayah']['parrent_recursive']['parrent_recursive']['nama'],
-						'lembaga' => $item['lembaga']['nama'],
-						'verval' => $cek ? 'Terverifikasi' : 'Belum Terverifikasi',
-					];
-				}
+
+				$result[] = [
+					'id_santri' => $id,
+					'nama' => $item['nama'],
+					'nis' => $item['nis'],
+					'jkl' => $item['jenis_kelamin'],
+					'gel' => $item['gelombang'],
+					'hp' => $item['whatsapp'],
+					'desa' => $item['wilayah']['nama'],
+					'kec' => $item['wilayah']['parrent_recursive']['nama'],
+					'kab' => $item['wilayah']['parrent_recursive']['parrent_recursive']['nama'],
+					'lembaga' => $item['lembaga']['nama'],
+					'verval' => $cek ? 'Terverifikasi' : 'Belum Terverifikasi',
+				];
 			}
 		} else {
 			echo "Gagal mengakses endpoint";

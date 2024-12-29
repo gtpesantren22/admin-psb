@@ -44,19 +44,20 @@
                                     <?php
                                     $no = 1;
                                     foreach ($baru as $row) :
+                                        $jkl = $row['jkl'] == 'L' ? 'Laki-laki' : 'Perempuan';
                                     ?>
-                                    <tr>
-                                        <td><?= $no++; ?></td>
-                                        <td><?= $row->nis; ?></td>
-                                        <td><?= $row->nama; ?></td>
-                                        <td><?= $row->desa . ' - ' . $row->kec . ' - ' . $row->kab; ?></td>
-                                        <td><?= $row->jkl; ?></td>
-                                        <td><?= $row->gel; ?></td>
-                                        <td><?= $row->hp; ?></td>
-                                        <td><?= $row->lembaga; ?></td>
-                                        <td><?= $row->stts === 'Terverifikasi' ? "<span class='badge bg-green'>Terverifikasi</span>" : "<span class='badge bg-red'>Belum Terverifikasi</span>" ?>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td><?= $no++; ?></td>
+                                            <td><?= $row['nis']; ?></td>
+                                            <td><?= $row['nama']; ?></td>
+                                            <td><?= $row['desa'] . ' - ' . $row['kec'] . ' - ' . $row['kab']; ?></td>
+                                            <td><?= $jkl; ?></td>
+                                            <td><?= $row['gel']; ?></td>
+                                            <td><?= $row['hp']; ?></td>
+                                            <td><?= $row['lembaga']; ?></td>
+                                            <td><?= $row['verval'] === 'Terverifikasi' ? "<span class='badge bg-green'>Terverifikasi</span>" : "<span class='badge bg-red'>Belum Terverifikasi</span>" ?>
+                                            </td>
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>

@@ -13,13 +13,48 @@ class Santri extends CI_Controller
 		if (!$this->Auth_model->current_user() || $user->level != 'admin' && $user->level != 'bunda') {
 			redirect('login/logout');
 		}
+
+		$this->bearer = $this->model->getBy('api', 'url', 'bearer')->row('api_key');
 	}
 
 	public function index()
 	{
-		$data['baru'] = $this->model->baru()->result();
 		$data['judul'] = 'santri';
 		$data['user'] = $this->Auth_model->current_user();
+
+		$url = 'https://data.ppdwk.com/api/datatables?data=pendaftar&page=1&per_page=100&q=&sortby=created_at&sortbydesc=DESC&status=1';
+		$token = $this->bearer;
+		$datas = [];
+		$response = aksesEndpoint(
+			$url,
+			$token,
+			$datas
+		);
+		$result = [];
+		if ($response) {
+			foreach ($response['data']['data'] as $item) {
+				$id = $item['peserta_didik_id'];
+				$cek = $this->db->query("SELECT nis FROM tb_santri WHERE id_santri = '$id' ")->row();
+				if ($item['dok_transfer'] !== null) {
+					$result[] = [
+						'id_santri' => $id,
+						'nama' => $item['nama'],
+						'nis' => $item['nis'],
+						'jkl' => $item['jenis_kelamin'],
+						'gel' => $item['gelombang'],
+						'hp' => $item['whatsapp'],
+						'desa' => $item['wilayah']['nama'],
+						'kec' => $item['wilayah']['parrent_recursive']['nama'],
+						'kab' => $item['wilayah']['parrent_recursive']['parrent_recursive']['nama'],
+						'lembaga' => $item['lembaga']['nama'],
+						'verval' => $cek ? 'Terverifikasi' : 'Belum Terverifikasi',
+					];
+				}
+			}
+		} else {
+			echo "Gagal mengakses endpoint";
+		}
+		$data['baru'] = $result;
 
 		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/baru', $data);

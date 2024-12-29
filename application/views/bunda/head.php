@@ -141,7 +141,7 @@
                                         </span>
                                     </a>
                                 </li>
-                                <!-- <li class="nav-item dropdown <?= $judul === 'santri' ? 'active' : ''; ?>">
+                                <li class="nav-item dropdown <?= $judul === 'santri' ? 'active' : ''; ?>">
                                     <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -162,11 +162,11 @@
                                         <a class="dropdown-item" href="<?= base_url('santri'); ?>">
                                             Santri Baru
                                         </a>
-                                        <a class="dropdown-item" href="<?= base_url('santri/lanjut'); ?>">
+                                        <!-- <a class="dropdown-item" href="<?= base_url('santri/lanjut'); ?>">
                                             Santri Lanjutan
-                                        </a>
+                                        </a> -->
                                     </div>
-                                </li> -->
+                                </li>
                                 <li class="nav-item dropdown <?= $judul === 'daftar' ? 'active' : ''; ?>">
                                     <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">

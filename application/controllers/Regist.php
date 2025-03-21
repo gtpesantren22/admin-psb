@@ -96,7 +96,8 @@ class Regist extends CI_Controller
 			'seragam_pes' => $biaya->seragam_pes,
 			'seragam_lem' => $biaya->seragam_lem,
 			'orsaba' => $biaya->orsaba,
-			'buku_bio' => $biaya->buku_bio
+			'buku_bio' => $biaya->buku_bio,
+			'kitab' => $biaya->kitab,
 		];
 
 		$this->model->edit('tanggungan', $data, $nis);
@@ -120,6 +121,7 @@ class Regist extends CI_Controller
 			'seragam_lem' => rmRp($this->input->post('seragam_lem', true)),
 			'orsaba' => rmRp($this->input->post('orsaba', true)),
 			'buku_bio' => rmRp($this->input->post('buku_bio', true)),
+			'kitab' => rmRp($this->input->post('kitab', true)),
 		];
 		$this->model->edit('tanggungan', $data, $nis);
 		if ($this->db->affected_rows() > 0) {
@@ -134,7 +136,7 @@ class Regist extends CI_Controller
 		$nis  = $this->input->post('nis', true);
 		$nominal = rmRp($this->input->post('nominal', true));
 		$dataTgn = $this->model->tgnNis($nis)->row();
-		$tangg = $dataTgn->infaq + $dataTgn->buku + $dataTgn->kartu + $dataTgn->kalender + $dataTgn->seragam_pes + $dataTgn->seragam_lem + $dataTgn->orsaba + $dataTgn->buku_bio;
+		$tangg = $dataTgn->infaq + $dataTgn->buku + $dataTgn->kartu + $dataTgn->kalender + $dataTgn->seragam_pes + $dataTgn->seragam_lem + $dataTgn->orsaba + $dataTgn->buku_bio + $dataTgn->kitab;
 		$byr = $this->model->byrSum($nis)->row('nominal') + $nominal;
 		$id = $this->uuid->v4();
 		$user = $this->Auth_model->current_user();
@@ -224,7 +226,7 @@ class Regist extends CI_Controller
 		$tgn = $this->model->tgnNis($nis)->row();
 		$byr = $this->model->byrSum($nis)->row();
 
-		$ttg = $tgn->infaq + $tgn->buku + $tgn->kartu + $tgn->kalender + $tgn->seragam_pes + $tgn->seragam_lem + $tgn->orsaba + $tgn->buku_bio;
+		$ttg = $tgn->infaq + $tgn->buku + $tgn->kartu + $tgn->kalender + $tgn->seragam_pes + $tgn->seragam_lem + $tgn->orsaba + $tgn->buku_bio + $tgn->kitab;
 
 		if ($data->gel === '1') {
 			$link = 'https://chat.whatsapp.com/FxIUBMgNqIjAh2h7wAZjrU';
@@ -267,7 +269,7 @@ _*Catatan :_*
 	_*- Pesan ini sebgai bukti pembayaran yang sah (Harus dari WA Bendahara PSB)*_';
 
 		// kirim_person($key->api_key, $data->hp, $pesan);
-		kirim_tmp($key->api_key, $data->hp, $pesan, $tmp, 'https://i.postimg.cc/8c8fghZq/LOGO-WA.jpg');
+		kirim_tmp($key->api_key, $data->hp, 'Link pendaftaran', 'Isi link pendaftaran', $pesan, $tmp, 'https://i.postimg.cc/8c8fghZq/LOGO-WA.jpg');
 		redirect('regist/inDaftar/' . $nis);
 	}
 
@@ -284,6 +286,7 @@ _*Catatan :_*
 		$kalender = $buku - $tangg->buku;
 		$infaq = $kalender - $tangg->kalender;
 		$buku_bio = $infaq - $tangg->infaq;
+		$kitab = $buku_bio - $tangg->buku_bio;
 
 		if ($seragam_pes >= $tangg->seragam_pes) {
 			$this->model->edit('tanggungan', ['st_seragam_pes' => 1], $nis);
@@ -325,6 +328,11 @@ _*Catatan :_*
 		} else {
 			$this->model->edit('tanggungan', ['st_buku_bio' => 0], $nis);
 		}
+		if ($kitab >= $tangg->kitab) {
+			$this->model->edit('tanggungan', ['st_kitab' => 1], $nis);
+		} else {
+			$this->model->edit('tanggungan', ['st_kitab' => 0], $nis);
+		}
 
 		redirect('regist/inDaftar/' . $nis);
 	}
@@ -365,6 +373,28 @@ _*Catatan :_*
 				$this->session->set_flashdata('error', 'Data tak berhasil dipindah');
 				redirect('regist/sm');
 			}
+		}
+	}
+
+	public function infoSeragam($nis)
+	{
+		$key = $this->model->apiKey()->row();
+		$data = $this->model->getBy('tb_santri', 'nis', $nis)->row();
+		$pesan = '*Form Pengisian Seragam*
+
+Form pengisian seragam untuk calon santri baru PP. Darul Lughah Wal Karomah 2025/2026 atas nama *' . $data->nama . ',* alamat *' . $data->desa . ' - ' . $data->kec . ' - ' . $data->kab . '*. Silahkan klik link diatas untuk mengisi/memilih ukuran seragam
+
+*_Catatan:_*
+- Seragam akan diberikan ketika santri sudah *melunasi* biaya Registrasi Ulang
+- Pastikan ukuran baju sesuai dengan ukuran santri.';
+		$send = kirim_tmp($key->api_key, $data->hp, 'Link Penigisian Ukuran Seragam', 'Klik disini untuk menlakukan pengisian', $pesan, 'https://i.postimg.cc/cCFtQb49/File-Foto-PSB.jpg', 'https://psb.ppdwk.com/seragam/detail/' . $data->id_santri);
+		$hasil = json_decode($send, true);
+		if ($hasil['code'] == 200) {
+			$this->session->set_flashdata('ok', 'Pesan berhasil dikirim');
+			redirect('regist');
+		} else {
+			$this->session->set_flashdata('error', 'Pesan gagal dikirim');
+			redirect('regist');
 		}
 	}
 }

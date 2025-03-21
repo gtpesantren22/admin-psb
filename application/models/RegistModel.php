@@ -37,6 +37,7 @@ class RegistModel extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('api');
+        $this->db->where('id_api', 1);
         return $this->db->get();
     }
 

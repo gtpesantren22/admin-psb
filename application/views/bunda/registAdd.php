@@ -22,7 +22,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Input Pendaftaran</h3>
+                        <h3 class="card-title">Input Registrasi</h3>
                     </div>
                     <div class="card-body">
 
@@ -78,7 +78,7 @@
                                             <tr>
                                                 <th>Jalur</th>
                                                 <th>:</th>
-                                                <th><?= $santri->jalur; ?></th>
+                                                <th><?= $santri->jalur == 0 ? 'Reguler' : 'Prestasi'; ?></th>
                                             </tr>
                                         </table>
                                     </div>
@@ -129,7 +129,7 @@
                                                     Total Tanggungan
                                                 </div>
                                                 <div class="text-muted">
-                                                    <?= rupiah($tgn->infaq + $tgn->buku + $tgn->kartu + $tgn->kalender + $tgn->seragam_pes + $tgn->seragam_lem + $tgn->orsaba + $tgn->buku_bio); ?>
+                                                    <?= rupiah($tgn->infaq + $tgn->buku + $tgn->kartu + $tgn->kalender + $tgn->seragam_pes + $tgn->seragam_lem + $tgn->orsaba + $tgn->buku_bio + $tgn->kitab); ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -177,7 +177,7 @@
                                                     Kekurangan
                                                 </div>
                                                 <div class="text-muted">
-                                                    <?= rupiah(($tgn->infaq + $tgn->buku + $tgn->kartu + $tgn->kalender + $tgn->seragam_pes + $tgn->seragam_lem + $tgn->orsaba + $tgn->buku_bio) - $byrSum->row('nominal')) ?>
+                                                    <?= rupiah(($tgn->infaq + $tgn->buku + $tgn->kartu + $tgn->kalender + $tgn->seragam_pes + $tgn->seragam_lem + $tgn->orsaba + $tgn->buku_bio + $tgn->kitab) - $byrSum->row('nominal')) ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -317,9 +317,14 @@
                                                 <th>Buku Biografi</th>
                                                 <th><?= check($tgn->st_buku_bio) . rupiah($tgn->buku_bio) ?></th>
                                             </tr>
+                                            <tr>
+                                                <th>9</th>
+                                                <th>Kitab</th>
+                                                <th><?= check($tgn->st_kitab) . rupiah($tgn->kitab) ?></th>
+                                            </tr>
                                             <tr style="background-color: green; color: white;">
                                                 <th colspan="2">TOTAL</th>
-                                                <th><?= rupiah($tgn->infaq + $tgn->buku + $tgn->kartu + $tgn->kalender + $tgn->seragam_pes + $tgn->seragam_lem + $tgn->orsaba + $tgn->buku_bio) ?>
+                                                <th><?= rupiah($tgn->infaq + $tgn->buku + $tgn->kartu + $tgn->kalender + $tgn->seragam_pes + $tgn->seragam_lem + $tgn->orsaba + $tgn->buku_bio + $tgn->kitab) ?>
                                                 </th>
                                             </tr>
                                         </table>
@@ -512,9 +517,14 @@
                             <th>Buku Biografi</th>
                             <th><input type="text" name="buku_bio" class="form-control uang" value="<?= $tgn->buku_bio ?>" required></th>
                         </tr>
+                        <tr>
+                            <th>9</th>
+                            <th>Kitab</th>
+                            <th><input type="text" name="kitab" class="form-control uang" value="<?= $tgn->kitab ?>" required></th>
+                        </tr>
                         <tr style=" background-color: greenyellow">
                             <th colspan="2">TOTAL</th>
-                            <th><?= rupiah($tgn->infaq + $tgn->buku + $tgn->kartu + $tgn->kalender + $tgn->seragam_pes + $tgn->seragam_lem + $tgn->orsaba + $tgn->buku_bio) ?>
+                            <th><?= rupiah($tgn->infaq + $tgn->buku + $tgn->kartu + $tgn->kalender + $tgn->seragam_pes + $tgn->seragam_lem + $tgn->orsaba + $tgn->buku_bio + $tgn->kitab) ?>
                             </th>
                         </tr>
                     </table>

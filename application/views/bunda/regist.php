@@ -72,26 +72,19 @@
                                             <td><?= $no++; ?></td>
                                             <td><?= $row->nama; ?></td>
                                             <td><?= $row->lembaga; ?></td>
-                                            <td><?= rupiah($row->infaq + $row->buku + $row->kartu + $row->kalender + $row->seragam_pes + $row->seragam_lem + $row->orsaba + $row->buku_bio); ?>
+                                            <td><?= rupiah($row->infaq + $row->buku + $row->kartu + $row->kalender + $row->seragam_pes + $row->seragam_lem + $row->orsaba + $row->buku_bio + $row->kitab); ?>
                                             </td>
                                             <td><?= rupiah($byr->jml); ?></td>
-                                            <td><?= rupiah(($row->infaq + $row->buku + $row->kartu + $row->kalender + $row->seragam_pes + $row->seragam_lem + $row->orsaba + $row->buku_bio) - $byr->jml); ?>
+                                            <td><?= rupiah(($row->infaq + $row->buku + $row->kartu + $row->kalender + $row->seragam_pes + $row->seragam_lem + $row->orsaba + $row->buku_bio + $row->kitab) - $byr->jml); ?>
                                             </td>
                                             <td>
-                                                <!-- <a href="<?= base_url('daftar/del/') . $row->id_tgn ?>"
-                                                class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Yakin akan dihapus ?')">
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    class="icon icon-tabler icon-tabler-trash" width="24" height="24"
-                                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                    <line x1="4" y1="7" x2="20" y2="7"></line>
-                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                                </svg> Del</a> -->
+                                                <a href="<?= base_url('regist/infoSeragam/') . $row->nis ?>" class="btn btn-info btn-sm">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-shirt-sport">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                        <path d="M15 4l6 2v5h-3v8a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1v-8h-3v-5l6 -2a3 3 0 0 0 6 0" />
+                                                        <path d="M10.5 11h2.5l-1.5 5" />
+                                                    </svg> Seragam
+                                                </a>
                                                 <a href="<?= base_url('regist/inDaftar/') . $row->nis ?>" class="btn btn-warning btn-sm">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -150,7 +143,9 @@
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                 <circle cx="12" cy="12" r="9"></circle>
                                                 <path d="M9 12l2 2l4 -4"></path>
-                                            </svg> Pilih</a>
+                                            </svg> Pilih
+                                        </a>
+
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

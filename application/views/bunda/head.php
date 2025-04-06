@@ -162,9 +162,9 @@
                                         <a class="dropdown-item" href="<?= base_url('santri'); ?>">
                                             Santri Baru
                                         </a>
-                                        <!-- <a class="dropdown-item" href="<?= base_url('santri/lanjut'); ?>">
+                                        <a class="dropdown-item" href="<?= base_url('santri/lanjut'); ?>">
                                             Santri Lanjutan
-                                        </a> -->
+                                        </a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown <?= $judul === 'daftar' ? 'active' : ''; ?>">

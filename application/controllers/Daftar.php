@@ -288,7 +288,7 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 	{
 		// $data['baru'] = $this->model->getJoin('tb_santri_sm', 'berkas_file', 'id_santri', 'id_file')->result();
 		$data['baru'] = $this->model->getByJoin('tb_santri_sm', 'berkas_file', 'id_santri', 'id_file', 'berkas_file.bukti !=', '')->result();
-		$data['judul'] = 'santri';
+		$data['judul'] = 'daftar';
 		$data['user'] = $this->Auth_model->current_user();
 
 		$this->load->view('bunda/head', $data);
@@ -300,7 +300,7 @@ _*NB : Calon Santri diwajibkan memakai baju putih songkok/kerudung hitam dan Baw
 	{
 		$data['data'] = $this->model->getby('tb_santri_sm', 'id_santri', $nis)->row();
 		$data['berkas'] = $this->model->getby('berkas_file', 'id_file', $nis)->row();
-		$data['judul'] = 'santri';
+		$data['judul'] = 'daftar';
 		$data['user'] = $this->Auth_model->current_user();
 
 		$this->load->view('bunda/head', $data);
@@ -443,7 +443,7 @@ Waktu Daftar : ' . date('d-m-Y H:i:s') . '
 
 	public function cekHasil()
 	{
-		$url = 'https://data.ppdwk.com/api/datatables?data=pendaftar&page=1&per_page=100&q=&sortby=created_at&sortbydesc=DESC&status=1';
+		$url = 'https://data.ppdwk.com/api/datatables?data=pendaftar&page=1&per_page=300&q=&sortby=created_at&sortbydesc=DESC&status=1';
 		$token = $this->bearer;
 		$data = [];
 		$response = aksesEndpoint($url, $token, $data);
@@ -460,6 +460,7 @@ Waktu Daftar : ' . date('d-m-Y H:i:s') . '
 						'kec' => $item['wilayah']['parrent_recursive']['nama'],
 						'kab' => $item['wilayah']['parrent_recursive']['parrent_recursive']['nama'],
 						'lembaga' => $item['lembaga']['nama'],
+						'ket' => $item['pd_lama'] == null ? 'baru' : 'lama',
 					];
 				}
 			}
@@ -467,7 +468,7 @@ Waktu Daftar : ' . date('d-m-Y H:i:s') . '
 			echo "Gagal mengakses endpoint";
 		}
 		$data['baru'] = $result;
-		$data['judul'] = 'santri';
+		$data['judul'] = 'daftar';
 		$data['user'] = $this->Auth_model->current_user();
 
 		$this->load->view('bunda/head', $data);
@@ -477,7 +478,7 @@ Waktu Daftar : ' . date('d-m-Y H:i:s') . '
 
 	public function cekHasilDetail($id)
 	{
-		$data['judul'] = 'santri';
+		$data['judul'] = 'daftar';
 		$data['user'] = $this->Auth_model->current_user();
 
 		$url = 'https://data.ppdwk.com/api/datatables?data=pendaftar&page=1&per_page=10&q=' . $id . '&sortby=created_at&sortbydesc=DESC&status=1';
@@ -580,6 +581,72 @@ Terimakasih';
 				// kirim_tmp($key->api_key, $whatsapp, 'LINK GROUP', 'Link undangan bergabung group', $pesan2, $linkImg, linkGroup($gel));
 				kirim_tmp($key->api_key, $whatsapp, 'LINK GROUP', 'Link undangan bergabung group', $pesan2, $linkImg, 'https://chat.whatsapp.com/BDIVkDP4NFpKIDEO9hGkAY');
 				// kirim_tmp($key->api_key, '085236924510', 'LINK GROUP', 'Link undangan bergabung group', $pesan2, $linkImg, 'https://chat.whatsapp.com/BDIVkDP4NFpKIDEO9hGkAY');
+				$this->session->set_flashdata('ok', 'Verifikasi data berhasil');
+				redirect('daftar/cekHasil');
+			}
+		}
+	}
+	public function vervalNota3($nik)
+	{
+		$user = $this->Auth_model->current_user();
+		$url = 'https://data.ppdwk.com/api/datatables?data=pendaftar&page=1&per_page=10&q=' . $nik . '&sortby=created_at&sortbydesc=DESC&status=1';
+		$token = $this->bearer;
+		$dataKirim = [];
+		$response = aksesEndpoint($url, $token, $dataKirim);
+		if ($response) {
+			$id_santri = $response['data']['data'][0]['peserta_didik_id'];
+			$nis = $response['data']['data'][0]['nis'];
+			$nik = $response['data']['data'][0]['nik'];
+			$gel = $response['data']['data'][0]['gelombang'];
+			$nama = $response['data']['data'][0]['nama'];
+			$desa = $response['data']['data'][0]['wilayah']['nama'];
+			$kec = $response['data']['data'][0]['wilayah']['parrent_recursive']['nama'];
+			$kab = $response['data']['data'][0]['wilayah']['parrent_recursive']['parrent_recursive']['nama'];
+			$lemvaga = $response['data']['data'][0]['lembaga']['nama'];
+			$jkl = $response['data']['data'][0]['jenis_kelamin'] == 'L' ? 'Laki-laki' : 'Perempuan';
+			$tempat = $response['data']['data'][0]['tempat_lahir'];
+			$tanggal = $response['data']['data'][0]['tanggal_lahir'];
+			$bapak = $response['data']['data'][0]['nama_ayah'];
+			$ibu = $response['data']['data'][0]['nama_ibu'];
+			$jalur = $response['data']['data'][0]['jalur'] == 0 ? 'Reguler' : 'Prestasi';
+			$whatsapp = $response['data']['data'][0]['whatsapp'];
+
+			$seragam = ['id_seragam' => $id_santri, 'nis' => $nis];
+			$bayar = [
+				'id_bayar' => $id_santri,
+				'nis' => $nis,
+				'nominal' => gel($gel),
+				'tgl_bayar' => date('Y-m-d'),
+				'via' => 'Transfer',
+				'kasir' => $user->nama,
+				'created' => date('Y-m-d H:i:s'),
+			];
+
+			$dataSantri = [
+				'id_santri' => $id_santri,
+				'nis' => $nis,
+				'nik' => $nik,
+				'gel' => $gel,
+				'nama' => $nama,
+				'desa' => $desa,
+				'kec' => $kec,
+				'kab' => $kab,
+				'lembaga' => $lemvaga,
+				'jkl' => $jkl,
+				'tempat' => $tempat,
+				'tanggal' => $tanggal,
+				'bapak' => $bapak,
+				'ibu' => $ibu,
+				'jalur' => $jalur,
+				'hp' => $whatsapp,
+				'ket' => 'lama',
+				'stts' => 'Terverifikasi',
+			];
+
+			$this->model->tambah2('bp_daftar', $bayar);
+			if ($this->db->affected_rows() > 0) {
+				$this->model->tambah2('tb_santri', $dataSantri);
+				$this->model->tambah2('seragam', $seragam);
 				$this->session->set_flashdata('ok', 'Verifikasi data berhasil');
 				redirect('daftar/cekHasil');
 			}

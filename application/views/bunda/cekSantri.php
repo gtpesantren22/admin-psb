@@ -34,7 +34,7 @@
                                         <th>Nama</th>
                                         <th>Alamat</th>
                                         <th>Lembaga Tujuan</th>
-                                        <!-- <th>Status</th> -->
+                                        <th>Ket</th>
                                         <td>#</td>
                                     </tr>
                                 </thead>
@@ -49,6 +49,7 @@
                                             <td><?= $row['nama']; ?></td>
                                             <td><?= $row['desa'] . ' - ' . $row['kec'] . ' - ' . $row['kab']; ?></td>
                                             <td><?= $row['lembaga']; ?></td>
+                                            <td><?= $row['ket'] == 'baru' ? "<span class='badge bg-primary'>Baru</span>" : "<span class='badge bg-secondary'>Lanjutan</span>"  ?></td>
                                             <td>
                                                 <?php
                                                 $id = $row['id_santri'];

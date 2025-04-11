@@ -518,13 +518,13 @@ class Export extends CI_Controller
 		];
 
 		$sheet->setCellValue('A1', "DATA UKURAN SERAGAM SANTRI BARU PSB 2025/2026"); // Set kolom A1 dengan tulisan "DATA SISWA"
-		$sheet->mergeCells('A1:G1'); // Set Merge Cell pada kolom A1 sampai E1
+		$sheet->mergeCells('A1:H1'); // Set Merge Cell pada kolom A1 sampai E1
 
 		$sheet->setCellValue('A2', "PONDOK PESANTREN DARUL LUGHAH WAL KAROMAH"); // Set kolom A1 dengan tulisan "DATA SISWA"
-		$sheet->mergeCells('A2:G2'); // Set Merge Cell pada kolom A1 sampai E1
+		$sheet->mergeCells('A2:H2'); // Set Merge Cell pada kolom A1 sampai E1
 
 		$sheet->setCellValue('A3', ""); // Set kolom A1 dengan tulisan "DATA SISWA"
-		$sheet->mergeCells('A3:G3'); // Set Merge Cell pada kolom A1 sampai E1
+		$sheet->mergeCells('A3:H3'); // Set Merge Cell pada kolom A1 sampai E1
 
 		// Buat header tabel nya pada baris ke 3
 		$sheet->setCellValue('A4', "NO");
@@ -534,6 +534,7 @@ class Export extends CI_Controller
 		$sheet->setCellValue('E4', "NO HP");
 		$sheet->setCellValue('F4', "ATASAN");
 		$sheet->setCellValue('G4', "BAWAHAN");
+		$sheet->setCellValue('G4', "KET");
 
 		// Apply style header yang telah kita buat tadi ke masing-masing kolom header
 		// $sheet->getStyle('A1')->applyFromArray($style_col);
@@ -546,8 +547,9 @@ class Export extends CI_Controller
 		$sheet->getStyle('E4')->applyFromArray($style_col);
 		$sheet->getStyle('F4')->applyFromArray($style_col);
 		$sheet->getStyle('G4')->applyFromArray($style_col);
+		$sheet->getStyle('H4')->applyFromArray($style_col);
 
-		$siswa =  $this->db->query("SELECT a.*, b.nama, b.desa, b.kec, b.kab, b.lembaga, b.hp FROM seragam a LEFT JOIN tb_santri b ON a.nis=b.nis WHERE a.atasan != '' ")->result();
+		$siswa =  $this->db->query("SELECT a.*, b.nama, b.desa, b.kec, b.kab, b.lembaga, b.hp, b.ket FROM seragam a LEFT JOIN tb_santri b ON a.nis=b.nis WHERE a.atasan != '' ")->result();
 		$no = 1; // Untuk penomoran tabel, di awal set dengan 1
 		$numrow = 5; // Set baris pertama untuk isi tabel adalah baris ke 4
 		foreach ($siswa as $data) { // Lakukan looping pada variabel siswa
@@ -559,6 +561,7 @@ class Export extends CI_Controller
 			$sheet->setCellValue('E' . $numrow, $data->hp);
 			$sheet->setCellValue('F' . $numrow, $data->atasan);
 			$sheet->setCellValue('G' . $numrow, $data->bawahan);
+			$sheet->setCellValue('H' . $numrow, $data->ket);
 
 			// Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
 			$sheet->getStyle('A' . $numrow)->applyFromArray($style_row);
@@ -568,6 +571,7 @@ class Export extends CI_Controller
 			$sheet->getStyle('E' . $numrow)->applyFromArray($style_row);
 			$sheet->getStyle('F' . $numrow)->applyFromArray($style_row);
 			$sheet->getStyle('G' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('H' . $numrow)->applyFromArray($style_row);
 
 
 			$no++; // Tambah 1 setiap kali looping

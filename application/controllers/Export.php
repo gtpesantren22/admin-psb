@@ -483,4 +483,123 @@ class Export extends CI_Controller
 		$this->pdf->filename = "laporan-data-siswa-lama.pdf";
 		$this->pdf->load_view('adm/exLamaPDF', $data);
 	}
+
+	public function seragam()
+	{
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+
+		// Buat sebuah variabel untuk menampung pengaturan style dari header tabel
+		$style_col = [
+			'font' => ['bold' => true], // Set font nya jadi bold
+			'alignment' => [
+				'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+				'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+			],
+			'borders' => [
+				'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+				'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+				'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+				'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+			]
+		];
+
+		// Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+		$style_row = [
+			'alignment' => [
+				'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+			],
+			'borders' => [
+				'top' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border top dengan garis tipis
+				'right' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN],  // Set border right dengan garis tipis
+				'bottom' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN], // Set border bottom dengan garis tipis
+				'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
+			]
+		];
+
+		$sheet->setCellValue('A1', "DATA UKURAN SERAGAM SANTRI BARU PSB 2025/2026"); // Set kolom A1 dengan tulisan "DATA SISWA"
+		$sheet->mergeCells('A1:G1'); // Set Merge Cell pada kolom A1 sampai E1
+
+		$sheet->setCellValue('A2', "PONDOK PESANTREN DARUL LUGHAH WAL KAROMAH"); // Set kolom A1 dengan tulisan "DATA SISWA"
+		$sheet->mergeCells('A2:G2'); // Set Merge Cell pada kolom A1 sampai E1
+
+		$sheet->setCellValue('A3', ""); // Set kolom A1 dengan tulisan "DATA SISWA"
+		$sheet->mergeCells('A3:G3'); // Set Merge Cell pada kolom A1 sampai E1
+
+		// Buat header tabel nya pada baris ke 3
+		$sheet->setCellValue('A4', "NO");
+		$sheet->setCellValue('B4', "NAMA");
+		$sheet->setCellValue('C4', "ALAMAT");
+		$sheet->setCellValue('D4', "LEMBAGA");
+		$sheet->setCellValue('E4', "NO HP");
+		$sheet->setCellValue('F4', "ATASAN");
+		$sheet->setCellValue('G4', "BAWAHAN");
+
+		// Apply style header yang telah kita buat tadi ke masing-masing kolom header
+		// $sheet->getStyle('A1')->applyFromArray($style_col);
+		// $sheet->getStyle('B1')->applyFromArray($style_col);
+
+		$sheet->getStyle('A4')->applyFromArray($style_col);
+		$sheet->getStyle('B4')->applyFromArray($style_col);
+		$sheet->getStyle('C4')->applyFromArray($style_col);
+		$sheet->getStyle('D4')->applyFromArray($style_col);
+		$sheet->getStyle('E4')->applyFromArray($style_col);
+		$sheet->getStyle('F4')->applyFromArray($style_col);
+		$sheet->getStyle('G4')->applyFromArray($style_col);
+
+		$siswa =  $this->db->query("SELECT a.*, b.nama, b.desa, b.kec, b.kab, b.lembaga, b.hp FROM seragam a LEFT JOIN tb_santri b ON a.nis=b.nis WHERE a.atasan != '' ")->result();
+		$no = 1; // Untuk penomoran tabel, di awal set dengan 1
+		$numrow = 5; // Set baris pertama untuk isi tabel adalah baris ke 4
+		foreach ($siswa as $data) { // Lakukan looping pada variabel siswa
+
+			$sheet->setCellValue('A' . $numrow, $no);
+			$sheet->setCellValue('B' . $numrow, $data->nama);
+			$sheet->setCellValue('C' . $numrow, $data->desa . ' - ' . $data->kec . ' - ' . $data->kab);
+			$sheet->setCellValue('D' . $numrow, $data->lembaga);
+			$sheet->setCellValue('E' . $numrow, $data->hp);
+			$sheet->setCellValue('F' . $numrow, $data->atasan);
+			$sheet->setCellValue('G' . $numrow, $data->bawahan);
+
+			// Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
+			$sheet->getStyle('A' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('B' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('C' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('D' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('E' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('F' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('G' . $numrow)->applyFromArray($style_row);
+
+
+			$no++; // Tambah 1 setiap kali looping
+			$numrow++; // Tambah 1 setiap kali looping
+		}
+
+		// Set width kolom
+		// $sheet->getColumnDimension('D')->setWidth(20); // Set width kolom D
+		// $sheet->getColumnDimension('E')->setWidth(20); // Set width kolom E
+		// $sheet->getColumnDimension('AP')->setWidth(20); // Set width kolom E
+
+		// $sheet = $spreadsheet->getActiveSheet();
+		foreach ($sheet->getColumnIterator() as $column) {
+			$sheet->getColumnDimension($column->getColumnIndex())->setAutoSize(true);
+		}
+
+		// Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
+		$sheet->getDefaultRowDimension()->setRowHeight(-1);
+
+		// Set orientasi kertas jadi LANDSCAPE
+		$sheet->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
+
+		// Set judul file excel nya
+		$sheet->setTitle("Data Seragam Santri Baru");
+
+
+		// Proses file excel
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="Data Seragam Santri Baru 2025/2026.xlsx"'); // Set nama file excel nya
+		header('Cache-Control: max-age=0');
+
+		$writer = new Xlsx($spreadsheet);
+		$writer->save('php://output');
+	}
 }

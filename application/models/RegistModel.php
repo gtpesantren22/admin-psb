@@ -5,8 +5,10 @@ class RegistModel extends CI_Model
 {
     function baru()
     {
+        $this->db->select('tb_santri.nama, tb_santri.lembaga, tb_santri.nis, tanggungan.*, seragam.atasan, seragam.bawahan');
         $this->db->from('tanggungan');
         $this->db->join('tb_santri', 'ON tb_santri.nis=tanggungan.nis');
+        $this->db->join('seragam', 'ON tb_santri.nis=seragam.nis', 'left');
         $this->db->where('tb_santri.ket', 'baru');
         return $this->db->get();
     }

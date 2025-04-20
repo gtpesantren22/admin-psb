@@ -59,6 +59,7 @@
                                         <th>Tanggungan</th>
                                         <th>Lunas</th>
                                         <th>Sisa</th>
+                                        <th>Seragam</th>
                                         <th>#</th>
                                     </tr>
                                 </thead>
@@ -77,6 +78,7 @@
                                             <td><?= rupiah($byr->jml); ?></td>
                                             <td><?= rupiah(($row->infaq + $row->buku + $row->kartu + $row->kalender + $row->seragam_pes + $row->seragam_lem + $row->orsaba + $row->buku_bio + $row->kitab) - $byr->jml); ?>
                                             </td>
+                                            <td><?= $row->atasan . ', ' . $row->bawahan ?></td>
                                             <td>
                                                 <a href="<?= base_url('regist/infoSeragam/') . $row->nis ?>" class="btn btn-info btn-sm">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-shirt-sport">

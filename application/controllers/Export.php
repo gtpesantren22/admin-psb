@@ -534,7 +534,7 @@ class Export extends CI_Controller
 		$sheet->setCellValue('E4', "NO HP");
 		$sheet->setCellValue('F4', "ATASAN");
 		$sheet->setCellValue('G4', "BAWAHAN");
-		$sheet->setCellValue('G4', "KET");
+		$sheet->setCellValue('H4', "KET");
 
 		// Apply style header yang telah kita buat tadi ke masing-masing kolom header
 		// $sheet->getStyle('A1')->applyFromArray($style_col);

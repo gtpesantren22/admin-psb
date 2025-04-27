@@ -530,11 +530,14 @@ class Export extends CI_Controller
 		$sheet->setCellValue('A4', "NO");
 		$sheet->setCellValue('B4', "NAMA");
 		$sheet->setCellValue('C4', "ALAMAT");
-		$sheet->setCellValue('D4', "LEMBAGA");
-		$sheet->setCellValue('E4', "NO HP");
-		$sheet->setCellValue('F4', "ATASAN");
-		$sheet->setCellValue('G4', "BAWAHAN");
-		$sheet->setCellValue('H4', "KET");
+		$sheet->setCellValue('D4', "JKL");
+		$sheet->setCellValue('E4', "LEMBAGA");
+		$sheet->setCellValue('F4', "NO HP");
+		$sheet->setCellValue('G4', "ATASAN");
+		$sheet->setCellValue('H4', "BAWAHAN");
+		$sheet->setCellValue('I4', "KET");
+		$sheet->setCellValue('J4', "TANGGUNGAN");
+		$sheet->setCellValue('K4', "BAYAR");
 
 		// Apply style header yang telah kita buat tadi ke masing-masing kolom header
 		// $sheet->getStyle('A1')->applyFromArray($style_col);
@@ -548,20 +551,28 @@ class Export extends CI_Controller
 		$sheet->getStyle('F4')->applyFromArray($style_col);
 		$sheet->getStyle('G4')->applyFromArray($style_col);
 		$sheet->getStyle('H4')->applyFromArray($style_col);
+		$sheet->getStyle('I4')->applyFromArray($style_col);
+		$sheet->getStyle('J4')->applyFromArray($style_col);
+		$sheet->getStyle('K4')->applyFromArray($style_col);
 
-		$siswa =  $this->db->query("SELECT a.*, b.nama, b.desa, b.kec, b.kab, b.lembaga, b.hp, b.ket FROM seragam a LEFT JOIN tb_santri b ON a.nis=b.nis WHERE a.atasan != '' ")->result();
+		$siswa =  $this->db->query("SELECT a.*, b.nama, b.desa, b.kec, b.kab, b.lembaga, b.jkl, b.hp, b.ket FROM seragam a LEFT JOIN tb_santri b ON a.nis=b.nis WHERE a.atasan != '' ORDER BY a.urut ASC")->result();
 		$no = 1; // Untuk penomoran tabel, di awal set dengan 1
 		$numrow = 5; // Set baris pertama untuk isi tabel adalah baris ke 4
 		foreach ($siswa as $data) { // Lakukan looping pada variabel siswa
+			$tanggungan = $this->db->query("SELECT (infaq + buku + kartu + kalender + seragam_pes + seragam_lem + orsaba + buku_bio + kitab) AS tgn FROM tanggungan WHERE nis = $data->nis ")->row('tgn');
+			$bayar = $this->db->query("SELECT SUM(nominal) AS total FROM regist WHERE nis = $data->nis ")->row('nominal');
 
 			$sheet->setCellValue('A' . $numrow, $no);
 			$sheet->setCellValue('B' . $numrow, $data->nama);
 			$sheet->setCellValue('C' . $numrow, $data->desa . ' - ' . $data->kec . ' - ' . $data->kab);
-			$sheet->setCellValue('D' . $numrow, $data->lembaga);
-			$sheet->setCellValue('E' . $numrow, $data->hp);
-			$sheet->setCellValue('F' . $numrow, $data->atasan);
-			$sheet->setCellValue('G' . $numrow, $data->bawahan);
-			$sheet->setCellValue('H' . $numrow, $data->ket);
+			$sheet->setCellValue('D' . $numrow, $data->jkl);
+			$sheet->setCellValue('E' . $numrow, $data->lembaga);
+			$sheet->setCellValue('F' . $numrow, $data->hp);
+			$sheet->setCellValue('G' . $numrow, $data->atasan);
+			$sheet->setCellValue('H' . $numrow, $data->bawahan);
+			$sheet->setCellValue('I' . $numrow, $data->ket);
+			$sheet->setCellValue('J' . $numrow, $tanggungan);
+			$sheet->setCellValue('K' . $numrow, $bayar);
 
 			// Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
 			$sheet->getStyle('A' . $numrow)->applyFromArray($style_row);
@@ -572,6 +583,9 @@ class Export extends CI_Controller
 			$sheet->getStyle('F' . $numrow)->applyFromArray($style_row);
 			$sheet->getStyle('G' . $numrow)->applyFromArray($style_row);
 			$sheet->getStyle('H' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('I' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('J' . $numrow)->applyFromArray($style_row);
+			$sheet->getStyle('K' . $numrow)->applyFromArray($style_row);
 
 
 			$no++; // Tambah 1 setiap kali looping

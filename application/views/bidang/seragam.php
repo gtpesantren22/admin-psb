@@ -51,6 +51,7 @@
                                         <th>Jkl</th>
                                         <th>Atasan</th>
                                         <th>Bawahan</th>
+                                        <th>Songkok</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,6 +68,7 @@
                                             <td><?= $row->jkl; ?></td>
                                             <td><?= $row->atasan; ?></td>
                                             <td>No. <?= $row->bawahan; ?></td>
+                                            <td>No. <?= $row->songkok; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

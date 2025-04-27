@@ -560,7 +560,7 @@ class Export extends CI_Controller
 		$numrow = 5; // Set baris pertama untuk isi tabel adalah baris ke 4
 		foreach ($siswa as $data) { // Lakukan looping pada variabel siswa
 			$tanggungan = $this->db->query("SELECT (infaq + buku + kartu + kalender + seragam_pes + seragam_lem + orsaba + buku_bio + kitab) AS tgn FROM tanggungan WHERE nis = $data->nis ")->row('tgn');
-			$bayar = $this->db->query("SELECT SUM(nominal) AS total FROM regist WHERE nis = $data->nis ")->row('nominal');
+			$bayar = $this->db->query("SELECT SUM(nominal) AS total FROM regist WHERE nis = $data->nis ")->row('total');
 
 			$sheet->setCellValue('A' . $numrow, $no);
 			$sheet->setCellValue('B' . $numrow, $data->nama);

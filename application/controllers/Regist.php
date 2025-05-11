@@ -159,7 +159,7 @@ class Regist extends CI_Controller
 			$this->model->tambah('regist', $data);
 			if ($this->db->affected_rows() > 0) {
 				// $this->check($nis);
-				$this->pesan($id);
+				$this->infoSeragam($nis);
 				$this->session->set_flashdata('ok', 'Pembayaran Berhasil Ditambahkan');
 				redirect('regist/inDaftar/' . $nis);
 			} else {
@@ -386,8 +386,10 @@ Form pengisian seragam untuk calon santri baru PP. Darul Lughah Wal Karomah 2025
 
 *_Catatan:_*
 - Seragam akan diberikan ketika santri sudah *melunasi* biaya Registrasi Ulang
-- Pastikan ukuran baju sesuai dengan ukuran santri.';
+- Pastikan ukuran baju sesuai dengan ukuran santri.
+- Jika sudah mengisi, abaikan pesan ini';
 		$send = kirim_tmp($key->api_key, $data->hp, 'Link Penigisian Ukuran Seragam', 'Klik disini untuk menlakukan pengisian', $pesan, 'https://i.postimg.cc/cCFtQb49/File-Foto-PSB.jpg', 'https://psb.ppdwk.com/seragam/detail/' . $data->id_santri);
+		// $send = kirim_tmp($key->api_key, '085236924510', 'Link Penigisian Ukuran Seragam', 'Klik disini untuk menlakukan pengisian', $pesan, 'https://i.postimg.cc/cCFtQb49/File-Foto-PSB.jpg', 'https://psb.ppdwk.com/seragam/detail/' . $data->id_santri);
 		$hasil = json_decode($send, true);
 		if ($hasil['code'] == 200) {
 			$this->session->set_flashdata('ok', 'Pesan berhasil dikirim');

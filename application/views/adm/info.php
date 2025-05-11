@@ -22,6 +22,16 @@
                         </svg>
                         Buat Informasi Baru
                     </a>
+                    <a href="#" class="btn btn-success d-none d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#modal-kirim">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-message">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M8 9h8" />
+                            <path d="M8 13h6" />
+                            <path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" />
+                        </svg>
+                        Kirim Informasi
+                    </a>
                 </div>
             </div>
             <!-- Page title actions -->
@@ -89,6 +99,39 @@
     </div>
 </div>
 
+<div class="modal modal-blur fade" id="modal-kirim" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Kirim Informasi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <?= form_open('info/kirim') ?>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Penerima</label>
+                    <select type="text" class="form-select" id="select-states" name="hp[]" multiple>
+                        <option value=""> -pilih- </option>
+                        <?php foreach ($santri as $santri): ?>
+                            <option value="<?= $santri->hp ?>"><?= $santri->nama ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Isi Informasi</label>
+                    <textarea class="form-control" name="isi" rows="6" placeholder="Content.."></textarea>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Simpan </button>
+            </div>
+            <?= form_close(); ?>
+        </div>
+    </div>
+</div>
 <div class="modal modal-blur fade" id="modal-large" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -120,3 +163,29 @@
         </div>
     </div>
 </div>
+
+<script src="<?= base_url('demo'); ?>/dist/libs/tom-select/dist/js/tom-select.base.min.js?1684106062" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var el;
+        window.TomSelect && (new TomSelect(el = document.getElementById('select-states'), {
+            copyClassesToDropdown: false,
+            // dropdownParent: 'body',
+            controlInput: '<input>',
+            render: {
+                item: function(data, escape) {
+                    if (data.customProperties) {
+                        return '<div><span class="dropdown-item-indicator">' + data.customProperties + '</span>' + escape(data.text) + '</div>';
+                    }
+                    return '<div>' + escape(data.text) + '</div>';
+                },
+                option: function(data, escape) {
+                    if (data.customProperties) {
+                        return '<div><span class="dropdown-item-indicator">' + data.customProperties + '</span>' + escape(data.text) + '</div>';
+                    }
+                    return '<div>' + escape(data.text) + '</div>';
+                },
+            },
+        }));
+    });
+</script>

@@ -9,6 +9,13 @@ class InfoModel extends CI_Model
 		return $this->db->from('info')->get();
 	}
 
+	public function santri()
+	{
+		$this->db->select('nama, hp, ket');
+		$this->db->order_by('nama', 'ASC');
+		return $this->db->from('tb_santri')->get();
+	}
+
 	function tambah($table, $data)
 	{
 		$this->db->insert($table, $data);

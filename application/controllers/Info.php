@@ -21,6 +21,7 @@ class Info extends CI_Controller
 		$data['judul'] = 'info';
 		$data['user'] = $this->Auth_model->current_user();
 		$data['data'] = $this->model->data()->result();
+		$data['santri'] = $this->model->santri()->result();
 
 		$this->load->view('adm/head', $data);
 		$this->load->view('adm/info', $data);
@@ -36,25 +37,25 @@ class Info extends CI_Controller
 			'oleh'  => $user->nama,
 			'isi'  => $this->input->post('isi', true)
 		];
-		
+
 		$this->model->tambah('info', $data);
 		if ($this->db->affected_rows() > 0) {
 			$this->session->set_flashdata('ok', 'Data Berhasil Tersimpan');
 			redirect('info');
 		}
 	}
-	
+
 	public function edit($id)
 	{
 		$data['judul'] = 'info';
 		$data['user'] = $this->Auth_model->current_user();
 		$data['data'] = $this->model->getId($id)->row();
-		
+
 		$this->load->view('adm/head', $data);
 		$this->load->view('adm/infoEdit', $data);
 		$this->load->view('adm/foot');
 	}
-	
+
 	public function editAct()
 	{
 		$id = $this->input->post('id', true);
@@ -70,7 +71,7 @@ class Info extends CI_Controller
 			redirect('info');
 		}
 	}
-	
+
 	public function del($id)
 	{
 		$this->model->del($id);
@@ -85,7 +86,7 @@ class Info extends CI_Controller
 		$key = $this->model->apiKey()->row();
 		$data = $this->model->dataVeris()->result();
 		$tmp = array(array('url' => 'https://psb.ppdwk.com/login', 'text' => 'Klik disini untuk Login'));
-		foreach ($data as $row){
+		foreach ($data as $row) {
 			$pesan = '
 Assalamualaikum, Wr. Wb
 
@@ -99,5 +100,22 @@ _*Catatan : Bagi Wali santri yang sudah melengkapi berkas, harap mengabaikan pes
 		}
 
 		redirect('import');
+	}
+
+	public function kirim()
+	{
+		$no = $this->input->post('hp');
+		$isi = $this->input->post('isi', true);
+		$key = $this->model->apiKey()->row();
+		// $data = [
+		// 	'hp' => $no,
+		// 	'isi' => $isi
+		// ];
+		// echo '<pre>';
+		// var_dump($data);
+		// echo '</pre>';
+		foreach ($no as $nohp) {
+			kirim_person($key->api_key, '085236924510', $isi . '_' . time() . '_' . $nohp);
+		}
 	}
 }

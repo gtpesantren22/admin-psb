@@ -78,7 +78,7 @@
                                             <tr>
                                                 <th>Jalur</th>
                                                 <th>:</th>
-                                                <th><?= $santri->jalur == 0 ? 'Reguler' : 'Prestasi'; ?></th>
+                                                <th><?= $santri->jalur ?></th>
                                             </tr>
                                         </table>
                                     </div>

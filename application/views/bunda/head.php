@@ -159,11 +159,17 @@
                                         </span>
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="<?= base_url('santri'); ?>">
+                                        <a class="dropdown-item" href="<?= base_url('santri/baruLoc'); ?>">
                                             Santri Baru
                                         </a>
-                                        <a class="dropdown-item" href="<?= base_url('santri/lanjut'); ?>">
+                                        <a class="dropdown-item" href="<?= base_url('santri/lanjutLoc'); ?>">
                                             Santri Lanjutan
+                                        </a>
+                                        <a class="dropdown-item" href="<?= base_url('santri'); ?>">
+                                            Santri Baru (Pusat)
+                                        </a>
+                                        <a class="dropdown-item" href="<?= base_url('santri/lanjut'); ?>">
+                                            Santri Lanjutan (Pusat)
                                         </a>
                                     </div>
                                 </li>

@@ -20,6 +20,7 @@ class Santri extends CI_Controller
 	public function index()
 	{
 		$data['judul'] = 'santri';
+		$data['jenis'] = 'pusat';
 		$data['user'] = $this->Auth_model->current_user();
 
 		$url = 'https://data.ppdwk.com/api/datatables?data=pendaftar&page=1&per_page=300&q=&sortby=created_at&sortbydesc=DESC&status=1';
@@ -67,6 +68,7 @@ class Santri extends CI_Controller
 	{
 		$data['judul'] = 'santri';
 		$data['user'] = $this->Auth_model->current_user();
+		$data['jenis'] = 'pusat';
 
 		$url = 'https://data.ppdwk.com/api/datatables?data=pendaftar&page=1&per_page=300&q=&sortby=created_at&sortbydesc=DESC&status=1';
 		$token = $this->bearer;
@@ -106,6 +108,19 @@ class Santri extends CI_Controller
 
 		$this->load->view('bunda/head', $data);
 		$this->load->view('bunda/lama', $data);
+		$this->load->view('bunda/foot');
+	}
+
+	public function baruLoc()
+	{
+		$data['judul'] = 'santri';
+		$data['jenis'] = 'local';
+		$data['user'] = $this->Auth_model->current_user();
+		$result = $this->model->baru()->result_array();
+		$data['baru'] = $result;
+
+		$this->load->view('bunda/head', $data);
+		$this->load->view('bunda/baru', $data);
 		$this->load->view('bunda/foot');
 	}
 
@@ -220,6 +235,60 @@ class Santri extends CI_Controller
 			if ($this->db->affected_rows() > 0) {
 				redirect('santri/kirim');
 			}
+		}
+	}
+
+	public function renew($id)
+	{
+		$url = 'https://data.ppdwk.com/api/psb/show/' . $id;
+		$token = $this->bearer;
+		$dataKirim = [];
+		$response = aksesEndpoint($url, $token, $dataKirim);
+		$detSantri = $this->db->query("SELECT * FROM tb_santri WHERE id_santri = '$id'")->row();
+		$redirect = $detSantri->ket == 'baru' ? 'santri/baruLoc' : 'santri/lamaLoc';
+		if ($response) {
+			$nis = $response['nis'];
+			$nik = $response['nik'];
+			$nama = $response['nama'];
+			$desa = $response['wilayah']['nama'];
+			$kec = $response['wilayah']['parrent_recursive']['nama'];
+			$kab = $response['wilayah']['parrent_recursive']['parrent_recursive']['nama'];
+			$lemvaga = $response['lembaga']['nama'];
+			$jkl = $response['jenis_kelamin'] == 'L' ? 'Laki-laki' : 'Perempuan';
+			$tempat = $response['tempat_lahir'];
+			$tanggal = $response['tanggal_lahir'];
+			$bapak = $response['nama_ayah'];
+			$ibu = $response['nama_ibu'];
+			$jalur = $response['jalur'] == 0 ? 'Reguler' : 'Prestasi';
+			$whatsapp = $response['whatsapp'];
+
+			$dataSantri = [
+				'nis' => $nis,
+				'nik' => $nik,
+				'nama' => $nama,
+				'desa' => $desa,
+				'kec' => $kec,
+				'kab' => $kab,
+				'lembaga' => $lemvaga,
+				'jkl' => $jkl,
+				'tempat' => $tempat,
+				'tanggal' => $tanggal,
+				'bapak' => $bapak,
+				'ibu' => $ibu,
+				'jalur' => $jalur,
+				'hp' => $whatsapp,
+			];
+
+			// var_dump($dataSantri);
+			$this->model->edit2('tb_santri', $dataSantri, 'id_santri', $id);
+			if ($this->db->affected_rows() > 0) {
+				$this->session->set_flashdata('ok', 'Update data berhasil');
+				redirect($redirect);
+			} else {
+				redirect($redirect);
+			}
+		} else {
+			echo "data tidak ditemukan";
 		}
 	}
 }

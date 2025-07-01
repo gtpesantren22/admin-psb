@@ -80,7 +80,7 @@ function kirim_person($key, $no_hp, $pesan)
     curl_setopt_array(
         $curl2,
         array(
-            CURLOPT_URL => 'http://191.101.3.115:3000/api/sendMessage',
+            CURLOPT_URL => 'http://31.97.179.141:3000/api/sendMessage',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -101,7 +101,7 @@ function kirim_group($key, $id_group, $pesan)
     curl_setopt_array(
         $curl2,
         array(
-            CURLOPT_URL => 'http://191.101.3.115:3000/api/sendMessageGroup',
+            CURLOPT_URL => 'http://31.97.179.141:3000/api/sendMessageGroup',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -122,7 +122,7 @@ function kirim_tmp($apiKey, $no_hp, $title, $desc, $isi, $link_logo, $link)
     curl_setopt_array(
         $curl2,
         array(
-            CURLOPT_URL => 'http://191.101.3.115:3000/api/sendAdReplyMessage',
+            CURLOPT_URL => 'http://31.97.179.141:3000/api/sendAdReplyMessage',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -145,7 +145,7 @@ function addContact_to_group($key, $no_hp, $id_group)
     curl_setopt_array(
         $curl2,
         array(
-            CURLOPT_URL => 'http://191.101.3.115:3000/api/addParticipantGroup',
+            CURLOPT_URL => 'http://31.97.179.141:3000/api/addParticipantGroup',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,

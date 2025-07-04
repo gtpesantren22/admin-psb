@@ -258,3 +258,9 @@ function aksesEndpoint($url, $token, $data = [])
     // Decode JSON response to PHP array
     return json_decode($response, true);
 }
+
+function dekosan($tmp)
+{
+    $dttmp = array("", "Kantin", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny. Sa'adah", "Ny. Mamjudah", "Ny. Naily Z.", "Ny. Lathifah", "Ny. Ummi Kultsum", "K. Abdul Mukti");
+    return $dttmp($tmp);
+}

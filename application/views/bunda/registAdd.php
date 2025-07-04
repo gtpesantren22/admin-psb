@@ -346,7 +346,10 @@
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <h3 class="card-title">History Pembayaran</h3>
+                                        <h3 class="card-title">
+                                            History Pembayaran
+                                            <a target="_blank" href="<?= base_url('regist/kwitansi/' . $santri->nis) ?>" class="btn btn-primary float-end">Cetak Kwitansi</a>
+                                        </h3>
                                         <div class="table-responsive">
                                             <table class="table card-table table-vcenter text-nowrap table-sm" id="example">
                                                 <thead>

@@ -399,4 +399,15 @@ Form pengisian seragam untuk calon santri baru PP. Darul Lughah Wal Karomah 2025
 			redirect('regist');
 		}
 	}
+
+	public function kwitansi($nis)
+	{
+		$data['santri'] = $this->model->getBy('tb_santri', 'nis', $nis)->row();
+		$data['regist'] = $this->model->getBy('regist', 'nis', $nis)->result();
+		$data['seragam'] = $this->model->getBy('seragam', 'nis', $nis)->row();
+		$data['dekos'] = $this->model->getBy('dekos', 'nis', $nis)->row();
+		$data['no'] = 1;
+		$data['user'] = $this->Auth_model->current_user();
+		$this->load->view('bunda/kwitansi', $data);
+	}
 }

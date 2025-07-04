@@ -127,6 +127,12 @@
                     </tr>
                 <?php endforeach ?>
             </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4">TOTAL</th>
+                    <th><?= rupiah($total->total) ?></th>
+                </tr>
+            </tfoot>
         </table>
 
         <div class="flex justify-between mt-4 text-sm">
@@ -215,7 +221,7 @@
                     <th class="text-center">Nominal</th>
                 </tr>
             </thead>
-            <tbody>
+
             <tbody>
                 <?php foreach ($regist as $row): ?>
                     <tr class="h-8">
@@ -227,7 +233,12 @@
                     </tr>
                 <?php endforeach ?>
             </tbody>
-            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4">TOTAL</th>
+                    <th><?= rupiah($total->total) ?></th>
+                </tr>
+            </tfoot>
         </table>
 
         <div class="flex justify-between mt-4 text-sm">
@@ -246,4 +257,5 @@
 <script>
     window.print()
 </script>
+
 </html>

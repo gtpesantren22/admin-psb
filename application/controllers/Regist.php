@@ -404,6 +404,7 @@ Form pengisian seragam untuk calon santri baru PP. Darul Lughah Wal Karomah 2025
 	{
 		$data['santri'] = $this->model->getBy('tb_santri', 'nis', $nis)->row();
 		$data['regist'] = $this->model->getBy('regist', 'nis', $nis)->result();
+		$data['total'] = $this->db->query("SELECT SUM(nominal) as total FROM regist WHERE nis = $nis")->row();
 		$data['seragam'] = $this->model->getBy('seragam', 'nis', $nis)->row();
 		$data['dekos'] = $this->model->getBy('dekos', 'nis', $nis)->row();
 		$data['no'] = 1;

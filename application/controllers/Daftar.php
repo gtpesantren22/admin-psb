@@ -576,7 +576,7 @@ Terimakasih';
 				'jalur' => $jalur,
 				'anak_ke' => $anak_ke,
 				'jml_sdr' => $jml_sdr,
-				'waktu_daftar' => $waktu_daftar,
+				'waktu_daftar' => date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $waktu_daftar))),
 				'hp' => $whatsapp,
 				'ket' => 'baru',
 				'stts' => 'Terverifikasi',

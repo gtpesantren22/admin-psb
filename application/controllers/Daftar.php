@@ -511,6 +511,7 @@ Waktu Daftar : ' . date('d-m-Y H:i:s') . '
 			$id_santri = $response['data']['data'][0]['peserta_didik_id'];
 			$nis = $response['data']['data'][0]['nis'];
 			$nik = $response['data']['data'][0]['nik'];
+			$no_kk = $response['data']['data'][0]['no_kk'];
 			$gel = $response['data']['data'][0]['gelombang'];
 			$nama = $response['data']['data'][0]['nama'];
 			$desa = $response['data']['data'][0]['wilayah']['nama'];
@@ -524,6 +525,9 @@ Waktu Daftar : ' . date('d-m-Y H:i:s') . '
 			$ibu = $response['data']['data'][0]['nama_ibu'];
 			$jalur = $response['data']['data'][0]['jalur'] == 0 ? 'Reguler' : 'Prestasi';
 			$whatsapp = $response['data']['data'][0]['whatsapp'];
+			$anak_ke = $response['data']['data'][0]['anak_ke'];
+			$jml_sdr = $response['data']['data'][0]['jml_sdr'];
+			$waktu_daftar = $response['data']['data'][0]['created_at'];
 
 			$seragam = ['id_seragam' => $id_santri, 'nis' => $nis];
 			$bayar = [
@@ -557,6 +561,7 @@ Terimakasih';
 				'id_santri' => $id_santri,
 				'nis' => $nis,
 				'nik' => $nik,
+				'no_kk' => $no_kk,
 				'gel' => $gel,
 				'nama' => $nama,
 				'desa' => $desa,
@@ -569,6 +574,9 @@ Terimakasih';
 				'bapak' => $bapak,
 				'ibu' => $ibu,
 				'jalur' => $jalur,
+				'anak_ke' => $anak_ke,
+				'jml_sdr' => $jml_sdr,
+				'waktu_daftar' => $waktu_daftar,
 				'hp' => $whatsapp,
 				'ket' => 'baru',
 				'stts' => 'Terverifikasi',

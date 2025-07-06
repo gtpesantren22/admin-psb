@@ -249,6 +249,7 @@ class Santri extends CI_Controller
 		if ($response) {
 			$nis = $response['nis'];
 			$nik = $response['nik'];
+			$no_kk = $response['no_kk'];
 			$nama = $response['nama'];
 			$desa = $response['wilayah']['nama'];
 			$kec = $response['wilayah']['parrent_recursive']['nama'];
@@ -261,10 +262,14 @@ class Santri extends CI_Controller
 			$ibu = $response['nama_ibu'];
 			$jalur = $response['jalur'] == 0 ? 'Reguler' : 'Prestasi';
 			$whatsapp = $response['whatsapp'];
+			$anak_ke = $response['anak_ke'];
+			$jml_sdr = $response['jml_sdr'];
+			$waktu_daftar = $response['created_at'];
 
 			$dataSantri = [
 				'nis' => $nis,
 				'nik' => $nik,
+				'no_kk' => $no_kk,
 				'nama' => $nama,
 				'desa' => $desa,
 				'kec' => $kec,
@@ -277,6 +282,9 @@ class Santri extends CI_Controller
 				'ibu' => $ibu,
 				'jalur' => $jalur,
 				'hp' => $whatsapp,
+				'anak_ke' => $anak_ke,
+				'jml_sdr' => $jml_sdr,
+				'waktu_daftar' => $waktu_daftar
 			];
 
 			// var_dump($dataSantri);

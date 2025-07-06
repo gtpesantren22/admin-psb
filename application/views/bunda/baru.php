@@ -37,6 +37,7 @@
                                         <th>Gel</th>
                                         <th>No. HP</th>
                                         <th>Lembaga Tujuan</th>
+                                        <th>Anak/Sdr</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -55,6 +56,7 @@
                                             <td><?= $row['gel']; ?></td>
                                             <td><?= $row['hp']; ?></td>
                                             <td><?= $row['lembaga']; ?></td>
+                                            <td><?= $row['anak_ke'] . ' / ' . $row['jml_sdr'] . ' sdr'; ?></td>
                                             <?php if ($jenis == 'pusat') { ?>
                                                 <td><?= $row['verval'] === 'Terverifikasi' ? "<span class='badge bg-green'>Terverifikasi</span>" : "<span class='badge bg-red'>Belum Terverifikasi</span>" ?></td>
                                             <?php } else { ?>

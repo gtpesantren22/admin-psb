@@ -34,6 +34,7 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Tgl Bayar</th>
+                                        <th>Jam</th>
                                         <th>Nominal</th>
                                         <th>Tempat Kos</th>
                                         <th>Lembaga</th>
@@ -49,6 +50,7 @@
                                             <td><?= $no++; ?></td>
                                             <td><?= $row->nama; ?></td>
                                             <td><?= date('d-m-Y', strtotime($row->tgl)); ?></td>
+                                            <td><?= date('H:i:s', strtotime($row->tgl)); ?></td>
                                             <td><?= rupiah($row->nominal); ?>
                                             </td>
                                             <td><?= $tmpKos[$row->t_kos]; ?></td>

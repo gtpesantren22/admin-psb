@@ -32,6 +32,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Nis</th>
                                         <th>Nama</th>
                                         <th>Tgl Bayar</th>
                                         <th>Jam</th>
@@ -48,6 +49,7 @@
                                     foreach ($dekosan->result() as $row) : ?>
                                         <tr>
                                             <td><?= $no++; ?></td>
+                                            <td><?= $row->nis; ?></td>
                                             <td><?= $row->nama; ?></td>
                                             <td><?= date('d-m-Y', strtotime($row->tgl)); ?></td>
                                             <td><?= date('H:i:s', strtotime($row->tgl)); ?></td>

@@ -899,7 +899,7 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 		$santri = $this->db->query("SELECT * FROM tb_santri WHERE nis = $nis OR id_santri = '$id_santri' ")->row();
 		$dekos = $this->db->query("SELECT * FROM dekos WHERE nis = $nis ")->row();
 		$lemari = $this->db->query("SELECT * FROM lemari_data WHERE nis = $nis ")->row();
-
+		$lembaga = str_replace(' DARUL LUGHAH WAL KAROMAH', '', $santri->lembaga);
 		// echo json_encode($santri->nama);
 
 		$dataSantri = [
@@ -918,7 +918,7 @@ selanjutnya, silahkan melakukan  pembayaran  Biaya Pendaftaran sebesar *' . rupi
 			'jln' => $santri->jln,
 			'rt' => $santri->rt,
 			'rw' => $santri->rw,
-			't_formal' => $santri->lembaga,
+			't_formal' => $lembaga,
 			'anak_ke' => $santri->anak_ke,
 			'jml_sdr' => $santri->jml_sdr,
 			'bapak' => $santri->bapak,
